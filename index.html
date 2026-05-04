@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sasha — Portfolio Vol. 1 / 2026</title>
+  <meta name="description" content="Sasha's portfolio — Vol. 1, 2026." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Parisienne&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="styles/base.css" />
+  <link rel="stylesheet" href="styles/landing.css" />
+</head>
+<body class="landing">
+  <main class="frame">
+    <!-- Top left: volume / year -->
+    <div class="masthead reveal-fade" data-delay="200">
+      <span class="masthead-vol">Vol. 1</span>
+      <span class="masthead-year">2026</span>
+    </div>
+
+    <!-- Top right: social icons -->
+    <nav class="socials reveal-fade" data-delay="300" aria-label="Social media">
+      <a href="#" class="social-tile" aria-label="Instagram" data-social="instagram">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+          <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/>
+          <circle cx="17.5" cy="6.5" r="1.1" fill="currentColor"/>
+        </svg>
+      </a>
+      <a href="#" class="social-tile" aria-label="LinkedIn" data-social="linkedin">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor" d="M4.98 3.5A2.5 2.5 0 1 1 4.97 8.5a2.5 2.5 0 0 1 .01-5ZM3 9.5h4V21H3V9.5Zm6.5 0h3.84v1.57h.05c.53-.95 1.83-1.95 3.77-1.95 4.04 0 4.79 2.66 4.79 6.12V21h-4v-5.13c0-1.22-.02-2.79-1.7-2.79-1.7 0-1.96 1.33-1.96 2.7V21h-4V9.5Z"/>
+        </svg>
+      </a>
+      <a href="#" class="social-tile" aria-label="TikTok" data-social="tiktok">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor" d="M16 3c.4 1.86 1.5 3.4 3.5 4.04V10a7.5 7.5 0 0 1-3.6-1.04v6.04A5.5 5.5 0 1 1 10.5 9.5v3.05a2.5 2.5 0 1 0 2.5 2.45V3h3Z"/>
+        </svg>
+      </a>
+      <a href="mailto:hello@example.com" class="social-tile" aria-label="Email" data-social="email">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M3 6h18v12H3z" fill="none" stroke="currentColor" stroke-width="1.6"/>
+          <path d="m3 6 9 7 9-7" fill="none" stroke="currentColor" stroke-width="1.6"/>
+        </svg>
+      </a>
+    </nav>
+
+    <!-- Center: title -->
+    <header class="title-block">
+      <h1 class="title" data-reveal="title">
+        <span aria-hidden="true">S</span><span aria-hidden="true">A</span><span aria-hidden="true">S</span><span aria-hidden="true">H</span><span aria-hidden="true">A</span>
+        <span class="visually-hidden">Sasha</span>
+      </h1>
+      <p class="subtitle reveal-drop" data-delay="700">portfolio</p>
+    </header>
+
+    <!-- Bottom left: instagram feed (3×2) -->
+    <aside class="insta reveal-slide-left" data-delay="500" aria-label="Instagram feed">
+      <span class="insta-label">insta feed</span>
+      <a class="insta-tile" href="#" aria-label="Instagram post 1">
+        <img src="assets/images/insta-1.jpg" alt="" loading="lazy" />
+      </a>
+      <a class="insta-tile" href="#" aria-label="Instagram post 2">
+        <img src="assets/images/insta-2.jpg" alt="" loading="lazy" />
+      </a>
+      <a class="insta-tile" href="#" aria-label="Instagram post 3">
+        <img src="assets/images/insta-3.jpg" alt="" loading="lazy" />
+      </a>
+      <a class="insta-tile" href="#" aria-label="Instagram post 4">
+        <img src="assets/images/insta-4.jpg" alt="" loading="lazy" />
+      </a>
+      <a class="insta-tile" href="#" aria-label="Instagram post 5">
+        <img src="assets/images/insta-5.jpg" alt="" loading="lazy" />
+      </a>
+      <a class="insta-tile" href="#" aria-label="Instagram post 6">
+        <img src="assets/images/insta-6.jpg" alt="" loading="lazy" />
+      </a>
+    </aside>
+
+    <!-- Center: portrait -->
+    <figure class="portrait reveal-rise" data-delay="700">
+      <img src="assets/images/portrait.png" alt="Portrait of Sasha" />
+    </figure>
+
+    <!-- Right side: page links -->
+    <nav class="pagelinks" aria-label="Sections">
+      <a href="pages/my-story.html" class="pagelink" data-delay="600">
+        <span class="pagelink-text">My Story</span>
+        <span class="pagelink-arrow" aria-hidden="true"></span>
+      </a>
+      <a href="pages/finance-tech.html" class="pagelink" data-delay="700">
+        <span class="pagelink-text">Finance &amp; Tech</span>
+        <span class="pagelink-arrow" aria-hidden="true"></span>
+      </a>
+      <a href="pages/brand-content.html" class="pagelink" data-delay="800">
+        <span class="pagelink-text">Brand &amp; Content</span>
+        <span class="pagelink-arrow" aria-hidden="true"></span>
+      </a>
+      <a href="pages/leadership-impact.html" class="pagelink" data-delay="900">
+        <span class="pagelink-text">Leadership &amp; Impact</span>
+        <span class="pagelink-arrow" aria-hidden="true"></span>
+      </a>
+      <a href="pages/community-influence.html" class="pagelink" data-delay="1000">
+        <span class="pagelink-text">Community &amp; Influence</span>
+        <span class="pagelink-arrow" aria-hidden="true"></span>
+      </a>
+    </nav>
+
+    <a href="assets/resume/resume.pdf" class="resume-link" download data-delay="1200">
+      <span class="resume-shimmer" aria-hidden="true"></span>
+      <span class="resume-text">download my resume</span>
+      <svg class="resume-arrow" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 4v12m0 0-5-5m5 5 5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </main>
+
+  <script src="scripts/main.js" defer></script>
+  <script src="scripts/cursor-effects.js" defer></script>
+</body>
+</html>

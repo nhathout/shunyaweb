@@ -1,0 +1,491 @@
+/* lock the landing to the viewport — never scrolls */
+html,
+body.landing {
+  height: 100%;
+  overflow: hidden;
+}
+
+.frame {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  padding: var(--frame-padding);
+  display: grid;
+  /* col 1 = insta width, col 2 = portrait (flex), col 3 = scaled-up page links */
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-rows: auto 1fr auto;
+  gap: clamp(16px, 2vw, 32px);
+}
+
+/* hairline frame — magazine page feel */
+.frame::before {
+  content: "";
+  position: absolute;
+  inset: clamp(12px, 1.5vw, 22px);
+  border: var(--hairline);
+  pointer-events: none;
+}
+
+/* ───────── masthead ───────── */
+.masthead {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: var(--font-body);
+  font-size: clamp(14px, 1.05vw, 18px);
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  z-index: 3;
+}
+
+.masthead-vol,
+.masthead-year {
+  font-style: normal;
+  font-weight: 400;
+  font-size: inherit;
+  line-height: 1;
+}
+
+/* ───────── socials ───────── */
+.socials {
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: end;
+  align-self: start;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: 8px;
+  z-index: 3;
+}
+
+.social-tile {
+  width: clamp(34px, 2.6vw, 44px);
+  height: clamp(34px, 2.6vw, 44px);
+  display: grid;
+  place-items: center;
+  border: var(--hairline);
+  color: var(--black);
+  background: transparent;
+  transition: background-color 0.45s ease, color 0.45s ease, transform 0.45s ease;
+}
+
+.social-tile svg {
+  width: 55%;
+  height: 55%;
+  transition: transform 0.45s ease;
+}
+
+.social-tile:hover {
+  background: var(--baby-pink);
+  transform: translateY(-2px);
+}
+
+.social-tile:hover svg {
+  transform: scale(1.08);
+}
+
+/* ───────── title block ───────── */
+.title-block {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-self: center;
+  align-self: start;
+  margin-top: clamp(8px, 1.2vh, 24px);
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(72px, 13vw, 220px);
+  letter-spacing: 0.12em;
+  line-height: 0.9;
+  margin: 0;
+  color: var(--black);
+  display: flex;
+  gap: 0.04em;
+  overflow: hidden;
+  padding-top: 0.1em;
+}
+
+.title span[aria-hidden] {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(-120%);
+  transition:
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.95s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.title span[aria-hidden]:nth-child(1) { transition-delay: 200ms; }
+.title span[aria-hidden]:nth-child(2) { transition-delay: 290ms; }
+.title span[aria-hidden]:nth-child(3) { transition-delay: 380ms; }
+.title span[aria-hidden]:nth-child(4) { transition-delay: 470ms; }
+.title span[aria-hidden]:nth-child(5) { transition-delay: 560ms; }
+
+.title.is-in span[aria-hidden] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .title span[aria-hidden] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+.subtitle {
+  font-family: var(--font-script);
+  font-size: clamp(28px, 3.2vw, 56px);
+  margin: -0.45em 0 0 0.25em;
+  color: var(--black);
+  line-height: 1;
+  transform-origin: left center;
+}
+
+/* preserve rotation through the reveal-drop entrance */
+.subtitle.reveal-drop {
+  transform: translateY(-160%) rotate(-4deg);
+}
+.subtitle.reveal-drop.is-in {
+  transform: translateY(0) rotate(-4deg);
+}
+
+/* an arrow under the title pointing down at the portrait, magazine style */
+.title-block::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -16px;
+  width: 1px;
+  height: 22px;
+  background: var(--black);
+  transform: translateX(-50%);
+}
+
+/* ───────── insta feed (2 cols × 3 rows) ───────── */
+.insta {
+  grid-column: 1;
+  grid-row: 2 / 4;
+  align-self: end;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, auto);
+  gap: 10px;
+  width: clamp(210px, 21vw, 290px);
+  position: relative;
+  z-index: 3;
+}
+
+.insta-label {
+  position: absolute;
+  left: -34px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+  transform-origin: center;
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  white-space: nowrap;
+}
+
+.insta-label::after {
+  content: " →";
+  letter-spacing: 0;
+}
+
+.insta-tile {
+  position: relative;
+  overflow: hidden;
+  border: var(--hairline);
+  background: var(--cream-deep);
+  aspect-ratio: 1 / 1;
+}
+
+.insta-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease, filter 0.7s ease;
+  filter: grayscale(15%) contrast(1.02);
+}
+
+.insta-tile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--baby-pink);
+  mix-blend-mode: multiply;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
+}
+
+.insta-tile:hover img {
+  transform: scale(1.06);
+  filter: grayscale(0) contrast(1);
+}
+
+.insta-tile:hover::after {
+  opacity: 0.18;
+}
+
+/* ───────── portrait ───────── */
+.portrait {
+  grid-column: 2;
+  grid-row: 2 / 4;
+  margin: 0;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.portrait img {
+  max-height: 100%;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  animation: float 7s ease-in-out 1.6s infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* ───────── page links ───────── */
+.pagelinks {
+  --pagelink-fs: clamp(26px, 2.3vw, 40px);
+  grid-column: 3;
+  grid-row: 2;
+  align-self: center;
+  justify-self: end;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 2vh, 28px);
+  text-align: right;
+  z-index: 3;
+  /* lift the whole stack one font-height so the gap above the resume box grows */
+  transform: translateY(calc(-1 * var(--pagelink-fs)));
+}
+
+.pagelink {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  font-family: var(--font-body);
+  font-size: var(--pagelink-fs);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--black);
+  padding: 4px 0;
+  opacity: 0;
+  transform: translateX(60%);
+  transition:
+    opacity 1.1s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1.1s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.4s ease;
+}
+
+.is-in .pagelink,
+.pagelink.is-in {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.pagelink-text {
+  position: relative;
+  display: inline-block;
+  transform-origin: right center;
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    letter-spacing 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    font-weight 0.3s ease;
+}
+
+.pagelink-arrow {
+  display: inline-block;
+  width: 1.6em;
+  height: 0.9em;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  transform: translateX(-6px);
+  opacity: 0;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease, filter 0.4s ease;
+}
+
+/* alternate the two hand-drawn arrows down the list */
+.pagelinks .pagelink:nth-child(odd) .pagelink-arrow {
+  background-image: url("../assets/images/arrow-1.png");
+}
+.pagelinks .pagelink:nth-child(even) .pagelink-arrow {
+  background-image: url("../assets/images/arrow-2.png");
+}
+
+.pagelink:hover {
+  color: var(--leaf);
+}
+
+.pagelink:hover .pagelink-text {
+  transform: scale(1.08);
+  letter-spacing: 0.08em;
+  font-weight: 500;
+}
+
+.pagelink:hover .pagelink-arrow {
+  opacity: 1;
+  transform: translateX(0);
+  /* tint the dark-brown arrow toward leaf green to match the link color */
+  filter: hue-rotate(15deg) saturate(0.5) brightness(0.85);
+}
+
+/* ───────── resume link — anchored bottom-right, same offset as masthead ───────── */
+.resume-link {
+  position: absolute;
+  right: var(--frame-padding);
+  bottom: var(--frame-padding);
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 20px;
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: clamp(24px, 2vw, 36px);
+  letter-spacing: 0.05em;
+  color: var(--black);
+  border: var(--hairline);
+  background: transparent;
+  overflow: hidden;
+  isolation: isolate;
+  opacity: 0;
+  transform: translateX(60%);
+  z-index: 3;
+  transition:
+    opacity 1.1s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1.1s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.45s ease,
+    border-color 0.45s ease;
+}
+
+.resume-link.is-in {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.resume-text {
+  position: relative;
+  z-index: 2;
+}
+
+.resume-text::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background-image: linear-gradient(
+    to right,
+    var(--black) 50%,
+    transparent 50%
+  );
+  background-size: 6px 1px;
+  background-repeat: repeat-x;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+
+.resume-arrow {
+  width: 22px;
+  height: 22px;
+  position: relative;
+  z-index: 2;
+}
+
+/* the pink shimmer that sweeps in on hover */
+.resume-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    var(--baby-pink-soft) 35%,
+    var(--baby-pink) 50%,
+    var(--baby-pink-soft) 65%,
+    transparent 100%
+  );
+  transform: translateX(-110%);
+  transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 1;
+}
+
+.resume-link:hover {
+  color: var(--black);
+  border-color: var(--baby-pink);
+}
+
+.resume-link:hover .resume-shimmer {
+  transform: translateX(0);
+}
+
+.resume-link:hover .resume-text::before {
+  opacity: 0;
+}
+
+.resume-link:hover .resume-arrow {
+  animation: arrowBob 1.4s ease-in-out infinite;
+}
+
+@keyframes arrowBob {
+  0%, 100% { transform: translateY(-3px); }
+  50%      { transform: translateY(3px); }
+}
+
+/* ───────── responsive — sketch is desktop-first; collapse gracefully ───────── */
+@media (max-width: 900px) {
+  html,
+  body.landing {
+    overflow: auto;
+    height: auto;
+  }
+  .frame {
+    height: auto;
+    min-height: 100vh;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto auto;
+    gap: 28px;
+  }
+  .masthead { grid-column: 1; grid-row: 1; }
+  .socials { grid-column: 1; grid-row: 1; justify-self: end; }
+  .title-block { grid-column: 1; grid-row: 2; align-self: center; }
+  .title { font-size: 22vw; }
+  .insta { grid-column: 1; grid-row: 4; justify-self: center; align-self: center; width: 70vw; }
+  .insta-label { display: none; }
+  .portrait { grid-column: 1; grid-row: 3; height: 50vh; }
+  .pagelinks { grid-column: 1; grid-row: 5; align-self: center; justify-self: center; align-items: center; text-align: center; }
+}

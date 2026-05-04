@@ -1,0 +1,139 @@
+/* sub-page template — magazine spread */
+body.page {
+  min-height: 100vh;
+  padding: clamp(20px, 3vw, 56px);
+  position: relative;
+}
+
+.page-frame {
+  position: relative;
+  border: var(--hairline);
+  padding: clamp(28px, 4vw, 72px);
+  min-height: calc(100vh - clamp(40px, 6vw, 112px));
+  display: flex;
+  flex-direction: column;
+}
+
+.page-masthead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-body);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 13px;
+  padding-bottom: clamp(20px, 3vw, 40px);
+  border-bottom: var(--hairline);
+}
+
+.page-masthead .home-link {
+  position: relative;
+  padding: 4px 0;
+  transition: letter-spacing 0.4s ease;
+}
+
+.page-masthead .home-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  width: 100%;
+  background: var(--black);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.page-masthead .home-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.page-masthead .page-vol {
+  display: flex;
+  gap: 16px;
+  font-style: italic;
+}
+
+.page-hero {
+  flex: 0 0 auto;
+  padding: clamp(40px, 8vw, 110px) 0 clamp(20px, 3vw, 40px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.page-eyebrow {
+  font-family: var(--font-body);
+  font-style: italic;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  font-size: 13px;
+  color: var(--leaf);
+}
+
+.page-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(48px, 9vw, 140px);
+  line-height: 0.95;
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+.page-title-script {
+  font-family: var(--font-script);
+  font-size: clamp(28px, 4vw, 56px);
+  margin-top: -0.4em;
+  margin-left: 1.2em;
+  color: var(--bamboo-deep);
+}
+
+.page-rule {
+  width: 80px;
+  height: 1px;
+  background: var(--black);
+  margin-top: 12px;
+}
+
+.page-body {
+  flex: 1 1 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px, 4vw, 64px);
+  padding: clamp(20px, 3vw, 40px) 0;
+  font-family: var(--font-body);
+  font-size: clamp(16px, 1.1vw, 19px);
+  line-height: 1.7;
+}
+
+.page-body .placeholder {
+  background: var(--cream-deep);
+  border: 1px dashed var(--bamboo-deep);
+  padding: 40px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  color: var(--bamboo-deep);
+  font-style: italic;
+  min-height: 240px;
+}
+
+.page-footer {
+  border-top: var(--hairline);
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--black-soft);
+}
+
+@media (max-width: 800px) {
+  .page-body { grid-template-columns: 1fr; }
+}
