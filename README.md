@@ -8,8 +8,6 @@ Static site. No build step. Deployed via GitHub Actions to GitHub Pages.
 | ----------------------------- | -------------------------------- | ------------------------------------------------------- |
 | Portrait (transparent PNG)    | `assets/images/portrait.png`     | Used on the landing page; full-height, no background.   |
 | Instagram tile 1–6            | `assets/images/insta-1.jpg` … `insta-6.jpg` | Square crops; bottom-left 3×2 grid.       |
-| Page-link arrow A             | `assets/images/arrow-1.png`      | Hand-drawn arrow, transparent bg. Used on rows 1, 3, 5. |
-| Page-link arrow B             | `assets/images/arrow-2.png`      | Hand-drawn arrow, transparent bg. Used on rows 2, 4.    |
 | Resume PDF                    | `assets/resume/resume.pdf`       | Linked from "download my resume" button.                |
 | Favicon (optional)            | `assets/images/favicon.ico`      | Add `<link rel="icon" ...>` in `index.html` if you want it. |
 
