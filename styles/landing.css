@@ -344,7 +344,7 @@ body.landing {
   background-image: url("../assets/images/arrow-1.png");
 }
 .pagelinks .pagelink:nth-child(even) .pagelink-arrow {
-  background-image: url("../assets/images/arrow-2.png");
+  background-image: url("../assets/images/arrow-1.png");
 }
 
 .pagelink:hover {
