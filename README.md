@@ -9,7 +9,7 @@ Static site. No build step. Deployed via GitHub Actions to GitHub Pages.
 | Portrait (transparent PNG)    | `assets/images/portrait.png`     | Used on the landing page; full-height, no background.   |
 | Instagram tile 1–6            | `assets/images/insta-1.jpg` … `insta-6.jpg` | Square crops; bottom-left 3×2 grid.       |
 | Resume PDF                    | `assets/resume/resume.pdf`       | Linked from "download my resume" button.                |
-| Favicon (optional)            | `assets/images/favicon.ico`      | Add `<link rel="icon" ...>` in `index.html` if you want it. |
+| Favicon                       | `assets/images/favicon.png`      | Linked from every HTML page. |
 
 If you want different filenames, just update the `src` in [index.html](index.html) to match.
 
