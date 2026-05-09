@@ -11,6 +11,18 @@ Static site. No build step. Deployed via GitHub Actions to GitHub Pages.
 | Resume PDF                    | `assets/resume/resume.pdf`       | Linked from "download my resume" button.                |
 | Favicon                       | `assets/images/favicon.png`      | Linked from every HTML page. |
 
+The section pages are intentionally built with styled placeholders so Sasha can
+replace text and imagery gradually without breaking the layout:
+
+| Page | Best content to gather |
+| ---- | ---------------------- |
+| My Story | 2–3 personal photos, a pull quote, and a long-form bio/story draft. |
+| Finance & Tech | Project names, classes, venture/analytics examples, screenshots, and the final numbers for the dashboard cards. |
+| Brand & Content | Campaign images, video thumbnails, TJX/content samples, press links, and short ownership notes. |
+| Leadership & Impact | Leadership roles, outcomes, metrics, organization names, and collaborator quotes. |
+| Community & Influence | Volunteer work, partner names/logos, press/community links, audience numbers, and testimonials. |
+| Law & Advocacy | Law firm name/role/dates, practice area, responsibilities, writing sample themes, recommendation quotes, and law school positioning. |
+
 If you want different filenames, just update the `src` in [index.html](index.html) to match.
 
 ## Where to put real social URLs
@@ -52,7 +64,8 @@ If you want a custom domain, add a `CNAME` file at the repo root containing your
 │   ├── finance-tech.html
 │   ├── brand-content.html
 │   ├── leadership-impact.html
-│   └── community-influence.html
+│   ├── community-influence.html
+│   └── law-advocacy.html
 ├── styles/
 │   ├── base.css            # variables, fonts, reset, reveal primitives
 │   ├── landing.css         # landing page layout + animations

@@ -33,10 +33,27 @@
   ];
 
   const root = document.body;
-  const sparkles = [];
-  const SPARKLE_MAX = 110;
-  const SPAWN_PER_MOVE = 3;
+  const lowPower =
+    (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) ||
+    (navigator.deviceMemory && navigator.deviceMemory <= 4);
+  const isLanding = document.body.classList.contains("landing");
+  const particles = [];
+  const PARTICLE_POOL = isLanding ? (lowPower ? 130 : 190) : (lowPower ? 64 : 92);
   const MIN_DIST = 4;
+  const TRAIL_SPACING = isLanding ? (lowPower ? 11 : 7) : (lowPower ? 18 : 14);
+  const MAX_TRAIL_PER_SEGMENT = isLanding ? (lowPower ? 24 : 42) : (lowPower ? 10 : 16);
+  const MAX_TRAIL_SPAWNS_PER_FRAME = isLanding ? (lowPower ? 34 : 68) : (lowPower ? 12 : 22);
+  const MAX_LEAD_SPAWNS_PER_FRAME = isLanding ? (lowPower ? 8 : 16) : (lowPower ? 3 : 5);
+  const IDLE_EVERY = isLanding ? (lowPower ? 14 : 8) : (lowPower ? 34 : 24);
+  const IDLE_MS = isLanding ? (lowPower ? 1600 : 2600) : (lowPower ? 450 : 700);
+  const FRAME_MS = 1000 / 60;
+  const SPRITES = palette.flatMap((color, colorIndex) =>
+    SHAPES.map((shape, shapeIndex) => ({
+      color,
+      id: `${colorIndex}-${shapeIndex}`,
+      markup: `<svg viewBox="0 0 12 12" width="100%" height="100%" aria-hidden="true">${shape(color)}</svg>`,
+    }))
+  );
 
   function rand(a, b) {
     return a + Math.random() * (b - a);
@@ -45,99 +62,265 @@
     return arr[Math.floor(Math.random() * arr.length)];
   }
 
-  function spawnSparkle(x, y) {
-    if (sparkles.length >= SPARKLE_MAX) return;
+  function createParticle(index) {
+    const sprite = SPRITES[index % SPRITES.length];
     const el = document.createElement("div");
-    const color = pick(palette);
-    const shape = pick(SHAPES);
-    const size = rand(4, 11);
-    const ox = rand(-12, 12);
-    const oy = rand(-10, 10);
     Object.assign(el.style, {
       position: "fixed",
-      left: `${x + ox}px`,
-      top: `${y + oy}px`,
-      width: `${size}px`,
-      height: `${size}px`,
+      left: "0",
+      top: "0",
+      width: "8px",
+      height: "8px",
+      opacity: "0",
       pointerEvents: "none",
       zIndex: "9997",
-      transform: "translate(-50%, -50%) rotate(0deg) scale(0)",
-      filter: `drop-shadow(0 0 2px ${color}aa)`,
-      willChange: "transform, opacity, left, top",
+      transform: "translate3d(-9999px, -9999px, 0)",
+      filter: `drop-shadow(0 0 2px ${sprite.color}aa)`,
+      willChange: "transform, opacity",
+      contain: "layout paint style",
     });
-    el.innerHTML = `<svg viewBox="0 0 12 12" width="100%" height="100%" aria-hidden="true">${shape(color)}</svg>`;
+    el.innerHTML = sprite.markup;
     root.appendChild(el);
-    sparkles.push({
+
+    return {
       el,
-      x: x + ox,
-      y: y + oy,
-      vx: rand(-0.4, 0.4),
-      vy: rand(0.05, 1.4),
-      rot: rand(0, 360),
-      vrot: rand(-5, 5),
+      active: false,
+      x: -9999,
+      y: -9999,
+      vx: 0,
+      vy: 0,
+      rot: 0,
+      vrot: 0,
       life: 0,
-      max: rand(50, 110),
-      twinkle: rand(0.6, 1.2),
-    });
+      max: 1,
+      phase: 0,
+      twinkle: 1,
+    };
+  }
+
+  for (let i = 0; i < PARTICLE_POOL; i++) {
+    particles.push(createParticle(i));
+  }
+
+  let nextParticle = 0;
+  let activeCount = 0;
+  let trailSpawnsThisFrame = 0;
+  let leadSpawnsThisFrame = 0;
+
+  function retireParticle(particle) {
+    if (!particle.active) return;
+    particle.active = false;
+    activeCount--;
+    particle.el.style.opacity = "0";
+    particle.el.style.transform = "translate3d(-9999px, -9999px, 0)";
+  }
+
+  function spawnSparkle(x, y, lead = false) {
+    if (document.hidden) return false;
+
+    if (lead) {
+      if (leadSpawnsThisFrame >= MAX_LEAD_SPAWNS_PER_FRAME) return false;
+      leadSpawnsThisFrame++;
+    } else {
+      if (trailSpawnsThisFrame >= MAX_TRAIL_SPAWNS_PER_FRAME) return false;
+      trailSpawnsThisFrame++;
+    }
+
+    const particle = particles[nextParticle];
+    nextParticle = (nextParticle + 1) % PARTICLE_POOL;
+
+    if (!particle.active) {
+      activeCount++;
+    }
+
+    const size = lead ? rand(6, 14) : rand(4, 11);
+    const ox = lead ? rand(-8, 8) : rand(-14, 14);
+    const oy = lead ? rand(-8, 8) : rand(-12, 12);
+
+    particle.active = true;
+    particle.x = x + ox;
+    particle.y = y + oy;
+    particle.vx = lead ? rand(-1.05, 1.05) : rand(-0.92, 0.92);
+    particle.vy = lead ? rand(0.18, 1.65) : rand(0.34, 2.1);
+    particle.rot = rand(0, 360);
+    particle.vrot = lead ? rand(-4.8, 4.8) : rand(-3.8, 3.8);
+    particle.life = 0;
+    particle.max = lead ? rand(62, 116) : rand(78, 146);
+    particle.phase = rand(0, Math.PI * 2);
+    particle.twinkle = lead ? rand(0.9, 1.45) : rand(0.65, 1.25);
+
+    const { el } = particle;
+    el.style.width = `${size}px`;
+    el.style.height = `${size}px`;
+    el.style.opacity = "0";
+    el.style.transform = `translate3d(${particle.x}px, ${particle.y}px, 0) translate(-50%, -50%) rotate(${particle.rot}deg) scale(0)`;
+    ensureTicking();
+    return true;
+  }
+
+  function spawnTrail(fromX, fromY, toX, toY) {
+    const dx = toX - fromX;
+    const dy = toY - fromY;
+    const dist = Math.hypot(dx, dy);
+    if (dist < MIN_DIST) return false;
+
+    const count = Math.min(
+      MAX_TRAIL_PER_SEGMENT,
+      Math.max(3, Math.ceil(dist / TRAIL_SPACING))
+    );
+
+    for (let i = 1; i <= count; i++) {
+      const t = i / count;
+      if (!spawnSparkle(fromX + dx * t, fromY + dy * t)) break;
+    }
+
+    return true;
   }
 
   let mouseX = window.innerWidth / 2;
   let mouseY = window.innerHeight / 2;
   let lastX = mouseX;
   let lastY = mouseY;
+  let hasPointer = false;
+  let lastMoveAt = 0;
 
-  window.addEventListener(
-    "mousemove",
-    (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      const dx = mouseX - lastX;
-      const dy = mouseY - lastY;
-      if (dx * dx + dy * dy > MIN_DIST * MIN_DIST) {
-        for (let i = 0; i < SPAWN_PER_MOVE; i++) spawnSparkle(mouseX, mouseY);
-        lastX = mouseX;
-        lastY = mouseY;
+  function handlePoint(point, isLatest) {
+    mouseX = point.clientX;
+    mouseY = point.clientY;
+    lastMoveAt = performance.now();
+
+    if (!hasPointer) {
+      hasPointer = true;
+      lastX = mouseX;
+      lastY = mouseY;
+      for (let i = 0; i < (lowPower ? 4 : 7); i++) spawnSparkle(mouseX, mouseY, true);
+      return;
+    }
+
+    if (spawnTrail(lastX, lastY, mouseX, mouseY)) {
+      lastX = mouseX;
+      lastY = mouseY;
+    }
+
+    if (isLatest) {
+      for (let i = 0; i < (lowPower ? 2 : 3); i++) {
+        spawnSparkle(mouseX, mouseY, true);
       }
-    },
-    { passive: true }
-  );
+    }
+  }
+
+  function handleMove(e) {
+    if (document.hidden) return;
+    const points =
+      typeof e.getCoalescedEvents === "function" ? e.getCoalescedEvents() : [e];
+
+    points.forEach((point, index) => handlePoint(point, index === points.length - 1));
+  }
+
+  const moveEvent = "PointerEvent" in window ? "pointermove" : "mousemove";
+  window.addEventListener(moveEvent, handleMove, { passive: true });
+
+  // Click / tap = small celebratory burst.
+  function handleBurst(e) {
+    if (document.hidden) return;
+    const x = e.clientX;
+    const y = e.clientY;
+    if (typeof x !== "number" || typeof y !== "number") return;
+    const burstCount = lowPower ? 14 : 22;
+    // Temporarily lift the per-frame cap so the burst actually shows up.
+    const prevTrail = trailSpawnsThisFrame;
+    const prevLead = leadSpawnsThisFrame;
+    trailSpawnsThisFrame = -burstCount;
+    leadSpawnsThisFrame = -burstCount;
+    for (let i = 0; i < burstCount; i++) {
+      const angle = (i / burstCount) * Math.PI * 2 + rand(-0.18, 0.18);
+      const radius = rand(6, lowPower ? 22 : 34);
+      const px = x + Math.cos(angle) * radius;
+      const py = y + Math.sin(angle) * radius;
+      if (!spawnSparkle(px, py, true)) break;
+      // Bias outward velocity for a popping firework feel.
+      const last = particles[(nextParticle - 1 + PARTICLE_POOL) % PARTICLE_POOL];
+      if (last && last.active) {
+        const speed = rand(0.9, 2.1);
+        last.vx = Math.cos(angle) * speed;
+        last.vy = Math.sin(angle) * speed - rand(0.1, 0.7);
+        last.max = rand(80, 130);
+      }
+    }
+    trailSpawnsThisFrame = prevTrail;
+    leadSpawnsThisFrame = prevLead;
+  }
+
+  window.addEventListener("pointerdown", handleBurst, { passive: true });
 
   // idle drip: keep glitter falling around the cursor even when it's still
   let idleFrame = 0;
-  const IDLE_EVERY = 6; // ~10 sparkles/sec at 60fps
+  let rafId = 0;
+  let lastFrameAt = 0;
 
-  function tick() {
+  function ensureTicking() {
+    if (!rafId && !document.hidden) {
+      rafId = requestAnimationFrame(tick);
+    }
+  }
+
+  function tick(now) {
+    rafId = 0;
+    if (document.hidden) return;
+    const elapsed = lastFrameAt ? now - lastFrameAt : FRAME_MS;
+    const frameStep = Math.max(0.5, Math.min(18, elapsed / FRAME_MS));
+    lastFrameAt = now;
+    trailSpawnsThisFrame = 0;
+    leadSpawnsThisFrame = 0;
+
     // idle spawn — quieter than movement, but never fully silent
-    if (++idleFrame % IDLE_EVERY === 0) {
+    const recentlyMoved = hasPointer && performance.now() - lastMoveAt < IDLE_MS;
+    idleFrame += frameStep;
+    if (recentlyMoved && idleFrame >= IDLE_EVERY) {
+      idleFrame = 0;
       spawnSparkle(mouseX, mouseY);
     }
 
-    for (let i = sparkles.length - 1; i >= 0; i--) {
-      const s = sparkles[i];
-      s.life++;
-      s.x += s.vx;
-      s.y += s.vy;
-      s.rot += s.vrot;
-      s.vy += 0.015; // tiny gravity
+    for (let i = 0; i < particles.length; i++) {
+      const s = particles[i];
+      if (!s.active) continue;
+
+      s.life += frameStep;
+      s.x += s.vx * frameStep;
+      s.y += s.vy * frameStep;
+      s.rot += s.vrot * frameStep;
+      s.vx *= Math.pow(0.988, frameStep);
+      s.vy = s.vy * Math.pow(0.996, frameStep) + 0.018 * frameStep;
 
       const t = s.life / s.max;
-      // twinkle: scale up quickly, then ease out
-      const grow = Math.min(1, s.life / 8);
-      const shrink = t > 0.5 ? 1 - (t - 0.5) * 2 : 1;
+      const grow = Math.min(1, s.life / 10);
+      const fadeProgress = Math.max(0, Math.min(1, (t - 0.36) / 0.64));
+      const fade = 1 - fadeProgress * fadeProgress * (3 - 2 * fadeProgress);
+      const twinkle = 0.86 + Math.sin(s.life * 0.22 + s.phase) * 0.14;
+      const shrink = 1 - Math.max(0, (t - 0.62) / 0.38) * 0.36;
       const scale = grow * shrink * s.twinkle;
-      const opacity = (1 - t * t) * 0.95;
+      const opacity = fade * twinkle * 0.92;
 
-      s.el.style.left = `${s.x}px`;
-      s.el.style.top = `${s.y}px`;
       s.el.style.opacity = `${opacity}`;
-      s.el.style.transform = `translate(-50%, -50%) rotate(${s.rot}deg) scale(${scale})`;
+      s.el.style.transform = `translate3d(${s.x}px, ${s.y}px, 0) translate(-50%, -50%) rotate(${s.rot}deg) scale(${scale})`;
 
       if (s.life >= s.max) {
-        s.el.remove();
-        sparkles.splice(i, 1);
+        retireParticle(s);
       }
     }
-    requestAnimationFrame(tick);
+
+    if (activeCount > 0 || recentlyMoved) {
+      ensureTicking();
+    }
   }
-  requestAnimationFrame(tick);
+
+  document.addEventListener("visibilitychange", () => {
+    lastFrameAt = 0;
+    if (!document.hidden && activeCount > 0) {
+      ensureTicking();
+    }
+  });
+
+  window.addEventListener("scroll", ensureTicking, { passive: true });
+  window.addEventListener("wheel", ensureTicking, { passive: true });
 })();

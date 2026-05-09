@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="../styles/base.css" />
   <link rel="stylesheet" href="../styles/page.css" />
 </head>
-<body class="page">
+<body class="page finance-page">
   <div class="page-frame">
     <header class="page-masthead reveal-fade" data-delay="100">
       <a href="../index.html" class="home-link">&larr; back to cover</a>
@@ -25,26 +25,91 @@
       </div>
     </header>
 
-    <section class="page-hero reveal-drop" data-delay="200">
+    <section class="page-hero finance-hero reveal-drop" data-delay="200">
       <span class="page-eyebrow">Chapter Two</span>
-      <h1 class="page-title">Finance &amp; Tech</h1>
-      <p class="page-title-script">numbers, briefly</p>
+      <h1 class="page-title page-title-compact">Finance &amp; Tech</h1>
+      <p class="page-title-script">numbers in motion</p>
       <span class="page-rule"></span>
     </section>
 
-    <section class="page-body reveal-fade" data-delay="500">
-      <div>
-        <p>
-          Roles, projects, and case studies in finance and tech will live here.
-          Drop in deal sheets, dashboards, or short write-ups.
+    <section class="finance-stage reveal-fade" data-delay="420" aria-label="Finance and tech dashboard">
+      <div class="finance-intro">
+        <p class="page-lede">
+          A dashboard-style page for coursework, analytics projects, business
+          strategy, venture work, and the numbers behind Sasha&rsquo;s decisions.
         </p>
-        <p>
-          Each piece can have its own block; this column is the narrative thread
-          tying them together.
-        </p>
+        <div class="metric-grid" aria-label="Placeholder metrics">
+          <article class="metric-card tilt-card">
+            <span class="micro-label">Engagement lift</span>
+            <strong class="metric-value" data-count="20" data-suffix="%">0%</strong>
+          </article>
+          <article class="metric-card tilt-card">
+            <span class="micro-label">Growth model</span>
+            <strong class="metric-value" data-count="35" data-suffix="%">0%</strong>
+          </article>
+          <article class="metric-card tilt-card">
+            <span class="micro-label">Workflow time</span>
+            <strong class="metric-value" data-count="30" data-suffix="%">0%</strong>
+          </article>
+        </div>
       </div>
-      <div class="placeholder">case-study slot</div>
+
+      <div class="dashboard-grid">
+        <article class="chart-card chart-card-large tilt-card" tabindex="0" style="--p1: 54%; --p2: 29%;">
+          <div class="chart-heading">
+            <span class="micro-label">Focus mix</span>
+            <span class="chart-tag">strategy / analytics</span>
+          </div>
+          <div class="donut-wrap">
+            <div class="donut-chart" aria-label="Pink donut chart">
+              <span>54%</span>
+            </div>
+            <ul class="chart-legend">
+              <li><span class="legend-swatch legend-pink"></span>Business strategy</li>
+              <li><span class="legend-swatch legend-rose"></span>Analytics</li>
+              <li><span class="legend-swatch legend-leaf"></span>Venture / tech</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="chart-card tilt-card" tabindex="0">
+          <div class="chart-heading">
+            <span class="micro-label">Signal board</span>
+            <span class="chart-tag">placeholder</span>
+          </div>
+          <div class="bar-chart" aria-label="Animated bar chart">
+            <div class="bar-row" style="--bar: 76%; --bar-color: #f4c2c2"><span>PR</span><i></i><b>76</b></div>
+            <div class="bar-row" style="--bar: 62%; --bar-color: #f08ba2"><span>SEO</span><i></i><b>62</b></div>
+            <div class="bar-row" style="--bar: 88%; --bar-color: #c5a47e"><span>UX</span><i></i><b>88</b></div>
+            <div class="bar-row" style="--bar: 54%; --bar-color: #2d4a32"><span>CRM</span><i></i><b>54</b></div>
+          </div>
+        </article>
+
+        <article class="chart-card line-card tilt-card" tabindex="0">
+          <div class="chart-heading">
+            <span class="micro-label">Momentum</span>
+            <span class="chart-tag">case study slot</span>
+          </div>
+          <svg class="line-chart" viewBox="0 0 420 170" role="img" aria-label="Animated line graph">
+            <path class="grid-line" d="M20 35H400M20 85H400M20 135H400" />
+            <path class="line-fill" d="M20 132 C70 118 85 94 128 102 C178 112 192 57 235 70 C285 84 298 32 344 44 C370 49 390 38 400 28 L400 150 L20 150 Z" />
+            <path class="line-path" d="M20 132 C70 118 85 94 128 102 C178 112 192 57 235 70 C285 84 298 32 344 44 C370 49 390 38 400 28" />
+          </svg>
+        </article>
+      </div>
     </section>
+
+    <nav class="chapter-nav reveal-fade" data-delay="200" aria-label="Chapter navigation">
+      <a href="my-story.html" class="chapter-nav-prev" aria-label="Previous chapter: My Story">
+        <small>← Chapter One</small>
+        <span>My Story</span>
+      </a>
+      <a href="../index.html" class="chapter-nav-home" aria-label="Back to cover">cover</a>
+      <a href="brand-content.html" class="chapter-nav-next" aria-label="Next chapter: Brand and Content">
+        <small>Chapter Three →</small>
+        <span>Brand &amp; Content</span>
+      </a>
+    </nav>
 
     <footer class="page-footer">
       <span>Finance &amp; Tech</span>

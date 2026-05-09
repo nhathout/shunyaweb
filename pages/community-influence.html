@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="../styles/base.css" />
   <link rel="stylesheet" href="../styles/page.css" />
 </head>
-<body class="page">
+<body class="page community-page">
   <div class="page-frame">
     <header class="page-masthead reveal-fade" data-delay="100">
       <a href="../index.html" class="home-link">&larr; back to cover</a>
@@ -25,26 +25,101 @@
       </div>
     </header>
 
-    <section class="page-hero reveal-drop" data-delay="200">
+    <section class="page-hero community-hero reveal-drop" data-delay="200">
       <span class="page-eyebrow">Chapter Five</span>
       <h1 class="page-title">Community &amp; Influence</h1>
       <p class="page-title-script">a circle widens</p>
       <span class="page-rule"></span>
     </section>
 
-    <section class="page-body reveal-fade" data-delay="500">
-      <div>
-        <p>
-          Audience, partnerships, press, and community work go here. Replace
-          this paragraph with the real copy.
+    <section class="community-field reveal-fade" data-delay="420" aria-label="Community and influence map">
+      <div class="community-copy">
+        <p class="page-lede">
+          A page for the communities Sasha joins, builds, supports, and
+          amplifies: volunteer work, campus circles, partnerships, social reach,
+          and people who can speak to her impact.
         </p>
-        <p>
-          Reach numbers, partners, and quotes from collaborators read well in
-          this column.
-        </p>
+        <div class="partner-ribbon" aria-label="Partner placeholders">
+          <span>community partner</span>
+          <span>campus group</span>
+          <span>press link</span>
+          <span>volunteer work</span>
+        </div>
       </div>
-      <div class="placeholder">press / partner logos</div>
+
+      <div class="community-map" aria-label="Influence nodes">
+        <div class="community-anchor" aria-hidden="true">
+          <span class="anchor-script">her<br>circle</span>
+        </div>
+
+        <article class="community-node community-node-one tilt-card" tabindex="0">
+          <span class="node-logo" aria-label="Reach logo">
+            <img src="../assets/images/logos/reach-logo.png" alt="" loading="lazy" />
+          </span>
+          <span class="micro-label">Reach</span>
+          <strong class="metric-value" data-count="2000000" data-prefix="" data-suffix="+">0+</strong>
+          <p>Campaign audience placeholder.</p>
+        </article>
+        <article class="community-node community-node-two tilt-card" tabindex="0">
+          <span class="node-logo" aria-label="Service logo">
+            <img src="../assets/images/logos/service-logo.png" alt="" loading="lazy" />
+          </span>
+          <span class="micro-label">Service</span>
+          <strong>Food Bank</strong>
+          <p>Volunteer story placeholder.</p>
+        </article>
+        <article class="community-node community-node-three tilt-card" tabindex="0">
+          <span class="node-logo" aria-label="Media logo">
+            <img src="../assets/images/logos/media-logo.png" alt="" loading="lazy" />
+          </span>
+          <span class="micro-label">Media</span>
+          <strong>TEDxNEU</strong>
+          <p>Outreach and press placeholder.</p>
+        </article>
+        <article class="community-node community-node-four tilt-card" tabindex="0">
+          <span class="node-logo" aria-label="Voice logo">
+            <img src="../assets/images/logos/voice-logo.png" alt="" loading="lazy" />
+          </span>
+          <span class="micro-label">Voice</span>
+          <strong>Creator work</strong>
+          <p>Audience and influence placeholder.</p>
+        </article>
+
+        <svg class="community-web" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <path class="web-line web-line-one" d="M50,50 L20,26" />
+          <path class="web-line web-line-two" d="M50,50 L80,38" />
+          <path class="web-line web-line-three" d="M50,50 L30,74" />
+          <path class="web-line web-line-four" d="M50,50 L74,76" />
+        </svg>
+      </div>
     </section>
+
+    <section class="community-feed reveal-fade" data-delay="650" aria-label="Community cards">
+      <article class="community-card tilt-card">
+        <span class="micro-label">Quote slot</span>
+        <p>&ldquo;A short testimonial or collaborator quote can live here.&rdquo;</p>
+      </article>
+      <article class="community-card tilt-card">
+        <span class="micro-label">Press slot</span>
+        <p>Link a press mention, article, campus feature, or event write-up.</p>
+      </article>
+      <article class="community-card tilt-card">
+        <span class="micro-label">Partner slot</span>
+        <p>Add logos, nonprofit names, or community organizations.</p>
+      </article>
+    </section>
+
+    <nav class="chapter-nav reveal-fade" data-delay="200" aria-label="Chapter navigation">
+      <a href="leadership-impact.html" class="chapter-nav-prev" aria-label="Previous chapter: Leadership and Impact">
+        <small>← Chapter Four</small>
+        <span>Leadership &amp; Impact</span>
+      </a>
+      <a href="../index.html" class="chapter-nav-home" aria-label="Back to cover">cover</a>
+      <a href="law-advocacy.html" class="chapter-nav-next" aria-label="Next chapter: Law and Advocacy">
+        <small>Chapter Six →</small>
+        <span>Law &amp; Advocacy</span>
+      </a>
+    </nav>
 
     <footer class="page-footer">
       <span>Community &amp; Influence</span>

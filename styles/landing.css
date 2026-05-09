@@ -214,12 +214,26 @@ body.landing {
   aspect-ratio: 1 / 1;
 }
 
+.insta-tile::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background:
+    linear-gradient(135deg, rgba(244, 194, 194, 0.55), transparent 45%),
+    repeating-linear-gradient(135deg, rgba(26, 26, 26, 0.07) 0 1px, transparent 1px 12px),
+    var(--cream-soft);
+  transition: opacity 0.35s ease;
+}
+
 .insta-tile img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.7s ease, filter 0.7s ease;
   filter: grayscale(15%) contrast(1.02);
+  position: relative;
+  z-index: 1;
 }
 
 .insta-tile::after {
@@ -242,6 +256,14 @@ body.landing {
   opacity: 0.18;
 }
 
+.insta-tile.image-missing::before {
+  opacity: 1;
+}
+
+.insta-tile.image-missing img {
+  opacity: 0;
+}
+
 /* ───────── portrait ───────── */
 .portrait {
   grid-column: 2;
@@ -254,15 +276,42 @@ body.landing {
   justify-content: center;
   z-index: 1;
   pointer-events: none;
+  overflow: visible;
 }
 
 .portrait img {
-  max-height: 100%;
+  max-height: calc(100% + var(--frame-padding) + clamp(44px, 9vh, 130px));
   max-width: 100%;
   width: auto;
   height: auto;
   object-fit: contain;
+  margin-bottom: calc(-1 * var(--frame-padding) - clamp(18px, 4vh, 58px));
   animation: float 7s ease-in-out 1.6s infinite;
+}
+
+.portrait.image-missing {
+  align-items: flex-end;
+}
+
+.portrait.image-missing::before {
+  content: "portrait image";
+  width: min(72%, 420px);
+  height: min(78%, 620px);
+  display: grid;
+  place-items: end center;
+  padding: 0 18px 26px;
+  border: var(--hairline);
+  color: var(--bamboo-deep);
+  font-style: italic;
+  letter-spacing: 0.1em;
+  background:
+    linear-gradient(180deg, transparent 28%, rgba(244, 194, 194, 0.46)),
+    repeating-linear-gradient(135deg, rgba(26, 26, 26, 0.055) 0 1px, transparent 1px 16px),
+    var(--cream-soft);
+}
+
+.portrait.image-missing img {
+  display: none;
 }
 
 @keyframes float {
@@ -277,18 +326,18 @@ body.landing {
 
 /* ───────── page links ───────── */
 .pagelinks {
-  --pagelink-fs: clamp(26px, 2.3vw, 40px);
+  --pagelink-fs: clamp(22px, 2vw, 36px);
   grid-column: 3;
   grid-row: 2;
   align-self: center;
   justify-self: end;
   display: flex;
   flex-direction: column;
-  gap: clamp(16px, 2vh, 28px);
+  gap: clamp(10px, 1.45vh, 22px);
   text-align: right;
   z-index: 3;
   /* lift the whole stack one font-height so the gap above the resume box grows */
-  transform: translateY(calc(-1 * var(--pagelink-fs)));
+  transform: translateY(calc(-0.75 * var(--pagelink-fs)));
 }
 
 .pagelink {
@@ -477,7 +526,7 @@ body.landing {
     height: auto;
     min-height: 100vh;
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto auto auto;
+    grid-template-rows: auto auto auto auto auto auto;
     gap: 28px;
   }
   .masthead { grid-column: 1; grid-row: 1; }
@@ -487,5 +536,26 @@ body.landing {
   .insta { grid-column: 1; grid-row: 4; justify-self: center; align-self: center; width: 70vw; }
   .insta-label { display: none; }
   .portrait { grid-column: 1; grid-row: 3; height: 50vh; }
-  .pagelinks { grid-column: 1; grid-row: 5; align-self: center; justify-self: center; align-items: center; text-align: center; }
+  .portrait img {
+    max-height: 100%;
+    margin-bottom: 0;
+  }
+  .pagelinks {
+    grid-column: 1;
+    grid-row: 5;
+    align-self: center;
+    justify-self: center;
+    align-items: center;
+    text-align: center;
+    transform: none;
+  }
+  .resume-link {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    grid-column: 1;
+    grid-row: 6;
+    justify-self: center;
+    margin-bottom: 12px;
+  }
 }
