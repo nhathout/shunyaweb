@@ -39,12 +39,24 @@
           amplifies: volunteer work, campus circles, partnerships, social reach,
           and people who can speak to her impact.
         </p>
-        <div class="partner-ribbon" aria-label="Partner placeholders">
-          <span>community partner</span>
-          <span>campus group</span>
-          <span>press link</span>
-          <span>volunteer work</span>
-        </div>
+        <ul class="community-tags" aria-label="Community placeholders">
+          <li class="community-tag">
+            <span class="micro-label">community partner</span>
+            <p>The org, the relationship, and what she helped them ship.</p>
+          </li>
+          <li class="community-tag">
+            <span class="micro-label">campus group</span>
+            <p>The club or program &mdash; her role and the people she organized.</p>
+          </li>
+          <li class="community-tag">
+            <span class="micro-label">press link</span>
+            <p>An article, podcast, or campus feature &mdash; outlet and headline.</p>
+          </li>
+          <li class="community-tag">
+            <span class="micro-label">volunteer work</span>
+            <p>Ongoing commitments &mdash; org, hours, and what she does there.</p>
+          </li>
+        </ul>
       </div>
 
       <div class="community-map" aria-label="Influence nodes">
@@ -52,37 +64,73 @@
           <span class="anchor-script">her<br>circle</span>
         </div>
 
-        <article class="community-node community-node-one tilt-card" tabindex="0">
+        <article class="community-node community-node-one flip-card tilt-card" tabindex="0">
           <span class="node-logo" aria-label="Reach logo">
             <img src="../assets/images/logos/reach-logo.png" alt="" loading="lazy" />
           </span>
-          <span class="micro-label">Reach</span>
-          <strong class="metric-value" data-count="2000000" data-prefix="" data-suffix="+">0+</strong>
-          <p>Campaign audience placeholder.</p>
+          <div class="flip-inner">
+            <div class="flip-face flip-front">
+              <span class="micro-label">Reach</span>
+              <strong>2M+</strong>
+              <p>Campaign audience placeholder.</p>
+            </div>
+            <div class="flip-face flip-back">
+              <span class="micro-label">Reach</span>
+              <p>Placeholder for the campaign behind the number &mdash; brand, deliverable, and the moment it took off.</p>
+            </div>
+          </div>
+          <span class="flip-indicator" aria-hidden="true"></span>
         </article>
-        <article class="community-node community-node-two tilt-card" tabindex="0">
+        <article class="community-node community-node-two flip-card tilt-card" tabindex="0">
           <span class="node-logo" aria-label="Service logo">
             <img src="../assets/images/logos/service-logo.png" alt="" loading="lazy" />
           </span>
-          <span class="micro-label">Service</span>
-          <strong>Food Bank</strong>
-          <p>Volunteer story placeholder.</p>
+          <div class="flip-inner">
+            <div class="flip-face flip-front">
+              <span class="micro-label">Service</span>
+              <strong>Food Bank</strong>
+              <p>Volunteer story placeholder.</p>
+            </div>
+            <div class="flip-face flip-back">
+              <span class="micro-label">Service</span>
+              <p>Placeholder for her volunteer role &mdash; how often she shows up, what she does, and why it matters to her.</p>
+            </div>
+          </div>
+          <span class="flip-indicator" aria-hidden="true"></span>
         </article>
-        <article class="community-node community-node-three tilt-card" tabindex="0">
+        <article class="community-node community-node-three flip-card tilt-card" tabindex="0">
           <span class="node-logo" aria-label="Media logo">
             <img src="../assets/images/logos/media-logo.png" alt="" loading="lazy" />
           </span>
-          <span class="micro-label">Media</span>
-          <strong>TEDxNEU</strong>
-          <p>Outreach and press placeholder.</p>
+          <div class="flip-inner">
+            <div class="flip-face flip-front">
+              <span class="micro-label">Media</span>
+              <strong>TEDxNEU</strong>
+              <p>Outreach and press placeholder.</p>
+            </div>
+            <div class="flip-face flip-back">
+              <span class="micro-label">Media</span>
+              <p>Placeholder for her TEDxNEU media work &mdash; press she pitched, partners she landed, and the headline number from the event.</p>
+            </div>
+          </div>
+          <span class="flip-indicator" aria-hidden="true"></span>
         </article>
-        <article class="community-node community-node-four tilt-card" tabindex="0">
+        <article class="community-node community-node-four flip-card tilt-card" tabindex="0">
           <span class="node-logo" aria-label="Voice logo">
             <img src="../assets/images/logos/voice-logo.png" alt="" loading="lazy" />
           </span>
-          <span class="micro-label">Voice</span>
-          <strong>Creator work</strong>
-          <p>Audience and influence placeholder.</p>
+          <div class="flip-inner">
+            <div class="flip-face flip-front">
+              <span class="micro-label">Voice</span>
+              <strong>Creator work</strong>
+              <p>Audience and influence placeholder.</p>
+            </div>
+            <div class="flip-face flip-back">
+              <span class="micro-label">Voice</span>
+              <p>Placeholder for her own creator output &mdash; platforms, voice, and the audience she's built.</p>
+            </div>
+          </div>
+          <span class="flip-indicator" aria-hidden="true"></span>
         </article>
 
         <svg class="community-web" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
@@ -95,17 +143,47 @@
     </section>
 
     <section class="community-feed reveal-fade" data-delay="650" aria-label="Community cards">
-      <article class="community-card tilt-card">
-        <span class="micro-label">Quote slot</span>
-        <p>&ldquo;A short testimonial or collaborator quote can live here.&rdquo;</p>
+      <article class="community-card flip-card tilt-card" tabindex="0">
+        <div class="flip-inner">
+          <div class="flip-face flip-front">
+            <span class="micro-label">Quote slot</span>
+            <p>&ldquo;A short testimonial or collaborator quote can live here.&rdquo;</p>
+          </div>
+          <div class="flip-face flip-back">
+            <span class="micro-label">Quote slot</span>
+            <h3>Who said it</h3>
+            <p>Placeholder for attribution &mdash; name, title, and the project they worked on with her.</p>
+          </div>
+        </div>
+        <span class="flip-indicator" aria-hidden="true"></span>
       </article>
-      <article class="community-card tilt-card">
-        <span class="micro-label">Press slot</span>
-        <p>Link a press mention, article, campus feature, or event write-up.</p>
+      <article class="community-card flip-card tilt-card" tabindex="0">
+        <div class="flip-inner">
+          <div class="flip-face flip-front">
+            <span class="micro-label">Press slot</span>
+            <p>Link a press mention, article, campus feature, or event write-up.</p>
+          </div>
+          <div class="flip-face flip-back">
+            <span class="micro-label">Press slot</span>
+            <h3>What it covered</h3>
+            <p>Placeholder for the outlet, headline, and a one-line note on the angle she pitched.</p>
+          </div>
+        </div>
+        <span class="flip-indicator" aria-hidden="true"></span>
       </article>
-      <article class="community-card tilt-card">
-        <span class="micro-label">Partner slot</span>
-        <p>Add logos, nonprofit names, or community organizations.</p>
+      <article class="community-card flip-card tilt-card" tabindex="0">
+        <div class="flip-inner">
+          <div class="flip-face flip-front">
+            <span class="micro-label">Partner slot</span>
+            <p>Add logos, nonprofit names, or community organizations.</p>
+          </div>
+          <div class="flip-face flip-back">
+            <span class="micro-label">Partner slot</span>
+            <h3>How they connect</h3>
+            <p>Placeholder for the relationship &mdash; how it started, what they ship together, and what's next.</p>
+          </div>
+        </div>
+        <span class="flip-indicator" aria-hidden="true"></span>
       </article>
     </section>
 

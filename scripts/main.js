@@ -97,60 +97,6 @@
   });
 })();
 
-// Count-up metrics once they enter the viewport.
-(() => {
-  const counters = document.querySelectorAll(".metric-value[data-count]");
-  if (!counters.length) return;
-
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  const format = (value) => Math.round(value).toLocaleString("en-US");
-
-  const animate = (el) => {
-    if (el.dataset.counted === "true") return;
-    el.dataset.counted = "true";
-
-    const target = Number(el.dataset.count || "0");
-    const prefix = el.dataset.prefix || "";
-    const suffix = el.dataset.suffix || "";
-
-    if (reduceMotion) {
-      el.textContent = `${prefix}${format(target)}${suffix}`;
-      return;
-    }
-
-    const duration = target > 100000 ? 1500 : 1050;
-    const start = performance.now();
-
-    const tick = (now) => {
-      const progress = Math.min(1, (now - start) / duration);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      el.textContent = `${prefix}${format(target * eased)}${suffix}`;
-      if (progress < 1) requestAnimationFrame(tick);
-    };
-
-    requestAnimationFrame(tick);
-  };
-
-  if (!("IntersectionObserver" in window)) {
-    counters.forEach(animate);
-    return;
-  }
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        animate(entry.target);
-        observer.unobserve(entry.target);
-      });
-    },
-    { threshold: 0.45 }
-  );
-
-  counters.forEach((counter) => observer.observe(counter));
-})();
-
 // Scroll-progress ribbon at the top of every sub-page.
 (() => {
   if (document.body.classList.contains("landing")) return;
@@ -178,6 +124,35 @@
   );
   window.addEventListener("resize", update);
   update();
+})();
+
+// Click-to-flip cards (chart-card, mood-card, community-card, writing-card).
+(() => {
+  const flipCards = document.querySelectorAll(".flip-card");
+  if (!flipCards.length) return;
+
+  flipCards.forEach((card) => {
+    if (!card.hasAttribute("tabindex")) card.setAttribute("tabindex", "0");
+    card.setAttribute("role", "button");
+    card.setAttribute("aria-pressed", "false");
+
+    const toggle = () => {
+      const next = !card.classList.contains("is-flipped");
+      card.classList.toggle("is-flipped", next);
+      card.setAttribute("aria-pressed", String(next));
+    };
+
+    card.addEventListener("click", (e) => {
+      if (e.target.closest("a, button, summary, input, label")) return;
+      toggle();
+    });
+    card.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        toggle();
+      }
+    });
+  });
 })();
 
 // Keyboard arrows (←/→) jump between adjacent chapter pages when present.

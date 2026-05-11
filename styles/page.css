@@ -345,9 +345,193 @@ body.page {
   box-shadow: 10px 12px 0 rgba(26, 26, 26, 0.08);
 }
 
+/* On flip-cards the outer never rotates, so its hover shadow ghosts
+   behind the rotating faces. Kill the outer shadow — the rotating face
+   shows the hover treatment via border-color and the lift transform. */
+.flip-card.tilt-card:hover,
+.flip-card.tilt-card:focus-within,
+.flip-card.tilt-card:focus-visible {
+  box-shadow: none;
+}
+
+/* ---- Flip card -------------------------------------------------------- */
+/* Outer is structural only — no border, no background, no padding.
+   The faces carry all visuals so the border rotates with the card and
+   nothing leaks between the two sides during the flip. */
+.flip-card {
+  position: relative;
+  cursor: pointer;
+  perspective: 1400px;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  overflow: visible;
+  transform-style: preserve-3d;
+}
+
+.flip-card .flip-inner {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.flip-card.is-flipped .flip-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  border: var(--hairline);
+  background: var(--cream-soft);
+  padding: clamp(18px, 2.4vw, 28px);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  overflow: hidden;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.flip-back {
+  transform: rotateY(180deg);
+  background:
+    linear-gradient(160deg, rgba(244, 194, 194, 0.22), transparent 55%),
+    var(--cream-soft);
+  gap: 10px;
+  justify-content: center;
+}
+
+.flip-back p {
+  margin: 0;
+  font-size: clamp(16px, 1.25vw, 20px);
+  line-height: 1.5;
+}
+
+.flip-back h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.2vw, 34px);
+  font-weight: 400;
+  line-height: 1.04;
+}
+
+.flip-card:hover .flip-face,
+.flip-card:focus-within .flip-face {
+  border-color: var(--page-accent, var(--baby-pink));
+}
+
+/* Flip indicator — clean two-line ↻ glyph in the corner of each face */
+.flip-indicator {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1;
+  color: var(--bamboo-deep);
+  opacity: 0.45;
+  pointer-events: none;
+  z-index: 5;
+  transition: opacity 0.4s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), color 0.4s ease;
+}
+
+.flip-indicator::before {
+  content: "↻";
+}
+
+.flip-card:hover .flip-indicator,
+.flip-card:focus-visible .flip-indicator {
+  opacity: 0.85;
+  color: var(--page-accent, var(--leaf));
+}
+
+.flip-card.is-flipped .flip-indicator {
+  transform: rotate(-180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flip-card .flip-inner {
+    transition: none;
+  }
+}
+
 /* Story page */
 .story-page {
   --page-accent: var(--baby-pink);
+}
+
+.story-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
+  align-items: center;
+  gap: clamp(28px, 5vw, 80px);
+}
+
+.story-hero-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.hero-polaroids {
+  position: relative;
+  min-height: clamp(260px, 28vw, 360px);
+  display: block;
+}
+
+.hero-polaroid {
+  position: absolute;
+  width: 56%;
+  margin: 0;
+}
+
+.hero-polaroid .photo-slot {
+  min-height: clamp(160px, 18vw, 230px);
+}
+
+.hero-polaroid-one {
+  top: 0;
+  left: 0;
+}
+
+.hero-polaroid-two {
+  bottom: 0;
+  right: 0;
+}
+
+@media (max-width: 1080px) {
+  .story-hero {
+    grid-template-columns: 1fr;
+  }
+  .hero-polaroids {
+    min-height: clamp(280px, 38vw, 360px);
+  }
+  .hero-polaroid {
+    width: 48%;
+  }
+}
+
+@media (max-width: 720px) {
+  .hero-polaroids {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    min-height: 0;
+  }
+  .hero-polaroid {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    --rotate: 0deg !important;
+  }
 }
 
 .story-board {
@@ -538,6 +722,34 @@ body.page {
   --page-accent: #ff9eb2;
 }
 
+.finance-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
+  gap: clamp(28px, 5vw, 80px);
+  align-items: end;
+}
+
+.finance-hero-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.chart-card.finance-hero-spotlight {
+  align-self: end;
+  min-height: clamp(220px, 22vw, 280px);
+}
+
+@media (max-width: 1080px) {
+  .finance-hero {
+    grid-template-columns: 1fr;
+  }
+  .chart-card.finance-hero-spotlight {
+    min-height: 220px;
+  }
+}
+
 .finance-stage {
   display: grid;
   grid-template-columns: minmax(250px, 0.68fr) minmax(520px, 1.32fr);
@@ -549,31 +761,6 @@ body.page {
 .finance-intro {
   display: grid;
   gap: clamp(24px, 3vw, 44px);
-}
-
-.metric-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.metric-card,
-.impact-stat,
-.community-card,
-.writing-card {
-  border: var(--hairline);
-  background: rgba(250, 243, 227, 0.72);
-  padding: clamp(16px, 2vw, 24px);
-}
-
-.metric-card strong,
-.impact-stat strong {
-  display: block;
-  margin-top: 8px;
-  font-family: var(--font-display);
-  font-size: clamp(36px, 4vw, 62px);
-  font-weight: 400;
-  line-height: 0.95;
 }
 
 .dashboard-grid {
@@ -606,7 +793,51 @@ body.page {
 
 .chart-card-large {
   grid-row: span 2;
-  min-height: 474px;
+  min-height: clamp(440px, 38vw, 520px);
+}
+
+.chart-placeholder {
+  flex: 1;
+  display: grid;
+  align-content: center;
+  gap: 10px;
+  font-style: italic;
+  color: var(--bamboo-deep);
+}
+
+.chart-placeholder p {
+  margin: 0;
+  font-size: clamp(15px, 1.2vw, 19px);
+  line-height: 1.45;
+  max-width: 22em;
+}
+
+/* Chart card flip: outer container is structural only; the rotating
+   faces carry all visuals so no second border lingers during the flip. */
+.chart-card.flip-card {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  overflow: visible;
+}
+
+.chart-card.flip-card::after {
+  display: none;
+}
+
+.chart-card.flip-card .flip-front {
+  background:
+    linear-gradient(135deg, rgba(244, 194, 194, 0.28), transparent 46%),
+    rgba(250, 243, 227, 0.85);
+  padding: clamp(18px, 2.4vw, 30px);
+}
+
+.chart-card.flip-card .flip-back {
+  padding: clamp(18px, 2.4vw, 30px);
+}
+
+.chart-card.flip-card .flip-front .chart-heading {
+  margin-bottom: 18px;
 }
 
 .chart-heading {
@@ -909,6 +1140,80 @@ body.page {
   gap: 10px;
 }
 
+.product-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.product-detail {
+  border: var(--hairline);
+  background:
+    linear-gradient(150deg, rgba(244, 194, 194, 0.18), transparent 55%),
+    var(--cream-soft);
+  padding: clamp(14px, 1.6vw, 22px);
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.product-detail p {
+  margin: 4px 0 0;
+  font-size: clamp(15px, 1.2vw, 19px);
+  line-height: 1.4;
+}
+
+@media (max-width: 720px) {
+  .product-details {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mood card flip: outer container is structural only; the rotating
+   faces carry all visuals so no second border lingers during the flip. */
+.mood-card.flip-card {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  overflow: visible;
+}
+
+.mood-card.flip-card::before,
+.mood-card.flip-card::after {
+  display: none;
+}
+
+.mood-card.flip-card .flip-face {
+  padding: 12px;
+}
+
+.mood-card.flip-card .flip-front {
+  justify-content: flex-end;
+  align-items: flex-start;
+  background:
+    linear-gradient(160deg, rgba(244, 194, 194, 0.6), transparent 45%),
+    repeating-linear-gradient(135deg, rgba(26, 26, 26, 0.08) 0 1px, transparent 1px 15px),
+    var(--cream-soft);
+}
+
+.mood-card.flip-card .flip-back {
+  padding: clamp(14px, 1.8vw, 22px);
+  gap: 8px;
+  background:
+    linear-gradient(160deg, rgba(244, 194, 194, 0.32), transparent 55%),
+    var(--cream-soft);
+}
+
+.mood-card.flip-card .flip-back h3 {
+  font-size: clamp(20px, 1.8vw, 28px);
+}
+
+.mood-card.flip-card .flip-back p {
+  font-size: clamp(14px, 1.1vw, 18px);
+  line-height: 1.4;
+}
+
 .reel-strip span {
   min-height: 150px;
   display: grid;
@@ -939,16 +1244,27 @@ body.page {
 }
 
 .impact-lab {
-  display: grid;
-  grid-template-columns: minmax(420px, 1.08fr) minmax(280px, 0.92fr);
-  gap: clamp(28px, 4vw, 64px);
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(22px, 3vw, 42px);
   padding: clamp(14px, 2vw, 32px) 0 clamp(34px, 4vw, 64px);
+}
+
+.impact-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  max-width: 56em;
+}
+
+.impact-intro .page-lede {
+  margin: 0;
 }
 
 .impact-orbit {
   position: relative;
-  min-height: clamp(500px, 52vw, 660px);
+  min-height: clamp(520px, 50vw, 680px);
   border: var(--hairline);
   background:
     radial-gradient(ellipse at center, rgba(244, 194, 194, 0.32), transparent 55%),
@@ -1053,44 +1369,48 @@ body.page {
 
 .impact-node {
   position: absolute;
-  width: clamp(150px, 17vw, 220px);
-  min-height: 104px;
-  display: grid;
-  align-content: center;
-  gap: 4px;
-  border: var(--hairline);
-  background: rgba(250, 243, 227, 0.9);
-  padding: 16px;
+  width: clamp(280px, 26vw, 360px);
+  min-height: clamp(210px, 20vw, 260px);
 }
 
-.impact-node span {
-  font-size: clamp(22px, 2vw, 32px);
+.impact-node.flip-card .flip-face {
+  background: rgba(250, 243, 227, 0.92);
+  padding: clamp(20px, 2.2vw, 28px);
+  gap: 8px;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.impact-node.flip-card .flip-back {
+  background:
+    linear-gradient(160deg, rgba(244, 194, 194, 0.24), transparent 55%),
+    var(--cream-soft);
+  justify-content: flex-start;
+}
+
+.impact-node.flip-card .flip-front span {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 3vw, 48px);
   line-height: 1;
 }
 
-.node-one { left: 8%; top: 12%; }
-.node-two { right: 8%; top: 18%; }
-.node-three { left: 14%; bottom: 10%; }
-.node-four { right: 11%; bottom: 15%; }
-
-.impact-ledger {
-  display: grid;
-  gap: 16px;
+.impact-node.flip-card .flip-front small {
+  font-style: italic;
+  letter-spacing: 0.08em;
+  color: var(--bamboo-deep);
+  font-size: clamp(16px, 1.25vw, 20px);
 }
 
-.impact-stat {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 8px 18px;
-  align-items: start;
-}
-
-.impact-stat p {
-  grid-column: 1 / -1;
+.impact-node.flip-card .flip-back p {
   margin: 0;
-  font-size: clamp(17px, 1.2vw, 21px);
-  line-height: 1.45;
+  font-size: clamp(16px, 1.25vw, 19px);
+  line-height: 1.5;
 }
+
+.node-one   { left: 5%;  top: 6%; }
+.node-two   { right: 5%; top: 10%; }
+.node-three { left: 5%;  bottom: 6%; }
+.node-four  { right: 5%; bottom: 10%; }
 
 /* Community page */
 .community-page {
@@ -1110,18 +1430,45 @@ body.page {
   gap: 26px;
 }
 
-.partner-ribbon {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+.community-tags {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
 }
 
-.partner-ribbon span {
+.community-tag {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 16px;
   border: var(--hairline);
-  padding: 8px 10px;
   background: var(--cream-soft);
-  font-style: italic;
-  letter-spacing: 0.06em;
+  transition:
+    border-color 0.4s ease,
+    background-color 0.4s ease,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.community-tag:hover {
+  border-color: var(--baby-pink);
+  background: rgba(255, 255, 255, 0.96);
+  transform: translateY(-2px);
+}
+
+.community-tag p {
+  margin: 0;
+  font-size: clamp(13px, 1vw, 16px);
+  line-height: 1.4;
+  color: var(--black-soft);
+}
+
+@media (max-width: 720px) {
+  .community-tags {
+    grid-template-columns: 1fr;
+  }
 }
 
 .community-map {
@@ -1234,31 +1581,13 @@ body.page {
   to { transform: rotate(360deg); }
 }
 
-/* Make sure cards sit above the SVG web */
-.community-node {
-  z-index: 2;
-  transition:
-    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.4s ease,
-    box-shadow 0.4s ease,
-    background-color 0.4s ease;
-}
-
-.community-node:hover {
-  border-color: var(--baby-pink);
-  background: rgba(255, 255, 255, 0.96);
-  box-shadow: 0 8px 22px rgba(26, 26, 26, 0.08);
-}
-
-.community-node strong {
-  transition: color 0.4s ease;
-}
-
-.community-node:hover strong {
-  color: var(--leaf);
-}
-
-/* Logo badge in each node's top-right corner — drop a square logo PNG here */
+/* Logo badge in each node's top-right corner — drop a square logo PNG here.
+   On flip-cards it also doubles as the flip indicator: visible on the
+   front face, faded out while the back is showing.
+   The transition is asymmetric — when the card flips to its back the
+   logo fades out fast so it doesn't ghost over the back face; when it
+   flips home the logo fades back in late so it reappears as the front
+   face is settling, not mid-rotation. */
 .node-logo {
   position: absolute;
   top: -18px;
@@ -1274,9 +1603,25 @@ body.page {
   box-shadow: 0 4px 12px rgba(26, 26, 26, 0.1);
   z-index: 3;
   transition:
+    opacity 0.25s ease 0.42s,
     transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
     border-color 0.4s ease,
     box-shadow 0.4s ease;
+}
+
+.community-node.flip-card.is-flipped .node-logo {
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.18s ease,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+/* Logo on community-node acts as the flip indicator — hide the arrow. */
+.community-node .flip-indicator {
+  display: none;
 }
 
 .node-logo img {
@@ -1310,23 +1655,6 @@ body.page {
   box-shadow: 0 6px 16px rgba(244, 194, 194, 0.5);
 }
 
-/* Partner ribbon — gentle hover lift so the chips feel clickable */
-.partner-ribbon span {
-  cursor: default;
-  transition:
-    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-    background-color 0.4s ease,
-    border-color 0.4s ease,
-    color 0.4s ease;
-}
-
-.partner-ribbon span:hover {
-  transform: translateY(-3px);
-  background: var(--baby-pink-soft);
-  border-color: var(--baby-pink);
-  color: var(--leaf);
-}
-
 @media (prefers-reduced-motion: reduce) {
   .web-line,
   .community-anchor,
@@ -1350,32 +1678,73 @@ body.page {
   }
 }
 
+/* Community node sits above the SVG web of dotted connectors. */
 .community-node {
   position: absolute;
-  width: clamp(170px, 17vw, 230px);
-  border: var(--hairline);
+  z-index: 2;
+  width: clamp(200px, 19vw, 260px);
+  min-height: clamp(170px, 17vw, 200px);
+}
+
+.community-node.flip-card .flip-face {
   background: rgba(250, 243, 227, 0.92);
   padding: 16px;
+  gap: 6px;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
-.community-node strong {
+.community-node.flip-card .flip-back {
+  background:
+    linear-gradient(160deg, rgba(244, 194, 194, 0.24), transparent 55%),
+    var(--cream-soft);
+}
+
+.community-node.flip-card .flip-front strong {
   display: block;
-  margin: 8px 0 6px;
+  margin: 4px 0 2px;
   font-family: var(--font-display);
-  font-size: clamp(28px, 3vw, 48px);
+  font-size: clamp(26px, 2.4vw, 36px);
   font-weight: 400;
-  line-height: 0.95;
+  line-height: 1;
 }
 
-.community-node p {
+.community-node.flip-card .flip-front p,
+.community-node.flip-card .flip-back p {
   margin: 0;
-  line-height: 1.35;
+  font-size: clamp(14px, 1.05vw, 16px);
+  line-height: 1.4;
 }
 
-.community-node-one { left: 8%; top: 10%; }
-.community-node-two { right: 8%; top: 22%; }
-.community-node-three { left: 18%; bottom: 12%; }
-.community-node-four { right: 13%; bottom: 10%; }
+.community-node-one   { left: 4%;  top: 5%; }
+.community-node-two   { right: 4%; top: 11%; }
+.community-node-three { left: 4%;  bottom: 5%; }
+.community-node-four  { right: 4%; bottom: 11%; }
+
+/* community-card / writing-card flip: outer container is structural
+   only; the rotating faces carry all visuals so no second border
+   lingers during the flip. */
+.community-card.flip-card,
+.writing-card.flip-card {
+  min-height: 180px;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  overflow: visible;
+}
+
+.community-card.flip-card .flip-face,
+.writing-card.flip-card .flip-face {
+  padding: clamp(16px, 2vw, 24px);
+  background: rgba(250, 243, 227, 0.72);
+}
+
+.community-card.flip-card .flip-back,
+.writing-card.flip-card .flip-back {
+  background:
+    linear-gradient(160deg, rgba(244, 194, 194, 0.22), transparent 55%),
+    var(--cream-soft);
+}
 
 .community-feed {
   display: grid;
@@ -1664,10 +2033,6 @@ body.page {
     flex-wrap: wrap;
   }
 
-  .metric-grid {
-    grid-template-columns: 1fr;
-  }
-
   .photo-stack {
     display: grid;
     min-height: 0;
@@ -1752,7 +2117,6 @@ body.page {
   }
 
   .quote-strip,
-  .impact-stat,
   .docket-list li {
     grid-template-columns: 1fr;
   }
