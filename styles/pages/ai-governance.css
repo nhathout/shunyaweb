@@ -1,1622 +1,336 @@
-/* LEGACY (pre-redesign, moved from page.css) — the page redesign replaces or deletes this */
-/* Finance page */
-.finance-page {
-  --page-accent: #ff9eb2;
-}
+/* ==========================================================================
+   AI & Governance (chapter 02) — page layout only.
+   Shared components come from base.css / page.css; everything here is scoped
+   under .page-ai-governance or an .aig- prefix.
+   ========================================================================== */
 
-.finance-hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
-  gap: clamp(28px, 5vw, 80px);
-  align-items: end;
-}
-
-.finance-hero-text {
+/* ───────── Hero fact box: organisation mark beside the label ───────── */
+.aig-fact-head {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 16px;
-}
-
-.chart-card.finance-hero-spotlight {
-  align-self: end;
-  min-height: clamp(220px, 22vw, 280px);
-}
-
-@media (max-width: 1080px) {
-  .finance-hero {
-    grid-template-columns: 1fr;
-  }
-  .chart-card.finance-hero-spotlight {
-    min-height: 220px;
-  }
-}
-
-.finance-stage {
-  display: grid;
-  grid-template-columns: minmax(250px, 0.68fr) minmax(520px, 1.32fr);
-  gap: clamp(28px, 4vw, 64px);
   align-items: center;
-  padding: clamp(8px, 2vw, 26px) 0 clamp(30px, 4vw, 64px);
-}
-
-.finance-intro {
-  display: grid;
-  gap: clamp(24px, 3vw, 44px);
-}
-
-.dashboard-grid {
-  display: grid;
-  grid-template-columns: 1.08fr 0.92fr;
   gap: 14px;
 }
+.aig-fact-head .org-mark { width: 48px; height: 48px; font-size: 17px; flex: none; }
+.aig-fact-box .fact-box-title { margin-top: 18px; }
 
-.chart-card {
-  position: relative;
-  overflow: hidden;
-  border: var(--hairline);
-  background:
-    linear-gradient(135deg, rgba(244, 194, 194, 0.28), transparent 46%),
-    rgba(250, 243, 227, 0.85);
-  padding: clamp(18px, 2.4vw, 30px);
-  min-height: 230px;
-}
-
-.chart-card::after {
-  content: "";
-  position: absolute;
-  inset: -50% auto -50% -35%;
-  width: 35%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.42), transparent);
-  transform: rotate(12deg);
-  animation: chartSheen 6s ease-in-out infinite;
-  pointer-events: none;
-}
-
-.chart-card-large {
-  grid-row: span 2;
-  min-height: clamp(440px, 38vw, 520px);
-}
-
-.chart-placeholder {
-  flex: 1;
+/* ───────── 01 · Rotation: photo + four teams around a centre ───────── */
+.aig-rotation {
   display: grid;
-  align-content: center;
-  gap: 10px;
-  font-style: italic;
-  color: var(--bamboo-deep);
-}
-
-.chart-placeholder p {
-  margin: 0;
-  font-size: clamp(15px, 1.2vw, 19px);
-  line-height: 1.45;
-  max-width: 22em;
-}
-
-/* Chart card flip: outer container is structural only; the rotating
-   faces carry all visuals so no second border lingers during the flip. */
-.chart-card.flip-card {
-  border: 0;
-  background: transparent;
-  padding: 0;
-  overflow: visible;
-}
-
-.chart-card.flip-card::after {
-  display: none;
-}
-
-.chart-card.flip-card .flip-front {
-  background:
-    linear-gradient(135deg, rgba(244, 194, 194, 0.28), transparent 46%),
-    rgba(250, 243, 227, 0.85);
-  padding: clamp(18px, 2.4vw, 30px);
-}
-
-.chart-card.flip-card .flip-back {
-  padding: clamp(18px, 2.4vw, 30px);
-}
-
-.chart-card.flip-card .flip-front .chart-heading {
-  margin-bottom: 18px;
-}
-
-.chart-heading {
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  align-items: baseline;
-  margin-bottom: 22px;
-}
-
-.chart-tag {
-  font-style: italic;
-  color: var(--bamboo-deep);
-}
-
-.donut-wrap {
-  min-height: 340px;
-  display: grid;
-  align-content: center;
-  justify-items: center;
-  gap: 26px;
-}
-
-.donut-chart {
-  position: relative;
-  width: min(100%, 260px);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background:
-    conic-gradient(
-      var(--baby-pink) 0 var(--p1),
-      #f08ba2 var(--p1) calc(var(--p1) + var(--p2)),
-      var(--leaf) calc(var(--p1) + var(--p2)) 100%
-    );
-  animation: donutIn 1.3s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-.donut-chart::before {
-  content: "";
-  position: absolute;
-  inset: 16%;
-  border-radius: 50%;
-  border: var(--hairline);
-  background: var(--cream);
-}
-
-.donut-chart span {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  font-family: var(--font-display);
-  font-size: clamp(46px, 5vw, 76px);
-}
-
-.chart-legend {
-  width: 100%;
-  display: grid;
-  gap: 10px;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  font-size: clamp(17px, 1.4vw, 22px);
-}
-
-.legend-swatch {
-  display: inline-block;
-  width: 0.85em;
-  height: 0.85em;
-  margin-right: 10px;
-  border: var(--hairline);
-  vertical-align: -0.04em;
-}
-
-.legend-pink { background: var(--baby-pink); }
-.legend-rose { background: #f08ba2; }
-.legend-leaf { background: var(--leaf); }
-
-.bar-chart {
-  display: grid;
-  gap: 18px;
-}
-
-.bar-row {
-  display: grid;
-  grid-template-columns: 46px 1fr 34px;
-  gap: 12px;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(40px, 5vw, 80px);
   align-items: center;
 }
+.aig-rotation-photo { max-width: 460px; }
+.aig-rotation-photo .photo-chip-top { top: 36px; left: -22px; }
+.aig-rotation-photo .photo-chip .stat-figure { color: var(--leaf); }
 
-.bar-row span,
-.bar-row b {
-  font-weight: 400;
-}
-
-.bar-row {
-  cursor: pointer;
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.bar-row:hover {
-  transform: translateX(4px);
-}
-
-.bar-row i {
-  display: block;
-  height: 12px;
-  border: var(--hairline);
-  background:
-    linear-gradient(90deg, var(--bar-color, var(--baby-pink)) var(--bar), transparent var(--bar)),
-    repeating-linear-gradient(90deg, rgba(26, 26, 26, 0.13) 0 1px, transparent 1px 18px);
-  animation: barGrow 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
-  transform-origin: left;
-  transition: filter 0.4s ease, box-shadow 0.4s ease;
-}
-
-.bar-row:hover i {
-  filter: saturate(1.18) brightness(1.04);
-  box-shadow: 0 0 0 1px rgba(26, 26, 26, 0.15), 0 4px 10px rgba(26, 26, 26, 0.08);
-}
-
-.bar-row b {
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), color 0.35s ease;
-}
-
-.bar-row:hover b {
-  transform: scale(1.18);
-  color: var(--leaf);
-}
-
-.line-card {
-  min-height: 230px;
-}
-
-.line-chart {
+.aig-orbit {
+  position: relative;
   width: 100%;
-  height: auto;
-  overflow: visible;
+  max-width: 640px;
+  aspect-ratio: 8 / 7;
+  margin-inline: auto;
 }
-
-.grid-line {
-  fill: none;
-  stroke: rgba(26, 26, 26, 0.16);
-  stroke-width: 1;
-}
-
-.line-fill {
-  fill: rgba(244, 194, 194, 0.45);
-}
-
-.line-path {
-  fill: none;
-  stroke: var(--leaf);
-  stroke-width: 4;
-  stroke-linecap: round;
-  stroke-dasharray: 640;
-  stroke-dashoffset: 640;
-  animation: drawLine 1.6s 0.25s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-@keyframes chartSheen {
-  0%, 42% { transform: translateX(0) rotate(12deg); }
-  70%, 100% { transform: translateX(420%) rotate(12deg); }
-}
-
-@keyframes donutIn {
-  from {
-    clip-path: circle(0% at 50% 50%);
-    transform: rotate(-24deg);
-  }
-  to {
-    clip-path: circle(75% at 50% 50%);
-    transform: rotate(0deg);
-  }
-}
-
-@keyframes barGrow {
-  from { transform: scaleX(0.18); }
-  to { transform: scaleX(1); }
-}
-
-@keyframes drawLine {
-  to { stroke-dashoffset: 0; }
-}
-
-
-/* (responsive rules for this page, split out of page.css's shared media queries) */
-@media (max-width: 1080px) {
-  .finance-stage {
-    grid-template-columns: 1fr;
-  }
-
-  .finance-stage {
-    align-items: start;
-  }
-}
-
-@media (max-width: 800px) {
-  .dashboard-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 560px) {
-  .donut-wrap {
-    min-height: auto;
-  }
-
-  .chart-card-large {
-    min-height: 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .chart-card::after,
-  .donut-chart,
-  .bar-row i,
-  .line-path {
-    animation: none !important;
-  }
-
-  .line-path {
-    stroke-dashoffset: 0;
-  }
-}
-/* END LEGACY (moved from page.css) */
-
-/* ai-governance page — page-specific styles (loaded after page.css) */
-
-/* a deeper bamboo for small italic text so it stays readable, plus one
-   colour per team in the Wellington rotation (donut, legend, spotlight dots) */
-.governance-page {
-  --bamboo-ink: #7d5f40;
-  --team-legal: var(--baby-pink);
-  --team-security: #f08ba2;
-  --team-intel: var(--bamboo);
-  --team-ai: var(--leaf);
-  --stair: 26px;
-}
-
-.governance-page .chart-tag {
-  color: var(--bamboo-ink);
-  text-align: right;
-}
-
-/* keep the tag clear of the ↻ flip indicator in the corner */
-.governance-page .flip-front .chart-heading {
-  padding-right: 16px;
-}
-
-.governance-page h2.micro-label {
-  margin: 0;
-  font-weight: 400;
-}
-
-/* flip backs on this page use h2 in the hero and h3 on the boards */
-.governance-page .flip-back h2 {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(24px, 2.2vw, 34px);
-  font-weight: 400;
-  line-height: 1.04;
-}
-
-/* ───────── hero + spotlight board ───────── */
-.governance-page .chart-card.finance-hero-spotlight {
-  min-height: clamp(260px, 21vw, 290px);
-}
-
-.spotlight-body {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 10px;
-}
-
-.spotlight-body p {
-  margin: 0;
-}
-
-.spotlight-org {
-  font-family: var(--font-display);
-  font-size: clamp(30px, 3vw, 46px);
-  line-height: 1;
-  letter-spacing: 0.02em;
-}
-
-.spotlight-role {
-  max-width: 26em;
-  text-wrap: balance;
-  font-size: clamp(17px, 1.35vw, 21px);
-  font-style: italic;
-  line-height: 1.3;
-  color: var(--black-soft);
-}
-
-.nowrap {
-  white-space: nowrap;
-}
-
-.spotlight-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-  margin-top: 6px !important;
-  padding-top: 12px;
-  border-top: 1px solid rgba(26, 26, 26, 0.22);
-  font-size: 13px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-}
-
-/* four small squares — the four teams of the rotation, in donut colours */
-.spotlight-teams {
-  display: inline-flex;
-  gap: 5px;
-}
-
-.spotlight-teams i {
-  width: 11px;
-  height: 11px;
-  border: var(--hairline);
-  background: var(--team-legal);
-  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.spotlight-teams i:nth-child(2) { background: var(--team-security); transition-delay: 0.05s; }
-.spotlight-teams i:nth-child(3) { background: var(--team-intel); transition-delay: 0.1s; }
-.spotlight-teams i:nth-child(4) { background: var(--team-ai); transition-delay: 0.15s; }
-
-.spotlight-card:hover .spotlight-teams i,
-.spotlight-card:focus-visible .spotlight-teams i {
-  transform: translateY(-3px) rotate(45deg);
-}
-
-/* ───────── 1 · the co-op dashboard ───────── */
-.governance-page .governance-stage {
-  align-items: center;
-}
-
-.governance-page .finance-intro {
-  align-content: center;
-  gap: clamp(26px, 3vw, 40px);
-}
-
-.governance-intro-copy {
-  display: grid;
-  gap: 18px;
-}
-
-.governance-page .finance-intro .page-lede {
-  font-size: clamp(20px, 1.9vw, 28px);
-}
-
-.dashboard-hint {
-  margin: 0;
-  font-size: 15px;
-  font-style: italic;
-  letter-spacing: 0.06em;
-  color: var(--bamboo-ink);
-}
-
-.dashboard-hint span {
-  display: inline-block;
-  margin-right: 6px;
-  font-style: normal;
-  color: var(--page-accent);
-}
-
-.governance-page .governance-photo {
-  position: relative;
-  width: min(100%, 300px);
-  margin-left: 6%;
-}
-
-.governance-photo figcaption {
-  font-size: 15px;
-}
-
-/* ───────── flip boards: sized by their content ─────────
-   page.css stacks both faces absolutely, so a board is only as tall as its
-   min-height and anything longer is clipped. Here both faces share one grid
-   cell in normal flow instead: the taller face sets the board's height (the
-   min-heights below are floors that keep the layout's proportions), so no
-   face can clip at any width or with fallback fonts. */
-.governance-page .flip-card {
-  display: grid;
-}
-
-.governance-page .flip-card .flip-inner {
-  position: relative;
-  inset: auto;
-  display: grid;
-}
-
-.governance-page .flip-card .flip-face {
-  position: relative;
-  inset: auto;
-  grid-area: 1 / 1;
-}
-
-/* the rotation board holds the legend's buttons, so it cannot be one big
-   button: its corner ↻ becomes a real toggle (wired in ai-governance.js).
-   40 × 40 hit area, glyph in the same spot as on the other boards. */
-.governance-page .flip-toggle {
-  top: 1px;
-  right: 3px;
-  width: 40px;
-  height: 40px;
-  padding: 0;
-  pointer-events: auto;
-  cursor: pointer;
-  /* no opacity fade: the focus ring must show at full strength at once */
-  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), color 0.3s ease;
-}
-
-.governance-page .flip-toggle[hidden] {
-  display: none;
-}
-
-.governance-page .flip-toggle:hover,
-.governance-page .flip-toggle:focus-visible {
-  opacity: 1;
-  color: var(--leaf);
-}
-
-.governance-page .flip-toggle:focus-visible {
-  outline-offset: -5px;
-}
-
-.governance-page .dashboard-grid {
-  grid-auto-rows: minmax(300px, auto);
-}
-
-.governance-page .prototype-card,
-.governance-page .controls-card {
-  min-height: 300px;
-}
-
-.governance-page .chart-card-large.rotation-card {
-  min-height: 614px;
-}
-
-/* the large board's back gets a touch more presence */
-.rotation-card .flip-back {
-  padding-left: clamp(22px, 3vw, 40px);
-  padding-right: clamp(22px, 3vw, 40px);
-}
-
-.rotation-card .flip-back p {
-  font-size: clamp(17px, 1.45vw, 22px);
-}
-
-/* smaller type on the backs of the two narrow boards */
-.prototype-card .flip-back h3,
-.controls-card .flip-back h3 {
-  font-size: clamp(22px, 1.8vw, 27px);
-}
-
-.prototype-card .flip-back p,
-.controls-card .flip-back p {
-  font-size: clamp(15px, 1.12vw, 17px);
-}
-
-.board-caption {
-  margin: -8px 0 16px;
-  font-size: clamp(16px, 1.2vw, 18px);
-  font-style: italic;
-  line-height: 1.3;
-  color: var(--black-soft);
-}
-
-/* ── board 1 · the rotation (four equal slices) ── */
-.rotation-wrap {
-  flex: 1;
-  min-height: 0;
-  gap: 22px;
-}
-
-.rotation-donut {
-  position: relative;
-  width: min(100%, 268px);
-  aspect-ratio: 1;
-}
-
-.rotation-donut svg {
-  display: block;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-}
-
-.rotation-rim {
-  fill: none;
-  stroke: rgba(26, 26, 26, 0.18);
-  stroke-width: 1;
-}
-
-.rotation-core {
-  fill: var(--cream);
-  stroke: var(--black);
-  stroke-width: 1;
-}
-
-.rotation-slice {
-  fill: none;
-  stroke-width: 28;
-  cursor: pointer;
-  transition: stroke-width 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease;
-}
-
-.rotation-slice[data-team-slice="legal"] { stroke: var(--team-legal); }
-.rotation-slice[data-team-slice="security"] { stroke: var(--team-security); }
-.rotation-slice[data-team-slice="intel"] { stroke: var(--team-intel); }
-.rotation-slice[data-team-slice="ai"] { stroke: var(--team-ai); }
-
-.rotation-card[data-active] .rotation-slice {
-  opacity: 0.22;
-}
-
-.rotation-card[data-active="legal"] [data-team-slice="legal"],
-.rotation-card[data-active="security"] [data-team-slice="security"],
-.rotation-card[data-active="intel"] [data-team-slice="intel"],
-.rotation-card[data-active="ai"] [data-team-slice="ai"] {
-  opacity: 1;
-  stroke-width: 36;
-}
-
-.dashboard-grid.is-in .rotation-donut svg {
-  animation: donutIn 1.3s 0.2s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-/* centre label: "4 teams" by default, the team's name while one is active */
-.rotation-center {
+/* the ring passes (roughly) through the centres of the four team cards */
+.aig-orbit-ring {
   position: absolute;
-  inset: 22%;
-  display: grid;
-  place-items: center;
-  margin: 0;
-  text-align: center;
-  pointer-events: none;
-}
-
-.rotation-center > span {
-  grid-area: 1 / 1;
-  transition: opacity 0.35s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.rotation-center-default {
-  display: grid;
-  justify-items: center;
-  gap: 4px;
-}
-
-.rotation-center-default b {
-  font-family: var(--font-display);
-  font-size: clamp(52px, 4.6vw, 68px);
-  font-weight: 400;
-  line-height: 0.9;
-}
-
-.rotation-center-default small {
-  font-size: 12px;
-  font-style: italic;
-  letter-spacing: 0.26em;
-  text-transform: uppercase;
-  color: var(--leaf);
-}
-
-.rotation-center-team {
-  font-family: var(--font-display);
-  font-size: clamp(16px, 1.3vw, 19px);
-  line-height: 1.12;
-  opacity: 0;
-  transform: translateY(6px);
-  transition-duration: 0.2s;
-}
-
-/* crossfade without overlap: the outgoing label leaves quickly, the
-   incoming one waits a beat */
-.rotation-card[data-active] .rotation-center-default {
-  opacity: 0;
-  transform: scale(0.9);
-  transition-duration: 0.18s;
-}
-
-.rotation-card[data-active="legal"] [data-team-label="legal"],
-.rotation-card[data-active="security"] [data-team-label="security"],
-.rotation-card[data-active="intel"] [data-team-label="intel"],
-.rotation-card[data-active="ai"] [data-team-label="ai"] {
-  opacity: 1;
-  transform: translateY(0);
-  transition-duration: 0.35s, 0.45s;
-  transition-delay: 0.14s;
-}
-
-.governance-page .rotation-legend {
-  gap: 4px;
-  font-size: clamp(16px, 1.25vw, 19px);
-}
-
-.rotation-key {
-  position: relative;
-  display: flex;
-  align-items: baseline;
-  width: 100%;
-  padding: 6px 30px 6px 8px;
-  text-align: left;
-  line-height: 1.25;
-  border: 1px solid transparent;
-  transition:
-    background-color 0.35s ease,
-    border-color 0.35s ease,
-    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.rotation-key .legend-swatch {
-  flex: 0 0 auto;
-}
-
-.legend-bamboo { background: var(--bamboo); }
-
-.rotation-card[data-active="legal"] [data-team-key="legal"],
-.rotation-card[data-active="security"] [data-team-key="security"],
-.rotation-card[data-active="intel"] [data-team-key="intel"],
-.rotation-card[data-active="ai"] [data-team-key="ai"] {
-  background: rgba(255, 255, 255, 0.6);
-  border-color: rgba(26, 26, 26, 0.2);
-  transform: translateX(4px);
-}
-
-/* a pinned team keeps a small leaf dot until it is clicked again */
-.rotation-key[aria-pressed="true"]::after {
-  content: "";
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  width: 7px;
-  height: 7px;
-  margin-top: -3.5px;
+  inset: 13% 16%;
+  border: 1.5px solid var(--bamboo);
   border-radius: 50%;
-  background: var(--leaf);
 }
-
-.rotation-key:focus-visible {
-  outline-offset: 1px;
-}
-
-/* ── board 2 · the prototype (a stepped path) ── */
-.prototype-path {
-  display: grid;
-  gap: 8px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.prototype-step {
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 2px 10px;
-  margin-left: calc(var(--step) * var(--stair));
-  padding: 5px 10px;
-  border: var(--hairline);
-  background: rgba(250, 243, 227, 0.9);
-  line-height: 1.2;
-  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-/* L-shaped connector from the step above into this one */
-.prototype-step + .prototype-step::before {
+.aig-orbit-ring::before {
   content: "";
   position: absolute;
-  left: calc(-1 * var(--stair) + 12px);
-  top: -9px;
-  width: calc(var(--stair) - 12px);
-  height: calc(50% + 9px);
-  border-left: 1px dashed var(--bamboo-deep);
-  border-bottom: 1px dashed var(--bamboo-deep);
-}
-
-.step-num {
-  font-family: var(--font-display);
-  font-size: 12px;
-  letter-spacing: 0.14em;
-  color: var(--bamboo-ink);
-}
-
-.step-name {
-  font-size: clamp(16px, 1.25vw, 19px);
-}
-
-.step-note {
-  margin-left: auto;
-  font-size: 13px;
-  font-style: italic;
-  letter-spacing: 0.04em;
-  color: var(--bamboo-ink);
-}
-
-/* the last step: where the prototype ended up. The dot is static on purpose —
-   a pulsing dot reads as "live", and the résumé says Snowflake-connected data. */
-.prototype-step.is-final {
-  border-color: var(--leaf);
-  background:
-    linear-gradient(120deg, rgba(244, 194, 194, 0.55), rgba(249, 217, 217, 0.25));
-}
-
-.prototype-step.is-final .step-note {
-  color: var(--leaf);
-}
-
-.data-dot {
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  margin-right: 8px;
+  inset: 9%;
+  border: 1px dashed var(--rule-chip);
   border-radius: 50%;
-  background: var(--leaf);
-  vertical-align: 0.05em;
 }
-
-.dashboard-grid.is-in .prototype-step {
-  animation: stepIn 0.7s calc(0.35s + var(--step) * 0.14s) cubic-bezier(0.22, 1, 0.36, 1) backwards;
-}
-
-.prototype-card:hover .prototype-step.is-final,
-.prototype-card:focus-visible .prototype-step.is-final {
-  transform: translateX(4px);
-}
-
-/* ── board 3 · the controls (a checklist + the map around it) ── */
-.controls-list {
-  display: grid;
-  gap: 9px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  font-size: clamp(17px, 1.35vw, 20px);
-  line-height: 1.2;
-}
-
-.controls-list li {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.control-check {
-  position: relative;
-  flex: 0 0 auto;
-  width: 17px;
-  height: 17px;
-  border: var(--hairline);
-  background: rgba(255, 255, 255, 0.55);
-}
-
-.control-check::after {
-  content: "";
+/* small diamond markers on the ring between the teams (45° points) */
+.aig-orbit-ring > i {
   position: absolute;
-  left: 5px;
-  top: 1px;
-  width: 5px;
+  width: 10px;
   height: 10px;
-  border-right: 2px solid var(--leaf);
-  border-bottom: 2px solid var(--leaf);
+  margin: -5px 0 0 -5px;
+  background: var(--cream);
+  border: 1.5px solid var(--leaf);
   transform: rotate(45deg);
-  transform-origin: center;
 }
+.aig-orbit-ring > i:nth-child(1) { left: 85.36%; top: 14.64%; }
+.aig-orbit-ring > i:nth-child(2) { left: 85.36%; top: 85.36%; }
+.aig-orbit-ring > i:nth-child(3) { left: 14.64%; top: 85.36%; }
+.aig-orbit-ring > i:nth-child(4) { left: 14.64%; top: 14.64%; background: var(--blush); border-color: var(--blush); }
 
-.dashboard-grid.is-in .control-check::after {
-  animation: checkIn 0.5s calc(0.5s + var(--step) * 0.16s) cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-.controls-map {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 4px 8px;
-  margin: auto 0 0;
-  padding-top: 12px;
-  border-top: 1px dashed rgba(26, 26, 26, 0.3);
-  font-size: 14px;
-  font-style: italic;
-  letter-spacing: 0.04em;
-  color: var(--black-soft);
-}
-
-.controls-arrow {
-  color: var(--bamboo-deep);
-  font-style: normal;
-}
-
-/* ───────── 2 · research feature ───────── */
-.research-feature {
+.aig-orbit-core {
+  position: absolute;
+  left: 50%;
+  top: 50%;
   display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
-  gap: clamp(28px, 5vw, 80px);
-  align-items: start;
-  padding: clamp(36px, 5vw, 72px) 0 clamp(32px, 4vw, 56px);
-  border-top: var(--hairline);
+  align-content: center;
+  justify-items: center;
+  gap: 10px;
+  width: 34%;
+  aspect-ratio: 1;
+  padding: 22px;
+  text-align: center;
+  background: var(--leaf);
+  border-radius: 50%;
+  box-shadow: 0 0 0 7px var(--cream), 0 0 0 8px var(--bamboo);
+  transform: translate(-50%, -50%);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-
-.research-copy {
-  display: grid;
-  gap: 16px;
-  align-content: start;
-}
-
-.research-title {
-  margin: 0;
+.aig-orbit-core .label { color: var(--on-leaf-label); }
+.aig-orbit-core-text {
+  font-family: var(--serif);
+  font-size: clamp(16px, 1.35vw, 19px);
+  line-height: 1.3;
+  font-variation-settings: "opsz" 24;
+  color: var(--on-leaf);
   text-wrap: balance;
-  max-width: 13em;
-  font-family: var(--font-display);
-  font-size: clamp(34px, 3.8vw, 58px);
-  font-weight: 400;
-  line-height: 1.02;
-  letter-spacing: 0.02em;
 }
 
-.research-tag {
-  margin: 0;
-  font-size: 15px;
-  font-style: italic;
-  letter-spacing: 0.08em;
-  color: var(--bamboo-ink);
-}
-
-.research-summary {
-  max-width: 30em;
-  margin: 6px 0 0;
-  font-size: clamp(18px, 1.45vw, 22px);
-  line-height: 1.5;
-}
-
-.lens-board {
-  position: relative;
+.aig-team {
+  position: absolute;
   display: grid;
-  gap: 18px;
-  padding: clamp(20px, 2.6vw, 34px);
-  border: var(--hairline);
-  background:
-    linear-gradient(150deg, rgba(244, 194, 194, 0.3), transparent 52%),
-    var(--cream-soft);
+  justify-items: center;
+  align-content: start;
+  gap: 4px;
+  width: 29%;
+  padding: 14px 12px;
+  text-align: center;
+  background: var(--paper);
+  border: 1px solid var(--rule-soft);
+  border-top: 3px solid var(--bamboo);
+  transition: border-color 0.2s var(--ease), transform 0.2s var(--ease);
+}
+.aig-team:hover { border-color: var(--leaf); transform: translateY(-3px); }
+.aig-team .medallion { margin-bottom: 6px; }
+.aig-team .label { color: var(--accent-ink); }
+.aig-team-name {
+  font-family: var(--serif);
+  font-size: 19px;
+  line-height: 1.2;
+  font-weight: 600;
+  font-variation-settings: "opsz" 24;
+  color: var(--ink);
+  text-wrap: balance;
+}
+.aig-team-n { left: 35.5%; top: 0; }
+.aig-team-s { left: 35.5%; bottom: 0; }
+.aig-team-e { right: 0; top: 50%; transform: translateY(-50%); }
+.aig-team-w { left: 0; top: 50%; transform: translateY(-50%); }
+.aig-team-e:hover,
+.aig-team-w:hover { transform: translateY(calc(-50% - 3px)); }
+.aig-team-w { border-top-color: var(--leaf); }
+.aig-team-w .label { color: var(--leaf); }
+
+/* ───────── 02 · Prototype: five-stage path + brackets ───────── */
+.aig-steps { gap: 40px; }
+.aig-steps .step { padding: 20px 18px 22px; }
+.aig-steps .step-name { font-size: 22px; }
+.aig-steps .step:not(:last-child)::after { right: -33px; }
+.aig-steps .step.is-final { background: var(--cream); }
+
+.aig-brackets {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  gap: 40px;
+  margin-top: 26px;
+}
+.aig-bracket {
+  position: relative;
+  display: block;
+  padding-top: 16px;
+  border-top: 1.5px solid var(--bamboo);
+  text-align: center;
+}
+.aig-bracket::before,
+.aig-bracket::after {
+  content: "";
+  position: absolute;
+  top: -9px;
+  width: 1.5px;
+  height: 9px;
+  background: var(--bamboo);
+}
+.aig-bracket::before { left: 0; }
+.aig-bracket::after { right: 0; }
+.aig-bracket .label { color: var(--accent-ink); }
+.aig-bracket-final { border-top-color: var(--leaf); }
+.aig-bracket-final::before,
+.aig-bracket-final::after { background: var(--leaf); }
+.aig-bracket-final .label { color: var(--leaf); }
+
+/* ───────── 03 · Controls: mapped layers + control register ───────── */
+.aig-controls {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+  gap: clamp(36px, 5vw, 80px);
+  align-items: start;
+}
+.aig-mapped-intro {
+  font-size: var(--fs-small);
+  line-height: 1.55;
+  color: var(--text-2);
+  max-width: 24em;
+}
+.aig-mapped-flow { position: relative; margin-top: 28px; display: grid; gap: 34px; }
+/* the vertical connector behind the medallions */
+.aig-mapped-flow::before {
+  content: "";
+  position: absolute;
+  left: 25px;
+  top: 26px;
+  bottom: 26px;
+  width: 2px;
+  background: var(--bamboo);
+}
+.aig-mapped-flow li {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.aig-mapped-flow li + li::before {
+  content: "";
+  position: absolute;
+  left: 20px;
+  top: -24px;
+  width: 12px;
+  height: 12px;
+  background: var(--cream) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232d4a32' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat center / contain;
+}
+.aig-mapped-name {
+  font-family: var(--serif);
+  font-size: var(--fs-h3);
+  line-height: 1.2;
+  font-weight: 500;
+  font-variation-settings: "opsz" 28;
+  color: var(--ink);
 }
 
-.lens-head {
+.aig-register { padding: 30px 34px 26px; }
+.aig-register-head {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
   gap: 16px;
+  padding-bottom: 14px;
+  border-bottom: 3px solid var(--ink);
 }
-
-.lens-count {
-  font-size: 13px;
-  font-style: italic;
-  letter-spacing: 0.24em;
-  color: var(--bamboo-ink);
-}
-
-.lens-board:not(.is-ready) .lens-count {
-  visibility: hidden;
-}
-
-.lens-chips {
+.aig-register-list li {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px;
-}
-
-.lens-chip {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
-  min-height: 100%;
-  padding: 10px 12px 12px;
-  text-align: left;
-  font-size: clamp(16px, 1.2vw, 18px);
-  line-height: 1.15;
-  border: 1px solid rgba(26, 26, 26, 0.5);
-  background: rgba(255, 255, 255, 0.42);
-  transition:
-    background-color 0.35s ease,
-    border-color 0.35s ease,
-    color 0.35s ease,
-    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.lens-num {
-  font-family: var(--font-display);
-  font-size: 12px;
-  letter-spacing: 0.16em;
-  color: var(--bamboo-ink);
-  transition: color 0.35s ease;
-}
-
-.lens-chip:hover {
-  border-color: var(--page-accent);
-  background: rgba(255, 255, 255, 0.85);
-  transform: translateY(-2px);
-}
-
-.lens-chip[aria-selected="true"] {
-  border-color: var(--black);
-  background: var(--baby-pink-soft);
-}
-
-.lens-chip[aria-selected="true"] .lens-num {
-  color: var(--leaf);
-}
-
-/* short leaf underline on the chosen lens */
-.lens-chip::after {
-  content: "";
-  position: absolute;
-  left: 12px;
-  bottom: 6px;
-  width: 28px;
-  height: 1px;
-  background: var(--leaf);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.lens-chip[aria-selected="true"]::after {
-  transform: scaleX(1);
-}
-
-.lens-panels {
-  display: grid;
-  gap: 14px;
-  min-height: 132px;
-  align-content: center;
-  padding-top: 18px;
-  border-top: 1px solid rgba(26, 26, 26, 0.22);
-}
-
-.lens-panel {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: 18px;
+  grid-template-columns: 64px 40px minmax(0, 1fr) auto;
   align-items: center;
+  gap: 18px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--rule-soft);
 }
-
-.lens-panel[hidden] {
-  display: none;
-}
-
-.lens-panel:focus-visible {
-  outline-offset: 6px;
-}
-
-.lens-board.is-ready .lens-panel:not([hidden]) {
-  animation: lensIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-/* the "lens": a ringed circle holding the lens number */
-.lens-ring {
-  position: relative;
-  width: 64px;
-  height: 64px;
-  display: grid;
-  place-items: center;
-  border: var(--hairline);
-  border-radius: 50%;
-  background: radial-gradient(circle, var(--cream-soft) 58%, var(--baby-pink-soft) 59%);
-  font-family: var(--font-display);
-  font-size: 22px;
-}
-
-.lens-ring::before {
-  content: "";
-  position: absolute;
-  inset: 7px;
-  border: 1px solid rgba(26, 26, 26, 0.25);
-  border-radius: 50%;
-}
-
-.lens-panel-text {
-  display: grid;
-  gap: 6px;
-}
-
-.lens-panel-label {
-  margin: 0;
-  font-size: 12px;
-  font-style: italic;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--leaf);
-}
-
-.lens-question {
-  margin: 0;
-  text-wrap: balance;
-  font-size: clamp(21px, 1.9vw, 28px);
-  font-style: italic;
-  line-height: 1.22;
-}
-
-/* ───────── pull quote ───────── */
-.governance-page .governance-quote {
-  margin: 0 0 clamp(8px, 1vw, 16px);
-}
-
-.governance-quote blockquote {
-  margin: 0;
-}
-
-.governance-quote figcaption {
-  grid-column: 2;
-  margin-top: 6px;
-}
-
-.governance-quote figcaption::before {
-  content: "— ";
-}
-
-/* ───────── 3 · toolkit + coursework ───────── */
-.governance-toolkit {
-  display: grid;
-  grid-template-columns: minmax(200px, 0.3fr) minmax(0, 1fr);
-  gap: clamp(24px, 4vw, 64px);
-  align-items: start;
-  padding: clamp(32px, 4vw, 60px) 0;
-}
-
-.toolkit-head {
-  display: grid;
-  gap: 14px;
-}
-
-.toolkit-dek {
-  margin: 0;
-  font-size: clamp(19px, 1.6vw, 24px);
-  font-style: italic;
-  line-height: 1.35;
-}
-
-.toolkit-columns {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  border: var(--hairline);
-  background: rgba(250, 243, 227, 0.72);
-}
-
-.toolkit-group {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  padding: clamp(18px, 2vw, 26px);
-  border-left: var(--hairline);
-}
-
-.toolkit-group:first-child {
-  border-left: 0;
-}
-
-.toolkit-group h3 {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(22px, 1.8vw, 28px);
-  font-weight: 400;
-  line-height: 1.05;
-}
-
-.toolkit-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.toolkit-tags li {
-  padding: 3px 10px 4px;
-  border: 1px solid rgba(26, 26, 26, 0.4);
-  background: rgba(255, 255, 255, 0.4);
-  font-size: 15px;
-  line-height: 1.25;
-  transition: border-color 0.35s ease, background-color 0.35s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.toolkit-tags li:hover {
-  border-color: var(--page-accent);
-  background: var(--baby-pink-soft);
-  transform: translateY(-2px);
-}
-
-.toolkit-course-list {
-  display: grid;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  font-size: 16px;
-  line-height: 1.3;
-}
-
-.toolkit-course-list li {
-  padding: 7px 0;
-  border-bottom: 1px solid rgba(26, 26, 26, 0.16);
-}
-
-.toolkit-course-list li:first-child {
-  padding-top: 0;
-}
-
-.toolkit-note {
-  text-wrap: balance;
-  margin: auto 0 0;
-  font-size: 14px;
-  font-style: italic;
-  letter-spacing: 0.04em;
-  color: var(--bamboo-ink);
-}
-
-/* ───────── 4 · coda: finance roots + where this leads ───────── */
-.governance-coda {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  border-top: var(--hairline);
-}
-
-.coda-roots,
-.coda-next {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding: clamp(28px, 3.4vw, 48px) 0;
-}
-
-.coda-roots {
-  padding-right: clamp(24px, 4vw, 64px);
-}
-
-.coda-next {
-  padding-left: clamp(24px, 4vw, 64px);
-  border-left: var(--hairline);
-}
-
-.coda-dek {
-  margin: 0;
-  text-wrap: balance;
-  font-family: var(--font-display);
-  font-size: clamp(26px, 2.4vw, 36px);
-  line-height: 1.08;
-}
-
-.roots-list {
-  display: grid;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.roots-list li {
-  display: grid;
-  grid-template-columns: 132px minmax(0, 1fr);
-  column-gap: 18px;
-  row-gap: 2px;
-  padding: 12px 0;
-  border-top: 1px solid rgba(26, 26, 26, 0.18);
-}
-
-.roots-when {
-  grid-row: span 2;
-  padding-top: 4px;
-  font-size: 13px;
-  font-style: italic;
-  letter-spacing: 0.08em;
-  color: var(--bamboo-ink);
-}
-
-.roots-list strong {
+.aig-register-list li:last-child { border-bottom: 0; padding-bottom: 4px; }
+.aig-register-num {
+  font-family: var(--serif);
+  font-size: 44px;
+  line-height: 1;
   font-weight: 500;
-  font-size: clamp(18px, 1.4vw, 21px);
-  line-height: 1.2;
-}
-
-.roots-what {
-  font-size: 16px;
-  line-height: 1.4;
-  color: var(--black-soft);
-}
-
-.next-path {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 22px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.next-path li {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 14px 14px 16px;
-  border: var(--hairline);
-  background: rgba(250, 243, 227, 0.8);
-  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease;
-}
-
-.next-path li:hover {
-  border-color: var(--page-accent);
-  transform: translateY(-3px);
-}
-
-/* small arrows between the three stops */
-.next-path li + li::before {
-  content: "\2192";
-  position: absolute;
-  left: -22px;
-  top: 50%;
-  width: 22px;
-  margin-top: -0.6em;
-  font-size: 17px;
-  line-height: 1.2;
-  text-align: center;
-  color: var(--bamboo-ink);
-}
-
-.next-when {
-  font-size: 12px;
-  font-style: italic;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+  font-variation-settings: "opsz" 72;
+  font-variant-numeric: lining-nums tabular-nums;
   color: var(--leaf);
 }
-
-.next-path strong {
-  font-family: var(--font-display);
-  font-size: clamp(24px, 2vw, 30px);
-  font-weight: 400;
-  line-height: 1.05;
+.aig-register-name {
+  font-family: var(--serif);
+  font-size: var(--fs-h3);
+  line-height: 1.2;
+  font-weight: 500;
+  font-variation-settings: "opsz" 28;
+  color: var(--ink);
 }
+.aig-register-check { width: 22px; height: 22px; color: var(--leaf); }
 
-.next-what {
-  text-wrap: balance;
-  font-size: 15px;
-  font-style: italic;
-  line-height: 1.3;
-  color: var(--black-soft);
+/* ───────── 04 · Research (leaf band) ───────── */
+.aig-research-meta { margin-top: 22px; }
+.aig-research .chip .icon { color: var(--on-leaf-accent); }
+.aig-lenses-label { margin-bottom: 18px; }
+.aig-lenses > li { padding-block: 30px; }
+.aig-lenses > li:nth-child(n + 4) { border-top: 1px solid var(--on-leaf-rule); }
+.aig-lenses .icon-card-text { font-size: 18px; max-width: 26ch; }
+.aig-research .ruled-grid { border-top-color: var(--on-leaf-rule); border-bottom: 1px solid var(--on-leaf-rule); }
+
+/* ───────── Statement band ───────── */
+.aig-statement .statement { padding-block: var(--space-3); }
+
+/* ───────── 05 · Toolkit ───────── */
+.aig-tool { display: grid; align-content: start; gap: 22px; }
+.aig-tool-head .icon-card-title { margin: 0; }
+.aig-courses li { font-family: var(--serif); font-size: 18px; }
+.aig-tool-note { margin-top: -6px; }
+/* Data & AI and Governance & Risk sit over the onward callout; coursework runs the full height */
+.aig-toolkit.grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.aig-toolkit .aig-tool-courses { grid-column: 3; grid-row: 1 / span 2; }
+.aig-leads { grid-column: 1 / span 2; align-self: stretch; align-content: center; }
+
+/* ───────── Responsive ───────── */
+@media (max-width: 1100px) {
+  .aig-rotation { grid-template-columns: 1fr; }
+  .aig-rotation-photo { max-width: 420px; margin-left: 22px; }
+  .aig-steps.step-path { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 30px; }
+  .aig-steps .step:nth-child(3)::after { display: none; }
+  .aig-brackets { display: none; }
 }
-
-.next-link {
-  align-self: flex-start;
-  margin-top: 4px;
-  font-style: italic;
-  letter-spacing: 0.06em;
-  border-bottom: 1px solid rgba(26, 26, 26, 0.35);
-  transition: color 0.3s ease, border-color 0.3s ease;
+@media (max-width: 1000px) {
+  .aig-controls { grid-template-columns: 1fr; }
+  .aig-lenses.grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .aig-lenses > li:nth-child(n + 3) { border-top: 1px solid var(--on-leaf-rule); }
+  .aig-lenses > li:nth-child(odd) { padding-left: 0; border-left: 0; }
+  .aig-toolkit.grid-3 { grid-template-columns: 1fr 1fr; }
+  .aig-toolkit .aig-tool-courses,
+  .aig-leads { grid-column: auto; grid-row: auto; }
 }
-
-.next-link:hover {
-  color: var(--leaf);
-  border-color: var(--leaf);
+@media (max-width: 900px) {
+  .aig-steps.step-path { grid-template-columns: 1fr; }
+  .aig-steps .step:nth-child(3)::after { display: block; }
+  .aig-steps .step:not(:last-child)::after { right: auto; }
 }
-
-/* ───────── keyframes ───────── */
-@keyframes stepIn {
-  from {
-    opacity: 0;
-    transform: translateX(-14px);
+@media (max-width: 700px) {
+  /* the orbit becomes a centre panel over a 2 × 2 team grid */
+  .aig-orbit {
+    aspect-ratio: auto;
+    display: grid;
+    gap: 14px;
   }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes checkIn {
-  from {
-    opacity: 0;
-    transform: rotate(45deg) scale(0.2);
-  }
-  to {
-    opacity: 1;
-    transform: rotate(45deg) scale(1);
-  }
-}
-
-@keyframes lensIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ───────── responsive ───────── */
-/* narrow desktop: the right-hand boards get tight, so the stairs step less */
-@media (max-width: 1280px) {
-  .governance-page {
-    --stair: 20px;
-  }
-}
-
-@media (max-width: 1080px) {
-  .governance-page .chart-card.finance-hero-spotlight {
-    min-height: 240px;
-  }
-
-  /* intro becomes a lede + photo spread above the full-width dashboard */
-  .governance-page .finance-intro {
-    grid-template-columns: minmax(0, 1fr) minmax(200px, 250px);
-    align-items: center;
-    gap: clamp(24px, 4vw, 48px);
-  }
-
-  .governance-page .governance-photo {
-    width: 100%;
-    margin-left: 0;
-  }
-
-  .governance-page {
-    --stair: 26px;
-  }
-
-  .research-feature,
-  .governance-toolkit {
-    grid-template-columns: 1fr;
-  }
-
-  .research-title {
-    max-width: 16em;
-  }
-
-  .governance-coda {
-    grid-template-columns: 1fr;
-  }
-
-  .coda-roots {
-    padding-right: 0;
-  }
-
-  .coda-next {
-    padding-left: 0;
-    border-left: 0;
-    border-top: var(--hairline);
-  }
-}
-
-@media (max-width: 800px) {
-  .governance-page .chart-card-large.rotation-card {
-    min-height: 540px;
-  }
-
-  .governance-page .dashboard-grid {
-    grid-auto-rows: auto;
-  }
-
-  .toolkit-columns {
-    grid-template-columns: 1fr;
-  }
-
-  .toolkit-group {
-    border-left: 0;
-    border-top: var(--hairline);
-  }
-
-  .toolkit-group:first-child {
-    border-top: 0;
-  }
-}
-
-@media (max-width: 560px) {
-  .governance-page {
-    --stair: 16px;
-  }
-
-  /* "Governance" must fit on one line at phone width */
-  .governance-page .page-title {
-    font-size: clamp(38px, 12.4vw, 60px);
-  }
-
-  .rotation-donut {
-    width: min(100%, 240px);
-  }
-
-  .governance-page .chart-card.finance-hero-spotlight {
-    min-height: 300px;
-  }
-
-  .spotlight-meta {
-    letter-spacing: 0.16em;
-  }
-
-  .governance-page .finance-intro {
-    grid-template-columns: 1fr;
-  }
-
-  .governance-page .governance-photo {
-    width: min(100%, 280px);
-    margin-left: 4%;
-  }
-
-  .governance-page .chart-card-large.rotation-card {
-    min-height: 520px;
-  }
-
-  .governance-page .prototype-card,
-  .governance-page .controls-card {
-    min-height: 284px;
-  }
-
-  .lens-chips {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .lens-panel {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  .lens-ring {
-    width: 52px;
-    height: 52px;
-    font-size: 19px;
-  }
-
-  .lens-panels {
-    min-height: 176px;
-    align-content: start;
-  }
-
-  .governance-quote figcaption {
-    grid-column: auto;
-  }
-
-  .governance-quote .quote-mark {
-    margin-bottom: -26px;
-  }
-
-  .roots-list li {
-    grid-template-columns: 1fr;
-  }
-
-  .roots-when {
-    grid-row: auto;
-    padding-top: 0;
-  }
-
-  .next-path {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
-  .next-path li + li::before {
-    content: "\2193";
-    left: 50%;
-    top: -15px;
-    margin: 0 0 0 -5px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .dashboard-grid.is-in .rotation-donut svg,
-  .dashboard-grid.is-in .prototype-step,
-  .dashboard-grid.is-in .control-check::after,
-  .lens-board.is-ready .lens-panel:not([hidden]) {
-    animation: none !important;
-  }
-
-  .rotation-slice,
-  .rotation-center > span,
-  .rotation-key,
-  .spotlight-teams i,
-  .prototype-step,
-  .lens-chip,
-  .toolkit-tags li,
-  .next-path li {
-    transition: none;
-  }
-
-  /* no hover lifts or slides */
-  .lens-chip:hover,
-  .toolkit-tags li:hover,
-  .next-path li:hover,
-  .rotation-card[data-active] .rotation-key,
-  .prototype-card:hover .prototype-step.is-final,
-  .prototype-card:focus-visible .prototype-step.is-final,
-  .spotlight-card:hover .spotlight-teams i,
-  .spotlight-card:focus-visible .spotlight-teams i {
+  .aig-orbit-ring { display: none; }
+  .aig-orbit-core {
+    position: static;
+    width: auto;
+    aspect-ratio: auto;
+    padding: 24px 22px;
+    border-radius: var(--radius);
+    box-shadow: none;
+    border-left: 3px solid var(--blush);
     transform: none;
   }
+  .aig-orbit-teams { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .aig-team,
+  .aig-team-e,
+  .aig-team-w { position: static; width: auto; transform: none; }
+  .aig-team-e:hover,
+  .aig-team-w:hover { transform: translateY(-3px); }
+  .aig-team-name { font-size: 17px; }
+  .aig-register { padding: 22px 18px 18px; }
+  .aig-register-list li { grid-template-columns: 44px 40px minmax(0, 1fr); gap: 12px; }
+  .aig-register-num { font-size: 32px; }
+  .aig-register-check { display: none; }
+  .aig-lenses.grid-3 { grid-template-columns: 1fr; }
+  .aig-lenses > li,
+  .aig-lenses > li:nth-child(odd) { padding: 24px 0; border-left: 0; }
+  .aig-lenses > li + li { border-top: 1px solid var(--on-leaf-rule); }
+  /* each lens becomes a compact row: medallion and numeral left, name and question right */
+  .aig-lenses > li { display: grid; grid-template-columns: 52px minmax(0, 1fr); column-gap: 18px; }
+  .aig-lenses .icon-card-top { grid-row: span 2; flex-direction: column; align-items: center; gap: 10px; margin: 0; }
+  .aig-lenses .icon-card-num { font-size: 26px; }
+  .aig-lenses .icon-card-title { margin-top: 2px; }
+  .aig-toolkit.grid-3 { grid-template-columns: 1fr; }
+}
+@media (max-width: 520px) {
+  .aig-rotation-photo { margin-left: 0; }
+  .aig-rotation-photo .photo-chip-top { left: 12px; top: 16px; bottom: auto; }
+  .aig-register-meta { display: none; }
 }

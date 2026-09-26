@@ -361,7 +361,7 @@ main > .stat-band:last-child { margin-bottom: 0; }
 .panel-leaf .label { color: var(--on-leaf-label); }
 .panel-leaf .icon { color: var(--on-leaf-accent); }
 /* a panel framed by a thick top rule and a bamboo inner line */
-.panel-framed { border-top: 4px solid var(--leaf); box-shadow: inset 0 0 0 6px var(--paper), inset 0 0 0 7px #e6d6b6; }
+.panel-framed { background: var(--paper); border-top: 4px solid var(--leaf); box-shadow: inset 0 0 0 6px var(--paper), inset 0 0 0 7px #e6d6b6; }
 
 /* generic grids — collapse on their own */
 .grid { display: grid; gap: var(--col-gap); align-items: start; }
@@ -564,7 +564,7 @@ main > .stat-band:last-child { margin-bottom: 0; }
 }
 .org-mark-sm { width: 40px; height: 40px; font-size: 14px; }
 .org-mark-leaf { background: var(--leaf); border-color: var(--leaf); color: var(--on-leaf); box-shadow: inset 0 0 0 3px var(--leaf), inset 0 0 0 4px var(--on-leaf-label); }
-.org-mark-long { font-size: 14px; letter-spacing: 0.01em; }
+.org-mark-long { width: auto; min-width: 52px; padding-inline: 8px; font-size: 14px; letter-spacing: 0.01em; }
 .org-text { display: grid; gap: 3px; min-width: 0; }
 .org-name {
   font-family: var(--sans);
@@ -697,7 +697,7 @@ main > .stat-band:last-child { margin-bottom: 0; }
   line-height: 1;
   letter-spacing: -0.018em;
 }
-.chapter-dek { margin-top: 24px; max-width: 34ch; }
+.chapter-dek { margin-top: 24px; max-width: 40ch; }
 .chapter-hero-intro { margin-top: 24px; max-width: 36em; color: var(--text); }
 .chapter-hero-aside { min-width: 0; }
 
@@ -1092,6 +1092,9 @@ a.card:hover .icon-card-title, a.icon-card:hover .icon-card-title, a.role-card:h
 .chip-paper { background: var(--paper); }
 .chip-sm { min-height: 28px; padding: 5px 10px; font-size: 13px; }
 .chip-leaf .icon { color: var(--on-leaf); }
+.band-leaf .chip .icon { color: var(--on-leaf-accent); }
+.band-leaf .card .chip .icon,
+.band-leaf .panel .chip .icon { color: var(--leaf); }
 .card .chip { background: var(--cream); }
 .band-leaf .chip { background: transparent; border-color: var(--on-leaf-rule); color: var(--on-leaf); }
 

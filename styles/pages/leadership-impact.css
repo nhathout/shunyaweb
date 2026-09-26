@@ -1,1241 +1,191 @@
-/* LEGACY (pre-redesign, moved from page.css) — the page redesign replaces or deletes this */
-/* Leadership page */
-.leadership-page {
-  --page-accent: var(--leaf);
-}
+/* Leadership & Impact (chapter 04) — page layout only. Shared components come from page.css;
+   everything here is scoped to .page-leadership-impact or prefixed .li-. */
 
-.impact-lab {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(22px, 3vw, 42px);
-  padding: clamp(14px, 2vw, 32px) 0 clamp(34px, 4vw, 64px);
-}
+/* ── Hero ── */
+.page-leadership-impact .li-hero-photo { max-width: 430px; justify-self: end; width: 100%; }
 
-.impact-intro {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 14px;
-  max-width: 56em;
-}
-
-.impact-intro .page-lede {
-  margin: 0;
-}
-
-.impact-orbit {
-  position: relative;
-  min-height: clamp(520px, 50vw, 680px);
-  border: var(--hairline);
-  background:
-    radial-gradient(ellipse at center, rgba(244, 194, 194, 0.32), transparent 55%),
-    repeating-linear-gradient(0deg, rgba(26, 26, 26, 0.045) 0 1px, transparent 1px 32px),
-    var(--cream-soft);
-}
-
-.impact-ring {
-  position: absolute;
-  border: 1px solid rgba(26, 26, 26, 0.22);
-  inset: 12%;
-  transform: rotate(-8deg);
-  pointer-events: none;
-  border-radius: 50%;
-  animation: orbitDrift 38s linear infinite;
-}
-
-.impact-ring-two {
-  inset: 25%;
-  transform: rotate(12deg);
-  border-color: rgba(45, 74, 50, 0.22);
-  animation: orbitDriftReverse 52s linear infinite;
-}
-
-@keyframes orbitDrift {
-  from { transform: rotate(-8deg); }
-  to   { transform: rotate(352deg); }
-}
-
-@keyframes orbitDriftReverse {
-  from { transform: rotate(12deg); }
-  to   { transform: rotate(-348deg); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .impact-ring,
-  .impact-ring-two {
-    animation: none !important;
-  }
-}
-
-.impact-center {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 160px;
-  height: 160px;
+/* ── 01 · Roles grid: two wide "progression" cards and two single-title cards ── */
+.li-role-grid {
   display: grid;
-  place-items: center;
-  align-content: center;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--col-gap);
+  align-items: stretch;
+}
+.li-role-wide { grid-column: span 2; }
+.page-leadership-impact .li-role-current { border-top-color: var(--blush); }
+.page-leadership-impact .li-role .role-line { max-width: 44ch; }
+
+/* two-step ladder: earlier title low, later title raised, joined by an up-right arrow */
+.li-ladder {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 52px;
+  align-items: end;
+  margin: 12px 0 8px;
+  list-style: none;
+  padding: 0;
+}
+.li-rung {
+  position: relative;
+  display: grid;
   gap: 6px;
-  border: var(--hairline);
+  padding: 14px 16px 16px;
   background: var(--cream);
-  transform: translate(-50%, -50%) rotate(45deg);
-  animation: centerPulse 4.6s ease-in-out infinite;
-  z-index: 2;
+  border: 1px solid var(--rule-soft);
+  border-top: 3px solid var(--bamboo);
 }
-
-.impact-center::before {
-  content: "";
-  position: absolute;
-  inset: -10px;
-  border: 1px solid var(--leaf);
-  opacity: 0.35;
-  animation: centerHalo 3.6s ease-in-out infinite;
-  pointer-events: none;
-}
-
-@keyframes centerPulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(45, 74, 50, 0.18); }
-  50% { box-shadow: 0 0 0 14px rgba(45, 74, 50, 0); }
-}
-
-@keyframes centerHalo {
-  0%, 100% { transform: scale(1); opacity: 0.35; }
-  50% { transform: scale(1.08); opacity: 0; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .impact-center,
-  .impact-center::before {
-    animation: none !important;
-  }
-}
-
-.impact-center span,
-.impact-center small {
-  transform: rotate(-45deg);
-  text-align: center;
-}
-
-.impact-center span {
-  font-family: var(--font-display);
-  font-size: 38px;
-}
-
-.impact-center small,
-.impact-node small {
-  font-style: italic;
-  letter-spacing: 0.08em;
-}
-
-.impact-node {
-  position: absolute;
-  width: clamp(280px, 26vw, 360px);
-  min-height: clamp(210px, 20vw, 260px);
-}
-
-.impact-node.flip-card .flip-face {
-  background: rgba(250, 243, 227, 0.92);
-  padding: clamp(20px, 2.2vw, 28px);
-  gap: 8px;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-.impact-node.flip-card .flip-back {
-  background:
-    linear-gradient(160deg, rgba(244, 194, 194, 0.24), transparent 55%),
-    var(--cream-soft);
-  justify-content: flex-start;
-}
-
-.impact-node.flip-card .flip-front span {
-  font-family: var(--font-display);
-  font-size: clamp(32px, 3vw, 48px);
-  line-height: 1;
-}
-
-.impact-node.flip-card .flip-front small {
-  font-style: italic;
-  letter-spacing: 0.08em;
-  color: var(--bamboo-deep);
-  font-size: clamp(16px, 1.25vw, 20px);
-}
-
-.impact-node.flip-card .flip-back p {
-  margin: 0;
-  font-size: clamp(16px, 1.25vw, 19px);
-  line-height: 1.5;
-}
-
-.node-one   { left: 5%;  top: 6%; }
-.node-two   { right: 5%; top: 10%; }
-.node-three { left: 5%;  bottom: 6%; }
-.node-four  { right: 5%; bottom: 10%; }
-
-
-/* (responsive rules for this page, split out of page.css's shared media queries) */
-@media (max-width: 1080px) {
-  .impact-lab {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 800px) {
-  .impact-orbit {
-    min-height: auto;
-    display: grid;
-    gap: 12px;
-    padding: 12px;
-  }
-
-  .impact-ring,
-  .constellation-line,
-  .impact-center {
-    display: none;
-  }
-
-  .impact-node,
-  .node-one,
-  .node-two,
-  .node-three,
-  .node-four {
-    position: relative;
-    inset: auto;
-    width: 100%;
-  }
-}
-/* END LEGACY (moved from page.css) */
-
-/* leadership-impact page — page-specific styles (loaded after page.css) */
-
-/* a deeper bamboo for small script / italic text so it stays readable
-   (5:1 on cream, the same ink as Law & Advocacy) */
-.leadership-page {
-  --bamboo-ink: #7d5f40;
-}
-
-/* no one-word last lines in running text; headings break evenly */
-.leadership-page :is(.page-lede, .lead-habits-lede, .lead-habit-thesis, .lead-evidence p,
-  .lead-room-text, .lead-next-copy p, .lead-next-ledger dd, .impact-node .flip-back p) {
-  text-wrap: pretty;
-}
-
-.leadership-page :is(.lead-next-title, .impact-node .flip-back h3) {
-  text-wrap: balance;
-}
-
-/* ───────── hero: title + standfirst ───────── */
-.leadership-page .leadership-hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1.3fr) minmax(260px, 0.7fr);
-  align-items: end;
-  gap: clamp(24px, 5vw, 80px);
-  padding-bottom: clamp(32px, 4vw, 60px);
-}
-
-.leadership-hero-text {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 16px;
-}
-
-.leadership-standfirst {
-  display: grid;
-  gap: 18px;
-  padding-left: clamp(18px, 2vw, 28px);
-  border-left: var(--hairline);
-}
-
-.leadership-standfirst .page-lede {
-  font-size: clamp(19px, 1.75vw, 26px);
-  line-height: 1.4;
-}
-
-.leadership-habits {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 2px 12px;
-  margin: 0;
-  font-family: var(--font-script);
-  font-size: clamp(24px, 2.2vw, 32px);
+.li-rung:first-child { margin-top: 30px; }
+.li-rung.is-top { border-top-color: var(--leaf); }
+.li-rung-date { color: var(--accent-ink); }
+.li-rung.is-top .li-rung-date { color: var(--leaf); }
+.li-rung-title {
+  font-family: var(--serif);
+  font-size: 22px;
   line-height: 1.2;
-  color: var(--bamboo-ink);
-}
-
-.leadership-habits a {
-  background: linear-gradient(var(--leaf), var(--leaf)) 0 100% / 0 1px no-repeat;
-  transition: color 0.3s ease, background-size 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.leadership-habits a:hover {
-  color: var(--leaf);
-  background-size: 100% 1px;
-}
-
-/* ───────── 1 · the leadership map ───────── */
-.leadership-page .impact-lab {
-  gap: clamp(18px, 2.4vw, 30px);
-  padding-top: clamp(28px, 3.6vw, 52px);
-  border-top: var(--hairline);
-}
-
-.leadership-page .impact-intro {
-  gap: 12px;
-  max-width: 44em;
-}
-
-.leadership-page .impact-intro .micro-label {
-  margin: 0;
-  font-weight: 400;
-}
-
-.leadership-page .impact-intro .page-lede {
-  font-size: clamp(20px, 1.9vw, 28px);
-  line-height: 1.38;
-}
-
-.impact-hint {
-  margin: 0;
-  font-size: 15px;
-  font-style: italic;
-  letter-spacing: 0.06em;
-  color: var(--black-soft);
-}
-
-.impact-hint span {
-  margin-right: 6px;
-  color: var(--leaf);
-}
-
-/* thread chips (shown by JS) */
-.impact-threads {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 12px 18px;
-  padding: 12px 0;
-  border-top: var(--hairline);
-  border-bottom: 1px solid rgba(26, 26, 26, 0.2);
-  scroll-margin-top: 24px;
-}
-
-.impact-threads[hidden] {
-  display: none;
-}
-
-.impact-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.impact-chip {
-  padding: 6px 14px 7px;
-  border: var(--hairline);
-  background: var(--cream-soft);
-  font-size: 16px;
-  font-style: italic;
-  letter-spacing: 0.06em;
-  transition:
-    background-color 0.35s ease,
-    color 0.35s ease,
-    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.impact-chip:hover {
-  background: var(--baby-pink-soft);
-  transform: translateY(-2px);
-}
-
-.impact-chip[aria-pressed="true"] {
-  background: var(--black);
-  color: var(--cream);
-}
-
-.impact-status {
-  margin: 0 0 0 auto;
-  font-size: 15px;
-  font-style: italic;
-  letter-spacing: 0.06em;
-  color: var(--black-soft);
-}
-
-/* the orbit: a 3 × 3 grid with the centre diamond in the middle cell.
-   Top and bottom rows lean in by --hex so the six seats read as a ring. */
-.leadership-page .impact-orbit {
-  --hex: clamp(0px, 3.4vw, 56px);
-  --core: clamp(112px, 10.4vw, 150px);
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) calc(var(--core) * 1.62) minmax(0, 1fr);
-  grid-template-areas:
-    "n1 .    n2"
-    "n3 core n4"
-    "n5 .    n6";
-  gap: clamp(22px, 2.6vw, 38px) clamp(12px, 1.4vw, 22px);
-  min-height: 0;
-  padding: clamp(26px, 3.2vw, 48px) clamp(18px, 2.4vw, 40px);
-  overflow: hidden;
-}
-
-.leadership-page .impact-ring {
-  inset: 6% 9%;
-  z-index: 0;
-}
-
-.leadership-page .impact-ring-two {
-  inset: 22% 27%;
-}
-
-/* connector lines — drawn by scripts/pages/leadership-impact.js */
-.impact-web {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  overflow: visible;
-  z-index: 0;
-}
-
-.impact-web-line {
-  fill: none;
-  stroke: rgba(45, 74, 50, 0.55);
-  stroke-width: 1.3;
-  stroke-linecap: round;
-  stroke-dasharray: 3 5;
-  animation: impactDash 22s linear infinite;
-  transition: stroke 0.4s ease, stroke-width 0.4s ease, opacity 0.4s ease;
-}
-
-.impact-web-dot {
-  fill: var(--cream-soft);
-  stroke: rgba(45, 74, 50, 0.65);
-  stroke-width: 1.2;
-  transition: fill 0.4s ease, stroke 0.4s ease;
-}
-
-.impact-web-link.is-active .impact-web-line,
-.impact-web-link.is-lit .impact-web-line {
-  stroke: var(--leaf);
-  stroke-width: 2;
-}
-
-.impact-web-link.is-active .impact-web-dot,
-.impact-web-link.is-lit .impact-web-dot {
-  fill: var(--baby-pink);
-  stroke: var(--leaf);
-}
-
-.impact-web-link.is-dim .impact-web-line {
-  opacity: 0.25;
-}
-
-@keyframes impactDash {
-  to { stroke-dashoffset: -120; }
-}
-
-/* centre diamond sits in the middle cell instead of floating */
-.leadership-page .impact-center {
-  grid-area: core;
-  position: relative;
-  left: auto;
-  top: auto;
-  justify-self: center;
-  align-self: center;
-  width: var(--core);
-  height: var(--core);
-  transform: rotate(45deg);
-}
-
-/* the label turns back upright as one piece, so both lines stay centred */
-.impact-center-label {
-  display: grid;
-  justify-items: center;
-  gap: 6px;
-  margin: 0;
-  transform: rotate(-45deg);
-}
-
-.leadership-page .impact-center span,
-.leadership-page .impact-center small {
-  transform: none;
-}
-
-.leadership-page .impact-center span {
-  font-size: clamp(28px, 2.5vw, 38px);
-  line-height: 1;
-}
-
-.leadership-page .impact-center small {
-  font-size: 14px;
-  color: var(--bamboo-ink);
-}
-
-/* nodes: grid items; both faces share one cell so the card grows to fit
-   whichever side is longer — nothing is clipped at any width */
-.leadership-page .impact-node {
-  position: relative;
-  inset: auto;
-  z-index: 1;
-  display: grid;
-  width: auto;
-  min-height: clamp(210px, 17vw, 240px);
-}
-
-.leadership-page .node-one   { grid-area: n1; margin-left: var(--hex); }
-.leadership-page .node-two   { grid-area: n2; margin-right: var(--hex); }
-.leadership-page .node-three { grid-area: n3; margin-right: var(--hex); }
-.leadership-page .node-four  { grid-area: n4; margin-left: var(--hex); }
-.leadership-page .node-five  { grid-area: n5; margin-left: var(--hex); }
-.leadership-page .node-six   { grid-area: n6; margin-right: var(--hex); }
-
-.leadership-page .impact-node .flip-inner {
-  position: relative;
-  inset: auto;
-  display: grid;
-}
-
-.leadership-page .impact-node.flip-card .flip-face {
-  position: relative;
-  inset: auto;
-  grid-area: 1 / 1;
-  gap: 8px;
-  padding: clamp(18px, 2vw, 28px);
-  background: rgba(250, 243, 227, 0.95);
-  transition:
-    border-color 0.4s ease,
-    box-shadow 0.5s ease,
-    opacity 0.5s ease,
-    filter 0.5s ease;
-}
-
-.leadership-page .impact-node.flip-card .flip-back {
-  justify-content: center;
-  background:
-    linear-gradient(160deg, rgba(244, 194, 194, 0.26), transparent 55%),
-    var(--cream-soft);
-}
-
-/* front face — undo page.css's "every span is a display title" rule first */
-.leadership-page .impact-node.flip-card .flip-front span {
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
-}
-
-.leadership-page .impact-node.flip-card .flip-front .node-meta {
-  display: flex;
-  align-items: baseline;
-  gap: 12px;
-  padding-right: 22px;
-  font-size: 12px;
-  font-style: italic;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--leaf);
-}
-
-.leadership-page .impact-node.flip-card .flip-front .node-num {
-  font-family: var(--font-display);
-  font-size: 16px;
-  font-style: normal;
-  letter-spacing: 0.08em;
-  color: var(--black);
-}
-
-.leadership-page .impact-node.flip-card .flip-front .node-org {
-  margin-top: auto;
-  font-family: var(--font-display);
-  font-size: clamp(26px, 2.3vw, 38px);
-  line-height: 1.02;
-  overflow-wrap: anywhere;
-}
-
-.leadership-page .impact-node.flip-card .flip-front .node-theme {
-  font-size: clamp(16px, 1.2vw, 19px);
-  line-height: 1.3;
-  color: var(--bamboo-ink);
-}
-
-.leadership-page .impact-node.flip-card .flip-front .node-path {
-  align-self: stretch;
-  margin-top: auto;
-  padding-top: 10px;
-  border-top: 1px solid rgba(26, 26, 26, 0.18);
-  font-size: 12px;
-  letter-spacing: 0.16em;
-  line-height: 1.4;
-  text-transform: uppercase;
-  color: var(--black-soft);
-}
-
-/* back face — organization + dates, so a turned card still says where it is */
-.node-back-meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 2px 12px;
-  padding-right: 22px;
-}
-
-.node-back-meta .micro-label {
-  letter-spacing: 0.2em;
-}
-
-.node-dates {
-  font-size: 14px;
-  font-style: italic;
-  letter-spacing: 0.06em;
-  white-space: nowrap;
-  color: var(--bamboo-ink);
-}
-
-.leadership-page .impact-node .flip-back h3 {
-  font-size: clamp(20px, 1.75vw, 26px);
-  line-height: 1.08;
-}
-
-.leadership-page .impact-node.flip-card .flip-back p {
-  font-size: clamp(16px, 1.15vw, 18px);
-  line-height: 1.45;
-}
-
-/* thread states: dim what doesn't match, lift what does */
-.impact-node.is-dim .flip-face {
-  opacity: 0.32;
-  filter: grayscale(0.9);
-}
-
-.impact-node.is-dim .flip-indicator {
-  opacity: 0.15;
-}
-
-/* a dimmed seat comes back up while hovered, focused or turned over (touch) */
-.impact-node.is-dim:hover .flip-face,
-.impact-node.is-dim:focus-visible .flip-face,
-.impact-node.is-dim.is-flipped .flip-face {
-  opacity: 0.75;
-  filter: grayscale(0.4);
-}
-
-.impact-node.is-lit .flip-face {
-  border-color: var(--leaf);
-  box-shadow: 8px 10px 0 rgba(244, 194, 194, 0.7);
-}
-
-/* ───────── 2 · how she leads ───────── */
-.lead-habits {
-  display: grid;
-  gap: clamp(22px, 3vw, 40px);
-  padding: clamp(36px, 5vw, 72px) 0 clamp(32px, 4.4vw, 64px);
-  border-top: var(--hairline);
-  scroll-margin-top: 24px;
-}
-
-.lead-habits-head {
-  display: grid;
-  grid-template-columns: minmax(0, 1.5fr) minmax(0, 0.7fr);
-  grid-template-areas:
-    "label ."
-    "title lede";
-  align-items: end;
-  gap: 12px clamp(24px, 4vw, 64px);
-}
-
-.lead-habits-head .micro-label {
-  grid-area: label;
-  margin: 0;
-  font-weight: 400;
-}
-
-.lead-habits-title {
-  grid-area: title;
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(36px, 4.6vw, 68px);
-  line-height: 1;
-}
-
-.lead-habits-lede {
-  grid-area: lede;
-  margin: 0;
-  font-size: clamp(17px, 1.35vw, 21px);
-  font-style: italic;
-  line-height: 1.5;
-  color: var(--black-soft);
-}
-
-/* narrow screens: a stacked accordion. Wide screens (below): a row of three
-   where the open card widens and the closed two keep a "seen at" line. */
-.lead-habit-grid {
-  display: grid;
-  gap: clamp(12px, 1.4vw, 20px);
-}
-
-.lead-habit {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  scroll-margin-top: 24px;
-  border: var(--hairline);
-  background: rgba(250, 243, 227, 0.72);
-  transition:
-    flex-grow 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.35s ease,
-    background-color 0.35s ease,
-    box-shadow 0.35s ease;
-}
-
-.lead-habit.is-open {
-  background:
-    linear-gradient(160deg, rgba(244, 194, 194, 0.22), transparent 55%),
-    var(--cream-soft);
-}
-
-.lead-habit-heading {
-  margin: 0;
-  font-weight: 400;
-}
-
-.lead-habit-toggle {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  grid-template-areas: "num verb icon";
-  align-items: center;
-  gap: 10px 14px;
-  width: 100%;
-  padding: clamp(18px, 1.8vw, 24px) clamp(18px, 1.8vw, 24px) 8px;
-  text-align: left;
-}
-
-.lead-habit-toggle:focus-visible {
-  outline-offset: -6px;
-}
-
-.lead-habit-num {
-  grid-area: num;
-  font-size: 13px;
-  font-style: italic;
-  letter-spacing: 0.2em;
-  color: var(--leaf);
-}
-
-.lead-habit-verb {
-  grid-area: verb;
-  font-family: var(--font-display);
-  font-size: clamp(30px, 3vw, 46px);
-  line-height: 1;
-  transition: color 0.3s ease;
-}
-
-.lead-habit-toggle:hover .lead-habit-verb,
-.lead-habit:not(.is-open):hover .lead-habit-verb {
-  color: var(--leaf);
-}
-
-/* + that becomes − when the card is open */
-.lead-habit-icon {
-  grid-area: icon;
-  position: relative;
-  width: 30px;
-  height: 30px;
-  border: 1px solid rgba(26, 26, 26, 0.5);
-  border-radius: 50%;
-  transition: background-color 0.35s ease, border-color 0.35s ease;
-}
-
-.lead-habit-icon::before,
-.lead-habit-icon::after {
+  font-weight: 600;
+  font-variation-settings: "opsz" 28;
+  color: var(--ink);
+}
+.li-rung:first-child::after {
   content: "";
   position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 12px;
-  height: 1px;
-  background: var(--black);
-  transform: translate(-50%, -50%);
-  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  top: 2px;
+  right: -40px;
+  width: 28px;
+  height: 28px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232d4a32' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17 17 7'/%3E%3Cpath d='M8 7h9v9'/%3E%3C/svg%3E") no-repeat center / contain;
 }
 
-.lead-habit-icon::after {
-  transform: translate(-50%, -50%) rotate(90deg);
-}
-
-.lead-habit.is-open .lead-habit-icon::after,
-.lead-habits:not(.is-ready) .lead-habit-icon::after {
-  transform: translate(-50%, -50%) rotate(0deg);
-}
-
-.lead-habit-toggle:hover .lead-habit-icon,
-.lead-habit:not(.is-open):hover .lead-habit-icon {
-  border-color: var(--leaf);
-  background: var(--baby-pink-soft);
-}
-
-.lead-habit-thesis {
-  margin: 0;
-  padding: 0 clamp(18px, 1.8vw, 24px) clamp(16px, 1.6vw, 20px);
-  font-size: clamp(17px, 1.3vw, 20px);
-  font-style: italic;
-  line-height: 1.45;
-  color: var(--black-soft);
-}
-
-/* "seen at" — the short version, shown while a card is closed */
-.lead-habit-seen {
-  margin: 0 clamp(18px, 1.8vw, 24px) clamp(16px, 1.6vw, 20px);
-  padding-top: 10px;
-  border-top: 1px solid rgba(26, 26, 26, 0.16);
-  font-size: 12px;
-  letter-spacing: 0.16em;
-  line-height: 1.7;
-  text-transform: uppercase;
-  color: var(--black-soft);
-}
-
-.lead-habit-seen span {
-  margin-right: 6px;
-  font-style: italic;
-  letter-spacing: 0.1em;
-  text-transform: none;
-  font-size: 15px;
-  color: var(--leaf);
-}
-
-.lead-habits:not(.is-ready) .lead-habit-seen,
-.lead-habit.is-open .lead-habit-seen {
-  display: none;
-}
-
-.lead-habits.is-ready .lead-habit:not(.is-open) {
-  cursor: pointer;
-}
-
-/* the evidence opens with a height transition (grid rows 0fr → 1fr).
-   Collapsing only applies once JS is ready, so no-JS readers see it all. */
-.lead-habit-body {
+.li-also {
   display: grid;
-  grid-template-rows: 1fr;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
+  gap: var(--col-gap);
+  align-items: center;
+  margin-top: var(--space-5);
+  padding-top: 4px;
+  border-top: 1px solid var(--rule);
 }
+.page-leadership-impact .li-also .org-row > * { padding-block: 18px; }
 
-.lead-habits.is-ready .lead-habit-body {
-  transition:
-    grid-template-rows 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-    visibility 0s linear 0s;
+/* ── 02 · Tenure chart (bars in months from Jan 2019; 96 = Jan 2027) ── */
+.li-gantt { margin: 0; --name-w: 210px; --row-gap: 24px; }
+.li-gantt-axis {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  margin-left: calc(var(--name-w) + var(--row-gap));
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--rule);
 }
-
-.lead-habits.is-ready .lead-habit:not(.is-open) .lead-habit-body {
-  grid-template-rows: 0fr;
-  visibility: hidden;
-  transition:
-    grid-template-rows 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-    visibility 0s linear 0.55s;
+.li-gantt-axis span {
+  padding-left: 6px;
+  border-left: 1px solid var(--rule-soft);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-3);
+  font-variant-numeric: lining-nums tabular-nums;
 }
-
-.lead-habit-inner {
-  min-height: 0;
-  overflow: hidden;
+.li-gantt-rows { list-style: none; margin: 0; padding: 0; }
+.li-gantt-row {
+  display: grid;
+  grid-template-columns: var(--name-w) minmax(0, 1fr);
+  gap: var(--row-gap);
+  align-items: center;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--rule-soft);
 }
+.li-gantt-name {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.li-gantt-track {
+  position: relative;
+  display: block;
+  height: 16px;
+  background-image: linear-gradient(to right, var(--rule-soft) 1px, transparent 1px);
+  background-size: 12.5% 100%;
+}
+.li-bar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--s) / 96 * 100%);
+  width: calc((var(--e) - var(--s)) / 96 * 100%);
+  min-width: 6px;
+  background: var(--leaf);
+}
+.li-bar.is-earlier { background: var(--bamboo); }
+.li-bar.is-open { background: var(--leaf); box-shadow: 3px 0 0 0 var(--blush); }
+.li-gantt-key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+  margin-top: 18px;
+  margin-left: calc(var(--name-w) + var(--row-gap));
+}
+.li-gantt-key span { display: inline-flex; align-items: center; gap: 8px; }
+.li-key { display: inline-block; width: 22px; height: 10px; background: var(--leaf); }
+.li-key.is-earlier { background: var(--bamboo); }
+.li-key.is-open { box-shadow: 3px 0 0 0 var(--blush); }
 
-.lead-evidence {
-  margin: 0 clamp(18px, 1.8vw, 24px);
+/* ── 03 · How I lead ── */
+.page-leadership-impact .li-habits-split { align-items: center; }
+.li-habit-list { list-style: none; margin: 0; padding: 0; border-top: 3px solid var(--ink); }
+.li-habit {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.li-habit:last-child { border-bottom: 0; }
+.page-leadership-impact .li-habit .medallion-leaf { box-shadow: 0 0 0 4px var(--cream-deep), 0 0 0 5px var(--leaf); }
+.li-habit-title { font-size: var(--fs-h3); line-height: 1.2; }
+.li-habit-text { margin-top: 6px; font-size: var(--fs-small); line-height: 1.55; color: var(--text); }
+.li-habit-seen { margin-top: 6px; color: var(--text-3); }
+
+/* ── Onward callout ── */
+.page-leadership-impact .li-next .callout { max-width: 820px; align-items: center; }
+.li-route {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 6px 0 2px;
   padding: 0;
   list-style: none;
 }
+.li-route-arrow { display: inline-flex; color: var(--leaf); }
+.li-route-arrow .icon { width: 18px; height: 18px; }
 
-.lead-evidence li {
-  display: grid;
-  align-content: start;
-  gap: 4px;
-  padding: 12px 0;
-  border-top: 1px solid rgba(26, 26, 26, 0.16);
+/* ── Responsive ── */
+@media (max-width: 1000px) {
+  .li-role-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .page-leadership-impact .li-hero-photo { justify-self: start; }
+}
+@media (max-width: 800px) {
+  .li-also { grid-template-columns: 1fr; gap: 0; padding-top: 16px; }
+  .li-gantt { --name-w: 150px; --row-gap: 16px; }
+}
+@media (max-width: 700px) {
+  .li-role-grid { grid-template-columns: 1fr; }
+  .li-role-wide { grid-column: auto; }
+  .li-ladder { grid-template-columns: 1fr; gap: 40px; }
+  .li-rung:first-child { margin-top: 0; margin-right: 32px; }
+  .li-rung.is-top { margin-left: 32px; }
+  .li-rung:first-child::after { top: auto; right: auto; bottom: -34px; left: 50%; margin-left: -14px; }
+  .li-gantt-row { grid-template-columns: 1fr; gap: 8px; padding: 12px 0 14px; }
+  .li-gantt-axis, .li-gantt-key { margin-left: 0; }
+  .li-gantt-axis span { padding-left: 3px; font-size: 11px; letter-spacing: 0; }
+  .li-habit { gap: 16px; }
 }
 
-.lead-evidence-org {
-  font-size: 12px;
-  font-style: italic;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--leaf);
-}
-
-.lead-evidence p {
-  margin: 0;
-  font-size: clamp(16px, 1.15vw, 18px);
-  line-height: 1.5;
-}
-
-.lead-habit-trace {
-  position: relative;
-  margin: 4px clamp(18px, 1.8vw, 24px) clamp(18px, 1.8vw, 22px);
-  padding: 6px 0;
-  font-size: 12px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  transition: color 0.3s ease;
-}
-
-.lead-habit-trace::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 2px;
-  height: 1px;
-  background: currentColor;
-  opacity: 0.35;
-  transition: opacity 0.3s ease;
-}
-
-.lead-habit-trace:hover {
-  color: var(--leaf);
-}
-
-.lead-habit-trace:hover::after {
-  opacity: 1;
-}
-
-/* ───────── 3 · in the room ───────── */
-.lead-room {
-  display: grid;
-  grid-template-columns: minmax(220px, 0.7fr) minmax(0, 2fr);
-  align-items: center;
-  gap: clamp(24px, 4vw, 64px);
-  padding: clamp(36px, 4.6vw, 68px) 0 clamp(44px, 5vw, 76px);
-  border-top: var(--hairline);
-}
-
-.lead-room-copy {
-  display: grid;
-  gap: 12px;
-}
-
-.lead-room-copy .micro-label {
-  margin: 0;
-  font-weight: 400;
-}
-
-.lead-room-text {
-  margin: 0;
-  font-size: clamp(19px, 1.6vw, 24px);
-  line-height: 1.45;
-}
-
-.lead-room-photos {
-  display: grid;
-  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
-  align-items: center;
-  gap: clamp(20px, 3vw, 44px);
-}
-
-.lead-room .photo-card {
-  position: relative;
-  inset: auto;
-  width: 100%;
-  padding-bottom: 12px;
-}
-
-/* caption sits under the photo instead of over the frame's bottom edge,
-   so a two-line caption on a phone never covers the picture */
-.lead-room .photo-card figcaption {
-  position: static;
-  margin-top: 10px;
-  line-height: 1.3;
-  text-wrap: balance;
-}
-
-.lead-room-tedx::before {
-  transform: translateX(-50%) rotate(4deg);
-}
-
-/* ───────── 4 · where this leads ───────── */
-.lead-next {
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-  align-items: center;
-  gap: clamp(24px, 4vw, 64px);
-  padding: clamp(32px, 4.4vw, 64px) 0 clamp(36px, 4.6vw, 68px);
-  border-top: var(--hairline);
-}
-
-.lead-next-copy {
-  display: grid;
-  justify-items: start;
-  gap: 14px;
-}
-
-.lead-next-title {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(30px, 3.3vw, 50px);
-  font-weight: 400;
-  line-height: 1.06;
-}
-
-.lead-next-copy p {
-  max-width: 32em;
-  margin: 0;
-  font-size: clamp(17px, 1.35vw, 21px);
-  line-height: 1.55;
-}
-
-.lead-next-link {
-  font-size: 17px;
-  font-style: italic;
-  letter-spacing: 0.06em;
-  border-bottom: 1px solid rgba(26, 26, 26, 0.35);
-  transition: color 0.3s ease, border-color 0.3s ease;
-}
-
-.lead-next-link:hover {
-  color: var(--leaf);
-  border-color: var(--leaf);
-}
-
-.lead-next-ledger {
-  margin: 0;
-  border: var(--hairline);
-  background:
-    linear-gradient(160deg, rgba(244, 194, 194, 0.2), transparent 60%),
-    var(--cream-soft);
-}
-
-.lead-next-ledger > div {
-  display: grid;
-  grid-template-columns: minmax(6.5em, auto) minmax(0, 1fr);
-  align-items: baseline;
-  gap: 6px 18px;
-  padding: 16px clamp(16px, 1.8vw, 24px);
-}
-
-.lead-next-ledger > div + div {
-  border-top: 1px solid rgba(26, 26, 26, 0.16);
-}
-
-.lead-next-ledger dt {
-  font-family: var(--font-display);
-  font-size: clamp(22px, 1.9vw, 28px);
-  line-height: 1.1;
-}
-
-.lead-next-ledger dd {
-  margin: 0;
-  font-size: clamp(16px, 1.2vw, 19px);
-  font-style: italic;
-  line-height: 1.4;
-  color: var(--black-soft);
-}
-
-/* ───────── how she leads — wide screens: the open card widens ───────── */
-@media (min-width: 1100px) {
-  .lead-habit-grid {
-    display: flex;
-    align-items: stretch;
-  }
-
-  .lead-habit {
-    flex: 1 1 0;
-  }
-
-  .lead-habit.is-open {
-    flex-grow: 2.1;
-  }
-
-  .lead-habit-toggle {
-    grid-template-columns: minmax(0, 1fr) auto;
-    grid-template-areas:
-      "num  icon"
-      "verb verb";
-  }
-
-  .lead-habit-seen {
-    margin-top: auto;
-  }
-}
-
-/* mid widths: the open card lays its evidence out in three columns; the
-   subgrid keeps the three texts on one baseline when a label wraps */
-@media (min-width: 700px) and (max-width: 1099px) {
-  .lead-evidence {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    column-gap: 22px;
-  }
-
-  .lead-evidence li {
-    grid-row: span 2;
-    grid-template-rows: subgrid;
-  }
-}
-
-/* ───────── responsive ───────── */
-@media (max-width: 1180px) {
-  .leadership-page .impact-orbit {
-    --hex: 0px;
-  }
-}
-
-@media (max-width: 1080px) {
-  .lead-room {
-    grid-template-columns: 1fr;
-  }
-
-  .lead-room-copy {
-    max-width: 40em;
-  }
-}
-
-@media (max-width: 900px) {
-  .leadership-page .leadership-hero,
-  .lead-next {
-    grid-template-columns: 1fr;
-  }
-
-  .leadership-standfirst {
-    max-width: 34em;
-  }
-
-  .lead-habits-head {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "label"
-      "title"
-      "lede";
-  }
-}
-
-/* tablet: two columns, the centre becomes a label above the grid */
-@media (max-width: 860px) {
-  .leadership-page .impact-orbit {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-areas:
-      "core core"
-      "n1   n2"
-      "n3   n4"
-      "n5   n6";
-    gap: 14px;
-    padding: 16px;
-  }
-
-  .leadership-page .impact-web,
-  .leadership-page .impact-ring {
-    display: none;
-  }
-
-  .leadership-page .impact-center {
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-    width: auto;
-    height: auto;
-    margin: 4px 0 6px;
-    padding: 8px 22px 10px;
-    transform: none;
-  }
-
-  .leadership-page .impact-center::before {
-    inset: -5px;
-  }
-
-  .impact-center-label {
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-    transform: none;
-  }
-
-  .leadership-page .impact-center span {
-    font-size: 26px;
-  }
-
-  .impact-status {
-    flex-basis: 100%;
-    margin-left: 0;
-  }
-}
-
-/* phone: one column, a dotted spine links the seats */
-@media (max-width: 560px) {
-  .leadership-page .page-title {
-    font-size: clamp(40px, 13.5vw, 64px);
-  }
-
-  .leadership-standfirst {
-    padding-left: 16px;
-  }
-
-  .leadership-page .impact-orbit {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-areas: "core" "n1" "n2" "n3" "n4" "n5" "n6";
-    gap: 18px;
-    padding: 14px;
-  }
-
-  .leadership-page .impact-orbit::before {
-    content: "";
-    position: absolute;
-    top: 24px;
-    bottom: 24px;
-    left: 50%;
-    border-left: 1px dashed rgba(45, 74, 50, 0.45);
-    pointer-events: none;
-  }
-
-  .leadership-page .impact-node {
-    min-height: 0;
-  }
-
-  .impact-chips {
-    gap: 6px;
-  }
-
-  .impact-chip {
-    padding: 5px 10px 6px;
-    font-size: 15px;
-    letter-spacing: 0.04em;
-  }
-
-  .lead-room-photos {
-    grid-template-columns: 1fr;
-    gap: 34px;
-  }
-
-  .lead-room .lead-room-tedx {
-    width: 82%;
-    justify-self: center;
-  }
-
-  .lead-next-ledger > div {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .impact-web-line {
-    animation: none;
-  }
-
-  .lead-habits.is-ready .lead-habit-body,
-  .lead-habits.is-ready .lead-habit:not(.is-open) .lead-habit-body,
-  .lead-habit-icon::before,
-  .lead-habit-icon::after {
-    transition: none;
-  }
-
-  /* the open card widens at once instead of sliding the row */
-  .lead-habit {
-    transition:
-      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-      border-color 0.35s ease,
-      background-color 0.35s ease,
-      box-shadow 0.35s ease;
-  }
-
-  .impact-chip:hover {
-    transform: none;
-  }
-}
+/* long organisation marks (TEDx, IDEA, GIVC) size to their text instead of overflowing the square
+   (page-scoped; see sharedRequests) */
+.page-leadership-impact .org-mark-long { width: auto; min-width: 44px; padding: 0 9px; }
+.page-leadership-impact .org-mark-sm.org-mark-long { min-width: 40px; padding: 0 7px; font-size: 13px; }
+.page-leadership-impact .li-also .org-row { border-top: 0; }

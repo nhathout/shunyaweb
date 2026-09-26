@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="../styles/page.css" />
   <link rel="stylesheet" href="../styles/pages/next-chapter.css" />
 </head>
-<body class="page next-page" data-chapter="next-chapter">
+<body class="page-next-chapter" data-chapter="next-chapter">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <!-- CHROME: masthead. main.js fills .chapter-strip and wires .contents-toggle. Do not edit per page. -->
@@ -52,553 +52,210 @@
   </header>
 
     <main id="main">
-    <!-- Hero: title + standfirst. The script line jumps to its stop on the roadmap
-         (#stop-mba / #stop-consulting / #stop-law; see scripts/pages/next-chapter.js). -->
-    <section class="page-hero next-hero reveal-drop" data-delay="200">
-      <div class="next-hero-text">
-        <span class="page-eyebrow">Chapter Seven</span>
-        <h1 class="page-title page-title-compact">The Next Chapter</h1>
-        <p class="page-title-script">what comes next</p>
-        <span class="page-rule"></span>
-      </div>
-      <div class="next-standfirst">
-        <p class="page-lede">
-          <!-- EDIT: name the program once decided -->
-          Sasha&rsquo;s plan runs in three stages: an MBA with an AI and technology focus,
-          starting Fall&nbsp;2027; two to three years in consulting; then law school. It leads to
-          a career in AI, cybersecurity, privacy and emerging-technology law.
-        </p>
-        <p class="next-route">
-          <a href="#stop-mba" data-stop-link>MBA</a>
-          <span aria-hidden="true">&middot;</span>
-          <a href="#stop-consulting" data-stop-link>consulting</a>
-          <span aria-hidden="true">&middot;</span>
-          <a href="#stop-law" data-stop-link>law</a>
-        </p>
-      </div>
-    </section>
 
-    <!-- 1 · The aim — one lede, one line in her own words -->
-    <section class="next-aim" aria-labelledby="aim-title">
-      <div class="next-aim-copy reveal-fade" data-delay="150">
-        <h2 id="aim-title" class="micro-label">The aim</h2>
-        <p class="next-aim-lede">
-          Fluency, not engineering. Sasha wants to understand AI and cybersecurity well enough to
-          help companies use technology responsibly&nbsp;&mdash; to manage risk, follow regulation
-          and make better decisions.
-        </p>
-      </div>
-      <!-- DRAFT QUOTE: Sasha to confirm wording -->
-      <figure class="quote-strip next-quote reveal-fade" data-delay="300">
-        <span class="quote-mark" aria-hidden="true">&ldquo;</span>
-        <blockquote>
-          <p>
-            I want to help organizations adopt AI responsibly while managing the legal, privacy,
-            cybersecurity, and business risks that come with it.
-          </p>
-        </blockquote>
-        <figcaption class="micro-label">Sasha</figcaption>
-      </figure>
-    </section>
-
-    <!-- 2 · The roadmap — WAI-ARIA tabs (logic in scripts/pages/next-chapter.js).
-         Each stop on the track is a role="tab" and owns one role="tabpanel"; the ids
-         stay paired (stop-tab-mba ↔ stop-mba). Links to #stop-mba, #stop-consulting,
-         #stop-law or #stop-practice open that stop. Without JavaScript all four panels
-         simply stay visible, one after another. -->
-    <section class="roadmap" id="roadmap" aria-labelledby="roadmap-title" data-roadmap>
-      <header class="section-head reveal-fade" data-delay="150">
-        <h2 id="roadmap-title" class="micro-label">The roadmap</h2>
-        <p class="section-title">Four stops, in this order.</p>
-        <p class="section-dek roadmap-hint">Choose a stop to open it, or step through with the arrows.</p>
-      </header>
-
-      <div class="roadmap-body reveal-fade" data-delay="250">
-        <div class="roadmap-track" role="tablist" aria-label="The plan, stop by stop" data-arrow-keys>
-          <button type="button" class="roadmap-stop" role="tab" id="stop-tab-mba" aria-controls="stop-mba" aria-selected="true" tabindex="0">
-            <span class="stop-rail" aria-hidden="true"><i class="stop-dot"></i></span>
-            <span class="stop-num" aria-hidden="true">01</span>
-            <span class="stop-name">MBA</span><span class="visually-hidden">,</span>
-            <span class="stop-when">Fall 2027</span>
-          </button>
-          <button type="button" class="roadmap-stop" role="tab" id="stop-tab-consulting" aria-controls="stop-consulting" aria-selected="false" tabindex="-1">
-            <span class="stop-rail" aria-hidden="true"><i class="stop-dot"></i></span>
-            <span class="stop-num" aria-hidden="true">02</span>
-            <span class="stop-name">Consulting</span><span class="visually-hidden">,</span>
-            <span class="stop-when">2&ndash;3 years</span>
-          </button>
-          <button type="button" class="roadmap-stop" role="tab" id="stop-tab-law" aria-controls="stop-law" aria-selected="false" tabindex="-1">
-            <span class="stop-rail" aria-hidden="true"><i class="stop-dot"></i></span>
-            <span class="stop-num" aria-hidden="true">03</span>
-            <span class="stop-name">Law school</span><span class="visually-hidden">,</span>
-            <span class="stop-when">after real-world experience</span>
-          </button>
-          <button type="button" class="roadmap-stop" role="tab" id="stop-tab-practice" aria-controls="stop-practice" aria-selected="false" tabindex="-1">
-            <span class="stop-rail" aria-hidden="true"><i class="stop-dot"></i></span>
-            <span class="stop-num" aria-hidden="true">04</span>
-            <span class="stop-name">Practice</span><span class="visually-hidden">,</span>
-            <span class="stop-when">the long game</span>
-          </button>
+      <!-- Hero: the goal, stated once, beside a straight framed headshot -->
+      <section class="wrap chapter-hero nc-hero">
+        <span class="ghost-num" aria-hidden="true">07</span>
+        <div>
+          <p class="kicker label chapter-eyebrow"><svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-compass"></use></svg> Chapter 07</p>
+          <h1 class="chapter-title">The Next Chapter</h1>
+          <p class="lede chapter-dek">An MBA in AI and technology, and the path beyond it</p>
+          <!-- DRAFT: Sasha to confirm wording -->
+          <p class="nc-goal">My goal is to help organizations adopt AI responsibly, and to manage the legal, privacy, cybersecurity and business risks that come with it.</p>
+          <p class="chapter-hero-intro">The next step is an MBA with an AI and technology focus, beginning in Fall&nbsp;2027.</p>
+          <div class="btn-row nc-hero-actions">
+            <a class="btn btn-primary" href="#plan"><svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-route"></use></svg>See the plan</a>
+            <a class="btn btn-secondary" href="#contact"><svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-mail"></use></svg>Contact</a>
+          </div>
         </div>
+        <aside class="chapter-hero-aside">
+          <figure class="photo photo-matted nc-headshot">
+            <div class="img-slot" style="--ratio: 4 / 5"
+                 data-hint="A professional headshot of Alexandra &mdash; natural light, simple background (vertical, 4:5)"
+                 data-file="assets/images/next-chapter/headshot.jpg">
+              <img src="../assets/images/next-chapter/headshot.jpg" alt="Alexandra Petrovicheva, professional headshot" decoding="async" />
+            </div>
+            <figcaption class="photo-captionbar"><span>Alexandra Petrovicheva</span><span>Boston, MA</span></figcaption>
+            <div class="photo-chip"><span class="stat-figure">3</span><span class="label">Stages</span><span class="photo-chip-text">MBA, consulting, law school</span></div>
+          </figure>
+        </aside>
+      </section>
 
-        <div class="roadmap-panels">
-          <!-- 01 · MBA -->
-          <article class="roadmap-panel" role="tabpanel" id="stop-mba" aria-labelledby="stop-tab-mba" tabindex="0">
-            <header class="panel-head">
-              <span class="panel-num" aria-hidden="true">01</span>
-              <div class="panel-title-group">
-                <!-- EDIT: name the program once decided -->
-                <h3 class="panel-title">MBA</h3>
-                <p class="panel-when">Fall 2027</p>
+      <!-- 01 · The plan: the three-stage step path and the reasoning, stated once -->
+      <section class="band band-paper" id="plan" aria-labelledby="plan-title">
+        <div class="wrap">
+          <header class="section-head">
+            <div class="section-head-aside"><span class="section-num">01</span><span class="section-label label">The plan</span></div>
+            <div>
+              <h2 class="section-title" id="plan-title">Three stages, in a deliberate order</h2>
+              <p class="lede section-dek">An MBA first, then consulting, then law school.</p>
+            </div>
+          </header>
+
+          <ol class="step-path nc-steps" style="--steps: 3">
+            <li class="step">
+              <span class="medallion medallion-leaf" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-cap"></use></svg></span>
+              <span class="step-num label">Stage 01 &middot; Fall 2027</span>
+              <span class="step-name">MBA</span>
+              <span class="step-note">AI and technology focus: strategy, analytics and how companies decide where AI belongs.</span>
+            </li>
+            <li class="step">
+              <span class="medallion" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-briefcase"></use></svg></span>
+              <span class="step-num label">Stage 02 &middot; Two to three years</span>
+              <span class="step-name">Consulting</span>
+              <span class="step-note">AI-governance and technology-risk consulting for companies adopting AI.</span>
+            </li>
+            <li class="step">
+              <span class="medallion" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-scale"></use></svg></span>
+              <span class="step-num label">Stage 03 &middot; Later</span>
+              <span class="step-name">Law school</span>
+              <span class="step-note">Legal training for advising where AI, privacy and law meet.</span>
+            </li>
+          </ol>
+
+          <div class="ornament ornament-left nc-ornament" aria-hidden="true"><span></span></div>
+
+          <div class="grid grid-2 nc-reasons">
+            <div class="nc-reason">
+              <span class="medallion medallion-square" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-cap"></use></svg></span>
+              <div>
+                <h3 class="nc-reason-title">Why the MBA now</h3>
+                <!-- DRAFT: Sasha to confirm wording -->
+                <p>The MBA is the core of the plan. It turns my business training and co-op work into the toolkit I need to advise companies on AI.</p>
               </div>
-              <a class="panel-link" href="ai-governance.html"><span class="panel-link-kicker">Continue in</span> <span class="panel-link-text">AI &amp; Governance&nbsp;<span aria-hidden="true">&rarr;</span></span></a>
-            </header>
-            <div class="panel-block panel-what">
-              <h4 class="panel-label">What</h4>
-              <p>
-                An MBA with an AI and technology focus: strategy, analytics and how companies
-                decide whether, where and how to use AI.
-              </p>
             </div>
-            <div class="panel-block panel-why">
-              <h4 class="panel-label">Why this step</h4>
-              <p>
-                The business foundation comes first. It builds on her Business Analytics
-                concentration and her Wellington work, and turns them into a full toolkit for
-                advising companies on AI.
-              </p>
-            </div>
-            <div class="panel-block panel-brings">
-              <h4 class="panel-label">What she brings</h4>
-              <ul class="panel-list">
-                <li>A Wellington Management co-op with rotations through Legal and Risk, Information Security and Cyber Defense, Risk Intelligence, and AI Governance</li>
-                <li>Faculty-supervised research on governing agentic AI in financial operations</li>
-                <li>A B.S. in International Business and a B.A. in International Affairs, concentrating in Global Business Strategy and Business Analytics</li>
-              </ul>
-            </div>
-          </article>
-
-          <!-- 02 · Consulting -->
-          <article class="roadmap-panel" role="tabpanel" id="stop-consulting" aria-labelledby="stop-tab-consulting" tabindex="0">
-            <header class="panel-head">
-              <span class="panel-num" aria-hidden="true">02</span>
-              <div class="panel-title-group">
-                <h3 class="panel-title">Consulting</h3>
-                <p class="panel-when">Two to three years</p>
+            <div class="nc-reason">
+              <span class="medallion medallion-square" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-scale"></use></svg></span>
+              <div>
+                <h3 class="nc-reason-title">Why law comes later</h3>
+                <!-- DRAFT: Sasha to confirm wording -->
+                <p>Consulting will show me how companies adopt AI and manage technology risk. I want to bring those real cases to legal study.</p>
               </div>
-              <a class="panel-link" href="leadership-impact.html"><span class="panel-link-kicker">Continue in</span> <span class="panel-link-text">Leadership &amp; Impact&nbsp;<span aria-hidden="true">&rarr;</span></span></a>
-            </header>
-            <div class="panel-block panel-what">
-              <h4 class="panel-label">What</h4>
-              <p>
-                AI consulting and AI strategy, AI governance and responsible AI, technology-risk
-                and cybersecurity consulting, privacy and compliance, and digital transformation.
-              </p>
             </div>
-            <div class="panel-block panel-why">
-              <h4 class="panel-label">Why this step</h4>
-              <p>
-                Real engagements show how companies actually adopt AI and handle technology
-                risk&nbsp;&mdash; the cases that make a stronger law student, and a stronger lawyer.
-              </p>
-            </div>
-            <div class="panel-block panel-brings">
-              <h4 class="panel-label">What she brings</h4>
-              <ul class="panel-list">
-                <li>Seven years in operations at Guardian Angel Home Health Agency, now as Business Operations Associate</li>
-                <li>Co-ops at Wellington Management and TJX, and a strategy internship at UMG Technologies</li>
-                <li>Leading NextWork peer-learning sessions that help students from nontechnical majors build with AI</li>
-              </ul>
-            </div>
-          </article>
+          </div>
+        </div>
+      </section>
 
-          <!-- 03 · Law school -->
-          <article class="roadmap-panel" role="tabpanel" id="stop-law" aria-labelledby="stop-tab-law" tabindex="0">
-            <header class="panel-head">
-              <span class="panel-num" aria-hidden="true">03</span>
-              <div class="panel-title-group">
-                <h3 class="panel-title">Law school</h3>
-                <p class="panel-when">After real-world experience</p>
+      <!-- 02 · What I bring: three evidenced icon cards on the leaf band (all visible) -->
+      <section class="band band-leaf" aria-labelledby="bring-title">
+        <div class="wrap">
+          <header class="section-head">
+            <div class="section-head-aside"><span class="section-num">02</span><span class="section-label label">What I bring</span></div>
+            <div>
+              <h2 class="section-title" id="bring-title">What I bring to the class</h2>
+              <p class="lede section-dek">Operations, governance and cross-functional work, already done.</p>
+            </div>
+          </header>
+
+          <div class="grid grid-3 grid-stretch ruled-grid nc-bring">
+            <div class="icon-card">
+              <span class="icon-card-top"><span class="medallion" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-heart-pulse"></use></svg></span><span class="stat-figure">7<span class="stat-unit">yrs</span></span></span>
+              <h3 class="icon-card-title">Regulated operations</h3>
+              <p class="icon-card-text">Part-time at Guardian Angel Home Health Agency since August 2019: payroll, insurance, credentialing and reporting, alongside my studies.</p>
+            </div>
+            <div class="icon-card">
+              <span class="icon-card-top"><span class="medallion" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-users"></use></svg></span><span class="stat-figure">4</span></span>
+              <h3 class="icon-card-title">Cross-functional rotations</h3>
+              <p class="icon-card-text">Legal and Risk, Information Security and Cyber Defense, Risk Intelligence, and AI Governance at Wellington Management.</p>
+            </div>
+            <div class="icon-card">
+              <span class="icon-card-top"><span class="medallion" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-bot"></use></svg></span><span class="stat-figure">1</span></span>
+              <h3 class="icon-card-title">AI agent prototype</h3>
+              <p class="icon-card-text">Designed and tested for trade-operations outage response, with data flows, escalation paths and control requirements mapped.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 · Target roles: a three-field intersection diagram beside four role families -->
+      <section class="section wrap nc-roles-section" aria-labelledby="roles-title">
+        <header class="section-head">
+          <div class="section-head-aside"><span class="section-num">03</span><span class="section-label label">Target roles</span></div>
+          <div>
+            <h2 class="section-title" id="roles-title">Where I want to work after the MBA</h2>
+            <p class="lede section-dek">Consulting roles where business, technology and law meet.</p>
+          </div>
+        </header>
+
+        <div class="nc-roles">
+          <figure class="nc-venn">
+            <svg viewBox="0 0 440 410" role="img" aria-labelledby="venn-title venn-desc">
+              <title id="venn-title">Business, technology and law and policy</title>
+              <desc id="venn-desc">Three overlapping fields. At their centre: AI governance and technology risk.</desc>
+              <circle class="nc-venn-c nc-venn-business" cx="160" cy="150" r="118" />
+              <circle class="nc-venn-c nc-venn-tech" cx="280" cy="150" r="118" />
+              <circle class="nc-venn-c nc-venn-law" cx="220" cy="254" r="118" />
+              <text class="nc-venn-label" x="110" y="128" text-anchor="middle">Business</text>
+              <text class="nc-venn-label" x="335" y="128" text-anchor="middle">Technology</text>
+              <text class="nc-venn-label" x="220" y="332" text-anchor="middle">Law &amp; policy</text>
+              <rect class="nc-venn-core" x="140" y="164" width="160" height="60" rx="2" />
+              <text class="nc-venn-core-text" x="220" y="189" text-anchor="middle">AI governance &amp;</text>
+              <text class="nc-venn-core-text" x="220" y="211" text-anchor="middle">technology risk</text>
+            </svg>
+          </figure>
+
+          <!-- DRAFT: Sasha to confirm wording (role families and one-line descriptions) -->
+          <ul class="nc-role-list">
+            <li class="nc-role">
+              <span class="medallion medallion-sm medallion-leaf" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-shield-check"></use></svg></span>
+              <div>
+                <h3 class="nc-role-title">AI governance &amp; responsible AI</h3>
+                <p class="nc-role-text">Oversight, controls and accountability for AI systems.</p>
+                <p class="chips"><span class="chip chip-sm">Technology</span><span class="chip chip-sm">Law &amp; policy</span></p>
               </div>
-              <a class="panel-link" href="law-advocacy.html"><span class="panel-link-kicker">Continue in</span> <span class="panel-link-text">Law &amp; Advocacy&nbsp;<span aria-hidden="true">&rarr;</span></span></a>
-            </header>
-            <div class="panel-block panel-what">
-              <h4 class="panel-label">What</h4>
-              <p>Law school, with the questions consulting raises:</p>
-              <ul class="panel-tags">
-                <li>AI regulation</li>
-                <li>Data privacy</li>
-                <li>Algorithmic discrimination</li>
-                <li>Intellectual property</li>
-                <li>Responsible AI</li>
-                <li>Technology contracts</li>
-                <li>Cybersecurity &amp; data-protection law</li>
-              </ul>
-            </div>
-            <div class="panel-block panel-why">
-              <h4 class="panel-label">Why this step</h4>
-              <p>
-                She will arrive with real examples of how companies use AI and manage its risks,
-                which strengthens both the application and the legal career.
-              </p>
-            </div>
-            <div class="panel-block panel-brings">
-              <h4 class="panel-label">What she brings</h4>
-              <ul class="panel-list">
-                <li>A legal internship at MCIS Lawyers in 2022</li>
-                <li>Policy and legal research: Texas Senate Bill 1029, and a mica-mining memo on child labor and accountable sourcing</li>
-                <li>International Affairs training in government, policy and regulation</li>
-                <li>The Legal and Risk rotation at Wellington Management</li>
-              </ul>
-            </div>
-          </article>
-
-          <!-- 04 · Practice -->
-          <article class="roadmap-panel" role="tabpanel" id="stop-practice" aria-labelledby="stop-tab-practice" tabindex="0">
-            <header class="panel-head">
-              <span class="panel-num" aria-hidden="true">04</span>
-              <div class="panel-title-group">
-                <h3 class="panel-title">Practice</h3>
-                <p class="panel-when">The long game</p>
+            </li>
+            <li class="nc-role">
+              <span class="medallion medallion-sm" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-lock"></use></svg></span>
+              <div>
+                <h3 class="nc-role-title">Technology risk &amp; cybersecurity</h3>
+                <p class="nc-role-text">Assessing technology, cyber and data risk, and the controls around it.</p>
+                <p class="chips"><span class="chip chip-sm">Technology</span><span class="chip chip-sm">Business</span></p>
               </div>
-              <a class="panel-link" href="my-story.html"><span class="panel-link-kicker">See where it began</span> <span class="panel-link-text">My Story&nbsp;<span aria-hidden="true">&rarr;</span></span></a>
-            </header>
-            <div class="panel-block panel-what">
-              <h4 class="panel-label">What</h4>
-              <p>A career in AI, cybersecurity, privacy and emerging-technology law.</p>
-            </div>
-            <div class="panel-block panel-why">
-              <h4 class="panel-label">Why this step</h4>
-              <p>
-                Companies adopting AI need people who can read the technology, the business and
-                the regulation at once.
-              </p>
-            </div>
-            <div class="panel-block panel-brings">
-              <h4 class="panel-label">What she brings</h4>
-              <ul class="panel-list panel-threads">
-                <li><strong>Business</strong><span class="visually-hidden">:</span> two degrees, and co-ops at TJX and Wellington Management</li>
-                <li><strong>Technology governance</strong><span class="visually-hidden">:</span> the Wellington rotations and her agentic-AI research</li>
-                <li><strong>Law</strong><span class="visually-hidden">:</span> the MCIS internship, policy research and, in time, law school</li>
-              </ul>
-            </div>
-          </article>
+            </li>
+            <li class="nc-role">
+              <span class="medallion medallion-sm" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-file-check"></use></svg></span>
+              <div>
+                <h3 class="nc-role-title">Privacy &amp; technology compliance</h3>
+                <p class="nc-role-text">Aligning data use and new technology with privacy regulation.</p>
+                <p class="chips"><span class="chip chip-sm">Law &amp; policy</span><span class="chip chip-sm">Technology</span></p>
+              </div>
+            </li>
+            <li class="nc-role">
+              <span class="medallion medallion-sm" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-trending-up"></use></svg></span>
+              <div>
+                <h3 class="nc-role-title">AI strategy &amp; digital transformation</h3>
+                <p class="nc-role-text">Deciding where AI fits in a business, and how to adopt it.</p>
+                <p class="chips"><span class="chip chip-sm">Business</span><span class="chip chip-sm">Technology</span></p>
+              </div>
+            </li>
+          </ul>
         </div>
+      </section>
 
-        <!-- prev / count / next — shown once the script is ready -->
-        <div class="roadmap-controls">
-          <button type="button" class="roadmap-step roadmap-step-prev" data-roadmap-prev>
-            <span aria-hidden="true">&larr;</span>
-            <span class="visually-hidden">Previous stop:</span>
-            <span data-step-label></span>
-          </button>
-          <span class="roadmap-count" data-roadmap-count aria-hidden="true">01 / 04</span>
-          <button type="button" class="roadmap-step roadmap-step-next" data-roadmap-next>
-            <span class="visually-hidden">Next stop:</span>
-            <span data-step-label></span>
-            <span aria-hidden="true">&rarr;</span>
-          </button>
-          <!-- announces the stop the prev / next buttons open (the tabs announce themselves) -->
-          <p class="visually-hidden" data-roadmap-status aria-live="polite"></p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 3 · Why this order — her reasoning, set side by side, and a pull quote -->
-    <section class="next-order" aria-labelledby="order-title">
-      <div class="order-copy reveal-fade" data-delay="150">
-        <h2 id="order-title" class="micro-label">Why this order</h2>
-        <p class="section-title order-title">Why not straight to law school?</p>
-        <div class="order-columns">
-          <div class="order-col order-col-skip">
-            <h3 class="order-label">Straight through</h3>
-            <p class="order-route" aria-hidden="true">
-              <span class="order-stop">MBA</span><span class="order-leg"><i></i><span class="order-stop">Law school</span></span>
-            </p>
-            <p>
-              Going straight from the MBA to law school would weaken the MBA&nbsp;&mdash; and she
-              would start law school without real examples to draw on.
-            </p>
+      <!-- 04 · Contact (never a phone number) -->
+      <section class="band band-deep nc-contact-band" id="contact" aria-labelledby="contact-title">
+        <div class="wrap nc-contact">
+          <div class="nc-contact-copy">
+            <p class="kicker label"><svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-mail"></use></svg> Contact</p>
+            <h2 class="nc-contact-title" id="contact-title">Get in touch</h2>
+            <p class="nc-contact-text">I am based in Boston, Massachusetts, and graduate from Northeastern University in May 2027.</p>
+            <div class="btn-row">
+              <a class="btn btn-primary" href="mailto:alexpetrovicheva@gmail.com"><svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-mail"></use></svg>Email me</a>
+              <a class="btn btn-secondary" href="../assets/resume/resume.pdf" download="Alexandra-Petrovicheva-Resume.pdf"><svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-download"></use></svg>R&eacute;sum&eacute; (PDF)</a>
+            </div>
           </div>
-          <div class="order-col order-col-plan">
-            <h3 class="order-label">Her order</h3>
-            <p class="order-route" aria-hidden="true">
-              <span class="order-stop">MBA</span><span class="order-leg"><i></i><span class="order-stop order-stop-key">Consulting</span></span><span class="order-leg"><i></i><span class="order-stop">Law school</span></span>
-            </p>
-            <p>
-              Working first gives her real examples of how companies use AI and handle technology
-              risk. Those examples make the law-school application stronger&nbsp;&mdash; and the legal
-              career after it.
-            </p>
+          <div class="fact-box nc-contact-card">
+            <p class="label">Alexandra Petrovicheva</p>
+            <p class="fact-box-title">Northeastern University &rsquo;27</p>
+            <dl class="facts">
+              <div><svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-mail"></use></svg><dt>Email</dt><dd><a href="mailto:alexpetrovicheva@gmail.com">alexpetrovicheva@gmail.com</a></dd></div>
+              <div><svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-linkedin"></use></svg><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/alex-petrovicheva" target="_blank" rel="noopener">in/alex-petrovicheva<span class="visually-hidden"> (opens in a new tab)</span></a></dd></div>
+              <div><svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-map-pin"></use></svg><dt>Based in</dt><dd>Boston, MA</dd></div>
+            </dl>
           </div>
         </div>
-      </div>
-      <!-- DRAFT QUOTE: Sasha to confirm wording -->
-      <figure class="order-quote reveal-fade" data-delay="300">
-        <span class="quote-mark" aria-hidden="true">&ldquo;</span>
-        <blockquote>
-          <p>
-            Real work first. The problems I see in consulting will make me a sharper law
-            student&nbsp;&mdash; and a better lawyer.
-          </p>
-        </blockquote>
-        <figcaption class="micro-label">Sasha</figcaption>
-      </figure>
-    </section>
+      </section>
 
-    <!-- 4 · The intersection — five overlapping fields around "Sasha" (tabs; logic in
-         scripts/pages/next-chapter.js). The centre and each petal are role="tab" buttons
-         with one role="tabpanel" each (field-tab-ai ↔ field-ai, …). Petal positions and
-         colours live in styles/pages/next-chapter.css ([data-field]). Without JavaScript
-         every panel simply stays visible beside the diagram. -->
-    <section class="intersection" id="intersection" aria-labelledby="intersection-title" data-intersection>
-      <header class="section-head reveal-fade" data-delay="150">
-        <h2 id="intersection-title" class="micro-label">The intersection</h2>
-        <p class="section-title">Where five fields meet.</p>
-        <p class="section-dek">
-          Sasha&rsquo;s long-term work sits where five fields overlap.
-        </p>
-      </header>
-
-      <div class="flower-wrap reveal-fade" data-delay="250">
-        <div class="flower" role="tablist" aria-label="Five fields, and where they meet" data-arrow-keys>
-          <button type="button" class="flower-center" role="tab" id="field-tab-center" aria-controls="field-center" aria-selected="true" tabindex="0" aria-label="Sasha, where all five meet">
-            <span class="flower-center-name">Sasha</span>
-            <span class="flower-center-note">where all five meet</span>
-          </button>
-          <button type="button" class="petal" role="tab" id="field-tab-ai" aria-controls="field-ai" aria-selected="false" tabindex="-1" data-field="ai">
-            <span class="petal-label"><span>Artificial</span> <span>intelligence</span></span>
-          </button>
-          <button type="button" class="petal" role="tab" id="field-tab-cyber" aria-controls="field-cyber" aria-selected="false" tabindex="-1" data-field="cyber">
-            <!-- the soft hyphen lets the label break as "Cyber- / security" (see next-chapter.css) -->
-            <span class="petal-label"><span>Cyber&shy;security</span></span>
-          </button>
-          <button type="button" class="petal" role="tab" id="field-tab-privacy" aria-controls="field-privacy" aria-selected="false" tabindex="-1" data-field="privacy">
-            <span class="petal-label"><span>Data</span> <span>privacy</span></span>
-          </button>
-          <button type="button" class="petal" role="tab" id="field-tab-business" aria-controls="field-business" aria-selected="false" tabindex="-1" data-field="business">
-            <span class="petal-label"><span>Business</span></span>
-          </button>
-          <button type="button" class="petal" role="tab" id="field-tab-law" aria-controls="field-law" aria-selected="false" tabindex="-1" data-field="law">
-            <span class="petal-label"><span>Law &amp;</span> <span>regulation</span></span>
-          </button>
-        </div>
-      </div>
-
-      <div class="field-panels reveal-fade" data-delay="350">
-        <article class="field-panel field-panel-center" role="tabpanel" id="field-center" aria-labelledby="field-tab-center" tabindex="0">
-          <p class="field-kicker"><span class="micro-label">Where all five meet</span></p>
-          <h3 class="field-title">Technology, used responsibly</h3>
-          <p class="field-text">
-            Helping companies use technology responsibly: managing risk, following regulation and
-            making better decisions.
-          </p>
-          <p class="field-hint">
-            <span aria-hidden="true">&#10022;</span>
-            Choose a field in the diagram to see what she brings to it.
-          </p>
-        </article>
-
-        <article class="field-panel" role="tabpanel" id="field-ai" aria-labelledby="field-tab-ai" tabindex="0" data-field="ai">
-          <p class="field-kicker"><span class="field-swatch" aria-hidden="true"></span><span class="micro-label">What she brings</span></p>
-          <h3 class="field-title">Artificial intelligence</h3>
-          <ul class="field-evidence">
-            <li>Designed and tested an AI agent prototype for trade-operations outage response at Wellington Management.</li>
-            <li>Independent, faculty-supervised research on governing agentic AI in financial operations.</li>
-            <li>Leads NextWork peer-learning sessions where students from nontechnical majors build with AI.</li>
-          </ul>
-        </article>
-
-        <article class="field-panel" role="tabpanel" id="field-cyber" aria-labelledby="field-tab-cyber" tabindex="0" data-field="cyber">
-          <p class="field-kicker"><span class="field-swatch" aria-hidden="true"></span><span class="micro-label">What she brings</span></p>
-          <h3 class="field-title">Cybersecurity</h3>
-          <ul class="field-evidence">
-            <li>Rotations through Information Security and Cyber Defense, and Risk Intelligence, at Wellington Management.</li>
-            <li>Mapped access-governance and control requirements for the AI agent prototype.</li>
-            <li>Information security and cyber risk in her toolkit.</li>
-          </ul>
-        </article>
-
-        <article class="field-panel" role="tabpanel" id="field-privacy" aria-labelledby="field-tab-privacy" tabindex="0" data-field="privacy">
-          <p class="field-kicker"><span class="field-swatch" aria-hidden="true"></span><span class="micro-label">What she brings</span></p>
-          <h3 class="field-title">Data privacy</h3>
-          <ul class="field-evidence">
-            <li>Seven years in regulated home health, where privacy and compliance decisions reach real employees and patients.</li>
-            <li>Mapped data flows for the AI prototype at Wellington; data governance in her toolkit.</li>
-            <li>Data privacy and data-protection law among her law-school focuses.</li>
-          </ul>
-        </article>
-
-        <article class="field-panel" role="tabpanel" id="field-business" aria-labelledby="field-tab-business" tabindex="0" data-field="business">
-          <p class="field-kicker"><span class="field-swatch" aria-hidden="true"></span><span class="micro-label">What she brings</span></p>
-          <h3 class="field-title">Business</h3>
-          <ul class="field-evidence">
-            <li>B.S. International Business, concentrating in Global Business Strategy and Business Analytics.</li>
-            <li>A TJX co-op, a strategy internship at UMG Technologies and the Girls Into VC fellowship.</li>
-            <li>Payroll, insurance and operational reporting at Guardian Angel since 2019.</li>
-          </ul>
-        </article>
-
-        <article class="field-panel" role="tabpanel" id="field-law" aria-labelledby="field-tab-law" tabindex="0" data-field="law">
-          <p class="field-kicker"><span class="field-swatch" aria-hidden="true"></span><span class="micro-label">What she brings</span></p>
-          <h3 class="field-title">Law &amp; regulation</h3>
-          <ul class="field-evidence">
-            <li>B.A. International Affairs: government, international risk, policy and regulation.</li>
-            <li>A legal internship at MCIS Lawyers in 2022.</li>
-            <li>Policy and legal research, from Texas Senate Bill 1029 to a mica-sourcing memo.</li>
-            <li>The Legal and Risk rotation at Wellington Management.</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <!-- 5 · Target roles for the consulting years -->
-    <section class="next-roles reveal-fade" data-delay="150" aria-labelledby="roles-title">
-      <div class="roles-head">
-        <h2 id="roles-title" class="micro-label">Target roles</h2>
-        <p class="section-title roles-title">Where she is aiming.</p>
-        <p class="section-dek">Roles for the two to three years in consulting after the MBA.</p>
-      </div>
-      <ul class="role-chips">
-        <li>AI consultant</li>
-        <li>AI strategy analyst</li>
-        <li>Responsible AI analyst</li>
-        <li>AI governance analyst</li>
-        <li>Technology-risk consultant</li>
-        <li>Cybersecurity consultant</li>
-        <li>Digital transformation consultant</li>
-        <li>Privacy &amp; technology compliance analyst</li>
-        <li>Enterprise-risk analyst</li>
-      </ul>
-    </section>
-
-    <!-- 6 · What she brings to an MBA cohort — three flip cards (main.js turns every
-         .flip-card into a keyboard toggle). Both faces share one grid cell, so the card
-         grows to fit its longer side; keep each back under ~45 words. -->
-    <section class="next-cohort" aria-labelledby="cohort-title">
-      <header class="section-head reveal-fade" data-delay="150">
-        <h2 id="cohort-title" class="micro-label">For the cohort</h2>
-        <p class="section-title">What she brings to the class.</p>
-        <p class="section-dek cohort-hint">
-          <span aria-hidden="true">&#8635;</span>
-          Tap a card, or press Enter, to turn it over.
-        </p>
-      </header>
-
-      <div class="cohort-grid reveal-fade" data-delay="250">
-        <article class="cohort-card flip-card tilt-card" tabindex="0">
-          <div class="flip-inner">
-            <div class="flip-face flip-front">
-              <span class="cohort-meta"><span class="cohort-num">01</span><span class="micro-label">The operator</span></span>
-              <h3 class="cohort-line">Seven years inside a regulated business.</h3>
-              <span class="cohort-cue" aria-hidden="true">turn over</span>
-            </div>
-            <div class="flip-face flip-back">
-              <span class="micro-label">The operator</span>
-              <p>
-                At Guardian Angel since 2019: payroll, insurance, staff credentialing, nurse
-                communications and patient-care support; Business Operations Associate since
-                August&nbsp;2026&nbsp;&mdash; all while studying.
-              </p>
-            </div>
-          </div>
-          <span class="flip-indicator" aria-hidden="true"></span>
-        </article>
-
-        <article class="cohort-card flip-card tilt-card" tabindex="0">
-          <div class="flip-inner">
-            <div class="flip-face flip-front">
-              <span class="cohort-meta"><span class="cohort-num">02</span><span class="micro-label">The translator</span></span>
-              <h3 class="cohort-line">Complex technology, made usable.</h3>
-              <span class="cohort-cue" aria-hidden="true">turn over</span>
-            </div>
-            <div class="flip-face flip-back">
-              <span class="micro-label">The translator</span>
-              <p>
-                At Wellington, she translated technical and operational issues for cross-functional
-                teams. At NextWork, she helps students from nontechnical majors build with AI. In
-                Student Government, she turned organizational updates into clear messaging.
-              </p>
-            </div>
-          </div>
-          <span class="flip-indicator" aria-hidden="true"></span>
-        </article>
-
-        <article class="cohort-card flip-card tilt-card" tabindex="0">
-          <div class="flip-inner">
-            <div class="flip-face flip-front">
-              <span class="cohort-meta"><span class="cohort-num">03</span><span class="micro-label">The governance mind</span></span>
-              <h3 class="cohort-line">Controls before deployment.</h3>
-              <span class="cohort-cue" aria-hidden="true">turn over</span>
-            </div>
-            <div class="flip-face flip-back">
-              <span class="micro-label">The governance mind</span>
-              <p>
-                At Wellington, she mapped data flows, escalation paths and control
-                requirements&nbsp;&mdash; human review, access governance, output validation, operational
-                accountability. Now she researches how to govern agentic AI in financial
-                operations.
-              </p>
-            </div>
-          </div>
-          <span class="flip-indicator" aria-hidden="true"></span>
-        </article>
-      </div>
-    </section>
-
-    <!-- 7 · Correspondence — headshot + how to reach her (never a phone number).
-         Drop the photo at the path in data-file (relative to the site root); until then
-         the slot shows what to send. -->
-    <section class="next-contact" id="contact" aria-labelledby="contact-title">
-      <div class="contact-photo-wrap reveal-fade" data-delay="150">
-        <figure class="photo-card contact-photo tilt-card" style="--rotate: -2deg">
-          <div
-            class="img-slot"
-            style="--ratio: 4 / 5"
-            data-hint="A professional headshot of Sasha — natural light, simple background (vertical)"
-            data-file="assets/images/next-chapter/headshot.jpg"
-          >
-            <img
-              src="../assets/images/next-chapter/headshot.jpg"
-              alt="Professional headshot of Sasha Petrovicheva"
-              loading="lazy"
-            />
-          </div>
-          <figcaption>Sasha Petrovicheva</figcaption>
-        </figure>
-      </div>
-
-      <div class="contact-card reveal-fade" data-delay="300">
-        <span class="contact-stamp" aria-hidden="true">Boston, MA</span>
-        <h2 id="contact-title" class="micro-label">Correspondence</h2>
-        <p class="contact-title">Write to Sasha.</p>
-        <p class="contact-text">
-          Based in Boston, Massachusetts. Graduating from Northeastern University in May 2027.
-        </p>
-        <ul class="contact-lines">
-          <li>
-            <span class="contact-kind">Email</span>
-            <a class="contact-link" href="mailto:alexpetrovicheva@gmail.com">alexpetrovicheva@gmail.com</a>
-            <span class="contact-extra">
-              <button type="button" class="contact-copy" data-copy="alexpetrovicheva@gmail.com" hidden>copy<span class="visually-hidden"> email address</span></button>
-              <span class="contact-copy-status" data-copy-status aria-live="polite"></span>
-            </span>
-          </li>
-          <li>
-            <span class="contact-kind">LinkedIn</span>
-            <a class="contact-link" href="https://www.linkedin.com/in/alex-petrovicheva" target="_blank" rel="noopener">
-              in/alex-petrovicheva <span aria-hidden="true">&nearr;</span><span class="visually-hidden">(opens in a new tab)</span>
-            </a>
-          </li>
-          <li>
-            <span class="contact-kind">R&eacute;sum&eacute;</span>
-            <a class="contact-link" href="../assets/resume/resume.pdf" download="Alexandra-Petrovicheva-Resume.pdf">
-              Download the PDF <span aria-hidden="true">&darr;</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </section>
     </main>
 
   <!-- CHROME: prev / cover / next (filled by main.js from CHAPTERS) and the site footer. Do not edit per page. -->
@@ -617,6 +274,5 @@
   </footer>
 
   <script src="../scripts/main.js" defer></script>
-  <script src="../scripts/pages/next-chapter.js" defer></script>
 </body>
 </html>

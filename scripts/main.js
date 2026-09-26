@@ -8,7 +8,7 @@ const CHAPTERS = [
   { slug: "strategy-brand", title: "Strategy & Brand", icon: "i-target", dek: "Audience research, positioning and go-to-market strategy" },
   { slug: "leadership-impact", title: "Leadership & Impact", icon: "i-users", dek: "Leading media, communications and peer-learning teams" },
   { slug: "community-service", title: "Community & Service", icon: "i-hand-heart", dek: "Service and community work in Los Angeles and Boston" },
-  { slug: "law-advocacy", title: "Law & Advocacy", icon: "i-scale", dek: "Legal research, policy analysis and advocacy" },
+  { slug: "law-advocacy", title: "Law & Advocacy", icon: "i-scale", dek: "Legal research, policy writing and a pre-law internship" },
   { slug: "next-chapter", title: "The Next Chapter", icon: "i-compass", dek: "An MBA in AI and technology, and the path beyond it" },
 ];
 
