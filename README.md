@@ -8,7 +8,7 @@ Static site, no build step, deployed to GitHub Pages by GitHub Actions.
 
 | # | Page | File | What's on it |
 | - | ---- | ---- | ------------ |
-| — | Cover | `index.html` | Title, full name, cover lines, chapter links, résumé download, socials, insta grid, portrait |
+| — | Cover | `index.html` | Full name, focus areas, résumé download, framed portrait, at-a-glance figures, featured chapters, contents, experience badges, contact |
 | 1 | My Story | `pages/my-story.html` | Profile, at-a-glance facts, three story sections, the 2019 → 2027 timeline |
 | 2 | AI & Governance | `pages/ai-governance.html` | Wellington co-op (rotation, prototype, controls), agentic-AI research, toolkit |
 | 3 | Strategy & Brand | `pages/strategy-brand.html` | Flip-card board of strategy, brand and content work, with filters |
@@ -28,18 +28,12 @@ description of the photo that belongs there, and the exact file path. Save a pho
 and it appears automatically; no code changes are needed.
 
 - JPG, about 1600px on the long side, under ~500 KB. The shape column says which orientation fits.
-- The cover portrait is a PNG cut-out with a transparent background.
+- The cover portrait is a straight 4:5 JPG (head and shoulders), at least 800×1000 px.
 - Nothing confidential: no work screens, documents, badges or internal decks (Wellington especially).
 
 | Page | Save as | What to send | Shape |
 | ---- | ------- | ------------ | ----- |
-| Cover | `assets/images/insta-1.jpg` | Sasha on campus in Boston (square) | square |
-| Cover | `assets/images/insta-2.jpg` | TEDxNortheasternU event day (square) | square |
-| Cover | `assets/images/insta-3.jpg` | Southern California, outdoors (square) | square |
-| Cover | `assets/images/insta-4.jpg` | A NextWork Build & Brew session (square) | square |
-| Cover | `assets/images/insta-5.jpg` | With friends in Boston (square) | square |
-| Cover | `assets/images/insta-6.jpg` | A close-up detail: desk, notes or a book (square) | square |
-| Cover | `assets/images/portrait.png` | A full-height portrait of Sasha (vertical), as a cut-out PNG with a transparent background | full-height cut-out PNG |
+| Cover | `assets/images/portrait.jpg` | A professional portrait of Alexandra, head and shoulders (vertical, 4:5) | vertical 4:5 |
 | My Story | `assets/images/my-story/hero-los-angeles.jpg` | A throwback photo of Sasha in the Los Angeles area (horizontal) | horizontal 5:4 |
 | My Story | `assets/images/my-story/hero-boston.jpg` | A recent candid photo of Sasha in Boston: campus or a city street (horizontal) | horizontal 5:4 |
 | My Story | `assets/images/my-story/portrait.jpg` | A portrait of Sasha outdoors in Southern California (vertical) | vertical 4:5 |
@@ -81,8 +75,6 @@ on the résumé, update the site to match.
 ## Links, socials and the résumé
 
 - **LinkedIn** and **email** are live on the cover and in the contact block of The Next Chapter.
-- **Instagram / TikTok:** in [index.html](index.html), replace `href="#"` on those tiles with the
-  profile URL. While a tile still points to `#` it is hidden automatically.
 - **Résumé:** `assets/resume/resume.pdf` is what every "download résumé" link serves. The current
   file is a web copy with the phone number removed. Replace it with her final one-page PDF
   (same file name) once her edits are done.
@@ -114,16 +106,15 @@ If you want a custom domain, add a `CNAME` file at the repo root containing your
 
 ```
 .
-├── index.html                 # the cover (non-scrolling on desktop)
+├── index.html                 # the cover
 ├── pages/                     # one file per chapter (see table above)
 ├── styles/
 │   ├── base.css               # tokens, fonts, reset, reveal primitives, photo-slot templates
-│   ├── landing.css            # the cover
-│   ├── page.css               # shared chapter template: masthead, contents menu, cards, flips
+│   ├── page.css               # shared chrome + component library (see .review-tools/COMPONENTS.md)
+│   ├── landing.css            # the cover (loaded after page.css)
 │   └── pages/<chapter>.css    # page-specific styles, loaded after page.css
 ├── scripts/
-│   ├── main.js                # chapter list, contents menu, prev/next, reveals, flips, photo fallbacks
-│   ├── cursor-effects.js      # pink + gold glitter cursor
+│   ├── main.js                # chapter list, chapter strip, contents menu, prev/next, reveals, photo fallbacks
 │   └── pages/<chapter>.js     # page-specific interactions (timeline, roadmap, filters…)
 ├── assets/
 │   ├── images/                # photos (see "Adding photos"), logos, favicon

@@ -1,8 +1,9 @@
 /* ==========================================================================
    page.css — the shared chapter template and component library
    --------------------------------------------------------------------------
-   Loaded by every chapter page (after base.css, before styles/pages/<slug>.css).
-   Everything here is generic; page-specific layout lives in styles/pages/.
+   Loaded by every page — the cover (before landing.css) and every chapter page
+   (after base.css, before styles/pages/<slug>.css). Everything here is generic;
+   page-specific layout lives in styles/pages/<slug>.css and landing.css.
    Reference with copy-paste markup: .review-tools/COMPONENTS.md
    Live gallery: .review-tools/gallery/components.html
 
@@ -10,8 +11,8 @@
      1  Masthead (brand, actions, chapter strip, mobile sticky bar)
      2  Contents menu (dialog, built by main.js)
      3  Scroll ribbon
-     4  Layout: sections, bands, grids, split
-     5  Rules, kicker, medallion, monogram
+     4  Layout: sections, bands (cream / paper / deep / blush / leaf), panels, grids, split
+     5  Rules, ornament, kicker, medallion, monogram, organisation badge
      6  Buttons and links
      7  Chapter hero
      8  Section header
@@ -25,6 +26,8 @@
     16  Photo frame and caption
     17  Prev / next pager
     18  Site footer
+    19  Matrix (comparison grid) and dot scale
+    20  Editorial details: drop cap, ghost numeral, note
    ========================================================================== */
 
 /* ───────────────────────── 1. Masthead ───────────────────────── */
@@ -88,10 +91,13 @@
   transition: background-color 0.2s var(--ease), color 0.2s var(--ease);
 }
 .contents-toggle .icon { width: 18px; height: 18px; }
+html:not(.js) button.contents-toggle { display: none; }
 .contents-toggle:hover,
 .contents-toggle[aria-expanded="true"] { background: var(--leaf); color: var(--on-leaf); }
 
-/* chapter strip (desktop) */
+/* chapter strip (desktop) — main.js fills <nav class="chapter-strip">; the
+   min-height reserves its row so nothing shifts when it appears */
+.chapter-strip { min-height: 49px; }
 .chapter-strip-list {
   display: flex;
   justify-content: space-between;
@@ -303,10 +309,16 @@ html.contents-locked { overflow: hidden; }
 .section { padding-top: var(--space-7); }
 .section-tight { padding-top: var(--space-6); }
 
-/* full-bleed bands (put .wrap inside) */
+/* full-bleed bands (put .wrap inside). Alternate them down a page:
+   cream (default) → paper → leaf → cream-deep → blush … never two alike in a row. */
 .band { padding-block: var(--space-7); }
+.band-sm { padding-block: var(--space-6); }
+.band-cream { background: var(--cream); }
 .band-paper { background: var(--paper); }
 .band-deep { background: var(--cream-deep); }
+.band-blush { background: var(--blush-tint); }
+/* a hairline pair at the top and bottom edge of a light band */
+.band-ruled { border-top: 1px solid var(--rule-soft); border-bottom: 1px solid var(--rule-soft); box-shadow: inset 0 4px 0 var(--cream), inset 0 5px 0 var(--rule-soft); }
 .band-leaf {
   background: var(--leaf);
   color: var(--on-leaf-2);
@@ -328,6 +340,28 @@ main > .stat-band:last-child { margin-bottom: 0; }
 .band-leaf .icon { color: var(--on-leaf-accent); }
 .band-leaf .btn .icon { color: currentColor; }
 .band-leaf a:not(.btn) { color: var(--on-leaf); }
+
+/* panels: boxed colour blocks inside a .wrap (not full-bleed) */
+.panel {
+  padding: clamp(24px, 3vw, 48px);
+  background: var(--paper);
+  border: 1px solid var(--rule-soft);
+  border-radius: var(--radius);
+}
+.panel-deep { background: var(--cream-deep); border-color: transparent; }
+.panel-blush { background: var(--blush-tint); border-color: #efd3c6; }
+.panel-leaf {
+  background: var(--leaf);
+  border-color: var(--leaf);
+  color: var(--on-leaf-2);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.panel-leaf h2, .panel-leaf h3, .panel-leaf .h2, .panel-leaf .h3 { color: var(--on-leaf); }
+.panel-leaf .label { color: var(--on-leaf-label); }
+.panel-leaf .icon { color: var(--on-leaf-accent); }
+/* a panel framed by a thick top rule and a bamboo inner line */
+.panel-framed { border-top: 4px solid var(--leaf); box-shadow: inset 0 0 0 6px var(--paper), inset 0 0 0 7px #e6d6b6; }
 
 /* generic grids — collapse on their own */
 .grid { display: grid; gap: var(--col-gap); align-items: start; }
@@ -361,9 +395,11 @@ main > .stat-band:last-child { margin-bottom: 0; }
   .grid-4 { grid-template-columns: 1fr; }
 }
 
-/* ───────────────────────── 5. Rules, kicker, medallion, monogram ───────────────────────── */
+/* ───────────────────────── 5. Rules, ornament, kicker, medallion, monogram, organisation badge ───────────────────────── */
 .rule { height: 0; border: 0; border-top: 1px solid var(--rule); margin: 0; }
 .rule-soft { border-top-color: var(--rule-soft); }
+.rule-bamboo { border-top: 2px solid var(--bamboo); }
+/* thick over thin (the masthead rule) and thin over thick (closing a section) */
 .rule-double {
   height: 6px;
   border: 0;
@@ -371,6 +407,46 @@ main > .stat-band:last-child { margin-bottom: 0; }
   border-bottom: 1px solid var(--ink);
   margin: 0;
 }
+.rule-double-rev { border-top-width: 1px; border-bottom-width: 3px; }
+
+/* ornamental divider: hairline · diamond · hairline (pure CSS, static)
+   <div class="ornament" aria-hidden="true"><span></span></div> */
+.ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-block: var(--space-5);
+  color: var(--bamboo);
+}
+.ornament::before,
+.ornament::after {
+  content: "";
+  flex: 1 1 auto;
+  max-width: 180px;
+  height: 1px;
+  background: currentColor;
+}
+.ornament > span {
+  position: relative;
+  width: 11px;
+  height: 11px;
+  flex: none;
+  border: 1.5px solid var(--leaf);
+  transform: rotate(45deg);
+}
+.ornament > span::before {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  background: var(--blush);
+}
+.ornament-wide::before,
+.ornament-wide::after { max-width: none; }
+.ornament-left { justify-content: flex-start; }
+.ornament-left::before { display: none; }
+.band-leaf .ornament { color: var(--on-leaf-rule); }
+.band-leaf .ornament > span { border-color: var(--on-leaf-accent); }
 
 /* kicker: icon + label on one line (eyebrows) */
 .kicker {
@@ -382,25 +458,60 @@ main > .stat-band:last-child { margin-bottom: 0; }
 .kicker .icon { width: 18px; height: 18px; color: var(--leaf); }
 .kicker-sep { width: 18px; height: 1px; background: currentColor; opacity: 0.6; }
 
-/* medallion: an icon in a ring */
+/* medallion: an icon set in a badge.
+   default    paper fill, leaf icon, bamboo ring with a paper gap and hairline halo
+   -leaf      leaf fill, cream icon (use for the "current" or key item)
+   -outline   transparent, leaf ring
+   -blush     blush fill, ink icon (sparingly: one per section at most)
+   -square    rounded-square shape instead of a circle
+   sizes      -sm 40px · default 52px · -lg 68px · -xl 88px */
 .medallion {
   display: inline-grid;
   place-items: center;
-  width: 48px;
-  height: 48px;
+  width: 52px;
+  height: 52px;
   flex: none;
   border-radius: 50%;
-  border: 1.5px solid var(--leaf);
+  border: 1.5px solid var(--bamboo);
   background: var(--paper);
   color: var(--leaf);
+  box-shadow: 0 0 0 4px var(--paper), 0 0 0 5px #e3d2b1;
+  transition: background-color 0.2s var(--ease), color 0.2s var(--ease), border-color 0.2s var(--ease);
 }
-.medallion .icon { width: 22px; height: 22px; color: currentColor; }
-.medallion-sm { width: 40px; height: 40px; }
+.medallion .icon { width: 24px; height: 24px; color: currentColor; }
+.medallion-sm { width: 40px; height: 40px; box-shadow: none; }
 .medallion-sm .icon { width: 19px; height: 19px; }
-.medallion-solid { background: var(--leaf); border-color: var(--leaf); color: var(--on-leaf); }
-.medallion-blush { background: var(--blush); border-color: var(--blush); color: var(--ink); }
-.band-leaf .medallion { background: transparent; border-color: var(--on-leaf-accent); color: var(--on-leaf-accent); }
+.medallion-lg { width: 68px; height: 68px; box-shadow: 0 0 0 5px var(--paper), 0 0 0 6px #e3d2b1; }
+.medallion-lg .icon { width: 30px; height: 30px; }
+.medallion-xl { width: 88px; height: 88px; box-shadow: 0 0 0 6px var(--paper), 0 0 0 7px #e3d2b1; }
+.medallion-xl .icon { width: 38px; height: 38px; stroke-width: 1.5; }
+.medallion-leaf,
+.medallion-solid { background: var(--leaf); border-color: var(--leaf); color: var(--on-leaf); box-shadow: 0 0 0 4px var(--cream), 0 0 0 5px var(--leaf); }
+.medallion-sm.medallion-leaf,
+.medallion-sm.medallion-solid { box-shadow: none; }
+.medallion-outline { background: transparent; border-color: var(--leaf); box-shadow: none; }
+.medallion-blush { background: var(--blush); border-color: var(--blush); color: var(--ink); box-shadow: none; }
+.medallion-square { border-radius: 12px; }
+.medallion-sm.medallion-square { border-radius: 9px; }
+.medallion-num {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 600;
+  font-variation-settings: "opsz" 28;
+  line-height: 1;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.band-paper .medallion:not(.medallion-leaf):not(.medallion-solid),
+.panel .medallion:not(.medallion-leaf):not(.medallion-solid),
+.card .medallion:not(.medallion-leaf):not(.medallion-solid) { background: var(--cream); box-shadow: 0 0 0 4px var(--cream), 0 0 0 5px #e3d2b1; }
+.band-paper .medallion-sm, .panel .medallion-sm, .card .medallion-sm { box-shadow: none !important; }
+.band-leaf .medallion,
+.panel-leaf .medallion,
+.stat-band .medallion { background: transparent; border-color: var(--on-leaf-accent); color: var(--on-leaf-accent); box-shadow: none; }
+.band-leaf .medallion-leaf,
+.panel-leaf .medallion-leaf { background: var(--on-leaf); border-color: var(--on-leaf); color: var(--leaf); }
 
+/* monogram: the site mark (AP), in the masthead and the pager */
 .monogram {
   display: inline-grid;
   place-items: center;
@@ -408,9 +519,10 @@ main > .stat-band:last-child { margin-bottom: 0; }
   height: 42px;
   flex: none;
   border: 1.5px solid var(--leaf);
+  box-shadow: inset 0 0 0 3px var(--cream), inset 0 0 0 4px var(--bamboo);
   color: var(--leaf);
   font-family: var(--serif);
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 600;
   font-variation-settings: "opsz" 24;
   letter-spacing: 0.02em;
@@ -418,6 +530,82 @@ main > .stat-band:last-child { margin-bottom: 0; }
   transition: background-color 0.2s var(--ease), color 0.2s var(--ease);
 }
 .monogram span { transform: translateY(1px); }
+
+/* organisation badge: an initials mark + the organisation name (until real logos exist)
+   <span class="org"><span class="org-mark" aria-hidden="true">WM</span>
+     <span class="org-text"><span class="org-name">Wellington Management</span>
+     <span class="org-meta">Co-op · 2025–26</span></span></span>
+   .org-mark alone can also sit in a role card's top row. */
+.org {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+.org-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  flex: none;
+  padding: 0 4px;
+  background: var(--paper);
+  border: 1.5px solid var(--ink);
+  box-shadow: inset 0 0 0 3px var(--paper), inset 0 0 0 4px var(--bamboo);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 600;
+  font-variation-settings: "opsz" 24;
+  letter-spacing: 0.03em;
+  line-height: 1;
+  white-space: nowrap;
+  font-variant-numeric: lining-nums;
+}
+.org-mark-sm { width: 40px; height: 40px; font-size: 14px; }
+.org-mark-leaf { background: var(--leaf); border-color: var(--leaf); color: var(--on-leaf); box-shadow: inset 0 0 0 3px var(--leaf), inset 0 0 0 4px var(--on-leaf-label); }
+.org-mark-long { font-size: 14px; letter-spacing: 0.01em; }
+.org-text { display: grid; gap: 3px; min-width: 0; }
+.org-name {
+  font-family: var(--sans);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--ink);
+}
+.org-meta {
+  font-family: var(--sans);
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--text-3);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.band-leaf .org-name { color: var(--on-leaf); }
+.band-leaf .org-meta { color: var(--on-leaf-2); }
+.band-leaf .org-mark { background: transparent; border-color: var(--on-leaf-label); color: var(--on-leaf); box-shadow: inset 0 0 0 3px var(--leaf), inset 0 0 0 4px var(--on-leaf-rule); }
+
+/* a row of organisation badges separated by hairlines */
+.org-row {
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 4), minmax(0, 1fr));
+  border-top: 1px solid var(--rule-soft);
+  border-bottom: 1px solid var(--rule-soft);
+}
+.org-row > * { padding: 22px 20px; border-left: 1px solid var(--rule-soft); }
+.org-row > :first-child { border-left: 0; padding-left: 0; }
+@media (max-width: 1000px) {
+  .org-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .org-row > * { border-left: 0; padding-left: 0; border-top: 1px solid var(--rule-soft); }
+  .org-row > :nth-child(-n + 2) { border-top: 0; }
+  .org-row > :nth-child(even) { padding-left: 20px; border-left: 1px solid var(--rule-soft); }
+}
+@media (max-width: 520px) {
+  .org-row { grid-template-columns: 1fr; }
+  .org-row > * { padding: 16px 0 !important; border-left: 0 !important; border-top: 1px solid var(--rule-soft); }
+  .org-row > :first-child { border-top: 0; }
+  .org-row > :nth-child(2) { border-top: 1px solid var(--rule-soft); }
+}
 
 /* ───────────────────────── 6. Buttons and links ───────────────────────── */
 .btn {
@@ -535,8 +723,9 @@ main > .stat-band:last-child { margin-bottom: 0; }
 .section-num {
   display: block;
   font-family: var(--serif);
-  font-size: clamp(44px, 4.4vw, 64px);
-  line-height: 0.9;
+  font-size: clamp(52px, 5.4vw, 84px);
+  line-height: 0.86;
+  letter-spacing: -0.02em;
   font-weight: 500;
   font-variation-settings: "opsz" 72;
   color: var(--leaf);
@@ -547,7 +736,12 @@ main > .stat-band:last-child { margin-bottom: 0; }
 .section-dek { margin-top: 14px; max-width: 44ch; }
 .section-intro { margin-top: 18px; max-width: 38em; }
 
+.section-head-plain { border-top: 0; padding-top: 0; }
+.section-head-center { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+.section-head-center .section-title,
+.section-head-center .section-dek { margin-inline: auto; }
 .band-leaf .section-head { border-top-color: var(--on-leaf); }
+.band-leaf .section-dek { color: var(--on-leaf-2); }
 .band-leaf .section-num { color: var(--on-leaf-accent); }
 
 @media (max-width: 800px) {
@@ -582,6 +776,9 @@ main > .stat-band:last-child { margin-bottom: 0; }
   color: var(--leaf);
 }
 .stat-unit { font-size: 0.5em; letter-spacing: 0; margin-left: 0.08em; }
+.stat > .icon { display: block; width: 22px; height: 22px; margin-bottom: 14px; color: var(--leaf); }
+.stat-row-lg .stat-figure,
+.stat-band .stat-figure { font-size: var(--fs-stat-lg); line-height: 0.9; }
 .stat-label { display: block; margin-top: 12px; }
 .stat-detail {
   display: block;
@@ -625,6 +822,8 @@ main > .stat-band:last-child { margin-bottom: 0; }
 .band-leaf .stat { border-color: var(--on-leaf-rule); padding-bottom: 4px; }
 .stat-band .stat-figure,
 .band-leaf .stat-figure { color: var(--on-leaf); }
+.stat-band .stat > .icon,
+.band-leaf .stat > .icon { color: var(--on-leaf-accent); }
 .stat-band .stat-label,
 .band-leaf .stat-label { color: var(--on-leaf-accent); }
 .stat-band .stat-detail,
@@ -641,6 +840,27 @@ main > .stat-band:last-child { margin-bottom: 0; }
   padding: clamp(22px, 2.4vw, 34px);
 }
 .card-accent { border-top: 3px solid var(--leaf); }
+.card-bamboo { border-top: 3px solid var(--bamboo); }
+.card-deep { background: var(--cream-deep); border-color: transparent; }
+/* hover: for cards that are links (a.card, a.icon-card, a.role-card) or add .card-hover.
+   Border turns leaf, the card lifts 3px (transform only), the medallion fills. */
+a.card, a.role-card, a.icon-card.card, .card-hover {
+  display: block;
+  color: inherit;
+  transition: border-color 0.2s var(--ease), background-color 0.2s var(--ease), transform 0.2s var(--ease);
+}
+a.icon-card.card, a.role-card { display: grid; }
+a.card:hover, a.role-card:hover, a.icon-card.card:hover, .card-hover:hover {
+  border-color: var(--leaf);
+  transform: translateY(-3px);
+}
+a.card:hover .medallion, a.role-card:hover .medallion, a.icon-card:hover .medallion, .card-hover:hover .medallion {
+  background: var(--leaf);
+  border-color: var(--leaf);
+  color: var(--on-leaf);
+}
+a.card:hover .icon-card-title, a.icon-card:hover .icon-card-title, a.role-card:hover .role-title { color: var(--leaf); }
+.icon-card-title { transition: color 0.2s var(--ease); }
 .card-head {
   display: flex;
   align-items: flex-start;
@@ -658,7 +878,19 @@ main > .stat-band:last-child { margin-bottom: 0; }
   gap: 10px;
   min-width: 0;
 }
-.icon-card .medallion { margin-bottom: 8px; }
+.icon-card .medallion { margin-bottom: 12px; }
+.icon-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 12px; }
+.icon-card-top .medallion { margin: 0; }
+.icon-card-num {
+  font-family: var(--serif);
+  font-size: 40px;
+  line-height: 0.9;
+  font-weight: 500;
+  font-variation-settings: "opsz" 60;
+  color: var(--accent-ink);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.band-leaf .icon-card-num { color: var(--on-leaf-accent); }
 .icon-card-title {
   font-family: var(--serif);
   font-size: var(--fs-h3);
@@ -717,7 +949,8 @@ main > .stat-band:last-child { margin-bottom: 0; }
   gap: 12px;
   margin-bottom: 10px;
 }
-.role-card-top .medallion { width: 40px; height: 40px; }
+.role-card-top .medallion { width: 40px; height: 40px; box-shadow: none; }
+.role-card-top .org-mark { width: 44px; height: 44px; font-size: 15px; }
 .role-card-top .medallion .icon { width: 19px; height: 19px; }
 .role-dates { color: var(--text-3); text-align: right; }
 .role-org { color: var(--leaf); }
@@ -856,6 +1089,8 @@ main > .stat-band:last-child { margin-bottom: 0; }
 }
 .chip .icon { width: 16px; height: 16px; color: var(--leaf); }
 .chip-leaf { background: var(--leaf); border-color: var(--leaf); color: var(--on-leaf); }
+.chip-paper { background: var(--paper); }
+.chip-sm { min-height: 28px; padding: 5px 10px; font-size: 13px; }
 .chip-leaf .icon { color: var(--on-leaf); }
 .card .chip { background: var(--cream); }
 .band-leaf .chip { background: transparent; border-color: var(--on-leaf-rule); color: var(--on-leaf); }
@@ -973,7 +1208,8 @@ main > .stat-band:last-child { margin-bottom: 0; }
   background: var(--cream);
   border: 2px solid var(--leaf);
 }
-.timeline-item.is-current::after { background: var(--leaf); }
+.timeline-item.is-current::after { background: var(--leaf); box-shadow: 0 0 0 4px var(--cream), 0 0 0 5px var(--leaf); }
+.timeline-item.is-marked::after { background: var(--blush); border-color: var(--blush); }
 .timeline-date { color: var(--accent-ink); }
 .timeline-item.is-current .timeline-date { color: var(--leaf); }
 .timeline-title {
@@ -1033,7 +1269,7 @@ main > .stat-band:last-child { margin-bottom: 0; }
   border-bottom: 1px solid var(--rule);
 }
 .statement-mark {
-  width: 44px;
+  width: 72px;
   height: 6px;
   margin-top: 0.55em;
   background: var(--blush);
@@ -1050,6 +1286,10 @@ main > .stat-band:last-child { margin-bottom: 0; }
   max-width: 28ch;
   text-wrap: balance;
 }
+.statement-center { grid-template-columns: 1fr; justify-items: center; text-align: center; border: 0; }
+.statement-center .statement-mark { margin: 0; }
+.statement-center .statement-text { max-width: 30ch; }
+.statement-plain { border: 0; }
 .band-leaf .statement { border-color: var(--on-leaf-rule); }
 .band-leaf .statement-text { color: var(--on-leaf); }
 @media (max-width: 800px) {
@@ -1080,6 +1320,8 @@ main > .stat-band:last-child { margin-bottom: 0; }
 }
 .callout-text { font-size: var(--fs-small); line-height: 1.55; color: var(--text-2); }
 .callout .text-link { justify-self: start; margin-top: 8px; }
+.callout-blush { background: var(--blush-tint); border-left-color: var(--leaf); }
+.callout-paper { background: var(--paper); border: 1px solid var(--rule-soft); border-left: 3px solid var(--leaf); }
 .callout-leaf {
   background: var(--leaf);
   border-left-color: var(--blush);
@@ -1099,12 +1341,20 @@ main > .stat-band:last-child { margin-bottom: 0; }
 }
 
 /* ───────────────────────── 16. Photo frame and caption ─────────────────────────
-   <figure class="photo">
+   <figure class="photo photo-matted">
      <div class="img-slot" style="--ratio: 4 / 5" data-hint="…" data-file="assets/images/…jpg">
        <img src="../assets/images/…jpg" alt="…" loading="lazy" decoding="async" />
      </div>
      <figcaption class="photo-caption">Boston, 2026</figcaption>
-   </figure> */
+   </figure>
+   Mats (a hard offset block behind the print, no blur — costs nothing to paint):
+     .photo-matted            blush, bottom-right (the one brand flourish)
+     .photo-matted.mat-bamboo bamboo instead of blush
+     .photo-matted.mat-left   offset to the bottom-left
+   Extras:
+     .photo-framed            a paper passe-partout with a hairline around the print
+     .photo-captionbar        figcaption as a bar under the print (label left, meta right)
+     .photo-chip              a stat/fact chip overlapping the print's lower corner */
 .photo { position: relative; min-width: 0; }
 .photo-caption {
   display: flex;
@@ -1125,22 +1375,76 @@ main > .stat-band:last-child { margin-bottom: 0; }
   background: var(--leaf);
   transform: translateY(-4px);
 }
-/* matted: a solid blush block offset behind the print (the one brand flourish) */
-.photo-matted { padding-right: 18px; }
-.photo-matted .img-slot { box-shadow: 18px 18px 0 0 var(--blush); }
+
+.photo-matted { --mat: var(--blush); --mat-x: 18px; --mat-y: 18px; padding-right: var(--mat-x); }
+.photo-matted .img-slot { box-shadow: var(--mat-x) var(--mat-y) 0 0 var(--mat); }
 .photo-matted .img-slot.image-missing {
-  box-shadow: inset 0 0 0 11px transparent, inset 0 0 0 12px rgba(251, 246, 234, 0.8), 18px 18px 0 0 var(--blush);
+  box-shadow: inset 0 0 0 11px transparent, inset 0 0 0 12px rgba(251, 246, 234, 0.8), var(--mat-x) var(--mat-y) 0 0 var(--mat);
 }
-.photo-matted .photo-caption { margin-top: 32px; }
+.photo-matted .photo-caption,
+.photo-matted .photo-captionbar { margin-top: calc(var(--mat-y) + 14px); }
+.photo-matted.mat-bamboo { --mat: var(--bamboo); }
+.photo-matted.mat-leaf { --mat: var(--leaf); }
+.photo-matted.mat-left { --mat-x: -18px; padding-right: 0; padding-left: 18px; }
+
+.photo-framed .img-slot {
+  border: 1px solid #d3c29f;
+  outline: 10px solid var(--paper);
+  outline-offset: 0;
+}
+.photo-framed { padding: 11px; }
+.photo-framed.photo-matted .img-slot { box-shadow: calc(var(--mat-x) + 10px) calc(var(--mat-y) + 10px) 0 0 var(--mat); }
+
+.photo-captionbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin-top: 0;
+  padding: 11px 14px;
+  background: var(--ink);
+  color: var(--cream);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.3;
+  font-variant-numeric: lining-nums tabular-nums;
+  -webkit-font-smoothing: antialiased;
+}
+.photo-captionbar span + span { color: #d9cbad; font-weight: 500; }
+.photo-matted .photo-captionbar { margin-top: 0; position: relative; z-index: 1; box-shadow: var(--mat-x) var(--mat-y) 0 0 var(--mat); }
+
+.photo-chip {
+  position: absolute;
+  left: -22px;
+  bottom: 56px;
+  z-index: 2;
+  display: grid;
+  gap: 4px;
+  max-width: 220px;
+  padding: 16px 18px 15px;
+  background: var(--paper);
+  border: 1px solid var(--rule-soft);
+  border-top: 3px solid var(--leaf);
+  box-shadow: 6px 6px 0 0 rgba(26, 26, 26, 0.08);
+}
+.photo-chip .stat-figure { font-size: 44px; }
+.photo-chip .label { color: var(--text-3); }
+.photo-chip-text { font-family: var(--sans); font-size: 14px; font-weight: 500; line-height: 1.4; color: var(--ink); }
+.photo-chip-right { left: auto; right: -8px; }
+.photo-chip-top { bottom: auto; top: 28px; }
+
 .band-leaf .photo-caption { color: var(--on-leaf-2); }
 .band-leaf .photo-caption::before { background: var(--on-leaf-accent); }
 @media (max-width: 520px) {
-  .photo-matted { padding-right: 12px; }
-  .photo-matted .img-slot { box-shadow: 12px 12px 0 0 var(--blush); }
-  .photo-matted .img-slot.image-missing {
-    box-shadow: inset 0 0 0 11px transparent, inset 0 0 0 12px rgba(251, 246, 234, 0.8), 12px 12px 0 0 var(--blush);
-  }
-  .photo-matted .photo-caption { margin-top: 24px; }
+  .photo-matted { --mat-x: 12px; --mat-y: 12px; }
+  .photo-matted.mat-left { --mat-x: -12px; padding-left: 12px; }
+  .photo-chip { left: 12px; bottom: 48px; max-width: 190px; padding: 12px 14px; }
+  .photo-chip-right { left: auto; right: 24px; }
+  .photo-chip .stat-figure { font-size: 36px; }
 }
 
 /* ───────────────────────── 17. Prev / next pager ─────────────────────────
@@ -1175,7 +1479,12 @@ main > .stat-band:last-child { margin-bottom: 0; }
   color: var(--ink);
   transition: color 0.2s var(--ease);
 }
+.pager-row { display: flex; align-items: center; gap: 16px; min-width: 0; }
+.pager-next .pager-row { flex-direction: row-reverse; }
+.pager-row .medallion { box-shadow: none; }
+.pager-dek { font-size: 16px; font-style: italic; line-height: 1.45; color: var(--text-3); max-width: 32ch; }
 .pager-link:hover .pager-title { color: var(--leaf); }
+.pager-link:hover .medallion { background: var(--leaf); border-color: var(--leaf); color: var(--on-leaf); }
 .pager-prev:hover .pager-label .icon { transform: translateX(-3px); }
 .pager-next:hover .pager-label .icon { transform: translateX(3px); }
 .pager-home {
@@ -1205,6 +1514,7 @@ main > .stat-band:last-child { margin-bottom: 0; }
   .pager-prev { padding-right: 14px; border-right: 1px solid var(--rule-soft); }
   .pager-next { padding-left: 14px; }
   .pager-title { font-size: 24px; }
+  .pager-row .medallion, .pager-dek { display: none; }
 }
 
 /* ───────────────────────── 18. Site footer ───────────────────────── */
@@ -1214,7 +1524,16 @@ main > .stat-band:last-child { margin-bottom: 0; }
   align-items: center;
   justify-content: space-between;
   gap: 12px 24px;
+  position: relative;
   padding-block: 22px 40px;
+}
+/* the rule spans the text column only (not the .wrap gutters) */
+.site-footer-inner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: var(--gutter);
+  right: var(--gutter);
   border-top: 1px solid var(--rule);
 }
 .site-footer-name { color: var(--ink); }
@@ -1228,8 +1547,104 @@ main > .stat-band:last-child { margin-bottom: 0; }
 .site-footer-links a:hover { color: var(--leaf); }
 .site-footer-links .icon { width: 16px; height: 16px; }
 .site-footer-page { font-variant-numeric: lining-nums tabular-nums; }
-.pager + .site-footer .site-footer-inner { border-top-color: var(--rule-soft); }
+.pager + .site-footer .site-footer-inner::before { border-top-color: var(--rule-soft); }
 
 @media (max-width: 700px) {
   .site-footer-inner { flex-direction: column; align-items: flex-start; padding-bottom: 32px; }
 }
+
+/* ───────────────────────── 19. Matrix (comparison grid) and dot scale ─────────────────────────
+   A visible comparison table: rows × columns with check / dot marks.
+   <div class="matrix-wrap"><table class="matrix">…</table></div>
+   Use only where the marks encode something true (e.g. which team covered which control). */
+.matrix-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.matrix {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.matrix th,
+.matrix td { padding: 13px 14px; border-bottom: 1px solid var(--rule-soft); text-align: left; vertical-align: middle; }
+.matrix thead th {
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  border-bottom: 3px solid var(--ink);
+}
+.matrix tbody th { font-weight: 600; }
+.matrix td { text-align: center; }
+.matrix tbody tr:nth-child(odd) { background: rgba(251, 246, 234, 0.7); }
+.matrix .icon { width: 20px; height: 20px; color: var(--leaf); }
+.matrix-dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--leaf);
+}
+.matrix-dot-open { background: transparent; border: 1.5px solid var(--bamboo); }
+
+/* dot scale: n of m filled dots, with a visible text value */
+.dot-scale { display: inline-flex; align-items: center; gap: 5px; }
+.dot-scale > i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid var(--leaf);
+}
+.dot-scale > i.on { background: var(--leaf); }
+
+/* ───────────────────────── 20. Editorial details ───────────────────────── */
+/* drop cap on the first paragraph of a .prose block */
+.dropcap > p:first-child::first-letter,
+p.dropcap::first-letter {
+  float: left;
+  margin: 0.06em 0.1em 0 0;
+  font-family: var(--serif);
+  font-size: 4.1em;
+  line-height: 0.8;
+  font-weight: 500;
+  font-style: normal;
+  font-variation-settings: "opsz" 72;
+  color: var(--leaf);
+}
+
+/* ghost numeral: an oversized decorative chapter/section number behind content.
+   Always aria-hidden; the real number is in the eyebrow.
+   <span class="ghost-num" aria-hidden="true">02</span> inside a position:relative parent */
+.ghost-num {
+  position: absolute;
+  z-index: 0;
+  font-family: var(--serif);
+  font-size: clamp(160px, 20vw, 300px);
+  line-height: 0.8;
+  font-weight: 500;
+  font-variation-settings: "opsz" 72;
+  letter-spacing: -0.04em;
+  color: var(--numeral-ghost);
+  font-variant-numeric: lining-nums;
+  pointer-events: none;
+  user-select: none;
+}
+.chapter-hero { position: relative; }
+.chapter-hero > .ghost-num { top: clamp(8px, 1.6vw, 24px); left: calc(var(--gutter) - 0.05em); }
+.chapter-hero > :not(.ghost-num) { position: relative; z-index: 1; }
+@media (max-width: 700px) {
+  .ghost-num { font-size: 140px; }
+  .chapter-hero > .ghost-num { top: 8px; }
+}
+
+/* small print: a sourced note under a figure or a stat */
+.note {
+  font-family: var(--sans);
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--text-3);
+}
+.band-leaf .note { color: var(--on-leaf-2); }

@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alexandra &ldquo;Sasha&rdquo; Petrovicheva &mdash; Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alexandra Petrovicheva &mdash; Portfolio</title>
   <meta
     name="description"
-    content="Alexandra &ldquo;Sasha&rdquo; Petrovicheva, Northeastern University &rsquo;27 (International Business &amp; International Affairs): AI governance, cybersecurity risk and data privacy, on the way to an MBA with an AI &amp; technology focus."
+    content="Alexandra Petrovicheva, Northeastern University &rsquo;27 (International Business &amp; International Affairs): AI governance, technology risk and data privacy, and an MBA with an AI &amp; technology focus from Fall 2027."
   />
   <meta name="author" content="Alexandra Petrovicheva" />
   <meta name="theme-color" content="#f6ecd6" />
@@ -15,13 +15,13 @@
 
   <!-- Social share card (LinkedIn, iMessage, Slack, X) -->
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Sasha Petrovicheva &mdash; Portfolio" />
-  <meta property="og:title" content="Alexandra &ldquo;Sasha&rdquo; Petrovicheva &mdash; Portfolio" />
+  <meta property="og:site_name" content="Alexandra Petrovicheva &mdash; Portfolio" />
+  <meta property="og:title" content="Alexandra Petrovicheva &mdash; Portfolio" />
   <meta
     property="og:description"
-    content="Northeastern &rsquo;27, International Business &amp; International Affairs. AI governance, cybersecurity risk and data privacy &mdash; next, an MBA in AI &amp; technology."
+    content="Northeastern &rsquo;27, International Business &amp; International Affairs. AI governance, technology risk and data privacy; next, an MBA with an AI &amp; technology focus."
   />
-  <!-- og:image / twitter:image: add a 1200×630 JPG at assets/images/og-cover.jpg
+  <!-- TEMPLATE og:image / twitter:image: add a 1200×630 JPG at assets/images/og-cover.jpg
        (e.g. a crop of the cover with her portrait). Social sites ignore relative
        paths, so once the domain is known change both to an absolute URL, e.g.
        https://YOUR-DOMAIN/assets/images/og-cover.jpg — and add
@@ -29,26 +29,25 @@
   <meta property="og:image" content="assets/images/og-cover.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="The cover of Sasha Petrovicheva&rsquo;s portfolio" />
+  <meta property="og:image:alt" content="The cover of Alexandra Petrovicheva&rsquo;s portfolio" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Alexandra &ldquo;Sasha&rdquo; Petrovicheva &mdash; Portfolio" />
+  <meta name="twitter:title" content="Alexandra Petrovicheva &mdash; Portfolio" />
   <meta
     name="twitter:description"
-    content="Northeastern &rsquo;27. AI governance, cybersecurity risk and data privacy &mdash; next, an MBA in AI &amp; technology."
+    content="Northeastern &rsquo;27. AI governance, technology risk and data privacy; next, an MBA with an AI &amp; technology focus."
   />
   <meta name="twitter:image" content="assets/images/og-cover.jpg" />
 
   <!-- Structured data for search engines. Once the domain is known, add
-       "url": "https://YOUR-DOMAIN/" and "image": "https://YOUR-DOMAIN/assets/images/portrait.png". -->
+       "url": "https://YOUR-DOMAIN/" and "image": "https://YOUR-DOMAIN/assets/images/portrait.jpg". -->
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Alexandra Petrovicheva",
-      "alternateName": "Sasha Petrovicheva",
       "email": "mailto:alexpetrovicheva@gmail.com",
       "sameAs": ["https://www.linkedin.com/in/alex-petrovicheva"],
-      "description": "Northeastern University student (B.S. International Business, B.A. International Affairs, expected May 2027) working across AI governance, cybersecurity risk and data privacy.",
+      "description": "Northeastern University student (B.S. International Business, B.A. International Affairs, expected May 2027) working across AI governance, technology risk and data privacy.",
       "alumniOf": {
         "@type": "CollegeOrUniversity",
         "name": "Northeastern University",
@@ -73,182 +72,253 @@
     }
   </script>
 
+  <script>document.documentElement.classList.add("js");</script>
   <link rel="icon" type="image/png" href="assets/images/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Parisienne&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400..700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..600&amp;display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles/base.css" />
+  <link rel="stylesheet" href="styles/page.css" />
   <link rel="stylesheet" href="styles/landing.css" />
 </head>
 <body class="landing">
-  <main class="frame">
-    <!-- Top left: volume / year -->
-    <div class="masthead reveal-fade" data-delay="200">
-      <span class="masthead-vol">Vol. 1</span>
-      <span class="masthead-year">2026</span>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="masthead masthead-cover">
+    <div class="wrap masthead-bar">
+      <a class="brand" href="index.html" aria-label="Alexandra Petrovicheva, portfolio cover">
+        <span class="monogram" aria-hidden="true"><span>AP</span></span>
+        <span class="brand-text">
+          <span class="label label-ink">Portfolio</span>
+          <span class="brand-meta caption">Boston, MA &middot; 2026</span>
+        </span>
+      </a>
+      <div class="masthead-actions">
+        <a class="contents-toggle" href="#contents">
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-menu"></use></svg>
+          <span class="contents-toggle-label">Contents</span>
+        </a>
+        <a class="icon-btn" href="https://www.linkedin.com/in/alex-petrovicheva" target="_blank" rel="noopener" aria-label="LinkedIn (opens in a new tab)">
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-linkedin"></use></svg>
+        </a>
+        <a class="icon-btn" href="mailto:alexpetrovicheva@gmail.com" aria-label="Email Alexandra Petrovicheva">
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-mail"></use></svg>
+        </a>
+      </div>
+    </div>
+    <div class="wrap"><hr class="rule-double" /></div>
+  </header>
+
+  <main id="main">
+    <!-- Hero: name, focus, primary actions · framed portrait -->
+    <section class="wrap cover-hero" aria-labelledby="cover-name">
+      <div class="cover-intro">
+        <p class="kicker label">
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-cap"></use></svg>
+          Northeastern University &middot; Class of 2027
+        </p>
+        <h1 id="cover-name" class="display cover-name"><span>Alexandra</span> <span>Petrovicheva</span></h1>
+        <p class="lede cover-tag">Working where AI governance, technology risk, business strategy and law meet.</p>
+
+        <ul class="cover-focus" aria-label="Areas of focus">
+          <li>
+            <span class="medallion medallion-sm medallion-leaf" aria-hidden="true"><svg class="icon" focusable="false"><use href="assets/icons.svg#i-shield-check"></use></svg></span>
+            AI governance
+          </li>
+          <li>
+            <span class="medallion medallion-sm" aria-hidden="true"><svg class="icon" focusable="false"><use href="assets/icons.svg#i-lock"></use></svg></span>
+            Cyber risk &amp; privacy
+          </li>
+          <li>
+            <span class="medallion medallion-sm" aria-hidden="true"><svg class="icon" focusable="false"><use href="assets/icons.svg#i-trending-up"></use></svg></span>
+            Business strategy
+          </li>
+        </ul>
+
+        <div class="btn-row cover-actions">
+          <!-- Résumé: save the current PDF as assets/resume/resume.pdf -->
+          <a class="btn btn-primary" href="assets/resume/resume.pdf" download="Alexandra-Petrovicheva-Resume.pdf" type="application/pdf">
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-download"></use></svg>
+            Download r&eacute;sum&eacute;
+          </a>
+          <a class="btn btn-secondary" href="pages/my-story.html">
+            Begin with My Story
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-arrow-right"></use></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Portrait: a straight 4:5 JPG, at least 800×1000 px, saved as
+           assets/images/portrait.jpg. Until it exists the frame shows its hint and path. -->
+      <figure class="photo photo-matted cover-portrait">
+        <div
+          class="img-slot"
+          style="--ratio: 4 / 5; --focus: 50% 30%"
+          data-hint="A professional portrait of Alexandra, head and shoulders (vertical, 4:5)"
+          data-file="assets/images/portrait.jpg"
+        >
+          <img src="assets/images/portrait.jpg" alt="Portrait of Alexandra Petrovicheva" width="800" height="1000" fetchpriority="high" decoding="async" />
+        </div>
+        <figcaption class="photo-captionbar"><span>Alexandra Petrovicheva</span><span>Boston, 2026</span></figcaption>
+        <a class="photo-chip cover-chip" href="pages/ai-governance.html">
+          <span class="label">Research &middot; 2026&ndash;present</span>
+          <span class="photo-chip-text">Governing Agentic AI in Financial Operations</span>
+        </a>
+      </figure>
+    </section>
+
+    <!-- Dateline -->
+    <div class="wrap">
+      <ul class="cover-dateline">
+        <li><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-book-open"></use></svg>B.S. International Business &middot; B.A. International Affairs</li>
+        <li><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-map-pin"></use></svg>Boston, Massachusetts</li>
+        <li><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-languages"></use></svg>Russian &middot; Romanian</li>
+      </ul>
     </div>
 
-    <!-- Top right: social icons.
-         A tile whose href is "#" stays hidden (see landing.css), so paste the
-         real profile URL into the href and it appears on its own. -->
-    <nav class="socials reveal-fade" data-delay="300" aria-label="Social media">
-      <!-- Instagram: replace "#" with the profile URL, e.g. https://www.instagram.com/HANDLE/ -->
-      <a href="#" class="social-tile" target="_blank" rel="noopener" aria-label="Instagram (opens in a new tab)" data-social="instagram">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <rect x="3" y="3" width="18" height="18" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="1.6"/>
-          <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/>
-          <circle cx="17.5" cy="6.5" r="1.1" fill="currentColor"/>
-        </svg>
-      </a>
-      <a href="https://www.linkedin.com/in/alex-petrovicheva" class="social-tile" target="_blank" rel="noopener" aria-label="LinkedIn (opens in a new tab)" data-social="linkedin">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path fill="currentColor" d="M4.98 3.5A2.5 2.5 0 1 1 4.97 8.5a2.5 2.5 0 0 1 .01-5ZM3 9.5h4V21H3V9.5Zm6.5 0h3.84v1.57h.05c.53-.95 1.83-1.95 3.77-1.95 4.04 0 4.79 2.66 4.79 6.12V21h-4v-5.13c0-1.22-.02-2.79-1.7-2.79-1.7 0-1.96 1.33-1.96 2.7V21h-4V9.5Z"/>
-        </svg>
-      </a>
-      <!-- TikTok: replace "#" with the profile URL, e.g. https://www.tiktok.com/@HANDLE -->
-      <a href="#" class="social-tile" target="_blank" rel="noopener" aria-label="TikTok (opens in a new tab)" data-social="tiktok">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path fill="currentColor" d="M16 3c.4 1.86 1.5 3.4 3.5 4.04V10a7.5 7.5 0 0 1-3.6-1.04v6.04A5.5 5.5 0 1 1 10.5 9.5v3.05a2.5 2.5 0 1 0 2.5 2.45V3h3Z"/>
-        </svg>
-      </a>
-      <a href="mailto:alexpetrovicheva@gmail.com" class="social-tile" aria-label="Email Sasha" data-social="email">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M3 6h18v12H3z" fill="none" stroke="currentColor" stroke-width="1.6"/>
-          <path d="m3 6 9 7 9-7" fill="none" stroke="currentColor" stroke-width="1.6"/>
-        </svg>
-      </a>
-    </nav>
+    <!-- At a glance: résumé-verifiable figures only -->
+    <section class="stat-band cover-band" aria-labelledby="glance-title">
+      <div class="wrap">
+        <div class="stat-band-head">
+          <h2 id="glance-title" class="label">At a glance</h2>
+          <p class="label">Expected graduation &middot; May 2027</p>
+        </div>
+        <div class="stat-row" style="--cols: 4">
+          <div class="stat">
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-cap"></use></svg>
+            <span class="stat-figure">2</span>
+            <span class="stat-label label">Degrees</span>
+            <span class="stat-detail">B.S. and B.A. at Northeastern University</span>
+          </div>
+          <div class="stat">
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-users"></use></svg>
+            <span class="stat-figure">4</span>
+            <span class="stat-label label">Teams</span>
+            <span class="stat-detail">Risk, security and AI governance at Wellington Management</span>
+          </div>
+          <div class="stat">
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-heart-pulse"></use></svg>
+            <span class="stat-figure">7</span>
+            <span class="stat-label label">Years</span>
+            <span class="stat-detail">Part-time in regulated home-health operations</span>
+          </div>
+          <div class="stat">
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-award"></use></svg>
+            <span class="stat-figure">2<span class="stat-unit">&times;</span></span>
+            <span class="stat-label label">Dean&rsquo;s List</span>
+            <span class="stat-detail">Fall 2023 and Fall 2024</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <!-- Center: title + byline -->
-    <header class="title-block">
-      <h1 class="title" data-reveal="title">
-        <span aria-hidden="true">S</span><span aria-hidden="true">A</span><span aria-hidden="true">S</span><span aria-hidden="true">H</span><span aria-hidden="true">A</span>
-        <span class="visually-hidden">Alexandra &ldquo;Sasha&rdquo; Petrovicheva</span>
-      </h1>
-      <p class="subtitle reveal-drop" data-delay="700">portfolio</p>
-      <p class="title-byline reveal-fade" data-delay="1150" aria-hidden="true">
-        <span class="title-byline-rule"></span>Alexandra Petrovicheva
-      </p>
-    </header>
+    <!-- Featured · Contents -->
+    <section class="wrap cover-read" aria-label="Featured and contents">
+      <div class="cover-featured">
+        <h2 class="cover-col-label"><span class="label label-ink">Featured</span></h2>
 
-    <!-- Left rail: magazine cover lines — each teaser opens its chapter and,
-         on hover, lights up the matching link in the contents on the right. -->
-    <ul class="coverlines" aria-label="In this issue">
-      <li class="coverline reveal-fade" data-delay="850">
-        <a href="pages/ai-governance.html" class="coverline-link" data-chapter="ai-governance">
-          <span class="coverline-head"><span class="coverline-title">The AI Governance Issue</span>&nbsp;<span class="coverline-page" aria-hidden="true">p.&thinsp;03</span></span>
-          <span class="coverline-dek">Human oversight for agentic AI</span>
+        <a class="cover-story" href="pages/ai-governance.html">
+          <span class="medallion" aria-hidden="true"><svg class="icon" focusable="false"><use href="assets/icons.svg#i-shield-check"></use></svg></span>
+          <span class="cover-story-body">
+            <span class="label">AI &amp; Governance &middot; Chapter 02</span>
+            <span class="cover-story-title">Wellington Management</span>
+            <span class="cover-story-dek">A co-op across four risk and AI-governance teams, and an AI agent prototype.</span>
+          </span>
         </a>
-      </li>
-      <li class="coverline reveal-fade" data-delay="950">
-        <a href="pages/my-story.html" class="coverline-link" data-chapter="my-story">
-          <span class="coverline-head"><span class="coverline-title">Northeastern &rsquo;27</span>&nbsp;<span class="coverline-page" aria-hidden="true">p.&thinsp;02</span></span>
-          <span class="coverline-dek">International Business &amp; International Affairs</span>
+
+        <a class="cover-story" href="pages/ai-governance.html">
+          <span class="medallion" aria-hidden="true"><svg class="icon" focusable="false"><use href="assets/icons.svg#i-file-search"></use></svg></span>
+          <span class="cover-story-body">
+            <span class="label">Research &middot; Chapter 02</span>
+            <span class="cover-story-title">Governing agentic AI</span>
+            <span class="cover-story-dek">A faculty-supervised case study of oversight in financial operations.</span>
+          </span>
         </a>
-      </li>
-      <li class="coverline reveal-fade" data-delay="1050">
-        <a href="pages/next-chapter.html" class="coverline-link" data-chapter="next-chapter">
-          <span class="coverline-head"><span class="coverline-title">MBA&nbsp;<span class="coverline-arrow">&rarr;</span> Consulting&nbsp;<span class="coverline-arrow">&rarr;</span> Law</span>&nbsp;<span class="coverline-page" aria-hidden="true">p.&thinsp;08</span></span>
-          <span class="coverline-dek">Where she&rsquo;s headed, and why</span>
+
+        <a class="cover-story" href="pages/next-chapter.html">
+          <span class="medallion" aria-hidden="true"><svg class="icon" focusable="false"><use href="assets/icons.svg#i-compass"></use></svg></span>
+          <span class="cover-story-body">
+            <span class="label">The Next Chapter &middot; Chapter 07</span>
+            <span class="cover-story-title">The plan</span>
+            <span class="cover-path" aria-label="An MBA from Fall 2027, then consulting, then law school">
+              <span class="chip chip-sm chip-leaf">MBA &middot; Fall 2027</span>
+              <svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-arrow-right"></use></svg>
+              <span class="chip chip-sm chip-paper">Consulting</span>
+              <svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-arrow-right"></use></svg>
+              <span class="chip chip-sm chip-paper">Law school</span>
+            </span>
+          </span>
         </a>
-      </li>
-    </ul>
+      </div>
 
-    <!-- Bottom left: instagram feed (2 cols × 3 rows).
-         Photos: square (1:1) JPGs, at least 600×600 px, saved as
-         assets/images/insta-1.jpg … insta-6.jpg (tile order = left to right,
-         top to bottom). Until a photo exists the tile shows its hint and path;
-         each hint suggests a subject — any recent posts can take their place.
-         To link a tile to its post, add to the <a>:
-           href="https://www.instagram.com/p/POST-ID/" target="_blank" rel="noopener"
-           aria-label="Instagram post: short description"
-         and give the <img> a short alt text. -->
-    <aside class="insta reveal-slide-left" data-delay="500" aria-label="Photo feed">
-      <span class="insta-label" aria-hidden="true">insta feed</span>
-      <a class="insta-tile" data-hint="Sasha on campus in Boston (square)" data-file="assets/images/insta-1.jpg">
-        <img src="assets/images/insta-1.jpg" alt="" loading="lazy" />
-      </a>
-      <a class="insta-tile" data-hint="TEDxNortheasternU event day (square)" data-file="assets/images/insta-2.jpg">
-        <img src="assets/images/insta-2.jpg" alt="" loading="lazy" />
-      </a>
-      <a class="insta-tile" data-hint="Southern California, outdoors (square)" data-file="assets/images/insta-3.jpg">
-        <img src="assets/images/insta-3.jpg" alt="" loading="lazy" />
-      </a>
-      <a class="insta-tile" data-hint="A NextWork Build &amp; Brew session (square)" data-file="assets/images/insta-4.jpg">
-        <img src="assets/images/insta-4.jpg" alt="" loading="lazy" />
-      </a>
-      <a class="insta-tile" data-hint="With friends in Boston (square)" data-file="assets/images/insta-5.jpg">
-        <img src="assets/images/insta-5.jpg" alt="" loading="lazy" />
-      </a>
-      <a class="insta-tile" data-hint="A close-up detail: desk, notes or a book (square)" data-file="assets/images/insta-6.jpg">
-        <img src="assets/images/insta-6.jpg" alt="" loading="lazy" />
-      </a>
-    </aside>
+      <!-- Contents: the seven chapters, in reading order. Keep in sync with CHAPTERS in scripts/main.js. -->
+      <nav class="cover-contents" id="contents" aria-labelledby="contents-title">
+        <h2 class="cover-col-label" id="contents-title"><span class="label label-ink">Contents</span><span class="label label-muted">7 chapters</span></h2>
+        <ol>
+          <li><a class="cover-toc-row" href="pages/my-story.html"><span class="cover-toc-num">01</span><span class="cover-toc-title">My Story</span><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-book-open"></use></svg></a></li>
+          <li><a class="cover-toc-row" href="pages/ai-governance.html"><span class="cover-toc-num">02</span><span class="cover-toc-title">AI &amp; Governance</span><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-shield-check"></use></svg></a></li>
+          <li><a class="cover-toc-row" href="pages/strategy-brand.html"><span class="cover-toc-num">03</span><span class="cover-toc-title">Strategy &amp; Brand</span><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-target"></use></svg></a></li>
+          <li><a class="cover-toc-row" href="pages/leadership-impact.html"><span class="cover-toc-num">04</span><span class="cover-toc-title">Leadership &amp; Impact</span><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-users"></use></svg></a></li>
+          <li><a class="cover-toc-row" href="pages/community-service.html"><span class="cover-toc-num">05</span><span class="cover-toc-title">Community &amp; Service</span><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-hand-heart"></use></svg></a></li>
+          <li><a class="cover-toc-row" href="pages/law-advocacy.html"><span class="cover-toc-num">06</span><span class="cover-toc-title">Law &amp; Advocacy</span><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-scale"></use></svg></a></li>
+          <li><a class="cover-toc-row" href="pages/next-chapter.html"><span class="cover-toc-num">07</span><span class="cover-toc-title">The Next Chapter</span><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-compass"></use></svg></a></li>
+        </ol>
+      </nav>
+    </section>
 
-    <!-- Center: portrait — a full-height cut-out PNG with a transparent
-         background; it floats up into the title, so no box or backdrop. -->
-    <figure
-      class="portrait reveal-rise"
-      data-delay="700"
-      data-hint="A full-height portrait of Sasha (vertical), as a cut-out PNG with a transparent background"
-      data-file="assets/images/portrait.png"
-    >
-      <img src="assets/images/portrait.png" alt="Portrait of Alexandra &ldquo;Sasha&rdquo; Petrovicheva" />
-    </figure>
+    <!-- Experience: organisation badges (initials until real logos exist) -->
+    <section class="band band-paper band-sm cover-orgs" aria-labelledby="orgs-title">
+      <div class="wrap">
+        <div class="ornament ornament-wide cover-orgs-head">
+          <h2 id="orgs-title" class="label label-ink">Experience</h2>
+        </div>
+        <ul class="org-row" style="--cols: 5">
+          <li class="org"><span class="org-mark org-mark-leaf" aria-hidden="true">WM</span><span class="org-text"><span class="org-name">Wellington Management</span><span class="org-meta">Co-op &middot; 2025&ndash;26</span></span></li>
+          <li class="org"><span class="org-mark" aria-hidden="true">GA</span><span class="org-text"><span class="org-name">Guardian Angel Home Health</span><span class="org-meta">Part-time &middot; since 2019</span></span></li>
+          <li class="org"><span class="org-mark org-mark-long" aria-hidden="true">TJX</span><span class="org-text"><span class="org-name">The TJX Companies</span><span class="org-meta">Social &amp; Brand Co-op &middot; 2025</span></span></li>
+          <li class="org"><span class="org-mark org-mark-long" aria-hidden="true">UMG</span><span class="org-text"><span class="org-name">UMG Technologies</span><span class="org-meta">Marketing &amp; Strategy Intern &middot; 2025</span></span></li>
+          <li class="org"><span class="org-mark org-mark-long" aria-hidden="true">TEDx</span><span class="org-text"><span class="org-name">TEDxNortheasternU</span><span class="org-meta">Media Relations &middot; <span class="nowrap">2024&ndash;26</span></span></span></li>
+        </ul>
+      </div>
+    </section>
 
-    <!-- Right side: contents — the seven chapters, in reading order.
-         Keep in sync with CHAPTERS in scripts/main.js. -->
-    <nav class="pagelinks" aria-label="Chapters">
-      <a href="pages/my-story.html" class="pagelink" data-chapter="my-story" data-delay="600">
-        <span class="pagelink-text">My Story</span>
-        <span class="pagelink-arrow" aria-hidden="true"></span>
-      </a>
-      <a href="pages/ai-governance.html" class="pagelink" data-chapter="ai-governance" data-delay="680">
-        <span class="pagelink-text">AI &amp; Governance</span>
-        <span class="pagelink-arrow" aria-hidden="true"></span>
-      </a>
-      <a href="pages/strategy-brand.html" class="pagelink" data-chapter="strategy-brand" data-delay="760">
-        <span class="pagelink-text">Strategy &amp; Brand</span>
-        <span class="pagelink-arrow" aria-hidden="true"></span>
-      </a>
-      <a href="pages/leadership-impact.html" class="pagelink" data-chapter="leadership-impact" data-delay="840">
-        <span class="pagelink-text">Leadership &amp; Impact</span>
-        <span class="pagelink-arrow" aria-hidden="true"></span>
-      </a>
-      <a href="pages/community-service.html" class="pagelink" data-chapter="community-service" data-delay="920">
-        <span class="pagelink-text">Community &amp; Service</span>
-        <span class="pagelink-arrow" aria-hidden="true"></span>
-      </a>
-      <a href="pages/law-advocacy.html" class="pagelink" data-chapter="law-advocacy" data-delay="1000">
-        <span class="pagelink-text">Law &amp; Advocacy</span>
-        <span class="pagelink-arrow" aria-hidden="true"></span>
-      </a>
-      <a href="pages/next-chapter.html" class="pagelink" data-chapter="next-chapter" data-delay="1080">
-        <span class="pagelink-text">The Next Chapter</span>
-        <span class="pagelink-arrow" aria-hidden="true"></span>
-      </a>
-    </nav>
-
-    <!-- Résumé: save the current PDF as assets/resume/resume.pdf -->
-    <a
-      href="assets/resume/resume.pdf"
-      class="resume-link"
-      download="Alexandra-Petrovicheva-Resume.pdf"
-      type="application/pdf"
-      data-delay="1200"
-    >
-      <span class="resume-shimmer" aria-hidden="true"></span>
-      <span class="resume-text">download my r&eacute;sum&eacute;</span>
-      <svg class="resume-arrow" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M12 4v12m0 0-5-5m5 5 5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </a>
+    <!-- Contact -->
+    <section class="wrap cover-contact-wrap" aria-labelledby="contact-title">
+      <div class="panel panel-blush cover-contact">
+        <div class="cover-contact-text">
+          <h2 id="contact-title" class="kicker label">
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-mail"></use></svg>
+            Contact
+          </h2>
+          <a class="cover-email" href="mailto:alexpetrovicheva@gmail.com">alexpetrovicheva@gmail.com</a>
+          <p class="caption">Boston, Massachusetts &middot; graduating May 2027</p>
+        </div>
+        <div class="btn-row cover-contact-actions">
+          <a class="btn btn-primary" href="assets/resume/resume.pdf" download="Alexandra-Petrovicheva-Resume.pdf" type="application/pdf">
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-download"></use></svg>
+            Download r&eacute;sum&eacute;
+          </a>
+          <a class="btn btn-secondary" href="https://www.linkedin.com/in/alex-petrovicheva" target="_blank" rel="noopener">
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-linkedin"></use></svg>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </section>
   </main>
 
+  <footer class="site-footer">
+    <div class="wrap site-footer-inner">
+      <span class="site-footer-name caption">&copy; 2026 Alexandra Petrovicheva</span>
+      <span class="site-footer-links caption">
+        <a href="https://www.linkedin.com/in/alex-petrovicheva" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-linkedin"></use></svg>LinkedIn</a>
+        <a href="mailto:alexpetrovicheva@gmail.com"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-mail"></use></svg>Email</a>
+        <a href="assets/resume/resume.pdf" download="Alexandra-Petrovicheva-Resume.pdf"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-download"></use></svg>R&eacute;sum&eacute;</a>
+      </span>
+      <span class="site-footer-page caption">Cover &middot; p. 01</span>
+    </div>
+  </footer>
+
   <script src="scripts/main.js" defer></script>
-  <script src="scripts/cursor-effects.js" defer></script>
 </body>
 </html>

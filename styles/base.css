@@ -25,6 +25,7 @@
   --sand: #e7d8ba;         /* photo placeholders */
   --blush: #f4c2c2;        /* small highlight only: photo mat, marker (< 5% of a page) */
   --blush-soft: #f9e1dc;
+  --blush-tint: #f8e8de;   /* the soft blush-tinted panel (.band-blush, .panel-blush) */
   --bamboo: #c5a47e;       /* rules and small marks only — never text */
   --leaf: #2d4a32;         /* primary accent: links, icons, current state, buttons, bands */
   --leaf-deep: #243d29;    /* hover on leaf buttons */
@@ -47,6 +48,7 @@
   --rule: #1a1a1a;
   --rule-soft: #d9cbad;    /* hairlines between items */
   --rule-chip: #cdbc98;    /* chip / tag outlines */
+  --numeral-ghost: #ecdfc1;/* oversized decorative numerals (aria-hidden only) */
 
   /* type */
   --serif: "Newsreader", "Iowan Old Style", Georgia, "Times New Roman", serif;
@@ -62,7 +64,8 @@
   --fs-ui: 15px;
   --fs-label: 13px;
   --fs-caption: 14px;
-  --fs-stat: clamp(48px, 4.6vw, 68px);
+  --fs-stat: clamp(52px, 5.2vw, 76px);
+  --fs-stat-lg: clamp(64px, 7vw, 104px);
 
   /* layout */
   --max: 1280px;
@@ -293,7 +296,10 @@ a.inline-link:hover { text-decoration-color: var(--leaf); }
 /* ───────────────────────── 5. Reveals ─────────────────────────
    Subtle: opacity 0→1 plus at most 12px of travel, 0.6s. main.js adds .is-in
    (IntersectionObserver). Hidden only when the inline head script has added
-   html.js, so content is always visible without JavaScript. */
+   html.js, so content is always visible without JavaScript:
+     <script>document.documentElement.classList.add("js");</script>
+   The one reveal class to use in new markup is .reveal (= .reveal-rise). */
+.js .reveal,
 .js .reveal-drop,
 .js .reveal-rise,
 .js .reveal-slide-left,
@@ -305,10 +311,12 @@ a.inline-link:hover { text-decoration-color: var(--leaf); }
     transform 0.6s var(--ease);
 }
 .js .reveal-drop { transform: translateY(-8px); }
+.js .reveal,
 .js .reveal-rise { transform: translateY(12px); }
 .js .reveal-slide-left { transform: translateX(-12px); }
 .js .reveal-slide-right { transform: translateX(12px); }
 
+.js .is-in.reveal,
 .js .is-in.reveal-drop,
 .js .is-in.reveal-rise,
 .js .is-in.reveal-slide-left,
@@ -319,6 +327,7 @@ a.inline-link:hover { text-decoration-color: var(--leaf); }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .js .reveal,
   .js .reveal-drop,
   .js .reveal-rise,
   .js .reveal-slide-left,

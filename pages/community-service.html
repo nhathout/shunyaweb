@@ -3,32 +3,53 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Community &amp; Service — Sasha Petrovicheva</title>
-  <meta
-    name="description"
-    content="Sasha Petrovicheva&rsquo;s community and service: volunteering with Heal the Bay and the SCV Food Bank in Los Angeles, refugee resettlement with the International Institute of New England, and her campus circles."
-  />
+  <title>Community &amp; Service &mdash; Alexandra Petrovicheva</title>
+  <meta name="description" content="Alexandra Petrovicheva&rsquo;s community service: Heal the Bay and the SCV Food Bank in Los Angeles, and refugee resettlement with the International Institute of New England." />
+  <meta name="author" content="Alexandra Petrovicheva" />
+  <meta name="theme-color" content="#f6ecd6" />
+  <!-- CHROME (shared by all chapter pages; see .review-tools/COMPONENTS.md). Page agents: edit only the
+       description above, the page stylesheet and the page script. -->
+  <script>document.documentElement.classList.add("js");</script>
   <link rel="icon" type="image/png" href="../assets/images/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Parisienne&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400..700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..600&amp;display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../styles/base.css" />
   <link rel="stylesheet" href="../styles/page.css" />
   <link rel="stylesheet" href="../styles/pages/community-service.css" />
 </head>
 <body class="page community-page" data-chapter="community-service">
-  <div class="page-frame">
-    <header class="page-masthead reveal-fade" data-delay="100">
-      <a href="../index.html" class="home-link">&larr; back to cover</a>
-      <div class="page-vol">
-        <span>Sasha Petrovicheva</span>
-        <span>—</span>
-        <span>Vol. 1 / 2026</span>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- CHROME: masthead. main.js fills .chapter-strip and wires .contents-toggle. Do not edit per page. -->
+  <header class="masthead">
+    <div class="wrap masthead-bar">
+      <a class="brand" href="../index.html" aria-label="Alexandra Petrovicheva, portfolio cover">
+        <span class="monogram" aria-hidden="true"><span>AP</span></span>
+        <span class="brand-text">
+          <span class="brand-name">Alexandra Petrovicheva</span>
+          <span class="brand-meta label label-muted">Portfolio</span>
+        </span>
+      </a>
+      <div class="masthead-actions">
+        <button type="button" class="contents-toggle" aria-expanded="false" aria-controls="contents-panel">
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-menu"></use></svg>
+          <span class="contents-toggle-label">Contents</span>
+        </button>
+        <a class="icon-btn" href="https://www.linkedin.com/in/alex-petrovicheva" target="_blank" rel="noopener" aria-label="LinkedIn (opens in a new tab)">
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-linkedin"></use></svg>
+        </a>
+        <a class="icon-btn" href="mailto:alexpetrovicheva@gmail.com" aria-label="Email Alexandra Petrovicheva">
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-mail"></use></svg>
+        </a>
+        <a class="btn btn-primary btn-sm" href="../assets/resume/resume.pdf" download="Alexandra-Petrovicheva-Resume.pdf" type="application/pdf">
+          R&eacute;sum&eacute;
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-download"></use></svg>
+        </a>
       </div>
-    </header>
+    </div>
+    <nav class="wrap chapter-strip" aria-label="Chapters"></nav>
+  </header>
 
     <main id="main">
 
@@ -377,15 +398,22 @@
 
     </main>
 
-    <nav class="chapter-nav reveal-fade" data-delay="200" aria-label="Chapter navigation"></nav>
+  <!-- CHROME: prev / cover / next (filled by main.js from CHAPTERS) and the site footer. Do not edit per page. -->
+  <nav class="wrap pager" aria-label="Chapter navigation"></nav>
 
-    <footer class="page-footer">
-      <span>Community &amp; Service</span>
-      <span>p. 06</span>
-    </footer>
-  </div>
+  <footer class="site-footer">
+    <div class="wrap site-footer-inner">
+      <span class="site-footer-name caption">&copy; 2026 Alexandra Petrovicheva</span>
+      <span class="site-footer-links caption">
+        <a href="https://www.linkedin.com/in/alex-petrovicheva" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-linkedin"></use></svg>LinkedIn</a>
+        <a href="mailto:alexpetrovicheva@gmail.com"><svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-mail"></use></svg>Email</a>
+        <a href="../assets/resume/resume.pdf" download="Alexandra-Petrovicheva-Resume.pdf"><svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-download"></use></svg>R&eacute;sum&eacute;</a>
+      </span>
+      <span class="site-footer-page caption">Community &amp; Service &middot; p. 06</span>
+    </div>
+  </footer>
+
   <script src="../scripts/main.js" defer></script>
-  <script src="../scripts/cursor-effects.js" defer></script>
   <script src="../scripts/pages/community-service.js" defer></script>
 </body>
 </html>
