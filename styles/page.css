@@ -94,6 +94,204 @@ body.page {
   font-style: italic;
 }
 
+/* ───────── contents menu (injected by main.js) ───────── */
+.contents-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 2px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--black);
+  transition: color 0.35s ease, letter-spacing 0.4s ease;
+}
+
+.contents-toggle:hover {
+  color: var(--leaf);
+  letter-spacing: 0.22em;
+}
+
+.contents-toggle-lines {
+  position: relative;
+  width: 18px;
+  height: 9px;
+  border-top: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+}
+
+.contents-toggle-lines::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 5px;
+  top: 3px;
+  height: 1px;
+  background: currentColor;
+  transition: right 0.35s ease;
+}
+
+.contents-toggle:hover .contents-toggle-lines::after {
+  right: 0;
+}
+
+html.contents-locked {
+  overflow: hidden;
+}
+
+.contents-panel {
+  position: fixed;
+  inset: 0;
+  z-index: 9990;
+  display: grid;
+  place-items: center;
+  padding: clamp(16px, 4vw, 48px);
+  background: rgba(26, 26, 26, 0.32);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.contents-panel[hidden] {
+  display: none;
+}
+
+.contents-panel.is-open {
+  opacity: 1;
+}
+
+.contents-sheet {
+  width: min(720px, 100%);
+  max-height: calc(100vh - 32px);
+  overflow: auto;
+  border: var(--hairline);
+  background:
+    linear-gradient(150deg, rgba(244, 194, 194, 0.25), transparent 40%),
+    var(--cream);
+  padding: clamp(22px, 4vw, 48px);
+  box-shadow: 18px 22px 0 rgba(26, 26, 26, 0.12);
+  transform: translateY(18px);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.contents-panel.is-open .contents-sheet {
+  transform: translateY(0);
+}
+
+.contents-head,
+.contents-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.contents-head {
+  padding-bottom: 14px;
+  border-bottom: var(--hairline);
+}
+
+.contents-close {
+  font-style: italic;
+  letter-spacing: 0.12em;
+  font-size: 15px;
+}
+
+.contents-close:hover {
+  color: var(--leaf);
+}
+
+.contents-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.contents-list a {
+  display: grid;
+  grid-template-columns: 3.2em 1fr auto;
+  align-items: baseline;
+  gap: 12px;
+  padding: clamp(10px, 1.4vw, 16px) 0;
+  border-bottom: 1px solid rgba(26, 26, 26, 0.16);
+  transition: padding-left 0.4s cubic-bezier(0.22, 1, 0.36, 1), color 0.3s ease;
+}
+
+.contents-list a:hover,
+.contents-list a:focus-visible {
+  padding-left: 10px;
+  color: var(--leaf);
+}
+
+.contents-list a[aria-current="page"] .contents-title::after {
+  content: " ✦";
+  font-size: 0.5em;
+  vertical-align: middle;
+  color: var(--bamboo-deep);
+}
+
+.contents-num {
+  font-style: italic;
+  color: var(--bamboo-deep);
+  letter-spacing: 0.1em;
+}
+
+.contents-title {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 38px);
+  line-height: 1.05;
+}
+
+.contents-script {
+  font-family: var(--font-script);
+  font-size: clamp(18px, 2vw, 26px);
+  color: var(--bamboo-deep);
+  white-space: nowrap;
+}
+
+.contents-foot {
+  padding-top: 18px;
+  font-style: italic;
+  letter-spacing: 0.08em;
+}
+
+.contents-foot a:hover {
+  color: var(--leaf);
+}
+
+@media (max-width: 560px) {
+  .contents-list a {
+    grid-template-columns: 2.4em 1fr;
+  }
+  .contents-script {
+    grid-column: 2;
+    white-space: normal;
+  }
+}
+
+@media (max-width: 720px) {
+  .page-masthead {
+    flex-wrap: wrap;
+    gap: 12px 18px;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+  }
+  .contents-toggle {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+  }
+  .page-masthead .page-vol {
+    order: 3;
+    width: 100%;
+    gap: 10px;
+    font-size: 11px;
+  }
+}
+
+.chapter-nav-empty {
+  display: block;
+}
+
 .page-hero {
   flex: 0 0 auto;
   padding: clamp(40px, 8vw, 110px) 0 clamp(20px, 3vw, 40px);

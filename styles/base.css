@@ -133,3 +133,81 @@ body::before {
     transition: none !important;
   }
 }
+
+/* ───────── image slots — drop-in photo templates ─────────
+   Markup:
+     <div class="img-slot" style="--ratio: 4 / 5"
+          data-hint="What the photo should show"
+          data-file="assets/images/story/example.jpg">
+       <img src="../assets/images/story/example.jpg" alt="…" />
+     </div>
+   If the file exists it fills the slot (object-fit: cover). If it is missing,
+   main.js adds .image-missing and the slot shows the hint + file path so
+   anyone can see exactly which photo belongs there. */
+.img-slot {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: var(--ratio, 4 / 3);
+  background: var(--cream-deep);
+}
+
+.img-slot > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--focus, center);
+}
+
+.img-slot.image-missing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7em;
+  padding: clamp(12px, 1.6vw, 22px);
+  text-align: center;
+  border: 1px dashed var(--bamboo-deep);
+  background:
+    linear-gradient(135deg, rgba(244, 194, 194, 0.3), transparent 45%),
+    repeating-linear-gradient(135deg, rgba(26, 26, 26, 0.045) 0 1px, transparent 1px 12px),
+    var(--cream-deep);
+}
+
+.img-slot.image-missing > img {
+  display: none;
+}
+
+.img-slot.image-missing::before {
+  content: "✦ photo to add\A" attr(data-hint);
+  white-space: pre-line;
+  max-width: 26em;
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: clamp(13px, 1vw, 16px);
+  line-height: 1.35;
+  color: var(--bamboo-deep);
+}
+
+.img-slot.image-missing::after {
+  content: attr(data-file);
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  font-family: var(--font-body);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: rgba(26, 26, 26, 0.5);
+}
+
+/* compact slots (small tiles) — hint only, no file path */
+.img-slot.img-slot-compact.image-missing::after {
+  display: none;
+}
+.img-slot.img-slot-compact.image-missing::before {
+  font-size: 12px;
+}
+
+/* focus ring shared by custom interactive widgets */
+:where(a, button, [tabindex]):focus-visible {
+  outline: 2px solid var(--leaf);
+  outline-offset: 3px;
+}
