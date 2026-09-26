@@ -1,3 +1,295 @@
+/* LEGACY (pre-redesign, moved from page.css) — the page redesign replaces or deletes this */
+/* note: .photo-card and .quote-strip below were shared by several pages (ai-governance, leadership-impact,
+   community-service, next-chapter); the redesign replaces them with .photo and .statement from page.css. */
+/* Story page */
+.story-page {
+  --page-accent: var(--baby-pink);
+}
+
+.story-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
+  align-items: center;
+  gap: clamp(28px, 5vw, 80px);
+}
+
+.story-hero-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.hero-polaroids {
+  position: relative;
+  min-height: clamp(260px, 28vw, 360px);
+  display: block;
+}
+
+.hero-polaroid {
+  position: absolute;
+  width: 56%;
+  margin: 0;
+}
+
+.hero-polaroid .photo-slot {
+  min-height: clamp(160px, 18vw, 230px);
+}
+
+.hero-polaroid-one {
+  top: 0;
+  left: 0;
+}
+
+.hero-polaroid-two {
+  bottom: 0;
+  right: 0;
+}
+
+@media (max-width: 1080px) {
+  .story-hero {
+    grid-template-columns: 1fr;
+  }
+  .hero-polaroids {
+    min-height: clamp(280px, 38vw, 360px);
+  }
+  .hero-polaroid {
+    width: 48%;
+  }
+}
+
+@media (max-width: 720px) {
+  .hero-polaroids {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    min-height: 0;
+  }
+  .hero-polaroid {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    --rotate: 0deg !important;
+  }
+}
+
+.story-board {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.85fr) minmax(360px, 1.15fr);
+  gap: clamp(28px, 5vw, 76px);
+  align-items: center;
+  padding: clamp(18px, 3vw, 44px) 0 clamp(26px, 4vw, 60px);
+}
+
+.story-copy,
+.story-thread {
+  display: grid;
+  gap: 16px;
+}
+
+.story-thread {
+  margin-top: clamp(12px, 2vw, 26px);
+}
+
+.story-note {
+  border: var(--hairline);
+  background: rgba(250, 243, 227, 0.72);
+}
+
+.story-note summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 16px 18px;
+  cursor: pointer;
+  font-size: clamp(22px, 2vw, 34px);
+  line-height: 1;
+}
+
+.story-note summary::-webkit-details-marker {
+  display: none;
+}
+
+.story-note summary::after {
+  content: "+";
+  font-family: var(--font-display);
+  font-size: 0.9em;
+  line-height: 1;
+  transition: transform 0.35s ease;
+}
+
+.story-note[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.story-note p {
+  margin: 0;
+  padding: 0 18px 18px;
+  font-size: clamp(17px, 1.3vw, 21px);
+  line-height: 1.55;
+}
+
+.photo-stack {
+  position: relative;
+  min-height: clamp(430px, 46vw, 620px);
+}
+
+.photo-card {
+  position: absolute;
+  margin: 0;
+  padding: 12px 12px 34px;
+  border: var(--hairline);
+  background: var(--cream-soft);
+  box-shadow: 14px 18px 0 rgba(26, 26, 26, 0.08);
+}
+
+/* polaroid-style tape decorations on each photo card */
+.photo-card::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 64px;
+  height: 18px;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(244, 194, 194, 0.55) 0 4px,
+      rgba(244, 194, 194, 0.32) 4px 8px
+    );
+  border: 1px solid rgba(26, 26, 26, 0.12);
+  transform: translateX(-50%) rotate(-3deg);
+  box-shadow: 0 2px 4px rgba(26, 26, 26, 0.08);
+  pointer-events: none;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.photo-card-small::before { transform: translateX(-50%) rotate(5deg); }
+.photo-card-wide::before {
+  left: 18%;
+  width: 78px;
+  transform: rotate(-7deg);
+}
+
+.photo-card:hover::before {
+  transform: translateX(-50%) rotate(-7deg) scale(1.05);
+}
+.photo-card-small:hover::before {
+  transform: translateX(-50%) rotate(9deg) scale(1.05);
+}
+.photo-card-wide:hover::before {
+  transform: rotate(-3deg) scale(1.05);
+}
+
+.photo-slot {
+  min-height: 180px;
+  display: grid;
+  place-items: center;
+  padding: 22px;
+  border: 1px dashed var(--bamboo-deep);
+  color: var(--bamboo-deep);
+  text-align: center;
+  font-style: italic;
+  background:
+    linear-gradient(135deg, rgba(244, 194, 194, 0.28), transparent 42%),
+    repeating-linear-gradient(135deg, rgba(26, 26, 26, 0.045) 0 1px, transparent 1px 12px),
+    var(--cream-deep);
+}
+
+.photo-card figcaption {
+  position: absolute;
+  left: 14px;
+  bottom: 9px;
+  font-style: italic;
+  letter-spacing: 0.08em;
+}
+
+.photo-card-main {
+  top: 0;
+  left: 10%;
+  width: 58%;
+}
+
+.photo-card-main .photo-slot {
+  min-height: clamp(240px, 28vw, 360px);
+}
+
+.photo-card-small {
+  top: 18%;
+  right: 3%;
+  width: 36%;
+}
+
+.photo-card-wide {
+  left: 0;
+  bottom: 0;
+  width: 72%;
+}
+
+.photo-card-wide .photo-slot {
+  min-height: clamp(150px, 15vw, 220px);
+}
+
+.quote-strip {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 18px;
+  align-items: start;
+  border-top: var(--hairline);
+  border-bottom: var(--hairline);
+  padding: clamp(18px, 2.6vw, 34px) 0;
+  margin-bottom: clamp(24px, 3vw, 44px);
+}
+
+.quote-mark {
+  font-family: var(--font-script);
+  font-size: clamp(64px, 7vw, 116px);
+  line-height: 0.7;
+  color: var(--baby-pink);
+}
+
+.quote-strip p {
+  margin: 0;
+  max-width: 24em;
+  font-size: clamp(28px, 3vw, 52px);
+  line-height: 1.08;
+}
+
+
+/* (responsive rules for this page, split out of page.css's shared media queries) */
+@media (max-width: 1080px) {
+  .story-board {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 800px) {
+  .photo-stack {
+    display: grid;
+    min-height: 0;
+    gap: 14px;
+  }
+
+  .photo-card,
+  .photo-card-main,
+  .photo-card-small,
+  .photo-card-wide {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    --rotate: 0deg !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .quote-strip {
+    grid-template-columns: 1fr;
+  }
+}
+/* END LEGACY (moved from page.css) */
+
 /* my-story page — page-specific styles (loaded after page.css) */
 
 /* a deeper bamboo for small script / italic text so it stays readable

@@ -1,189 +1,358 @@
-/* Italiana draws "+", "-", "–" and "—" as hairlines that vanish on screen.
-   This face borrows just those glyphs from Cormorant Garamond (the same file the
-   Google Fonts stylesheet already loads, so it comes from cache), with local
-   serif fallbacks; every other character still renders in Italiana. */
-@font-face {
-  font-family: "Italiana Punctuation";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src:
-    url("https://fonts.gstatic.com/s/cormorantgaramond/v21/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYqXtK.woff2") format("woff2"),
-    local("Cormorant Garamond"),
-    local("Georgia"),
-    local("Times New Roman");
-  unicode-range: U+002B, U+002D, U+2010-2015, U+2212;
-}
+/* ==========================================================================
+   base.css — tokens, reset, type scale, icons, focus, reveals, photo slots
+   --------------------------------------------------------------------------
+   Loaded by every page (cover and chapters), before page.css / landing.css.
 
+   Fonts (one Google Fonts <link> per page, display=swap):
+     Newsreader       display + body serif (variable opsz 6–72, wght 400–700, italic)
+     Libre Franklin   labels, UI, navigation, data (wght 400–700)
+
+   Performance rules for every stylesheet on this site (Mac Chrome especially):
+     - no mix-blend-mode, backdrop-filter, CSS filters, fixed full-screen overlays
+     - no infinite animations, no permanent will-change
+     - transitions only on color / background-color / border-color / opacity /
+       transform, 250ms or less
+     - no global -webkit-font-smoothing (it thins text on macOS); it is applied
+       only on the dark leaf bands (.band-leaf, .stat-band)
+   ========================================================================== */
+
+/* ───────────────────────── 1. Tokens ───────────────────────── */
 :root {
-  --cream: #f6ecd6;
-  --cream-soft: #faf3e3;
-  --cream-deep: #efe2c5;
-  --black: #1a1a1a;
-  --black-soft: #2a2724;
-  --baby-pink: #f4c2c2;
-  --baby-pink-soft: #f9d9d9;
-  --bamboo: #c5a47e;
-  --bamboo-deep: #a98660;
-  --leaf: #2d4a32;
-  --leaf-soft: #3a5a40;
-  --bamboo-ink: #7d5f40;    /* small bamboo text on cream: ≥ 4.5:1 */
-  --bamboo-script: #9c795a; /* large script lines on cream: ≥ 3:1 */
+  /* brand palette */
+  --cream: #f6ecd6;        /* page */
+  --paper: #fbf6ea;        /* raised surfaces: cards, fact boxes */
+  --cream-deep: #efe2c5;   /* recessed bands */
+  --sand: #e7d8ba;         /* photo placeholders */
+  --blush: #f4c2c2;        /* small highlight only: photo mat, marker (< 5% of a page) */
+  --blush-soft: #f9e1dc;
+  --bamboo: #c5a47e;       /* rules and small marks only — never text */
+  --leaf: #2d4a32;         /* primary accent: links, icons, current state, buttons, bands */
+  --leaf-deep: #243d29;    /* hover on leaf buttons */
+  --ink: #1a1a1a;          /* headings, strong rules */
 
-  /* "Italiana Punctuation" (below) supplies only + - – — ; everything else is Italiana */
-  --font-display: "Italiana Punctuation", "Italiana", "Playfair Display", serif;
-  --font-body: "Cormorant Garamond", Georgia, serif;
-  --font-script: "Parisienne", "Snell Roundhand", cursive;
+  /* text roles — every value passes WCAG AA (4.5:1) on cream, paper and sand */
+  --text: #2b2723;         /* body copy       12.6:1 on cream */
+  --text-2: #3d3831;       /* secondary copy   9.9:1 */
+  --text-3: #5c544a;       /* captions, meta   6.3:1 on cream, 5.3:1 on sand */
+  --accent-ink: #74573a;   /* bamboo as text   5.7:1 on cream, 4.7:1 on sand */
 
-  --frame-padding: clamp(20px, 3.5vw, 56px);
-  --hairline: 1px solid var(--black);
+  /* on the leaf band */
+  --on-leaf: #f6ecd6;      /* 8.4:1 */
+  --on-leaf-2: #e4dcc6;    /* 7.2:1 */
+  --on-leaf-label: #d9bf9c;/* 5.6:1 */
+  --on-leaf-accent: #f4c2c2;/* 6.2:1 */
+  --on-leaf-rule: rgba(246, 236, 214, 0.22);
+
+  /* rules */
+  --rule: #1a1a1a;
+  --rule-soft: #d9cbad;    /* hairlines between items */
+  --rule-chip: #cdbc98;    /* chip / tag outlines */
+
+  /* type */
+  --serif: "Newsreader", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --sans: "Libre Franklin", "Helvetica Neue", Arial, sans-serif;
+
+  --fs-display: clamp(50px, 7.4vw, 112px);
+  --fs-h1: clamp(44px, 6vw, 88px);
+  --fs-h2: clamp(32px, 3.4vw, 50px);
+  --fs-h3: clamp(22px, 1.9vw, 27px);
+  --fs-lede: clamp(21px, 1.75vw, 26px);
+  --fs-body: 19px;
+  --fs-small: 17px;
+  --fs-ui: 15px;
+  --fs-label: 13px;
+  --fs-caption: 14px;
+  --fs-stat: clamp(48px, 4.6vw, 68px);
+
+  /* layout */
+  --max: 1280px;
+  --gutter: clamp(20px, 4vw, 56px);
+  --col-gap: clamp(20px, 2.6vw, 40px);
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 48px;
+  --space-6: 72px;
+  --space-7: clamp(64px, 8vw, 120px);
+
+  --radius: 2px;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --masthead-h: 76px;
 }
 
+@media (max-width: 700px) {
+  :root {
+    --fs-body: 18px;
+    --fs-small: 17px;
+    --masthead-h: 60px;
+  }
+}
+
+/* ───────────────────────── 2. Reset & base ───────────────────────── */
 *,
 *::before,
-*::after {
-  box-sizing: border-box;
+*::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--masthead-h) + 16px);
 }
 
-html,
 body {
   margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: var(--font-body);
+  min-height: 100vh;
+  min-height: 100svh;
   background: var(--cream);
-  color: var(--black);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
+  color: var(--text);
+  font-family: var(--serif);
+  font-size: var(--fs-body);
+  font-weight: 420;
+  font-variation-settings: "opsz" 12;
+  line-height: 1.6;
+  font-kerning: normal;
+  overflow-x: hidden;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+h1, h2, h3, h4, h5, h6, p, ul, ol, dl, dd, figure, blockquote { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+a { color: inherit; text-decoration: none; }
+img, svg, video { display: block; max-width: 100%; }
+img { height: auto; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+strong, b { font-weight: 600; }
+hr { border: 0; margin: 0; }
+
+h1, h2, h3, h4 {
+  font-family: var(--serif);
+  color: var(--ink);
+  font-weight: 500;
+  font-variation-settings: "opsz" 72;
+  line-height: 1.12;
+  text-wrap: balance;
 }
 
-img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
+p { text-wrap: pretty; }
 
-button {
-  font: inherit;
-  color: inherit;
-  background: none;
-  border: 0;
-  cursor: pointer;
+/* all numerals line up: dates, stats, step and chapter numbers */
+time,
+.num,
+.figure-num,
+.label,
+.caption,
+table { font-variant-numeric: lining-nums tabular-nums; }
+
+::selection { background: var(--blush); color: var(--ink); }
+
+/* focus ring shared by every interactive element */
+:where(a, button, summary, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--leaf);
+  outline-offset: 3px;
+  border-radius: 1px;
 }
 
 .visually-hidden {
-  position: absolute;
+  position: absolute !important;
   width: 1px;
   height: 1px;
   padding: 0;
   margin: -1px;
   overflow: hidden;
-  clip: rect(0, 0, 0, 0);
+  clip: rect(0 0 0 0);
   white-space: nowrap;
   border: 0;
 }
 
-/* paper / magazine grain — extremely subtle */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 100;
-  background-image:
-    radial-gradient(rgba(26, 26, 26, 0.025) 1px, transparent 1px);
-  background-size: 3px 3px;
-  mix-blend-mode: multiply;
-  opacity: 0.5;
+.skip-link {
+  position: absolute;
+  left: var(--gutter);
+  top: -80px;
+  z-index: 60;
+  padding: 12px 16px;
+  background: var(--leaf);
+  color: var(--on-leaf);
+  font: 600 var(--fs-ui)/1 var(--sans);
+}
+.skip-link:focus { top: 12px; }
+
+.wrap {
+  width: 100%;
+  max-width: calc(var(--max) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
 }
 
-/* shared reveal primitives — JS adds .is-in to trigger */
-.reveal-drop,
-.reveal-rise,
-.reveal-slide-left,
-.reveal-slide-right,
-.reveal-fade {
+.nowrap { white-space: nowrap; }
+
+/* ───────────────────────── 3. Type roles ───────────────────────── */
+.display {
+  font-family: var(--serif);
+  font-size: var(--fs-display);
+  font-weight: 500;
+  font-variation-settings: "opsz" 72;
+  line-height: 0.98;
+  letter-spacing: -0.022em;
+  color: var(--ink);
+}
+.h1 { font-size: var(--fs-h1); line-height: 1; letter-spacing: -0.018em; }
+.h2 { font-size: var(--fs-h2); line-height: 1.08; letter-spacing: -0.012em; }
+.h3 {
+  font-size: var(--fs-h3);
+  line-height: 1.2;
+  font-weight: 600;
+  font-variation-settings: "opsz" 28;
+  letter-spacing: -0.005em;
+}
+
+/* dek / lede: the italic serif line under a title (italic is for deks and quotes only) */
+.lede {
+  font-size: var(--fs-lede);
+  line-height: 1.42;
+  font-style: italic;
+  font-weight: 400;
+  font-variation-settings: "opsz" 24;
+  color: var(--text-2);
+}
+
+.body-lg { font-size: 20px; line-height: 1.55; }
+.small { font-size: var(--fs-small); line-height: 1.55; }
+
+.label {
+  font-family: var(--sans);
+  font-size: var(--fs-label);
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--leaf);
+  font-variation-settings: normal;
+}
+.label-ink { color: var(--ink); }
+.label-muted { color: var(--text-3); }
+.label-accent { color: var(--accent-ink); }
+
+.caption {
+  font-family: var(--sans);
+  font-size: var(--fs-caption);
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--text-3);
+}
+
+.ui {
+  font-family: var(--sans);
+  font-size: var(--fs-ui);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+
+.figure-num {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-variation-settings: "opsz" 72;
+}
+
+/* running text: paragraphs with rhythm and underlined links */
+.prose { max-width: 38em; }
+.prose > * + * { margin-top: 1em; }
+.prose a,
+a.inline-link {
+  color: var(--leaf);
+  text-decoration: underline;
+  text-decoration-color: var(--bamboo);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s var(--ease);
+}
+.prose a:hover,
+a.inline-link:hover { text-decoration-color: var(--leaf); }
+
+/* ───────────────────────── 4. Icons ─────────────────────────
+   Sprite: assets/icons.svg (symbols "i-…", 24×24 grid, stroke only).
+   <svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-shield"></use></svg> */
+.icon {
+  display: inline-block;
+  width: 1.25em;
+  height: 1.25em;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vertical-align: -0.25em;
+  overflow: visible;
+}
+.icon-sm { width: 18px; height: 18px; }
+.icon-md { width: 24px; height: 24px; }
+.icon-lg { width: 28px; height: 28px; }
+
+/* ───────────────────────── 5. Reveals ─────────────────────────
+   Subtle: opacity 0→1 plus at most 12px of travel, 0.6s. main.js adds .is-in
+   (IntersectionObserver). Hidden only when the inline head script has added
+   html.js, so content is always visible without JavaScript. */
+.js .reveal-drop,
+.js .reveal-rise,
+.js .reveal-slide-left,
+.js .reveal-slide-right,
+.js .reveal-fade {
   opacity: 0;
-  will-change: transform, opacity;
   transition:
-    opacity 1.1s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 0.6s var(--ease),
+    transform 0.6s var(--ease);
 }
+.js .reveal-drop { transform: translateY(-8px); }
+.js .reveal-rise { transform: translateY(12px); }
+.js .reveal-slide-left { transform: translateX(-12px); }
+.js .reveal-slide-right { transform: translateX(12px); }
 
-.reveal-drop {
-  transform: translateY(-110%);
-}
-.reveal-rise {
-  transform: translateY(60%);
-}
-.reveal-slide-left {
-  transform: translateX(-60%);
-}
-.reveal-slide-right {
-  transform: translateX(60%);
-}
-
-.is-in.reveal-drop,
-.is-in.reveal-rise,
-.is-in.reveal-slide-left,
-.is-in.reveal-slide-right {
+.js .is-in.reveal-drop,
+.js .is-in.reveal-rise,
+.js .is-in.reveal-slide-left,
+.js .is-in.reveal-slide-right,
+.js .is-in.reveal-fade {
   opacity: 1;
-  transform: translate(0, 0);
-}
-.is-in.reveal-fade {
-  opacity: 1;
-}
-
-/* Without JavaScript nothing would ever add .is-in, so show everything as-is. */
-@media (scripting: none) {
-  .reveal-drop,
-  .reveal-rise,
-  .reveal-slide-left,
-  .reveal-slide-right,
-  .reveal-fade,
-  .title span[aria-hidden],
-  .pagelink,
-  .resume-link {
-    opacity: 1 !important;
-    transform: none !important;
-  }
+  transform: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal-drop,
-  .reveal-rise,
-  .reveal-slide-left,
-  .reveal-slide-right,
-  .reveal-fade {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
+  .js .reveal-drop,
+  .js .reveal-rise,
+  .js .reveal-slide-left,
+  .js .reveal-slide-right,
+  .js .reveal-fade {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
-/* ───────── image slots — drop-in photo templates ─────────
-   Markup:
+/* ───────────────────────── 6. Photo slots ─────────────────────────
+   Drop-in photo templates:
      <div class="img-slot" style="--ratio: 4 / 5"
           data-hint="What the photo should show"
-          data-file="assets/images/story/example.jpg">
-       <img src="../assets/images/story/example.jpg" alt="…" />
+          data-file="assets/images/my-story/portrait.jpg">
+       <img src="../assets/images/my-story/portrait.jpg" alt="…" loading="lazy" decoding="async" />
      </div>
-   If the file exists it fills the slot (object-fit: cover). If it is missing,
-   main.js adds .image-missing and the slot shows the hint + file path so
-   anyone can see exactly which photo belongs there. */
+   If the file exists it fills the slot (object-fit: cover; --focus sets the
+   object-position). If it is missing, main.js adds .image-missing and the slot
+   shows a calm neutral frame: an image icon, the hint, and the file path. */
 .img-slot {
   position: relative;
   overflow: hidden;
-  aspect-ratio: var(--ratio, 4 / 3);
-  background: var(--cream-deep);
+  aspect-ratio: var(--ratio, 3 / 2);
+  background: var(--sand);
+  border: 1px solid #d3c29f;
 }
 
 .img-slot > img {
@@ -198,51 +367,42 @@ body::before {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.7em;
-  padding: clamp(12px, 1.6vw, 22px);
+  gap: 8px;
+  padding: clamp(20px, 2.4vw, 32px);
   text-align: center;
-  border: 1px dashed var(--bamboo-deep);
-  background:
-    linear-gradient(135deg, rgba(244, 194, 194, 0.3), transparent 45%),
-    repeating-linear-gradient(135deg, rgba(26, 26, 26, 0.045) 0 1px, transparent 1px 12px),
-    var(--cream-deep);
+  background: radial-gradient(120% 90% at 30% 20%, #efe3c8 0%, var(--sand) 60%, #e0cdaa 100%);
+  /* inner hairline mat — a hard inset shadow costs nothing to paint */
+  box-shadow: inset 0 0 0 11px transparent, inset 0 0 0 12px rgba(251, 246, 234, 0.8);
 }
 
-.img-slot.image-missing > img {
-  display: none;
-}
+.img-slot.image-missing > img { display: none; }
 
 .img-slot.image-missing::before {
-  content: "✦ photo to add\A" attr(data-hint);
-  white-space: pre-line;
-  max-width: 26em;
-  font-family: var(--font-body);
-  font-style: italic;
-  font-size: clamp(13px, 1vw, 16px);
-  line-height: 1.35;
-  color: var(--bamboo-ink);
+  content: attr(data-hint);
+  display: block;
+  max-width: 28em;
+  padding-top: 42px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2374573a' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='3' width='18' height='18' rx='2'/%3E%3Ccircle cx='9' cy='9' r='2'/%3E%3Cpath d='m21 15-3.09-3.09a2 2 0 0 0-2.82 0L6 21'/%3E%3C/svg%3E") no-repeat top center / 30px 30px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--accent-ink);
+  text-wrap: balance;
 }
 
 .img-slot.image-missing::after {
   content: attr(data-file);
+  display: block;
   max-width: 100%;
   overflow-wrap: anywhere;
-  font-family: var(--font-body);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  color: rgba(26, 26, 26, 0.66);
-}
-
-/* compact slots (small tiles) — hint only, no file path */
-.img-slot.img-slot-compact.image-missing::after {
-  display: none;
-}
-.img-slot.img-slot-compact.image-missing::before {
+  font-family: var(--sans);
   font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--text-3);
 }
 
-/* focus ring shared by custom interactive widgets */
-:where(a, button, [tabindex]):focus-visible {
-  outline: 2px solid var(--leaf);
-  outline-offset: 3px;
-}
+/* compact slots (small tiles, logos) — icon and hint only, no file path */
+.img-slot.img-slot-compact.image-missing::after { display: none; }
+.img-slot.img-slot-compact.image-missing::before { font-size: 12.5px; padding-top: 34px; background-size: 24px 24px; }

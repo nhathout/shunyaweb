@@ -1,3 +1,352 @@
+/* LEGACY (pre-redesign, moved from page.css) — the page redesign replaces or deletes this */
+/* Finance page */
+.finance-page {
+  --page-accent: #ff9eb2;
+}
+
+.finance-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
+  gap: clamp(28px, 5vw, 80px);
+  align-items: end;
+}
+
+.finance-hero-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.chart-card.finance-hero-spotlight {
+  align-self: end;
+  min-height: clamp(220px, 22vw, 280px);
+}
+
+@media (max-width: 1080px) {
+  .finance-hero {
+    grid-template-columns: 1fr;
+  }
+  .chart-card.finance-hero-spotlight {
+    min-height: 220px;
+  }
+}
+
+.finance-stage {
+  display: grid;
+  grid-template-columns: minmax(250px, 0.68fr) minmax(520px, 1.32fr);
+  gap: clamp(28px, 4vw, 64px);
+  align-items: center;
+  padding: clamp(8px, 2vw, 26px) 0 clamp(30px, 4vw, 64px);
+}
+
+.finance-intro {
+  display: grid;
+  gap: clamp(24px, 3vw, 44px);
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1.08fr 0.92fr;
+  gap: 14px;
+}
+
+.chart-card {
+  position: relative;
+  overflow: hidden;
+  border: var(--hairline);
+  background:
+    linear-gradient(135deg, rgba(244, 194, 194, 0.28), transparent 46%),
+    rgba(250, 243, 227, 0.85);
+  padding: clamp(18px, 2.4vw, 30px);
+  min-height: 230px;
+}
+
+.chart-card::after {
+  content: "";
+  position: absolute;
+  inset: -50% auto -50% -35%;
+  width: 35%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.42), transparent);
+  transform: rotate(12deg);
+  animation: chartSheen 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.chart-card-large {
+  grid-row: span 2;
+  min-height: clamp(440px, 38vw, 520px);
+}
+
+.chart-placeholder {
+  flex: 1;
+  display: grid;
+  align-content: center;
+  gap: 10px;
+  font-style: italic;
+  color: var(--bamboo-deep);
+}
+
+.chart-placeholder p {
+  margin: 0;
+  font-size: clamp(15px, 1.2vw, 19px);
+  line-height: 1.45;
+  max-width: 22em;
+}
+
+/* Chart card flip: outer container is structural only; the rotating
+   faces carry all visuals so no second border lingers during the flip. */
+.chart-card.flip-card {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  overflow: visible;
+}
+
+.chart-card.flip-card::after {
+  display: none;
+}
+
+.chart-card.flip-card .flip-front {
+  background:
+    linear-gradient(135deg, rgba(244, 194, 194, 0.28), transparent 46%),
+    rgba(250, 243, 227, 0.85);
+  padding: clamp(18px, 2.4vw, 30px);
+}
+
+.chart-card.flip-card .flip-back {
+  padding: clamp(18px, 2.4vw, 30px);
+}
+
+.chart-card.flip-card .flip-front .chart-heading {
+  margin-bottom: 18px;
+}
+
+.chart-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: baseline;
+  margin-bottom: 22px;
+}
+
+.chart-tag {
+  font-style: italic;
+  color: var(--bamboo-deep);
+}
+
+.donut-wrap {
+  min-height: 340px;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 26px;
+}
+
+.donut-chart {
+  position: relative;
+  width: min(100%, 260px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    conic-gradient(
+      var(--baby-pink) 0 var(--p1),
+      #f08ba2 var(--p1) calc(var(--p1) + var(--p2)),
+      var(--leaf) calc(var(--p1) + var(--p2)) 100%
+    );
+  animation: donutIn 1.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.donut-chart::before {
+  content: "";
+  position: absolute;
+  inset: 16%;
+  border-radius: 50%;
+  border: var(--hairline);
+  background: var(--cream);
+}
+
+.donut-chart span {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-size: clamp(46px, 5vw, 76px);
+}
+
+.chart-legend {
+  width: 100%;
+  display: grid;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-size: clamp(17px, 1.4vw, 22px);
+}
+
+.legend-swatch {
+  display: inline-block;
+  width: 0.85em;
+  height: 0.85em;
+  margin-right: 10px;
+  border: var(--hairline);
+  vertical-align: -0.04em;
+}
+
+.legend-pink { background: var(--baby-pink); }
+.legend-rose { background: #f08ba2; }
+.legend-leaf { background: var(--leaf); }
+
+.bar-chart {
+  display: grid;
+  gap: 18px;
+}
+
+.bar-row {
+  display: grid;
+  grid-template-columns: 46px 1fr 34px;
+  gap: 12px;
+  align-items: center;
+}
+
+.bar-row span,
+.bar-row b {
+  font-weight: 400;
+}
+
+.bar-row {
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bar-row:hover {
+  transform: translateX(4px);
+}
+
+.bar-row i {
+  display: block;
+  height: 12px;
+  border: var(--hairline);
+  background:
+    linear-gradient(90deg, var(--bar-color, var(--baby-pink)) var(--bar), transparent var(--bar)),
+    repeating-linear-gradient(90deg, rgba(26, 26, 26, 0.13) 0 1px, transparent 1px 18px);
+  animation: barGrow 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transform-origin: left;
+  transition: filter 0.4s ease, box-shadow 0.4s ease;
+}
+
+.bar-row:hover i {
+  filter: saturate(1.18) brightness(1.04);
+  box-shadow: 0 0 0 1px rgba(26, 26, 26, 0.15), 0 4px 10px rgba(26, 26, 26, 0.08);
+}
+
+.bar-row b {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), color 0.35s ease;
+}
+
+.bar-row:hover b {
+  transform: scale(1.18);
+  color: var(--leaf);
+}
+
+.line-card {
+  min-height: 230px;
+}
+
+.line-chart {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.grid-line {
+  fill: none;
+  stroke: rgba(26, 26, 26, 0.16);
+  stroke-width: 1;
+}
+
+.line-fill {
+  fill: rgba(244, 194, 194, 0.45);
+}
+
+.line-path {
+  fill: none;
+  stroke: var(--leaf);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 640;
+  stroke-dashoffset: 640;
+  animation: drawLine 1.6s 0.25s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes chartSheen {
+  0%, 42% { transform: translateX(0) rotate(12deg); }
+  70%, 100% { transform: translateX(420%) rotate(12deg); }
+}
+
+@keyframes donutIn {
+  from {
+    clip-path: circle(0% at 50% 50%);
+    transform: rotate(-24deg);
+  }
+  to {
+    clip-path: circle(75% at 50% 50%);
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes barGrow {
+  from { transform: scaleX(0.18); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes drawLine {
+  to { stroke-dashoffset: 0; }
+}
+
+
+/* (responsive rules for this page, split out of page.css's shared media queries) */
+@media (max-width: 1080px) {
+  .finance-stage {
+    grid-template-columns: 1fr;
+  }
+
+  .finance-stage {
+    align-items: start;
+  }
+}
+
+@media (max-width: 800px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .donut-wrap {
+    min-height: auto;
+  }
+
+  .chart-card-large {
+    min-height: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chart-card::after,
+  .donut-chart,
+  .bar-row i,
+  .line-path {
+    animation: none !important;
+  }
+
+  .line-path {
+    stroke-dashoffset: 0;
+  }
+}
+/* END LEGACY (moved from page.css) */
+
 /* ai-governance page — page-specific styles (loaded after page.css) */
 
 /* a deeper bamboo for small italic text so it stays readable, plus one

@@ -1,3 +1,270 @@
+/* LEGACY (pre-redesign, moved from page.css) — the page redesign replaces or deletes this */
+/* Law page */
+.law-page {
+  --page-accent: var(--leaf);
+}
+
+.law-casebook {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.82fr) minmax(420px, 1.18fr);
+  gap: clamp(28px, 4vw, 64px);
+  align-items: stretch;
+  padding: clamp(10px, 2vw, 28px) 0 clamp(28px, 4vw, 58px);
+}
+
+.law-brief,
+.case-file {
+  border: var(--hairline);
+  background: rgba(250, 243, 227, 0.82);
+}
+
+.law-brief {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 28px;
+  padding: clamp(24px, 3vw, 42px);
+}
+
+.law-stamp {
+  justify-self: start;
+  position: relative;
+  border: 1px solid var(--leaf);
+  padding: 8px 12px;
+  color: var(--leaf);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-style: italic;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  transform: rotate(-4deg);
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), color 0.4s ease, background-color 0.4s ease;
+  cursor: default;
+}
+
+.law-stamp::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border: 1px solid currentColor;
+  opacity: 0.45;
+  pointer-events: none;
+  transition: inset 0.4s ease, opacity 0.4s ease;
+}
+
+.law-brief:hover .law-stamp {
+  transform: rotate(2deg) scale(1.05);
+  background: rgba(45, 74, 50, 0.08);
+}
+
+.law-brief:hover .law-stamp::before {
+  inset: -6px;
+  opacity: 0.7;
+}
+
+.docket-list li {
+  transition: background-color 0.4s ease, padding-left 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.docket-list li:hover {
+  background: rgba(244, 194, 194, 0.18);
+  padding-left: 8px;
+}
+
+.docket-list li:hover::before {
+  color: var(--leaf);
+}
+
+.docket-list li::before {
+  transition: color 0.4s ease;
+}
+
+/* gentle fade between law tabs */
+.law-panel {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+#law-tab-firm:checked ~ .law-panels .law-panel-firm,
+#law-tab-school:checked ~ .law-panels .law-panel-school,
+#law-tab-proof:checked ~ .law-panels .law-panel-proof {
+  opacity: 1;
+}
+
+.law-tabs label {
+  position: relative;
+}
+
+.law-tabs label::after {
+  content: "";
+  position: absolute;
+  left: 16%;
+  right: 16%;
+  bottom: 0;
+  height: 2px;
+  background: var(--leaf);
+  transform: scaleX(0);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.law-tabs label:hover::after {
+  transform: scaleX(1);
+}
+
+#law-tab-firm:checked ~ .law-tabs label[for="law-tab-firm"]::after,
+#law-tab-school:checked ~ .law-tabs label[for="law-tab-school"]::after,
+#law-tab-proof:checked ~ .law-tabs label[for="law-tab-proof"]::after {
+  transform: scaleX(0);
+}
+
+.docket-list {
+  counter-reset: docket;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: var(--hairline);
+}
+
+.docket-list li {
+  counter-increment: docket;
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  gap: 0 18px;
+  padding: 18px 0;
+  border-bottom: var(--hairline);
+}
+
+.docket-list li::before {
+  content: counter(docket, decimal-leading-zero);
+  grid-row: span 2;
+  font-family: var(--font-display);
+  font-size: 36px;
+  line-height: 1;
+  color: var(--bamboo-deep);
+}
+
+.docket-list strong {
+  font-size: clamp(22px, 2vw, 32px);
+  line-height: 1;
+  font-weight: 400;
+}
+
+.docket-list span {
+  line-height: 1.45;
+}
+
+.case-file {
+  position: relative;
+  min-height: 100%;
+}
+
+.case-file input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.law-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-bottom: var(--hairline);
+}
+
+.law-tabs label {
+  padding: 16px 10px;
+  text-align: center;
+  cursor: pointer;
+  font-style: italic;
+  letter-spacing: 0.08em;
+  border-right: var(--hairline);
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+.law-tabs label:last-child {
+  border-right: 0;
+}
+
+#law-tab-firm:checked ~ .law-tabs label[for="law-tab-firm"],
+#law-tab-school:checked ~ .law-tabs label[for="law-tab-school"],
+#law-tab-proof:checked ~ .law-tabs label[for="law-tab-proof"] {
+  background: var(--leaf);
+  color: var(--cream);
+}
+
+.law-panels {
+  min-height: 360px;
+  display: grid;
+}
+
+.law-panel {
+  display: none;
+  align-content: center;
+  gap: 14px;
+  padding: clamp(28px, 4vw, 56px);
+}
+
+#law-tab-firm:checked ~ .law-panels .law-panel-firm,
+#law-tab-school:checked ~ .law-panels .law-panel-school,
+#law-tab-proof:checked ~ .law-panels .law-panel-proof {
+  display: grid;
+}
+
+.law-panel h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(42px, 5vw, 86px);
+  font-weight: 400;
+  line-height: 0.96;
+}
+
+.law-panel p {
+  max-width: 28em;
+  margin: 0;
+  font-size: clamp(18px, 1.4vw, 24px);
+  line-height: 1.48;
+}
+
+.legal-writing {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  padding-bottom: clamp(28px, 4vw, 56px);
+}
+
+
+/* (responsive rules for this page, split out of page.css's shared media queries) */
+@media (max-width: 1080px) {
+  .law-casebook {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 800px) {
+  .legal-writing {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .docket-list li {
+    grid-template-columns: 1fr;
+  }
+
+  .law-tabs {
+    grid-template-columns: 1fr;
+  }
+
+  .law-tabs label {
+    border-right: 0;
+    border-bottom: var(--hairline);
+  }
+
+  .law-tabs label:last-child {
+    border-bottom: 0;
+  }
+}
+/* END LEGACY (moved from page.css) */
+
 /* law-advocacy page — page-specific styles (loaded after page.css) */
 
 /* a deeper bamboo for small italic text so it stays readable on cream */

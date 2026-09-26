@@ -1,3 +1,258 @@
+/* LEGACY (pre-redesign, moved from page.css) — the page redesign replaces or deletes this */
+/* Brand page */
+.brand-page {
+  --page-accent: var(--bamboo);
+}
+
+.content-studio {
+  display: grid;
+  grid-template-columns: minmax(420px, 1.18fr) minmax(280px, 0.82fr);
+  gap: clamp(28px, 4vw, 64px);
+  padding: clamp(12px, 2vw, 28px) 0 clamp(32px, 4vw, 64px);
+  align-items: stretch;
+}
+
+.campaign-wall {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-auto-rows: minmax(118px, 1fr);
+  gap: 12px;
+  min-height: clamp(520px, 52vw, 680px);
+}
+
+.mood-card {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  border: var(--hairline);
+  background: var(--cream-deep);
+  padding: 12px;
+}
+
+.mood-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(160deg, rgba(244, 194, 194, 0.6), transparent 45%),
+    repeating-linear-gradient(135deg, rgba(26, 26, 26, 0.08) 0 1px, transparent 1px 15px),
+    var(--cream-soft);
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), filter 0.7s ease;
+}
+
+.mood-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(26, 26, 26, 0.25));
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.mood-card:hover::before,
+.mood-card:focus-visible::before {
+  transform: scale(1.08);
+  filter: saturate(1.12);
+}
+
+.mood-card:hover::after,
+.mood-card:focus-visible::after {
+  opacity: 1;
+}
+
+.mood-card:hover .mood-caption,
+.mood-card:focus-visible .mood-caption {
+  transform: translateY(-2px);
+  border-color: var(--baby-pink);
+  background: rgba(255, 255, 255, 0.96);
+}
+
+.mood-caption {
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.4s ease,
+    border-color 0.4s ease;
+}
+
+.mood-card-feature {
+  grid-column: span 4;
+  grid-row: span 2;
+}
+
+.mood-card-tall {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.mood-card:not(.mood-card-feature):not(.mood-card-tall) {
+  grid-column: span 2;
+}
+
+.mood-caption {
+  position: relative;
+  z-index: 1;
+  max-width: 100%;
+  padding: 8px 10px;
+  border: var(--hairline);
+  background: rgba(246, 236, 214, 0.88);
+  font-style: italic;
+  letter-spacing: 0.08em;
+}
+
+.editorial-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 28px;
+  border-left: var(--hairline);
+  padding-left: clamp(22px, 3vw, 44px);
+}
+
+.reel-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.product-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.product-detail {
+  border: var(--hairline);
+  background:
+    linear-gradient(150deg, rgba(244, 194, 194, 0.18), transparent 55%),
+    var(--cream-soft);
+  padding: clamp(14px, 1.6vw, 22px);
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.product-detail p {
+  margin: 4px 0 0;
+  font-size: clamp(15px, 1.2vw, 19px);
+  line-height: 1.4;
+}
+
+@media (max-width: 720px) {
+  .product-details {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mood card flip: outer container is structural only; the rotating
+   faces carry all visuals so no second border lingers during the flip. */
+.mood-card.flip-card {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  overflow: visible;
+}
+
+.mood-card.flip-card::before,
+.mood-card.flip-card::after {
+  display: none;
+}
+
+.mood-card.flip-card .flip-face {
+  padding: 12px;
+}
+
+.mood-card.flip-card .flip-front {
+  justify-content: flex-end;
+  align-items: flex-start;
+  background:
+    linear-gradient(160deg, rgba(244, 194, 194, 0.6), transparent 45%),
+    repeating-linear-gradient(135deg, rgba(26, 26, 26, 0.08) 0 1px, transparent 1px 15px),
+    var(--cream-soft);
+}
+
+.mood-card.flip-card .flip-back {
+  padding: clamp(14px, 1.8vw, 22px);
+  gap: 8px;
+  background:
+    linear-gradient(160deg, rgba(244, 194, 194, 0.32), transparent 55%),
+    var(--cream-soft);
+}
+
+.mood-card.flip-card .flip-back h3 {
+  font-size: clamp(20px, 1.8vw, 28px);
+}
+
+.mood-card.flip-card .flip-back p {
+  font-size: clamp(14px, 1.1vw, 18px);
+  line-height: 1.4;
+}
+
+.reel-strip span {
+  min-height: 150px;
+  display: grid;
+  place-items: end center;
+  padding: 12px;
+  border: var(--hairline);
+  background:
+    linear-gradient(180deg, rgba(26, 26, 26, 0.06), transparent 45%),
+    var(--baby-pink-soft);
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 42px);
+}
+
+.content-notes {
+  border-top: var(--hairline);
+  padding-top: 20px;
+  font-size: clamp(18px, 1.4vw, 23px);
+  line-height: 1.45;
+}
+
+.content-notes p {
+  margin: 0;
+}
+
+
+/* (responsive rules for this page, split out of page.css's shared media queries) */
+@media (max-width: 1080px) {
+  .content-studio {
+    grid-template-columns: 1fr;
+  }
+
+  .editorial-panel {
+    border-left: 0;
+    border-top: var(--hairline);
+    padding-left: 0;
+    padding-top: 26px;
+  }
+}
+
+@media (max-width: 800px) {
+  .campaign-wall {
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: minmax(130px, auto);
+    min-height: 0;
+  }
+
+  .mood-card,
+  .mood-card-feature,
+  .mood-card-tall,
+  .mood-card:not(.mood-card-feature):not(.mood-card-tall) {
+    grid-column: span 1;
+    grid-row: span 1;
+    min-height: 170px;
+  }
+}
+
+@media (max-width: 560px) {
+  .reel-strip {
+    grid-template-columns: 1fr;
+  }
+}
+/* END LEGACY (moved from page.css) */
+
 /* strategy-brand page — page-specific styles (loaded after page.css) */
 
 /* a deeper bamboo for small italic text so it stays readable (≥ 4.5:1 on
