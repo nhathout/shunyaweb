@@ -527,7 +527,9 @@ html.contents-locked {
     rotateX(var(--rx))
     rotateY(var(--ry))
     translateY(var(--ty));
-  transform-style: preserve-3d;
+  /* flat, not preserve-3d: a 3D context makes Chrome mis-target clicks on
+     links and buttons inside a tilted card. .flip-card re-enables 3D below. */
+  transform-style: flat;
   transition:
     transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
     border-color 0.35s ease,
