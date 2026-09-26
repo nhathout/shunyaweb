@@ -1,1 +1,644 @@
 /* community-service page — page-specific styles (loaded after page.css) */
+
+/* a deeper bamboo for small script / italic text so it stays readable */
+.community-page {
+  --bamboo-ink: #7d5f40; /* 5:1 on cream */
+  --tag-gap: 12px;
+}
+
+/* ───────── hero: Los Angeles → Boston route line ───────── */
+.community-hero-route {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+  margin: 8px 0 0;
+  font-size: 13px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--black-soft);
+}
+
+.community-hero-route em {
+  font-family: var(--font-script);
+  font-size: clamp(22px, 2vw, 30px);
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--bamboo-ink);
+}
+
+.community-hero-arrow {
+  color: var(--bamboo-deep);
+  letter-spacing: 0;
+}
+
+/* ───────── shared section heads (label + interaction hint) ───────── */
+.community-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 18px;
+}
+
+.community-head h2 {
+  margin: 0;
+}
+
+.community-hint {
+  margin: 0;
+  font-size: 15px;
+  font-style: italic;
+  letter-spacing: 0.04em;
+  color: var(--bamboo-ink);
+}
+
+/* ───────── 1 · field: campus circles (left) + service map (right) ───────── */
+.community-page .community-field {
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  align-items: start;
+  padding-top: clamp(18px, 3vw, 40px);
+}
+
+.community-page .community-copy {
+  gap: clamp(18px, 2vw, 26px);
+}
+
+.community-page .community-lede {
+  font-size: clamp(20px, 1.9vw, 28px);
+}
+
+/* ── campus-circle tags: compact boxes that open into a text box laid over
+      the copy below. The li is only a positioning shell; the button draws
+      the box and the panel is the expanded reading card. ── */
+.community-page .community-tags {
+  gap: var(--tag-gap);
+}
+
+.community-page .community-tag {
+  position: relative;
+  z-index: 1;
+  display: block;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+
+.community-page .community-tag:hover {
+  transform: none;
+  background: none;
+}
+
+.community-tag.is-open {
+  z-index: 10;
+}
+
+.tag-trigger {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  width: 100%;
+  height: 100%;
+  padding: 14px 40px 15px 16px;
+  border: var(--hairline);
+  background: var(--cream-soft);
+  text-align: left;
+  transition:
+    border-color 0.4s ease,
+    background-color 0.4s ease,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.tag-trigger .micro-label {
+  order: -1;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+}
+
+.tag-trigger:hover {
+  border-color: var(--page-accent);
+  background: rgba(255, 255, 255, 0.96);
+  transform: translateY(-2px);
+}
+
+.tag-name {
+  font-family: var(--font-display);
+  font-size: clamp(19px, 1.5vw, 23px);
+  line-height: 1.08;
+}
+
+/* the little + in the corner turns into × on the open panel */
+.tag-plus {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 13px;
+  height: 13px;
+  pointer-events: none;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.tag-plus::before,
+.tag-plus::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 13px;
+  height: 1px;
+  background: var(--leaf);
+}
+
+.tag-plus::after {
+  transform: rotate(90deg);
+}
+
+.tag-plus.is-close {
+  transform: rotate(45deg);
+}
+
+.tag-trigger:hover .tag-plus {
+  transform: rotate(90deg);
+}
+
+/* expanded reading card — spans both tag columns, growing from the tag's row */
+.tag-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: min(calc(200% + var(--tag-gap)), 34rem);
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 14px 44px 18px 16px;
+  border: 1px solid var(--black);
+  background:
+    linear-gradient(160deg, rgba(244, 194, 194, 0.3), transparent 60%),
+    var(--cream-soft);
+  box-shadow: 10px 12px 0 rgba(26, 26, 26, 0.08);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px) scale(0.985);
+  transform-origin: top left;
+  transition:
+    opacity 0.3s ease,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0.45s;
+}
+
+.community-tag:nth-child(even) .tag-panel {
+  left: auto;
+  right: 0;
+  transform-origin: top right;
+}
+
+.community-tag.is-open .tag-panel,
+.community-tags:not([data-ready]) .community-tag:is(:hover, :focus-within) .tag-panel {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition:
+    opacity 0.3s ease,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0s;
+}
+
+.community-tags:not([data-ready]) .community-tag:is(:hover, :focus-within) {
+  z-index: 10;
+}
+
+/* With JS, a panel opened by hover or focus lets the pointer pass through to
+   the tag beneath it, so moving across the row opens the next tag instead of
+   keeping the first one open. A pinned (clicked / tapped) panel takes clicks,
+   so a tap on it closes it. */
+.community-tags[data-ready] .tag-panel {
+  pointer-events: none;
+}
+
+.community-tags[data-ready] .community-tag.is-pinned .tag-panel {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+/* the open panel covers its button, so it carries the keyboard focus ring */
+.community-tag:has(.tag-trigger:focus-visible) .tag-panel {
+  outline: 2px solid var(--leaf);
+  outline-offset: 3px;
+}
+
+.community-tag.is-open .tag-trigger:focus-visible {
+  outline: none;
+}
+
+.tag-panel .micro-label {
+  order: -1;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+}
+
+.tag-panel-name {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 1.9vw, 28px);
+  font-weight: 400;
+  line-height: 1.04;
+}
+
+.tag-panel p {
+  max-width: 30em;
+  margin: 4px 0 0;
+  font-size: clamp(16px, 1.2vw, 18px);
+  line-height: 1.45;
+  color: var(--black-soft);
+}
+
+/* ── photo polaroids (relative here, not the stacked absolute layout) ── */
+.community-page .community-photo {
+  position: relative;
+  inset: auto;
+  margin: 0;
+}
+
+.community-page .community-photo figcaption {
+  font-size: 15px;
+  color: var(--black-soft);
+}
+
+.community-photo-la {
+  width: min(84%, 380px);
+  justify-self: end;
+  margin-top: 6px;
+}
+
+/* ── service map ── */
+.community-map-wrap {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}
+
+.community-page .community-map {
+  min-height: clamp(560px, 50vw, 680px);
+}
+
+.community-page .community-node {
+  width: min(35%, 272px);
+  min-height: clamp(206px, 16vw, 228px);
+}
+
+/* time order reads left → right, top → bottom; the right-hand pair sits
+   slightly lower / higher so the web stays asymmetric */
+.community-page .community-node-one   { left: 4%;  top: 5%; }
+.community-page .community-node-two   { right: 4%; top: 8%; }
+.community-page .community-node-three { left: 4%;  bottom: 5%; }
+.community-page .community-node-four  { right: 4%; bottom: 8%; }
+
+.community-page .community-node.flip-card .flip-front p {
+  margin-top: auto;
+  color: var(--black-soft);
+}
+
+.community-page .community-node .flip-front .micro-label,
+.community-page .community-node .flip-back .micro-label {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+}
+
+/* keep the front label clear of the round logo badge in the corner */
+.community-page .community-node .flip-front .micro-label {
+  padding-right: 22px;
+}
+
+/* place · years: on a narrow node the pair stacks on two lines instead of
+   wrapping mid-range ("2019 –" / "2022") */
+.community-page .community-node .flip-front {
+  container: node-front / inline-size;
+}
+
+@container node-front (max-width: 206px) {
+  .node-when .node-sep {
+    display: none;
+  }
+
+  .node-when .node-place,
+  .node-when .node-years {
+    display: block;
+  }
+}
+
+.community-page .community-node.flip-card .flip-front strong.node-name-long {
+  font-size: clamp(21px, 1.75vw, 26px);
+  line-height: 1.04;
+}
+
+.community-page .community-node.flip-card .flip-back {
+  justify-content: center;
+  gap: 10px;
+}
+
+.community-page .community-node.flip-card .flip-back p {
+  font-size: clamp(15px, 1.1vw, 17px);
+  line-height: 1.45;
+}
+
+/* concentric rings behind the web — the chapter's "a circle widens" */
+.community-ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 86%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.community-ring-outer {
+  border: 1px solid rgba(45, 74, 50, 0.12);
+}
+
+.community-ring-inner {
+  height: 50%;
+  border: 1px dashed rgba(169, 134, 96, 0.42);
+  animation: ringSpin 90s linear infinite;
+}
+
+/* keeps the centring translate while it turns (page.css's anchorRotate
+   would replace it and drift the ring off-centre) */
+@keyframes ringSpin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.community-ring-ripple {
+  height: 20%;
+  border: 1px solid rgba(244, 194, 194, 0.9);
+  opacity: 0;
+  animation: ringWiden 7s cubic-bezier(0.22, 1, 0.36, 1) 1.2s infinite;
+}
+
+@keyframes ringWiden {
+  0%   { transform: translate(-50%, -50%) scale(1);   opacity: 0; }
+  12%  { opacity: 0.9; }
+  100% { transform: translate(-50%, -50%) scale(4.3); opacity: 0; }
+}
+
+/* a flipped node keeps its thread lit */
+.community-map:has(.community-node-one.is-flipped) .web-line-one,
+.community-map:has(.community-node-two.is-flipped) .web-line-two,
+.community-map:has(.community-node-three.is-flipped) .web-line-three,
+.community-map:has(.community-node-four.is-flipped) .web-line-four {
+  stroke: var(--bamboo-deep);
+  stroke-width: 1.6;
+}
+
+/* ───────── 2 · notes on service: Kappa photo + three flip cards ───────── */
+.community-page .community-feed {
+  grid-template-columns: minmax(0, 0.8fr) repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  align-items: stretch;
+  padding-top: clamp(24px, 3vw, 44px);
+  border-top: var(--hairline);
+}
+
+.community-feed-head {
+  grid-column: 1 / -1;
+  margin-bottom: 4px;
+}
+
+.community-photo-kappa {
+  grid-row: span 2;
+  align-self: center;
+  margin-right: clamp(4px, 1vw, 14px) !important;
+}
+
+/* the last card takes the whole bottom row; with the testimonial template
+   enabled (a fourth card) the last two share it instead */
+.community-page .community-card:nth-child(5):last-child {
+  grid-column: 2 / -1;
+}
+
+.community-page .community-card.flip-card {
+  min-height: clamp(250px, 21vw, 280px);
+}
+
+.community-page .community-card.flip-card:nth-child(5):last-child {
+  min-height: 200px;
+}
+
+.community-page .community-card.flip-card .flip-front {
+  justify-content: space-between;
+}
+
+.community-page .community-card p.card-statement {
+  margin: 0;
+  max-width: 11em;
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3vw, 46px);
+  line-height: 1.02;
+}
+
+.community-page .community-card.flip-card .flip-back {
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.community-page .community-card .flip-back h3 {
+  font-size: clamp(22px, 2vw, 30px);
+}
+
+.community-page .community-card .flip-back p {
+  margin: 0;
+  max-width: 46em;
+  font-size: clamp(16px, 1.2vw, 19px);
+  line-height: 1.48;
+}
+
+.coast-list {
+  display: grid;
+  gap: 12px;
+  margin: 4px 0 0;
+}
+
+.coast-list dt {
+  font-size: 12px;
+  font-style: italic;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--leaf);
+}
+
+.coast-list dd {
+  margin: 4px 0 0;
+  font-size: clamp(16px, 1.2vw, 19px);
+  line-height: 1.42;
+}
+
+/* ───────── responsive ───────── */
+/* the map needs the full width well before page.css's 1080px step, or the
+   four nodes crowd the "her circle" anchor */
+@media (max-width: 1240px) {
+  .community-page .community-field {
+    grid-template-columns: 1fr;
+  }
+
+  /* copy sits above the map: tags full width, lede beside the photo */
+  .community-page .community-copy {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    align-items: center;
+    column-gap: clamp(20px, 4vw, 44px);
+  }
+
+  .community-page .community-copy > .community-head,
+  .community-page .community-copy > .community-tags {
+    grid-column: 1 / -1;
+  }
+
+  .community-page .community-lede {
+    font-size: clamp(20px, 2.4vw, 28px);
+  }
+
+  .community-photo-la {
+    width: min(100%, 360px);
+    margin-top: 0;
+  }
+
+  .community-page .community-node {
+    width: min(34%, 280px);
+  }
+
+  .community-page .community-feed {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
+  }
+
+  .community-page .community-card:nth-child(5):last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 800px) {
+  /* the logo badges hang 12px off each card: leave room on the right */
+  .community-page .community-map {
+    min-height: auto;
+    padding: 16px 24px 16px 16px;
+  }
+
+  .community-ring {
+    display: none;
+  }
+
+  .community-page .community-node,
+  .community-page .community-node-one,
+  .community-page .community-node-two,
+  .community-page .community-node-three,
+  .community-page .community-node-four {
+    inset: auto;
+    width: 100%;
+    min-height: 186px;
+  }
+
+  .community-page .community-feed {
+    grid-template-columns: 1fr;
+  }
+
+  .community-photo-kappa {
+    grid-row: auto;
+    width: min(88%, 360px);
+    justify-self: center;
+    margin: 6px 0 12px !important;
+  }
+
+  .community-page .community-card.flip-card,
+  .community-page .community-card.flip-card:nth-child(5):last-child {
+    min-height: 250px;
+  }
+}
+
+@media (max-width: 720px) {
+  .community-page .community-copy {
+    grid-template-columns: 1fr;
+  }
+
+  /* one tag per row: the open panel is as wide as the tag */
+  .tag-panel,
+  .community-tag:nth-child(even) .tag-panel {
+    left: 0;
+    right: 0;
+    width: auto;
+  }
+
+  .community-photo-la {
+    width: min(88%, 360px);
+    justify-self: center;
+  }
+}
+
+@media (max-width: 560px) {
+  .community-hero-route {
+    font-size: 12px;
+    letter-spacing: 0.2em;
+  }
+
+  .community-page .community-node,
+  .community-page .community-node-one,
+  .community-page .community-node-two,
+  .community-page .community-node-three,
+  .community-page .community-node-four {
+    min-height: 166px;
+  }
+
+  .community-page .community-card.flip-card,
+  .community-page .community-card.flip-card:nth-child(5):last-child {
+    min-height: 262px;
+  }
+}
+
+/* very narrow phones: keep the longest card back inside its face */
+@media (max-width: 380px) {
+  .community-page .community-node,
+  .community-page .community-node-one,
+  .community-page .community-node-two,
+  .community-page .community-node-three,
+  .community-page .community-node-four {
+    min-height: 210px;
+  }
+
+  .community-page .community-card .flip-back p {
+    font-size: 15px;
+  }
+
+  .community-page .community-card.flip-card,
+  .community-page .community-card.flip-card:nth-child(5):last-child {
+    min-height: 310px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .community-ring-inner,
+  .community-ring-ripple {
+    animation: none !important;
+  }
+
+  .community-ring-ripple {
+    display: none;
+  }
+
+  .tag-trigger,
+  .tag-plus,
+  .tag-panel,
+  .community-tag.is-open .tag-panel {
+    transition: none;
+  }
+
+  .tag-panel {
+    transform: none;
+  }
+
+  .tag-trigger:hover {
+    transform: none;
+  }
+}

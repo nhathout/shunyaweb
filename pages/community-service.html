@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Community &amp; Influence — Sasha</title>
+  <title>Community &amp; Service — Sasha Petrovicheva</title>
+  <meta
+    name="description"
+    content="Sasha Petrovicheva&rsquo;s community and service: volunteering with Heal the Bay and the SCV Food Bank in Los Angeles, refugee resettlement with the International Institute of New England, and her campus circles."
+  />
   <link rel="icon" type="image/png" href="../assets/images/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -28,174 +32,356 @@
 
     <section class="page-hero community-hero reveal-drop" data-delay="200">
       <span class="page-eyebrow">Chapter Five</span>
-      <h1 class="page-title">Community &amp; Influence</h1>
+      <h1 class="page-title">Community &amp; Service</h1>
       <p class="page-title-script">a circle widens</p>
       <span class="page-rule"></span>
+      <p class="community-hero-route">
+        <span>Los Angeles</span>
+        <span class="community-hero-arrow" aria-hidden="true">&rarr;</span><span class="visually-hidden">, then</span>
+        <span>Boston</span>
+        <em>since 2019</em>
+      </p>
     </section>
 
-    <section class="community-field reveal-fade" data-delay="420" aria-label="Community and influence map">
+    <section class="community-field reveal-fade" data-delay="420" aria-label="Campus circles and service map">
+      <!-- Left column: campus-circle tags sit on top of the text (Sasha's request).
+           Hover, focus or tap a tag and it opens into a readable text box laid over
+           the copy below; logic in scripts/pages/community-service.js. Keep each
+           tag's button aria-controls ↔ panel id pair unique. -->
       <div class="community-copy">
-        <p class="page-lede">
-          A page for the communities Sasha joins, builds, supports, and
-          amplifies: volunteer work, campus circles, partnerships, social reach,
-          and people who can speak to her impact.
-        </p>
-        <ul class="community-tags" aria-label="Community placeholders">
-          <li class="community-tag">
-            <span class="micro-label">community partner</span>
-            <p>The org, the relationship, and what she helped them ship.</p>
+        <div class="community-head">
+          <h2 class="micro-label" id="circles-title">Campus circles</h2>
+          <p class="community-hint">Hover or tap a tag to read it.</p>
+        </div>
+
+        <ul class="community-tags" aria-labelledby="circles-title" data-tags>
+          <li class="community-tag" data-tag>
+            <button type="button" class="tag-trigger" aria-expanded="false" aria-controls="tag-kappa">
+              <span class="tag-name">Kappa Kappa Gamma</span>
+              <span class="micro-label">Member</span>
+              <span class="tag-plus" aria-hidden="true"></span>
+            </button>
+            <div class="tag-panel" id="tag-kappa">
+              <strong class="tag-panel-name" aria-hidden="true">Kappa Kappa Gamma</strong>
+              <span class="micro-label">Member &middot; Sep 2023 &ndash; present</span>
+              <p>
+                A member since September 2023 &mdash; alongside a dual degree, two co-ops and
+                campus roles from TEDxNortheasternU to Student Government.
+              </p>
+              <span class="tag-plus is-close" aria-hidden="true"></span>
+            </div>
           </li>
-          <li class="community-tag">
-            <span class="micro-label">campus group</span>
-            <p>The club or program &mdash; her role and the people she organized.</p>
+          <li class="community-tag" data-tag>
+            <button type="button" class="tag-trigger" aria-expanded="false" aria-controls="tag-women">
+              <span class="tag-name">Women in Business &amp; Women in Finance</span>
+              <span class="micro-label">Mentee</span>
+              <span class="tag-plus" aria-hidden="true"></span>
+            </button>
+            <div class="tag-panel" id="tag-women">
+              <strong class="tag-panel-name" aria-hidden="true">Women in Business &amp; Women in Finance</strong>
+              <span class="micro-label">Mentee &middot; Sep 2024 &ndash; Jan 2025</span>
+              <p>
+                Mentorship in business and finance, in the same season as her Girls Into VC
+                fellowship and her role at the IDEA Venture Accelerator.
+              </p>
+              <span class="tag-plus is-close" aria-hidden="true"></span>
+            </div>
           </li>
-          <li class="community-tag">
-            <span class="micro-label">press link</span>
-            <p>An article, podcast, or campus feature &mdash; outlet and headline.</p>
+          <li class="community-tag" data-tag>
+            <button type="button" class="tag-trigger" aria-expanded="false" aria-controls="tag-entertainment">
+              <span class="tag-name">Business of Entertainment Club</span>
+              <span class="micro-label">Head Photographer</span>
+              <span class="tag-plus" aria-hidden="true"></span>
+            </button>
+            <div class="tag-panel" id="tag-entertainment">
+              <strong class="tag-panel-name" aria-hidden="true">Business of Entertainment Club</strong>
+              <span class="micro-label">Head Photographer &middot; Sep &ndash; Dec 2024</span>
+              <p>
+                A semester as the club&rsquo;s head photographer &mdash; the camera side of the
+                visual work that runs through her brand and content roles.
+              </p>
+              <span class="tag-plus is-close" aria-hidden="true"></span>
+            </div>
           </li>
-          <li class="community-tag">
-            <span class="micro-label">volunteer work</span>
-            <p>Ongoing commitments &mdash; org, hours, and what she does there.</p>
+          <li class="community-tag" data-tag>
+            <button type="button" class="tag-trigger" aria-expanded="false" aria-controls="tag-nextwork">
+              <span class="tag-name">NextWork Build &amp; Brew</span>
+              <span class="micro-label">Build Master</span>
+              <span class="tag-plus" aria-hidden="true"></span>
+            </button>
+            <div class="tag-panel" id="tag-nextwork">
+              <strong class="tag-panel-name" aria-hidden="true">NextWork Build &amp; Brew</strong>
+              <span class="micro-label">Build Master &amp; Campus Ambassador &middot; Aug 2026 &ndash; present</span>
+              <p>
+                Sasha leads outreach and peer-learning sessions that help students from finance,
+                consulting, design and public policy experiment with AI and turn ideas into
+                working, portfolio-ready projects.
+              </p>
+              <span class="tag-plus is-close" aria-hidden="true"></span>
+            </div>
           </li>
         </ul>
+
+        <p class="page-lede community-lede">
+          Sasha began volunteering in 2019 &mdash; first across Los Angeles, then in Boston.
+          On campus, her circles run from sisterhood and mentorship to photography and
+          peer-learning sessions on AI.
+        </p>
+
+        <figure class="photo-card community-photo community-photo-la tilt-card" style="--rotate: -2deg">
+          <div
+            class="img-slot"
+            style="--ratio: 4 / 3"
+            data-hint="Sasha volunteering in Los Angeles: a Heal the Bay day or a shift at the SCV Food Bank (horizontal)"
+            data-file="assets/images/community-service/volunteering-la.jpg"
+          >
+            <img
+              src="../assets/images/community-service/volunteering-la.jpg"
+              alt="Sasha volunteering in Los Angeles"
+              loading="lazy"
+            />
+          </div>
+          <figcaption>Los Angeles, 2019 &ndash; 2022</figcaption>
+        </figure>
       </div>
 
-      <div class="community-map" aria-label="Influence nodes">
-        <div class="community-anchor" aria-hidden="true">
-          <span class="anchor-script">her<br>circle</span>
+      <!-- Right column: the "her circle" service map. Nodes run in time order
+           (reading left → right, top → bottom) and flip on click / Enter / Space via
+           main.js. Each round .node-logo shows a ✦ until its logo file exists. -->
+      <div class="community-map-wrap">
+        <div class="community-head">
+          <h2 class="micro-label" id="map-title">The service map &middot; 2019 &ndash; 2023</h2>
+          <p class="community-hint">Tap or click a card to turn it over.</p>
         </div>
 
-        <article class="community-node community-node-one flip-card tilt-card" tabindex="0">
-          <span class="node-logo" aria-label="Reach logo">
-            <img src="../assets/images/logos/reach-logo.png" alt="" loading="lazy" />
-          </span>
-          <div class="flip-inner">
-            <div class="flip-face flip-front">
-              <span class="micro-label">Reach</span>
-              <strong>2M+</strong>
-              <p>Campaign audience placeholder.</p>
-            </div>
-            <div class="flip-face flip-back">
-              <span class="micro-label">Reach</span>
-              <p>Placeholder for the campaign behind the number &mdash; brand, deliverable, and the moment it took off.</p>
-            </div>
+        <div class="community-map" role="group" aria-labelledby="map-title">
+          <!-- decorative rings: "a circle widens" — a ripple drifts out from the anchor -->
+          <span class="community-ring community-ring-outer" aria-hidden="true"></span>
+          <span class="community-ring community-ring-inner" aria-hidden="true"></span>
+          <span class="community-ring community-ring-ripple" aria-hidden="true"></span>
+          <div class="community-anchor" aria-hidden="true">
+            <span class="anchor-script">her<br>circle</span>
           </div>
-          <span class="flip-indicator" aria-hidden="true"></span>
-        </article>
-        <article class="community-node community-node-two flip-card tilt-card" tabindex="0">
-          <span class="node-logo" aria-label="Service logo">
-            <img src="../assets/images/logos/service-logo.png" alt="" loading="lazy" />
-          </span>
-          <div class="flip-inner">
-            <div class="flip-face flip-front">
-              <span class="micro-label">Service</span>
-              <strong>Food Bank</strong>
-              <p>Volunteer story placeholder.</p>
-            </div>
-            <div class="flip-face flip-back">
-              <span class="micro-label">Service</span>
-              <p>Placeholder for her volunteer role &mdash; how often she shows up, what she does, and why it matters to her.</p>
-            </div>
-          </div>
-          <span class="flip-indicator" aria-hidden="true"></span>
-        </article>
-        <article class="community-node community-node-three flip-card tilt-card" tabindex="0">
-          <span class="node-logo" aria-label="Media logo">
-            <img src="../assets/images/logos/media-logo.png" alt="" loading="lazy" />
-          </span>
-          <div class="flip-inner">
-            <div class="flip-face flip-front">
-              <span class="micro-label">Media</span>
-              <strong>TEDxNEU</strong>
-              <p>Outreach and press placeholder.</p>
-            </div>
-            <div class="flip-face flip-back">
-              <span class="micro-label">Media</span>
-              <p>Placeholder for her TEDxNEU media work &mdash; press she pitched, partners she landed, and the headline number from the event.</p>
-            </div>
-          </div>
-          <span class="flip-indicator" aria-hidden="true"></span>
-        </article>
-        <article class="community-node community-node-four flip-card tilt-card" tabindex="0">
-          <span class="node-logo" aria-label="Voice logo">
-            <img src="../assets/images/logos/voice-logo.png" alt="" loading="lazy" />
-          </span>
-          <div class="flip-inner">
-            <div class="flip-face flip-front">
-              <span class="micro-label">Voice</span>
-              <strong>Creator work</strong>
-              <p>Audience and influence placeholder.</p>
-            </div>
-            <div class="flip-face flip-back">
-              <span class="micro-label">Voice</span>
-              <p>Placeholder for her own creator output &mdash; platforms, voice, and the audience she's built.</p>
-            </div>
-          </div>
-          <span class="flip-indicator" aria-hidden="true"></span>
-        </article>
 
-        <svg class="community-web" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-          <path class="web-line web-line-one" d="M50,50 L20,26" />
-          <path class="web-line web-line-two" d="M50,50 L80,38" />
-          <path class="web-line web-line-three" d="M50,50 L30,74" />
-          <path class="web-line web-line-four" d="M50,50 L74,76" />
-        </svg>
+          <article class="community-node community-node-one flip-card tilt-card" tabindex="0">
+            <!-- LOGO: Heal the Bay logo, square PNG (cream or transparent background),
+                 saved as assets/images/logos/heal-the-bay.png -->
+            <span class="node-logo" aria-hidden="true">
+              <img src="../assets/images/logos/heal-the-bay.png" alt="" loading="lazy" />
+            </span>
+            <div class="flip-inner">
+              <div class="flip-face flip-front">
+                <span class="micro-label node-when"><span class="node-place">Los Angeles</span><span class="node-sep"> &middot; </span><span class="node-years">2019 &ndash; 2022</span></span>
+                <strong>Heal the Bay</strong>
+                <p>Volunteer &middot; coastal waters &amp; watersheds</p>
+              </div>
+              <div class="flip-face flip-back">
+                <span class="micro-label">Volunteer &middot; Aug 2019 &ndash; Sep 2022</span>
+                <p>
+                  Three years with the environmental nonprofit working to keep the coastal
+                  waters and watersheds of Greater Los Angeles safe and clean.
+                </p>
+              </div>
+            </div>
+            <span class="flip-indicator" aria-hidden="true"></span>
+          </article>
+
+          <article class="community-node community-node-two flip-card tilt-card" tabindex="0">
+            <!-- LOGO: SCV Food Bank (Santa Clarita Valley Food Bank) logo, square PNG,
+                 saved as assets/images/logos/scv-food-bank.png -->
+            <span class="node-logo" aria-hidden="true">
+              <img src="../assets/images/logos/scv-food-bank.png" alt="" loading="lazy" />
+            </span>
+            <div class="flip-inner">
+              <div class="flip-face flip-front">
+                <span class="micro-label node-when"><span class="node-place">Santa Clarita</span><span class="node-sep"> &middot; </span><span class="node-years">2019 &ndash; 2022</span></span>
+                <strong>SCV Food Bank</strong>
+                <p>Volunteer &middot; food security</p>
+              </div>
+              <div class="flip-face flip-back">
+                <span class="micro-label">Volunteer &middot; Oct 2019 &ndash; Aug 2022</span>
+                <p>
+                  Nearly three years with the Santa Clarita Valley Food Bank, alongside Heal the
+                  Bay and her first years at Guardian Angel Home Health.
+                </p>
+              </div>
+            </div>
+            <span class="flip-indicator" aria-hidden="true"></span>
+          </article>
+
+          <article class="community-node community-node-three flip-card tilt-card" tabindex="0">
+            <!-- LOGO: West Valley Warner Center Chamber of Commerce logo, square PNG,
+                 saved as assets/images/logos/warner-center-chamber.png -->
+            <span class="node-logo" aria-hidden="true">
+              <img src="../assets/images/logos/warner-center-chamber.png" alt="" loading="lazy" />
+            </span>
+            <div class="flip-inner">
+              <div class="flip-face flip-front">
+                <span class="micro-label node-when"><span class="node-place">Los Angeles</span><span class="node-sep"> &middot; </span><span class="node-years">2021</span></span>
+                <strong class="node-name-long">West Valley Warner Center Chamber of Commerce</strong>
+                <p>Volunteer &middot; local business</p>
+              </div>
+              <div class="flip-face flip-back">
+                <span class="micro-label">Volunteer &middot; Aug &ndash; Dec 2021</span>
+                <p>
+                  Five months on the business side of the community, alongside her volunteering
+                  with Heal the Bay and the SCV Food Bank.
+                </p>
+              </div>
+            </div>
+            <span class="flip-indicator" aria-hidden="true"></span>
+          </article>
+
+          <article class="community-node community-node-four flip-card tilt-card" tabindex="0">
+            <!-- LOGO: International Institute of New England (IINE) logo, square PNG,
+                 saved as assets/images/logos/iine.png -->
+            <span class="node-logo" aria-hidden="true">
+              <img src="../assets/images/logos/iine.png" alt="" loading="lazy" />
+            </span>
+            <div class="flip-inner">
+              <div class="flip-face flip-front">
+                <span class="micro-label node-when"><span class="node-place">Boston</span><span class="node-sep"> &middot; </span><span class="node-years">2023</span></span>
+                <strong class="node-name-long">International Institute of New England</strong>
+                <p>Volunteer &middot; refugee resettlement</p>
+              </div>
+              <div class="flip-face flip-back">
+                <span class="micro-label">Refugee Resettlement Volunteer &middot; Sep &ndash; Dec 2023</span>
+                <p>
+                  A semester supporting refugee resettlement &mdash; the human side of the
+                  international affairs she studies.
+                </p>
+              </div>
+            </div>
+            <span class="flip-indicator" aria-hidden="true"></span>
+          </article>
+
+          <svg class="community-web" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+            <path class="web-line web-line-one" d="M50,50 Q32,44 22,24" />
+            <path class="web-line web-line-two" d="M50,50 Q68,46 78,30" />
+            <path class="web-line web-line-three" d="M50,50 Q32,58 22,76" />
+            <path class="web-line web-line-four" d="M50,50 Q68,56 78,70" />
+          </svg>
+        </div>
       </div>
     </section>
 
-    <section class="community-feed reveal-fade" data-delay="650" aria-label="Community cards">
+    <!-- Notes on service: one Kappa photo + three flip cards. Keep each back to ~45
+         words so it fits the card at every width. -->
+    <section class="community-feed reveal-fade" data-delay="200" aria-labelledby="notes-title">
+      <div class="community-head community-feed-head">
+        <h2 class="micro-label" id="notes-title">Notes on service</h2>
+        <p class="community-hint">Tap or click any card to turn it over.</p>
+      </div>
+
+      <figure class="photo-card community-photo community-photo-kappa tilt-card" style="--rotate: 2deg">
+        <div
+          class="img-slot"
+          style="--ratio: 4 / 5"
+          data-hint="Sasha with her Kappa Kappa Gamma sisters: a chapter event or a group photo (vertical)"
+          data-file="assets/images/community-service/kappa-kappa-gamma.jpg"
+        >
+          <img
+            src="../assets/images/community-service/kappa-kappa-gamma.jpg"
+            alt="Sasha with her Kappa Kappa Gamma sisters"
+            loading="lazy"
+          />
+        </div>
+        <figcaption>Kappa Kappa Gamma, since 2023</figcaption>
+      </figure>
+
       <article class="community-card flip-card tilt-card" tabindex="0">
         <div class="flip-inner">
           <div class="flip-face flip-front">
-            <span class="micro-label">Quote slot</span>
-            <p>&ldquo;A short testimonial or collaborator quote can live here.&rdquo;</p>
+            <span class="micro-label">Why service</span>
+            <p class="card-statement">Decisions land on people.</p>
           </div>
           <div class="flip-face flip-back">
-            <span class="micro-label">Quote slot</span>
-            <h3>Who said it</h3>
-            <p>Placeholder for attribution &mdash; name, title, and the project they worked on with her.</p>
+            <span class="micro-label">Why service</span>
+            <h3>The other end of the decision</h3>
+            <p>
+              Seven years at Guardian Angel Home Health have shown Sasha how privacy, insurance and
+              compliance decisions reach real employees and patients. Her volunteering &mdash; food
+              security, clean coastal waters, refugee resettlement &mdash; sits at that same end.
+            </p>
           </div>
         </div>
         <span class="flip-indicator" aria-hidden="true"></span>
       </article>
+
       <article class="community-card flip-card tilt-card" tabindex="0">
         <div class="flip-inner">
           <div class="flip-face flip-front">
-            <span class="micro-label">Press slot</span>
-            <p>Link a press mention, article, campus feature, or event write-up.</p>
+            <span class="micro-label">Across two coasts</span>
+            <p class="card-statement">Los Angeles, then Boston.</p>
           </div>
           <div class="flip-face flip-back">
-            <span class="micro-label">Press slot</span>
-            <h3>What it covered</h3>
-            <p>Placeholder for the outlet, headline, and a one-line note on the angle she pitched.</p>
+            <span class="micro-label">Across two coasts</span>
+            <dl class="coast-list">
+              <div>
+                <dt>Los Angeles &middot; 2019 &ndash; 2022</dt>
+                <dd>Heal the Bay, the SCV Food Bank and the West Valley Warner Center Chamber of Commerce.</dd>
+              </div>
+              <div>
+                <dt>Boston &middot; 2023 &ndash; now</dt>
+                <dd>Refugee resettlement with IINE, Kappa Kappa Gamma, mentorship and NextWork.</dd>
+              </div>
+            </dl>
           </div>
         </div>
         <span class="flip-indicator" aria-hidden="true"></span>
       </article>
+
       <article class="community-card flip-card tilt-card" tabindex="0">
         <div class="flip-inner">
           <div class="flip-face flip-front">
-            <span class="micro-label">Partner slot</span>
-            <p>Add logos, nonprofit names, or community organizations.</p>
+            <span class="micro-label">Where it leads</span>
+            <p class="card-statement">From people to policy.</p>
           </div>
           <div class="flip-face flip-back">
-            <span class="micro-label">Partner slot</span>
-            <h3>How they connect</h3>
-            <p>Placeholder for the relationship &mdash; how it started, what they ship together, and what's next.</p>
+            <span class="micro-label">Where it leads</span>
+            <h3>An MBA, consulting, then law</h3>
+            <p>
+              Next, an MBA with an AI and technology focus from Fall 2027<!-- EDIT: name the program once decided -->;
+              then two to three years in AI governance and technology-risk consulting; then law school.
+              The thread from home health to AI governance is one question: who a decision affects,
+              and who answers for it.
+            </p>
           </div>
         </div>
         <span class="flip-indicator" aria-hidden="true"></span>
       </article>
+
+      <!-- TEMPLATE: testimonial card — enable once Sasha has a quote she has permission to use
+           (a volunteer coordinator, a Kappa sister, a NextWork student or a mentor).
+           To enable: delete the comment markers around the <article> below, paste the exact
+           quote and attribution, and keep the back to ~35 words. The grid already makes room
+           for a fourth card (the last two cards share the bottom row).
+      <article class="community-card flip-card tilt-card" tabindex="0">
+        <div class="flip-inner">
+          <div class="flip-face flip-front">
+            <span class="micro-label">In their words</span>
+            <p class="card-statement">&ldquo;Exact quote, one or two sentences.&rdquo;</p>
+          </div>
+          <div class="flip-face flip-back">
+            <span class="micro-label">In their words</span>
+            <h3>Full name</h3>
+            <p>Title, organization &mdash; and how they know Sasha (e.g. &ldquo;volunteer coordinator, SCV Food Bank, 2019 &ndash; 2022&rdquo;).</p>
+          </div>
+        </div>
+        <span class="flip-indicator" aria-hidden="true"></span>
+      </article>
+      -->
     </section>
 
     <nav class="chapter-nav reveal-fade" data-delay="200" aria-label="Chapter navigation"></nav>
 
     <footer class="page-footer">
-      <span>Community &amp; Influence</span>
+      <span>Community &amp; Service</span>
       <span>p. 06</span>
     </footer>
   </div>
   <script src="../scripts/main.js" defer></script>
   <script src="../scripts/cursor-effects.js" defer></script>
+  <script src="../scripts/pages/community-service.js" defer></script>
 </body>
 </html>

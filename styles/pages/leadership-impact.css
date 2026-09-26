@@ -1,1 +1,963 @@
 /* leadership-impact page — page-specific styles (loaded after page.css) */
+
+/* a deeper bamboo for small script / italic text so it stays readable */
+.leadership-page {
+  --bamboo-ink: #8a6a48;
+}
+
+/* ───────── hero: title + standfirst ───────── */
+.leadership-page .leadership-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(260px, 0.7fr);
+  align-items: end;
+  gap: clamp(24px, 5vw, 80px);
+  padding-bottom: clamp(32px, 4vw, 60px);
+}
+
+.leadership-hero-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.leadership-standfirst {
+  display: grid;
+  gap: 18px;
+  padding-left: clamp(18px, 2vw, 28px);
+  border-left: var(--hairline);
+}
+
+.leadership-standfirst .page-lede {
+  font-size: clamp(19px, 1.75vw, 26px);
+  line-height: 1.4;
+}
+
+.leadership-habits {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 12px;
+  margin: 0;
+  font-family: var(--font-script);
+  font-size: clamp(24px, 2.2vw, 32px);
+  line-height: 1.2;
+  color: var(--bamboo-ink);
+}
+
+.leadership-habits a {
+  background: linear-gradient(var(--leaf), var(--leaf)) 0 100% / 0 1px no-repeat;
+  transition: color 0.3s ease, background-size 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.leadership-habits a:hover {
+  color: var(--leaf);
+  background-size: 100% 1px;
+}
+
+/* ───────── 1 · the leadership map ───────── */
+.leadership-page .impact-lab {
+  gap: clamp(18px, 2.4vw, 30px);
+  padding-top: clamp(28px, 3.6vw, 52px);
+  border-top: var(--hairline);
+}
+
+.leadership-page .impact-intro {
+  gap: 12px;
+  max-width: 44em;
+}
+
+.leadership-page .impact-intro .micro-label {
+  margin: 0;
+  font-weight: 400;
+}
+
+.leadership-page .impact-intro .page-lede {
+  font-size: clamp(20px, 1.9vw, 28px);
+  line-height: 1.38;
+}
+
+.impact-hint {
+  margin: 0;
+  font-size: 15px;
+  font-style: italic;
+  letter-spacing: 0.06em;
+  color: var(--black-soft);
+}
+
+.impact-hint span {
+  margin-right: 6px;
+  color: var(--leaf);
+}
+
+/* thread chips (shown by JS) */
+.impact-threads {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 18px;
+  padding: 12px 0;
+  border-top: var(--hairline);
+  border-bottom: 1px solid rgba(26, 26, 26, 0.2);
+  scroll-margin-top: 24px;
+}
+
+.impact-threads[hidden] {
+  display: none;
+}
+
+.impact-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.impact-chip {
+  padding: 6px 14px 7px;
+  border: var(--hairline);
+  background: var(--cream-soft);
+  font-size: 16px;
+  font-style: italic;
+  letter-spacing: 0.06em;
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease,
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.impact-chip:hover {
+  background: var(--baby-pink-soft);
+  transform: translateY(-2px);
+}
+
+.impact-chip[aria-pressed="true"] {
+  background: var(--black);
+  color: var(--cream);
+}
+
+.impact-status {
+  margin: 0 0 0 auto;
+  font-size: 15px;
+  font-style: italic;
+  letter-spacing: 0.06em;
+  color: var(--black-soft);
+}
+
+/* the orbit: a 3 × 3 grid with the centre diamond in the middle cell.
+   Top and bottom rows lean in by --hex so the six seats read as a ring. */
+.leadership-page .impact-orbit {
+  --hex: clamp(0px, 3.4vw, 56px);
+  --core: clamp(112px, 10.4vw, 150px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) calc(var(--core) * 1.62) minmax(0, 1fr);
+  grid-template-areas:
+    "n1 .    n2"
+    "n3 core n4"
+    "n5 .    n6";
+  gap: clamp(22px, 2.6vw, 38px) clamp(12px, 1.4vw, 22px);
+  min-height: 0;
+  padding: clamp(26px, 3.2vw, 48px) clamp(18px, 2.4vw, 40px);
+  overflow: hidden;
+}
+
+.leadership-page .impact-ring {
+  inset: 6% 9%;
+  z-index: 0;
+}
+
+.leadership-page .impact-ring-two {
+  inset: 22% 27%;
+}
+
+/* connector lines — drawn by scripts/pages/leadership-impact.js */
+.impact-web {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 0;
+}
+
+.impact-web-line {
+  fill: none;
+  stroke: rgba(45, 74, 50, 0.55);
+  stroke-width: 1.3;
+  stroke-linecap: round;
+  stroke-dasharray: 3 5;
+  animation: impactDash 22s linear infinite;
+  transition: stroke 0.4s ease, stroke-width 0.4s ease, opacity 0.4s ease;
+}
+
+.impact-web-dot {
+  fill: var(--cream-soft);
+  stroke: rgba(45, 74, 50, 0.65);
+  stroke-width: 1.2;
+  transition: fill 0.4s ease, stroke 0.4s ease;
+}
+
+.impact-web-link.is-active .impact-web-line,
+.impact-web-link.is-lit .impact-web-line {
+  stroke: var(--leaf);
+  stroke-width: 2;
+}
+
+.impact-web-link.is-active .impact-web-dot,
+.impact-web-link.is-lit .impact-web-dot {
+  fill: var(--baby-pink);
+  stroke: var(--leaf);
+}
+
+.impact-web-link.is-dim .impact-web-line {
+  opacity: 0.25;
+}
+
+@keyframes impactDash {
+  to { stroke-dashoffset: -120; }
+}
+
+/* centre diamond sits in the middle cell instead of floating */
+.leadership-page .impact-center {
+  grid-area: core;
+  position: relative;
+  left: auto;
+  top: auto;
+  justify-self: center;
+  align-self: center;
+  width: var(--core);
+  height: var(--core);
+  transform: rotate(45deg);
+}
+
+/* the label turns back upright as one piece, so both lines stay centred */
+.impact-center-label {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  margin: 0;
+  transform: rotate(-45deg);
+}
+
+.leadership-page .impact-center span,
+.leadership-page .impact-center small {
+  transform: none;
+}
+
+.leadership-page .impact-center span {
+  font-size: clamp(28px, 2.5vw, 38px);
+  line-height: 1;
+}
+
+.leadership-page .impact-center small {
+  font-size: 14px;
+  color: var(--bamboo-ink);
+}
+
+/* nodes: grid items; both faces share one cell so the card grows to fit
+   whichever side is longer — nothing is clipped at any width */
+.leadership-page .impact-node {
+  position: relative;
+  inset: auto;
+  z-index: 1;
+  display: grid;
+  width: auto;
+  min-height: clamp(210px, 17vw, 240px);
+}
+
+.leadership-page .node-one   { grid-area: n1; margin-left: var(--hex); }
+.leadership-page .node-two   { grid-area: n2; margin-right: var(--hex); }
+.leadership-page .node-three { grid-area: n3; margin-right: var(--hex); }
+.leadership-page .node-four  { grid-area: n4; margin-left: var(--hex); }
+.leadership-page .node-five  { grid-area: n5; margin-left: var(--hex); }
+.leadership-page .node-six   { grid-area: n6; margin-right: var(--hex); }
+
+.leadership-page .impact-node .flip-inner {
+  position: relative;
+  inset: auto;
+  display: grid;
+}
+
+.leadership-page .impact-node.flip-card .flip-face {
+  position: relative;
+  inset: auto;
+  grid-area: 1 / 1;
+  gap: 8px;
+  padding: clamp(18px, 2vw, 28px);
+  background: rgba(250, 243, 227, 0.95);
+  transition:
+    border-color 0.4s ease,
+    box-shadow 0.5s ease,
+    opacity 0.5s ease,
+    filter 0.5s ease;
+}
+
+.leadership-page .impact-node.flip-card .flip-back {
+  justify-content: center;
+  background:
+    linear-gradient(160deg, rgba(244, 194, 194, 0.26), transparent 55%),
+    var(--cream-soft);
+}
+
+/* front face — undo page.css's "every span is a display title" rule first */
+.leadership-page .impact-node.flip-card .flip-front span {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.leadership-page .impact-node.flip-card .flip-front .node-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding-right: 22px;
+  font-size: 12px;
+  font-style: italic;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--leaf);
+}
+
+.leadership-page .impact-node.flip-card .flip-front .node-num {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-style: normal;
+  letter-spacing: 0.08em;
+  color: var(--black);
+}
+
+.leadership-page .impact-node.flip-card .flip-front .node-org {
+  margin-top: auto;
+  font-family: var(--font-display);
+  font-size: clamp(26px, 2.3vw, 38px);
+  line-height: 1.02;
+  overflow-wrap: anywhere;
+}
+
+.leadership-page .impact-node.flip-card .flip-front .node-theme {
+  font-size: clamp(16px, 1.2vw, 19px);
+  line-height: 1.3;
+  color: var(--bamboo-ink);
+}
+
+.leadership-page .impact-node.flip-card .flip-front .node-path {
+  align-self: stretch;
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid rgba(26, 26, 26, 0.18);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--black-soft);
+}
+
+/* back face */
+.leadership-page .impact-node .flip-back h3 {
+  font-size: clamp(20px, 1.75vw, 26px);
+  line-height: 1.08;
+}
+
+.leadership-page .impact-node.flip-card .flip-back p {
+  font-size: clamp(16px, 1.15vw, 18px);
+  line-height: 1.45;
+}
+
+/* thread states: dim what doesn't match, lift what does */
+.impact-node.is-dim .flip-face {
+  opacity: 0.32;
+  filter: grayscale(0.9);
+}
+
+.impact-node.is-dim .flip-indicator {
+  opacity: 0.15;
+}
+
+.impact-node.is-dim:hover .flip-face,
+.impact-node.is-dim:focus-visible .flip-face {
+  opacity: 0.75;
+  filter: grayscale(0.4);
+}
+
+.impact-node.is-lit .flip-face {
+  border-color: var(--leaf);
+  box-shadow: 8px 10px 0 rgba(244, 194, 194, 0.7);
+}
+
+/* ───────── 2 · how she leads ───────── */
+.lead-habits {
+  display: grid;
+  gap: clamp(22px, 3vw, 40px);
+  padding: clamp(36px, 5vw, 72px) 0 clamp(32px, 4.4vw, 64px);
+  border-top: var(--hairline);
+  scroll-margin-top: 24px;
+}
+
+.lead-habits-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 0.7fr);
+  grid-template-areas:
+    "label ."
+    "title lede";
+  align-items: end;
+  gap: 12px clamp(24px, 4vw, 64px);
+}
+
+.lead-habits-head .micro-label {
+  grid-area: label;
+  margin: 0;
+  font-weight: 400;
+}
+
+.lead-habits-title {
+  grid-area: title;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4.6vw, 68px);
+  line-height: 1;
+}
+
+.lead-habits-lede {
+  grid-area: lede;
+  margin: 0;
+  font-size: clamp(17px, 1.35vw, 21px);
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--black-soft);
+}
+
+/* narrow screens: a stacked accordion. Wide screens (below): a row of three
+   where the open card widens and the closed two keep a "seen at" line. */
+.lead-habit-grid {
+  display: grid;
+  gap: clamp(12px, 1.4vw, 20px);
+}
+
+.lead-habit {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  scroll-margin-top: 24px;
+  border: var(--hairline);
+  background: rgba(250, 243, 227, 0.72);
+  transition:
+    flex-grow 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.35s ease,
+    background-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.lead-habit.is-open {
+  background:
+    linear-gradient(160deg, rgba(244, 194, 194, 0.22), transparent 55%),
+    var(--cream-soft);
+}
+
+.lead-habit-heading {
+  margin: 0;
+  font-weight: 400;
+}
+
+.lead-habit-toggle {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas: "num verb icon";
+  align-items: center;
+  gap: 10px 14px;
+  width: 100%;
+  padding: clamp(18px, 1.8vw, 24px) clamp(18px, 1.8vw, 24px) 8px;
+  text-align: left;
+}
+
+.lead-habit-toggle:focus-visible {
+  outline-offset: -6px;
+}
+
+.lead-habit-num {
+  grid-area: num;
+  font-size: 13px;
+  font-style: italic;
+  letter-spacing: 0.2em;
+  color: var(--leaf);
+}
+
+.lead-habit-verb {
+  grid-area: verb;
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3vw, 46px);
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+
+.lead-habit-toggle:hover .lead-habit-verb,
+.lead-habit:not(.is-open):hover .lead-habit-verb {
+  color: var(--leaf);
+}
+
+/* + that becomes − when the card is open */
+.lead-habit-icon {
+  grid-area: icon;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(26, 26, 26, 0.5);
+  border-radius: 50%;
+  transition: background-color 0.35s ease, border-color 0.35s ease;
+}
+
+.lead-habit-icon::before,
+.lead-habit-icon::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 12px;
+  height: 1px;
+  background: var(--black);
+  transform: translate(-50%, -50%);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.lead-habit-icon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.lead-habit.is-open .lead-habit-icon::after {
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.lead-habit-toggle:hover .lead-habit-icon,
+.lead-habit:not(.is-open):hover .lead-habit-icon {
+  border-color: var(--leaf);
+  background: var(--baby-pink-soft);
+}
+
+.lead-habit-thesis {
+  margin: 0;
+  padding: 0 clamp(18px, 1.8vw, 24px) clamp(16px, 1.6vw, 20px);
+  font-size: clamp(17px, 1.3vw, 20px);
+  font-style: italic;
+  line-height: 1.45;
+  color: var(--black-soft);
+}
+
+/* "seen at" — the short version, shown while a card is closed */
+.lead-habit-seen {
+  margin: 0 clamp(18px, 1.8vw, 24px) clamp(16px, 1.6vw, 20px);
+  padding-top: 10px;
+  border-top: 1px solid rgba(26, 26, 26, 0.16);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  line-height: 1.7;
+  text-transform: uppercase;
+  color: var(--black-soft);
+}
+
+.lead-habit-seen span {
+  margin-right: 6px;
+  font-style: italic;
+  letter-spacing: 0.1em;
+  text-transform: none;
+  font-size: 15px;
+  color: var(--leaf);
+}
+
+.lead-habits:not(.is-ready) .lead-habit-seen,
+.lead-habit.is-open .lead-habit-seen {
+  display: none;
+}
+
+.lead-habits.is-ready .lead-habit:not(.is-open) {
+  cursor: pointer;
+}
+
+/* the evidence opens with a height transition (grid rows 0fr → 1fr).
+   Collapsing only applies once JS is ready, so no-JS readers see it all. */
+.lead-habit-body {
+  display: grid;
+  grid-template-rows: 1fr;
+}
+
+.lead-habits.is-ready .lead-habit-body {
+  transition:
+    grid-template-rows 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0s;
+}
+
+.lead-habits.is-ready .lead-habit:not(.is-open) .lead-habit-body {
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition:
+    grid-template-rows 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0.55s;
+}
+
+.lead-habit-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.lead-evidence {
+  margin: 0 clamp(18px, 1.8vw, 24px);
+  padding: 0;
+  list-style: none;
+}
+
+.lead-evidence li {
+  display: grid;
+  gap: 4px;
+  padding: 12px 0;
+  border-top: 1px solid rgba(26, 26, 26, 0.16);
+}
+
+.lead-evidence-org {
+  font-size: 12px;
+  font-style: italic;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--leaf);
+}
+
+.lead-evidence p {
+  margin: 0;
+  font-size: clamp(16px, 1.15vw, 18px);
+  line-height: 1.5;
+}
+
+.lead-habit-trace {
+  position: relative;
+  margin: 4px clamp(18px, 1.8vw, 24px) clamp(18px, 1.8vw, 22px);
+  padding: 6px 0;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.lead-habit-trace::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 2px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.35;
+  transition: opacity 0.3s ease;
+}
+
+.lead-habit-trace:hover {
+  color: var(--leaf);
+}
+
+.lead-habit-trace:hover::after {
+  opacity: 1;
+}
+
+/* ───────── 3 · in the room ───────── */
+.lead-room {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.7fr) minmax(0, 2fr);
+  align-items: center;
+  gap: clamp(24px, 4vw, 64px);
+  padding: clamp(36px, 4.6vw, 68px) 0 clamp(44px, 5vw, 76px);
+  border-top: var(--hairline);
+}
+
+.lead-room-copy {
+  display: grid;
+  gap: 12px;
+}
+
+.lead-room-copy .micro-label {
+  margin: 0;
+  font-weight: 400;
+}
+
+.lead-room-text {
+  margin: 0;
+  font-size: clamp(19px, 1.6vw, 24px);
+  line-height: 1.45;
+}
+
+.lead-room-photos {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  align-items: center;
+  gap: clamp(20px, 3vw, 44px);
+}
+
+.lead-room .photo-card {
+  position: relative;
+  inset: auto;
+  width: 100%;
+}
+
+.lead-room-tedx::before {
+  transform: translateX(-50%) rotate(4deg);
+}
+
+/* ───────── 4 · where this leads ───────── */
+.lead-next {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  align-items: center;
+  gap: clamp(24px, 4vw, 64px);
+  padding: clamp(32px, 4.4vw, 64px) 0 clamp(36px, 4.6vw, 68px);
+  border-top: var(--hairline);
+}
+
+.lead-next-copy {
+  display: grid;
+  justify-items: start;
+  gap: 14px;
+}
+
+.lead-next-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3.3vw, 50px);
+  font-weight: 400;
+  line-height: 1.06;
+}
+
+.lead-next-copy p {
+  max-width: 32em;
+  margin: 0;
+  font-size: clamp(17px, 1.35vw, 21px);
+  line-height: 1.55;
+}
+
+.lead-next-link {
+  font-size: 17px;
+  font-style: italic;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid rgba(26, 26, 26, 0.35);
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.lead-next-link:hover {
+  color: var(--leaf);
+  border-color: var(--leaf);
+}
+
+.lead-next-ledger {
+  margin: 0;
+  border: var(--hairline);
+  background:
+    linear-gradient(160deg, rgba(244, 194, 194, 0.2), transparent 60%),
+    var(--cream-soft);
+}
+
+.lead-next-ledger > div {
+  display: grid;
+  grid-template-columns: minmax(6.5em, auto) minmax(0, 1fr);
+  align-items: baseline;
+  gap: 6px 18px;
+  padding: 16px clamp(16px, 1.8vw, 24px);
+}
+
+.lead-next-ledger > div + div {
+  border-top: 1px solid rgba(26, 26, 26, 0.16);
+}
+
+.lead-next-ledger dt {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 1.9vw, 28px);
+  line-height: 1.1;
+}
+
+.lead-next-ledger dd {
+  margin: 0;
+  font-size: clamp(16px, 1.2vw, 19px);
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--black-soft);
+}
+
+/* ───────── how she leads — wide screens: the open card widens ───────── */
+@media (min-width: 1100px) {
+  .lead-habit-grid {
+    display: flex;
+    align-items: stretch;
+  }
+
+  .lead-habit {
+    flex: 1 1 0;
+  }
+
+  .lead-habit.is-open {
+    flex-grow: 2.1;
+  }
+
+  .lead-habit-toggle {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "num  icon"
+      "verb verb";
+  }
+
+  .lead-habit-seen {
+    margin-top: auto;
+  }
+}
+
+/* mid widths: the open card lays its evidence out in three columns */
+@media (min-width: 700px) and (max-width: 1099px) {
+  .lead-evidence {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 22px;
+  }
+}
+
+/* ───────── responsive ───────── */
+@media (max-width: 1180px) {
+  .leadership-page .impact-orbit {
+    --hex: 0px;
+  }
+}
+
+@media (max-width: 1080px) {
+  .lead-room {
+    grid-template-columns: 1fr;
+  }
+
+  .lead-room-copy {
+    max-width: 40em;
+  }
+}
+
+@media (max-width: 900px) {
+  .leadership-page .leadership-hero,
+  .lead-next {
+    grid-template-columns: 1fr;
+  }
+
+  .leadership-standfirst {
+    max-width: 34em;
+  }
+
+  .lead-habits-head {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "label"
+      "title"
+      "lede";
+  }
+}
+
+/* tablet: two columns, the centre becomes a label above the grid */
+@media (max-width: 860px) {
+  .leadership-page .impact-orbit {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      "core core"
+      "n1   n2"
+      "n3   n4"
+      "n5   n6";
+    gap: 14px;
+    padding: 16px;
+  }
+
+  .leadership-page .impact-web,
+  .leadership-page .impact-ring {
+    display: none;
+  }
+
+  .leadership-page .impact-center {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    width: auto;
+    height: auto;
+    margin: 4px 0 6px;
+    padding: 8px 22px 10px;
+    transform: none;
+  }
+
+  .leadership-page .impact-center::before {
+    inset: -5px;
+  }
+
+  .impact-center-label {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    transform: none;
+  }
+
+  .leadership-page .impact-center span {
+    font-size: 26px;
+  }
+
+  .impact-status {
+    flex-basis: 100%;
+    margin-left: 0;
+  }
+}
+
+/* phone: one column, a dotted spine links the seats */
+@media (max-width: 560px) {
+  .leadership-page .page-title {
+    font-size: clamp(40px, 13.5vw, 64px);
+  }
+
+  .leadership-standfirst {
+    padding-left: 16px;
+  }
+
+  .leadership-page .impact-orbit {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "core" "n1" "n2" "n3" "n4" "n5" "n6";
+    gap: 18px;
+    padding: 14px;
+  }
+
+  .leadership-page .impact-orbit::before {
+    content: "";
+    position: absolute;
+    top: 24px;
+    bottom: 24px;
+    left: 50%;
+    border-left: 1px dashed rgba(45, 74, 50, 0.45);
+    pointer-events: none;
+  }
+
+  .leadership-page .impact-node {
+    min-height: 0;
+  }
+
+  .impact-chip {
+    padding: 5px 12px 6px;
+    font-size: 15px;
+  }
+
+  .lead-room-photos {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+
+  .lead-room .lead-room-tedx {
+    width: 82%;
+    justify-self: center;
+  }
+
+  .lead-next-ledger > div {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .impact-web-line {
+    animation: none;
+  }
+
+  .lead-habits.is-ready .lead-habit-body,
+  .lead-habits.is-ready .lead-habit:not(.is-open) .lead-habit-body,
+  .lead-habit-icon::before,
+  .lead-habit-icon::after {
+    transition: none;
+  }
+}

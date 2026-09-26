@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Leadership &amp; Impact — Sasha</title>
+  <title>Leadership &amp; Impact — Sasha Petrovicheva</title>
+  <meta
+    name="description"
+    content="How Sasha Petrovicheva leads: TEDxNortheasternU media relations, Northeastern Student Government communications, NextWork Build &amp; Brew, seven years at Guardian Angel Home Health Agency, IDEA Venture Accelerator and Girls Into VC."
+  />
   <link rel="icon" type="image/png" href="../assets/images/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -26,83 +30,406 @@
       </div>
     </header>
 
+    <!-- Hero: title + standfirst (each habit opens its card in "How she leads") -->
     <section class="page-hero leadership-hero reveal-drop" data-delay="200">
-      <span class="page-eyebrow">Chapter Four</span>
-      <h1 class="page-title">Leadership &amp; Impact</h1>
-      <p class="page-title-script">in action</p>
-      <span class="page-rule"></span>
-    </section>
-
-    <section class="impact-lab reveal-fade" data-delay="420" aria-label="Leadership impact map">
-      <div class="impact-intro">
-        <span class="page-eyebrow">a working map</span>
+      <div class="leadership-hero-text">
+        <span class="page-eyebrow">Chapter Four</span>
+        <h1 class="page-title page-title-compact">Leadership &amp; Impact</h1>
+        <p class="page-title-script">in action</p>
+        <span class="page-rule"></span>
+      </div>
+      <div class="leadership-standfirst">
         <p class="page-lede">
-          Each node is a real seat at a real table &mdash; press, content,
-          community, and campus. Flip any role to read what she ran and what
-          came of it.
+          Sasha leads from inside the work: a TEDx media team, student-government communications,
+          AI peer-learning sessions and seven years in home-health operations.
+        </p>
+        <p class="leadership-habits">
+          <a href="#lead-translate" data-habit-link="translate">translate</a>
+          <span aria-hidden="true">&middot;</span>
+          <a href="#lead-organize" data-habit-link="organize">organize</a>
+          <span aria-hidden="true">&middot;</span>
+          <a href="#lead-sustain" data-habit-link="sustain">sustain</a>
         </p>
       </div>
+    </section>
 
-      <div class="impact-orbit" aria-label="Leadership roles">
+    <!-- 1 · The leadership map — six flip nodes around the centre (logic in
+         scripts/pages/leadership-impact.js). Each node's data-threads lists the habits
+         it shows (translate / organize / sustain); the thread chips light those nodes
+         and their connector lines. Rows read campus · AI & operations · ventures.
+         To add a seat: copy one .impact-node, give it a new node-* class and add a
+         grid area for it in styles/pages/leadership-impact.css. -->
+    <section class="impact-lab reveal-fade" data-delay="300" aria-labelledby="map-title" data-impact-map>
+      <header class="impact-intro">
+        <h2 id="map-title" class="micro-label">The leadership map</h2>
+        <p class="page-lede">
+          Six seats, from a campus media desk to the operations of a home-health agency.
+          Each one asked for the same three habits.
+        </p>
+        <p class="impact-hint">
+          <span aria-hidden="true">&#8635;</span>
+          Tap a role, or press Enter, to turn it over.
+        </p>
+      </header>
+
+      <!-- thread chips — shown by JS; without it the map simply shows all six -->
+      <div class="impact-threads" data-impact-threads hidden>
+        <span class="micro-label" id="thread-label">Trace a thread</span>
+        <div class="impact-chips" role="group" aria-labelledby="thread-label" data-arrow-keys>
+          <button type="button" class="impact-chip" data-thread="all" aria-pressed="true">All six</button>
+          <button type="button" class="impact-chip" data-thread="translate" aria-pressed="false">Translate</button>
+          <button type="button" class="impact-chip" data-thread="organize" aria-pressed="false">Organize</button>
+          <button type="button" class="impact-chip" data-thread="sustain" aria-pressed="false">Sustain</button>
+        </div>
+        <p class="impact-status" data-thread-status aria-live="polite">All six seats, 2019 to now</p>
+      </div>
+
+      <div class="impact-orbit" role="group" aria-label="Six leadership roles" data-orbit>
+        <svg class="impact-web" aria-hidden="true" focusable="false" data-web></svg>
         <span class="impact-ring impact-ring-one" aria-hidden="true"></span>
         <span class="impact-ring impact-ring-two" aria-hidden="true"></span>
-        <div class="impact-center">
-          <span>Sasha</span>
-          <small>leadership map</small>
+        <div class="impact-center" data-core>
+          <p class="impact-center-label">
+            <span>Sasha</span>
+            <small>six seats</small>
+          </p>
         </div>
-        <article class="impact-node node-one flip-card tilt-card" tabindex="0">
+
+        <!-- campus -->
+        <article class="impact-node node-one flip-card tilt-card" tabindex="0" data-threads="organize sustain">
           <div class="flip-inner">
             <div class="flip-face flip-front">
-              <span>TEDxNEU</span>
-              <small>media relations</small>
+              <span class="node-meta"><span class="node-num">01</span><span class="node-kind">campus &middot; media</span></span>
+              <span class="node-org">TEDxNortheasternU</span>
+              <small class="node-theme">media relations</small>
+              <span class="node-path">Associate <span aria-hidden="true">&rarr;</span><span class="visually-hidden">, then</span> Lead</span>
             </div>
             <div class="flip-face flip-back">
-              <span class="micro-label">TEDxNEU</span>
-              <p>Placeholder for her TEDxNEU role &mdash; press outreach, speaker prep, sponsor coordination, and the headline result she's most proud of.</p>
+              <span class="micro-label">Aug 2024 &ndash; Sep 2026</span>
+              <h3>Media Relations Associate &rarr; Lead</h3>
+              <p>
+                Promoted to Lead in May 2025. Sasha ran a cross-channel media-relations workflow
+                &mdash; content planning, assets, outreach and distribution &mdash; and kept the
+                communications team on deadline.
+              </p>
             </div>
           </div>
           <span class="flip-indicator" aria-hidden="true"></span>
         </article>
-        <article class="impact-node node-two flip-card tilt-card" tabindex="0">
+
+        <article class="impact-node node-two flip-card tilt-card" tabindex="0" data-threads="translate organize">
           <div class="flip-inner">
             <div class="flip-face flip-front">
-              <span>IDEA</span>
-              <small>content strategy</small>
+              <span class="node-meta"><span class="node-num">02</span><span class="node-kind">campus &middot; government</span></span>
+              <span class="node-org">Northeastern SGA</span>
+              <small class="node-theme">student government communications</small>
+              <span class="node-path">Assistant Director</span>
             </div>
             <div class="flip-face flip-back">
-              <span class="micro-label">IDEA</span>
-              <p>Placeholder for her IDEA work &mdash; content strategy, editorial calendar, brand voice, and the moment the program scaled up.</p>
+              <span class="micro-label">Oct 2025 &ndash; Jun 2026</span>
+              <h3>Assistant Director of Communications</h3>
+              <p>
+                For the Student Government Association, Sasha built structured communications
+                workflows and produced student-facing content in Canva, turning organizational
+                updates into clear, channel-ready messages.
+              </p>
             </div>
           </div>
           <span class="flip-indicator" aria-hidden="true"></span>
         </article>
-        <article class="impact-node node-three flip-card tilt-card" tabindex="0">
+
+        <!-- AI & operations -->
+        <article class="impact-node node-three flip-card tilt-card" tabindex="0" data-threads="translate">
           <div class="flip-inner">
             <div class="flip-face flip-front">
-              <span>Girls Into VC</span>
-              <small>community</small>
+              <span class="node-meta"><span class="node-num">03</span><span class="node-kind">AI &middot; peer learning</span></span>
+              <span class="node-org">NextWork</span>
+              <small class="node-theme">Build &amp; Brew</small>
+              <span class="node-path">Build Master &amp; Campus Ambassador</span>
             </div>
             <div class="flip-face flip-back">
-              <span class="micro-label">Girls Into VC</span>
-              <p>Placeholder for Girls Into VC &mdash; what she organized, who she brought in, and the pipeline she helped build.</p>
+              <span class="micro-label">Aug 2026 &ndash; present</span>
+              <h3>Build Master &amp; Campus Ambassador</h3>
+              <p>
+                Sasha leads outreach and peer-learning sessions where students in finance,
+                consulting, design, data and public policy experiment with AI and turn ideas into
+                portfolio-ready projects.
+              </p>
             </div>
           </div>
           <span class="flip-indicator" aria-hidden="true"></span>
         </article>
-        <article class="impact-node node-four flip-card tilt-card" tabindex="0">
+
+        <article class="impact-node node-four flip-card tilt-card" tabindex="0" data-threads="organize sustain">
           <div class="flip-inner">
             <div class="flip-face flip-front">
-              <span>B+ Club</span>
-              <small>campus</small>
+              <span class="node-meta"><span class="node-num">04</span><span class="node-kind">operations &middot; seven years</span></span>
+              <span class="node-org">Guardian Angel</span>
+              <small class="node-theme">home-health operations</small>
+              <span class="node-path">Promoted, Aug 2026</span>
             </div>
             <div class="flip-face flip-back">
-              <span class="micro-label">B+ Club</span>
-              <p>Placeholder for B+ Club &mdash; campus involvement, fundraising, and community work that shows up year after year.</p>
+              <span class="micro-label">Aug 2019 &ndash; present</span>
+              <h3>Business Operations Associate</h3>
+              <p>
+                Seven years and a promotion from Financial Operations Assistant. Sasha now
+                coordinates payroll, insurance, staff credentialing and nurse communications across
+                a home-health operation.
+              </p>
+            </div>
+          </div>
+          <span class="flip-indicator" aria-hidden="true"></span>
+        </article>
+
+        <!-- ventures -->
+        <article class="impact-node node-five flip-card tilt-card" tabindex="0" data-threads="">
+          <div class="flip-inner">
+            <div class="flip-face flip-front">
+              <span class="node-meta"><span class="node-num">05</span><span class="node-kind">ventures &middot; strategy</span></span>
+              <span class="node-org">IDEA</span>
+              <small class="node-theme">Northeastern&rsquo;s venture accelerator</small>
+              <span class="node-path">Content &amp; venture strategy</span>
+            </div>
+            <div class="flip-face flip-back">
+              <span class="micro-label">Aug 2024 &ndash; Jan 2025</span>
+              <h3>Content &amp; venture strategy</h3>
+              <p>
+                At IDEA, Northeastern&rsquo;s venture accelerator, Sasha led content and venture
+                strategy &mdash; work on the builder&rsquo;s side of early-stage ventures.
+              </p>
+            </div>
+          </div>
+          <span class="flip-indicator" aria-hidden="true"></span>
+        </article>
+
+        <article class="impact-node node-six flip-card tilt-card" tabindex="0" data-threads="">
+          <div class="flip-inner">
+            <div class="flip-face flip-front">
+              <span class="node-meta"><span class="node-num">06</span><span class="node-kind">ventures &middot; capital</span></span>
+              <span class="node-org">Girls Into VC</span>
+              <small class="node-theme">venture capital fellowship</small>
+              <span class="node-path">Fellow</span>
+            </div>
+            <div class="flip-face flip-back">
+              <span class="micro-label">Sep &ndash; Dec 2024</span>
+              <h3>Fellow</h3>
+              <p>
+                A venture capital fellowship, taken the same fall as her IDEA work &mdash; pairing
+                the builder&rsquo;s view of early-stage ventures with the investor&rsquo;s.
+              </p>
             </div>
           </div>
           <span class="flip-indicator" aria-hidden="true"></span>
         </article>
       </div>
+    </section>
+
+    <!-- 2 · How she leads — three habits, each with its evidence (accordions; logic in
+         scripts/pages/leadership-impact.js). One card is open at a time; data-open marks
+         the card that starts open. On wide screens the open card widens beside the
+         other two. Without JavaScript every card simply stays open. -->
+    <section class="lead-habits" id="how-she-leads" aria-labelledby="habits-title" data-habits>
+      <header class="lead-habits-head reveal-fade" data-delay="150">
+        <h2 id="habits-title" class="micro-label">How she leads</h2>
+        <p class="lead-habits-title">Translate. Organize. Sustain.</p>
+        <p class="lead-habits-lede">
+          Three habits run through every seat on the map. Open one to read the evidence.
+        </p>
+      </header>
+
+      <div class="lead-habit-grid reveal-fade" data-delay="250">
+        <article class="lead-habit tilt-card" id="lead-translate" data-habit="translate" data-open>
+          <h3 class="lead-habit-heading">
+            <button type="button" class="lead-habit-toggle" aria-expanded="true" aria-controls="habit-translate">
+              <span class="lead-habit-num" aria-hidden="true">01</span>
+              <span class="lead-habit-verb">Translate</span>
+              <span class="lead-habit-icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <p class="lead-habit-thesis">
+            Making technical and organizational detail clear to the people who have to act on it.
+          </p>
+          <p class="lead-habit-seen"><span>seen at</span> NextWork &middot; Wellington Management &middot; Student Government</p>
+          <div class="lead-habit-body" id="habit-translate">
+            <div class="lead-habit-inner">
+              <ul class="lead-evidence">
+                <li>
+                  <span class="lead-evidence-org">NextWork</span>
+                  <p>Translates AI concepts for students in finance, consulting, entrepreneurship, design, data and public policy &mdash; then helps them build.</p>
+                </li>
+                <li>
+                  <span class="lead-evidence-org">Wellington Management</span>
+                  <p>Translated technical and operational issues for cross-functional teams across legal, risk, information security and AI governance.</p>
+                </li>
+                <li>
+                  <span class="lead-evidence-org">Student Government</span>
+                  <p>Turned organizational updates into accessible, channel-ready messaging for students.</p>
+                </li>
+              </ul>
+              <button type="button" class="lead-habit-trace" data-trace="translate" hidden>
+                Trace it on the map <span aria-hidden="true">&uarr;</span>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <article class="lead-habit tilt-card" id="lead-organize" data-habit="organize">
+          <h3 class="lead-habit-heading">
+            <button type="button" class="lead-habit-toggle" aria-expanded="true" aria-controls="habit-organize">
+              <span class="lead-habit-num" aria-hidden="true">02</span>
+              <span class="lead-habit-verb">Organize</span>
+              <span class="lead-habit-icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <p class="lead-habit-thesis">
+            Building the workflow first, so that many moving parts arrive on time.
+          </p>
+          <p class="lead-habit-seen"><span>seen at</span> TEDxNortheasternU &middot; Student Government &middot; Guardian Angel</p>
+          <div class="lead-habit-body" id="habit-organize">
+            <div class="lead-habit-inner">
+              <ul class="lead-evidence">
+                <li>
+                  <span class="lead-evidence-org">TEDxNortheasternU</span>
+                  <p>Led a cross-channel media-relations workflow and coordinated deadlines and deliverables across the communications team.</p>
+                </li>
+                <li>
+                  <span class="lead-evidence-org">Student Government</span>
+                  <p>Built structured communications workflows and produced student-facing content in Canva.</p>
+                </li>
+                <li>
+                  <span class="lead-evidence-org">Guardian Angel</span>
+                  <p>Coordinates payroll, insurance, staff credentialing and administrative workflows across a home-health operation.</p>
+                </li>
+              </ul>
+              <button type="button" class="lead-habit-trace" data-trace="organize" hidden>
+                Trace it on the map <span aria-hidden="true">&uarr;</span>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <article class="lead-habit tilt-card" id="lead-sustain" data-habit="sustain">
+          <h3 class="lead-habit-heading">
+            <button type="button" class="lead-habit-toggle" aria-expanded="true" aria-controls="habit-sustain">
+              <span class="lead-habit-num" aria-hidden="true">03</span>
+              <span class="lead-habit-verb">Sustain</span>
+              <span class="lead-habit-icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <p class="lead-habit-thesis">
+            Staying long enough to be trusted with more.
+          </p>
+          <p class="lead-habit-seen"><span>seen at</span> Guardian Angel &middot; TEDxNortheasternU &middot; Heal the Bay &middot; SCV Food Bank</p>
+          <div class="lead-habit-body" id="habit-sustain">
+            <div class="lead-habit-inner">
+              <ul class="lead-evidence">
+                <li>
+                  <span class="lead-evidence-org">Guardian Angel</span>
+                  <p>Seven years, from Financial Operations Assistant to Business Operations Associate &mdash; kept up remotely alongside Northeastern and her co-ops.</p>
+                </li>
+                <li>
+                  <span class="lead-evidence-org">TEDxNortheasternU</span>
+                  <p>Joined as Media Relations Associate in August 2024, promoted to Lead in May 2025, and stayed through September 2026.</p>
+                </li>
+                <li>
+                  <span class="lead-evidence-org">Service</span>
+                  <p>Three years with Heal the Bay and nearly three with the SCV Food Bank, 2019 &ndash; 2022.</p>
+                </li>
+              </ul>
+              <button type="button" class="lead-habit-trace" data-trace="sustain" hidden>
+                Trace it on the map <span aria-hidden="true">&uarr;</span>
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 3 · In the room — two photos. Drop each file at the path in its data-file
+         (relative to the site root); until then the slot shows what to send. -->
+    <section class="lead-room" aria-labelledby="room-title">
+      <div class="lead-room-copy reveal-fade" data-delay="150">
+        <h2 id="room-title" class="micro-label">In the room</h2>
+        <p class="lead-room-text">
+          Two rooms where the work happens: the TEDxNortheasternU media team, and a NextWork
+          Build &amp; Brew table where students from nontechnical majors build with AI.
+        </p>
+      </div>
+      <div class="lead-room-photos reveal-fade" data-delay="250">
+        <figure class="photo-card lead-room-photo lead-room-tedx tilt-card" style="--rotate: -3deg">
+          <div
+            class="img-slot"
+            style="--ratio: 4 / 5"
+            data-hint="Sasha with the TEDxNortheasternU media team at the event: on stage, backstage or at the media table (vertical)"
+            data-file="assets/images/leadership-impact/tedx-media-team.jpg"
+          >
+            <img
+              src="../assets/images/leadership-impact/tedx-media-team.jpg"
+              alt="Sasha with the TEDxNortheasternU media team"
+              loading="lazy"
+            />
+          </div>
+          <figcaption>TEDxNortheasternU &middot; the media team</figcaption>
+        </figure>
+        <figure class="photo-card lead-room-photo lead-room-nextwork tilt-card" style="--rotate: 2deg">
+          <div
+            class="img-slot"
+            style="--ratio: 3 / 2"
+            data-hint="A NextWork Build &amp; Brew session Sasha is leading: students building around a table with laptops (horizontal). Keep screens unreadable."
+            data-file="assets/images/leadership-impact/nextwork-build-brew.jpg"
+          >
+            <img
+              src="../assets/images/leadership-impact/nextwork-build-brew.jpg"
+              alt="Sasha leading a NextWork Build &amp; Brew session"
+              loading="lazy"
+            />
+          </div>
+          <figcaption>NextWork &middot; Build &amp; Brew</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- TEMPLATE: a word from a teammate (TEDx, SGA or NextWork). Use only a real quote
+         the person has agreed to share. To enable, paste this block where it should
+         appear (just above "Where this leads" works well) and fill in both lines:
+    <figure class="quote-strip lead-quote reveal-fade" data-delay="150">
+      <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+      <blockquote>
+        <p>THE QUOTE</p>
+      </blockquote>
+      <figcaption class="micro-label">NAME &middot; ROLE, ORGANIZATION</figcaption>
+    </figure>
+    -->
+
+    <!-- 4 · Where this leads — the habits carried into the plan (MBA → consulting → law) -->
+    <section class="lead-next reveal-fade" data-delay="150" aria-labelledby="lead-next-title">
+      <div class="lead-next-copy">
+        <span class="micro-label">Where this leads</span>
+        <h2 id="lead-next-title" class="lead-next-title">The same three habits, at work in consulting.</h2>
+        <p>
+          <!-- EDIT: name the program once decided -->
+          After an MBA with an AI and technology focus, Sasha plans two to three years in
+          consulting &mdash; AI governance, responsible AI, technology and cybersecurity risk
+          &mdash; and then law school.
+        </p>
+        <a class="lead-next-link" href="next-chapter.html">
+          Read the plan in The Next Chapter <span aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+      <dl class="lead-next-ledger">
+        <div>
+          <dt>Translate</dt>
+          <dd>technical risk, explained to the people who decide</dd>
+        </div>
+        <div>
+          <dt>Organize</dt>
+          <dd>complex work, carried across teams</dd>
+        </div>
+        <div>
+          <dt>Sustain</dt>
+          <dd>trust, earned over time</dd>
+        </div>
+      </dl>
     </section>
 
     <nav class="chapter-nav reveal-fade" data-delay="200" aria-label="Chapter navigation"></nav>
@@ -113,6 +440,7 @@
     </footer>
   </div>
   <script src="../scripts/main.js" defer></script>
+  <script src="../scripts/pages/leadership-impact.js" defer></script>
   <script src="../scripts/cursor-effects.js" defer></script>
 </body>
 </html>
