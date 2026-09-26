@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Finance &amp; Tech — Sasha</title>
+  <title>AI &amp; Governance — Sasha Petrovicheva</title>
+  <meta
+    name="description"
+    content="Sasha Petrovicheva&rsquo;s AI governance work: a Wellington Management co-op across legal, risk, information security and AI governance, an AI agent prototype, and faculty-supervised research on governing agentic AI in financial operations."
+  />
   <link rel="icon" type="image/png" href="../assets/images/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -13,126 +17,227 @@
   />
   <link rel="stylesheet" href="../styles/base.css" />
   <link rel="stylesheet" href="../styles/page.css" />
+  <link rel="stylesheet" href="../styles/pages/ai-governance.css" />
 </head>
-<body class="page finance-page">
+<body class="page finance-page governance-page" data-chapter="ai-governance">
   <div class="page-frame">
     <header class="page-masthead reveal-fade" data-delay="100">
       <a href="../index.html" class="home-link">&larr; back to cover</a>
       <div class="page-vol">
-        <span>Sasha</span>
+        <span>Sasha Petrovicheva</span>
         <span>—</span>
         <span>Vol. 1 / 2026</span>
       </div>
     </header>
 
+    <!-- Hero: title + spotlight board (flips to a one-line summary of the co-op) -->
     <section class="page-hero finance-hero reveal-drop" data-delay="200">
       <div class="finance-hero-text">
         <span class="page-eyebrow">Chapter Two</span>
-        <h1 class="page-title page-title-compact">Finance &amp; Tech</h1>
-        <p class="page-title-script">numbers in motion</p>
+        <h1 class="page-title page-title-compact">AI &amp; Governance</h1>
+        <p class="page-title-script">responsible by design</p>
         <span class="page-rule"></span>
       </div>
-      <article class="chart-card finance-hero-spotlight flip-card tilt-card" tabindex="0">
+      <article class="chart-card finance-hero-spotlight spotlight-card flip-card tilt-card" tabindex="0">
         <div class="flip-inner">
           <div class="flip-face flip-front">
             <div class="chart-heading">
               <span class="micro-label">Spotlight</span>
-              <span class="chart-tag">placeholder</span>
+              <span class="chart-tag">co-op &middot; Boston, on-site</span>
             </div>
-            <div class="chart-placeholder">
-              <p>An additional metric, chart, or takeaway can live in this slot.</p>
+            <div class="spotlight-body">
+              <p class="spotlight-org">Wellington Management</p>
+              <p class="spotlight-role">Risk Intelligence, Information Security &amp; AI Governance <span class="nowrap">Co-op</span></p>
+              <p class="spotlight-meta">
+                <span class="spotlight-dates">Dec 2025 &ndash; Aug 2026</span>
+                <span class="spotlight-teams" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+              </p>
             </div>
           </div>
           <div class="flip-face flip-back">
             <span class="micro-label">Spotlight</span>
-            <h3>Headline note</h3>
-            <p>Placeholder caption &mdash; swap in a real KPI, course grade, or project outcome.</p>
+            <h2>Inside AI governance</h2>
+            <p>
+              Sasha rotated across four teams, translating technical and operational issues for
+              cross-functional colleagues &mdash; and designed and tested an AI agent prototype for
+              trade-operations outage response.
+            </p>
           </div>
         </div>
         <span class="flip-indicator" aria-hidden="true"></span>
       </article>
     </section>
 
-    <section class="finance-stage reveal-fade" data-delay="420" aria-label="Finance and tech dashboard">
-      <div class="finance-intro">
-        <p class="page-lede">
-          A dashboard-style page for coursework, analytics projects, business
-          strategy, venture work, and the numbers behind Sasha&rsquo;s decisions.
-        </p>
+    <!-- 1 · The co-op dashboard — three boards, each flips to the story behind it -->
+    <section class="finance-stage governance-stage" aria-labelledby="dashboard-title">
+      <div class="finance-intro reveal-fade" data-delay="300">
+        <div class="governance-intro-copy">
+          <h2 id="dashboard-title" class="micro-label">The co-op, in three boards</h2>
+          <p class="page-lede">
+            Sasha&rsquo;s co-op at Wellington Management put her inside the question every company
+            now faces: how to use AI without losing control of it.
+          </p>
+          <p class="dashboard-hint">
+            <span aria-hidden="true">&#8635;</span>
+            Tap a board, or press Enter, to turn it over.
+          </p>
+        </div>
+        <figure class="photo-card governance-photo tilt-card" style="--rotate: -2deg">
+          <div
+            class="img-slot"
+            style="--ratio: 4 / 5"
+            data-hint="Sasha at Wellington Management in Boston — the lobby, the building entrance or a team moment (vertical). No screens, documents, badges or anything confidential in frame."
+            data-file="assets/images/ai-governance/wellington-office.jpg"
+          >
+            <img
+              src="../assets/images/ai-governance/wellington-office.jpg"
+              alt="Sasha at Wellington Management in Boston"
+              loading="lazy"
+            />
+          </div>
+          <figcaption>on-site, Boston</figcaption>
+        </figure>
       </div>
 
-      <div class="dashboard-grid">
-        <article class="chart-card chart-card-large flip-card tilt-card" tabindex="0" style="--p1: 54%; --p2: 29%;">
+      <div class="dashboard-grid reveal-fade" data-delay="420">
+        <!-- Board 1 · The rotation — four equal slices (it was a rotation, not a split of hours) -->
+        <article class="chart-card chart-card-large rotation-card flip-card tilt-card" tabindex="0" data-rotation>
           <div class="flip-inner">
             <div class="flip-face flip-front">
               <div class="chart-heading">
-                <span class="micro-label">Focus mix</span>
-                <span class="chart-tag">strategy / analytics</span>
+                <span class="micro-label">The rotation</span>
+                <span class="chart-tag">four teams, equal parts</span>
               </div>
-              <div class="donut-wrap">
-                <div class="donut-chart" aria-label="Pink donut chart">
-                  <span>54%</span>
+              <div class="donut-wrap rotation-wrap">
+                <div class="rotation-donut">
+                  <svg viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+                    <circle class="rotation-rim" cx="100" cy="100" r="96" />
+                    <g transform="rotate(-90 100 100)">
+                      <circle class="rotation-slice" data-team-slice="legal" cx="100" cy="100" r="80" pathLength="100" stroke-dasharray="23 77" stroke-dashoffset="-1" />
+                      <circle class="rotation-slice" data-team-slice="security" cx="100" cy="100" r="80" pathLength="100" stroke-dasharray="23 77" stroke-dashoffset="-26" />
+                      <circle class="rotation-slice" data-team-slice="intel" cx="100" cy="100" r="80" pathLength="100" stroke-dasharray="23 77" stroke-dashoffset="-51" />
+                      <circle class="rotation-slice" data-team-slice="ai" cx="100" cy="100" r="80" pathLength="100" stroke-dasharray="23 77" stroke-dashoffset="-76" />
+                    </g>
+                    <circle class="rotation-core" cx="100" cy="100" r="63" />
+                  </svg>
+                  <p class="rotation-center" aria-hidden="true">
+                    <span class="rotation-center-default"><b>4</b><small>teams</small></span>
+                    <span class="rotation-center-team" data-team-label="legal">Legal &amp; Risk</span>
+                    <span class="rotation-center-team" data-team-label="security">Information Security &amp; Cyber Defense</span>
+                    <span class="rotation-center-team" data-team-label="intel">Risk Intelligence</span>
+                    <span class="rotation-center-team" data-team-label="ai">AI Governance</span>
+                  </p>
                 </div>
-                <ul class="chart-legend">
-                  <li><span class="legend-swatch legend-pink"></span>Business strategy</li>
-                  <li><span class="legend-swatch legend-rose"></span>Analytics</li>
-                  <li><span class="legend-swatch legend-leaf"></span>Venture / tech</li>
+                <ul class="chart-legend rotation-legend" aria-label="Teams in the rotation">
+                  <li>
+                    <button type="button" class="rotation-key" data-team-key="legal" aria-pressed="false">
+                      <span class="legend-swatch legend-pink" aria-hidden="true"></span>Legal &amp; Risk
+                    </button>
+                  </li>
+                  <li>
+                    <button type="button" class="rotation-key" data-team-key="security" aria-pressed="false">
+                      <span class="legend-swatch legend-rose" aria-hidden="true"></span>Information Security &amp; Cyber Defense
+                    </button>
+                  </li>
+                  <li>
+                    <button type="button" class="rotation-key" data-team-key="intel" aria-pressed="false">
+                      <span class="legend-swatch legend-bamboo" aria-hidden="true"></span>Risk Intelligence
+                    </button>
+                  </li>
+                  <li>
+                    <button type="button" class="rotation-key" data-team-key="ai" aria-pressed="false">
+                      <span class="legend-swatch legend-leaf" aria-hidden="true"></span>AI Governance
+                    </button>
+                  </li>
                 </ul>
               </div>
             </div>
             <div class="flip-face flip-back">
-              <span class="micro-label">Focus mix</span>
-              <h3>How she splits her hours</h3>
+              <span class="micro-label">The rotation</span>
+              <h3>Four teams, one translator</h3>
               <p>
-                Placeholder for the story behind the donut &mdash; strategy work,
-                analytics builds, and venture deal flow each get a real share of
-                her week.
+                Sasha rotated across Legal and Risk, Information Security and Cyber Defense, Risk
+                Intelligence, and AI Governance. In each, her job was the same: translating technical
+                and operational issues for cross-functional teams.
               </p>
             </div>
           </div>
           <span class="flip-indicator" aria-hidden="true"></span>
         </article>
 
-        <article class="chart-card flip-card tilt-card" tabindex="0">
+        <!-- Board 2 · The prototype — the stepped path the agent took -->
+        <article class="chart-card prototype-card flip-card tilt-card" tabindex="0">
           <div class="flip-inner">
             <div class="flip-face flip-front">
               <div class="chart-heading">
-                <span class="micro-label">Signal board</span>
-                <span class="chart-tag">placeholder</span>
+                <span class="micro-label">The prototype</span>
+                <span class="chart-tag">an AI agent</span>
               </div>
-              <div class="bar-chart" aria-label="Animated bar chart">
-                <div class="bar-row" style="--bar: 76%; --bar-color: #f4c2c2"><span>PR</span><i></i><b>76</b></div>
-                <div class="bar-row" style="--bar: 62%; --bar-color: #f08ba2"><span>SEO</span><i></i><b>62</b></div>
-                <div class="bar-row" style="--bar: 88%; --bar-color: #c5a47e"><span>UX</span><i></i><b>88</b></div>
-                <div class="bar-row" style="--bar: 54%; --bar-color: #2d4a32"><span>CRM</span><i></i><b>54</b></div>
-              </div>
+              <p class="board-caption">for trade-operations outage response</p>
+              <ol class="prototype-path">
+                <li class="prototype-step" style="--step: 0">
+                  <span class="step-num">01</span>
+                  <span class="step-name">Excel</span>
+                  <span class="step-note">structured inputs</span>
+                </li>
+                <li class="prototype-step" style="--step: 1">
+                  <span class="step-num">02</span>
+                  <span class="step-name">Microsoft Copilot</span>
+                </li>
+                <li class="prototype-step" style="--step: 2">
+                  <span class="step-num">03</span>
+                  <span class="step-name">VS Code</span>
+                </li>
+                <li class="prototype-step is-live" style="--step: 3">
+                  <span class="step-num">04</span>
+                  <span class="step-name">Snowflake</span>
+                  <span class="step-note"><i class="live-dot" aria-hidden="true"></i>live data</span>
+                </li>
+              </ol>
             </div>
             <div class="flip-face flip-back">
-              <span class="micro-label">Signal board</span>
-              <h3>Channel breakdown</h3>
-              <p>Placeholder for the story behind the bars &mdash; channel mix across recent campaigns, projects, and class work.</p>
+              <span class="micro-label">The prototype</span>
+              <h3>Design, test, document</h3>
+              <p>
+                Sasha designed and tested the agent, moving it from structured Excel inputs to
+                Microsoft Copilot, VS Code and Snowflake-connected data. At the end of her co-op,
+                she documented the pre-deployment prototype.
+              </p>
             </div>
           </div>
           <span class="flip-indicator" aria-hidden="true"></span>
         </article>
 
-        <article class="chart-card line-card flip-card tilt-card" tabindex="0">
+        <!-- Board 3 · The controls — what had to be true before anyone trusts the agent -->
+        <article class="chart-card controls-card flip-card tilt-card" tabindex="0">
           <div class="flip-inner">
             <div class="flip-face flip-front">
               <div class="chart-heading">
-                <span class="micro-label">Momentum</span>
-                <span class="chart-tag">case study slot</span>
+                <span class="micro-label">The controls</span>
+                <span class="chart-tag">mapped pre-deployment</span>
               </div>
-              <svg class="line-chart" viewBox="0 0 420 170" role="img" aria-label="Animated line graph">
-                <path class="grid-line" d="M20 35H400M20 85H400M20 135H400" />
-                <path class="line-fill" d="M20 132 C70 118 85 94 128 102 C178 112 192 57 235 70 C285 84 298 32 344 44 C370 49 390 38 400 28 L400 150 L20 150 Z" />
-                <path class="line-path" d="M20 132 C70 118 85 94 128 102 C178 112 192 57 235 70 C285 84 298 32 344 44 C370 49 390 38 400 28" />
-              </svg>
+              <ul class="controls-list">
+                <li style="--step: 0"><span class="control-check" aria-hidden="true"></span>Human review</li>
+                <li style="--step: 1"><span class="control-check" aria-hidden="true"></span>Access governance</li>
+                <li style="--step: 2"><span class="control-check" aria-hidden="true"></span>Output validation</li>
+                <li style="--step: 3"><span class="control-check" aria-hidden="true"></span>Operational accountability</li>
+              </ul>
+              <p class="controls-map">
+                <span>data flows</span>
+                <span class="controls-arrow" aria-hidden="true">&rarr;</span>
+                <span>decisions</span>
+                <span class="controls-arrow" aria-hidden="true">&rarr;</span>
+                <span>escalation paths</span>
+              </p>
             </div>
             <div class="flip-face flip-back">
-              <span class="micro-label">Momentum</span>
-              <h3>Trajectory over the year</h3>
-              <p>Placeholder for a case study writeup &mdash; project name, what shifted, and the moment it inflected.</p>
+              <span class="micro-label">The controls</span>
+              <h3>Who checks the agent?</h3>
+              <p>
+                Sasha mapped data flows, decisions, escalation paths and the control requirements
+                for human review, access governance, output validation and operational
+                accountability.
+              </p>
             </div>
           </div>
           <span class="flip-indicator" aria-hidden="true"></span>
@@ -140,24 +245,219 @@
       </div>
     </section>
 
-    <nav class="chapter-nav reveal-fade" data-delay="200" aria-label="Chapter navigation">
-      <a href="my-story.html" class="chapter-nav-prev" aria-label="Previous chapter: My Story">
-        <small>← Chapter One</small>
-        <span>My Story</span>
-      </a>
-      <a href="../index.html" class="chapter-nav-home" aria-label="Back to cover">cover</a>
-      <a href="brand-content.html" class="chapter-nav-next" aria-label="Next chapter: Brand and Content">
-        <small>Chapter Three →</small>
-        <span>Brand &amp; Content</span>
-      </a>
-    </nav>
+    <!-- 2 · Research feature — six lenses; choose one to see the question it asks -->
+    <section class="research-feature" aria-labelledby="research-title" data-lenses>
+      <div class="research-copy reveal-fade" data-delay="150">
+        <span class="micro-label">Research &middot; 2026 &ndash; present</span>
+        <h2 id="research-title" class="research-title">Governing Agentic AI in Financial Operations</h2>
+        <p class="research-tag">Independent, faculty-supervised research</p>
+        <p class="research-summary">
+          A case study of agentic-AI governance in high-stakes financial workflows, grounded in an
+          anonymized trade-operations project at Wellington. It follows six lenses across
+          operational, risk, legal and information-security teams.
+        </p>
+      </div>
+
+      <div class="lens-board reveal-fade" data-delay="300">
+        <div class="lens-head">
+          <span class="micro-label">Six lenses</span>
+          <span class="lens-count" data-lens-count aria-hidden="true">01 / 06</span>
+        </div>
+        <div class="lens-chips" role="tablist" aria-label="Research lenses" data-arrow-keys>
+          <button type="button" class="lens-chip" role="tab" id="lens-tab-oversight" aria-controls="lens-oversight" aria-selected="true" tabindex="0">
+            <span class="lens-num" aria-hidden="true">01</span>Human oversight
+          </button>
+          <button type="button" class="lens-chip" role="tab" id="lens-tab-audit" aria-controls="lens-audit" aria-selected="false" tabindex="-1">
+            <span class="lens-num" aria-hidden="true">02</span>Auditability
+          </button>
+          <button type="button" class="lens-chip" role="tab" id="lens-tab-data" aria-controls="lens-data" aria-selected="false" tabindex="-1">
+            <span class="lens-num" aria-hidden="true">03</span>Data access
+          </button>
+          <button type="button" class="lens-chip" role="tab" id="lens-tab-validation" aria-controls="lens-validation" aria-selected="false" tabindex="-1">
+            <span class="lens-num" aria-hidden="true">04</span>Output validation
+          </button>
+          <button type="button" class="lens-chip" role="tab" id="lens-tab-readiness" aria-controls="lens-readiness" aria-selected="false" tabindex="-1">
+            <span class="lens-num" aria-hidden="true">05</span>Deployment readiness
+          </button>
+          <button type="button" class="lens-chip" role="tab" id="lens-tab-responsibility" aria-controls="lens-responsibility" aria-selected="false" tabindex="-1">
+            <span class="lens-num" aria-hidden="true">06</span>Responsibility allocation
+          </button>
+        </div>
+
+        <div class="lens-panels">
+          <div class="lens-panel" role="tabpanel" id="lens-oversight" aria-labelledby="lens-tab-oversight" tabindex="0">
+            <span class="lens-ring" aria-hidden="true">01</span>
+            <div class="lens-panel-text">
+              <p class="lens-panel-label">Human oversight</p>
+              <!-- DRAFT: Sasha to confirm -->
+              <p class="lens-question">Where does a person stay in the loop, and what exactly do they check?</p>
+            </div>
+          </div>
+          <div class="lens-panel" role="tabpanel" id="lens-audit" aria-labelledby="lens-tab-audit" tabindex="0">
+            <span class="lens-ring" aria-hidden="true">02</span>
+            <div class="lens-panel-text">
+              <p class="lens-panel-label">Auditability</p>
+              <!-- DRAFT: Sasha to confirm -->
+              <p class="lens-question">Could someone reconstruct, after the fact, what the agent did and why?</p>
+            </div>
+          </div>
+          <div class="lens-panel" role="tabpanel" id="lens-data" aria-labelledby="lens-tab-data" tabindex="0">
+            <span class="lens-ring" aria-hidden="true">03</span>
+            <div class="lens-panel-text">
+              <p class="lens-panel-label">Data access</p>
+              <!-- DRAFT: Sasha to confirm -->
+              <p class="lens-question">What should the agent be allowed to see, and who grants that access?</p>
+            </div>
+          </div>
+          <div class="lens-panel" role="tabpanel" id="lens-validation" aria-labelledby="lens-tab-validation" tabindex="0">
+            <span class="lens-ring" aria-hidden="true">04</span>
+            <div class="lens-panel-text">
+              <p class="lens-panel-label">Output validation</p>
+              <!-- DRAFT: Sasha to confirm -->
+              <p class="lens-question">How is an answer checked before anyone acts on it?</p>
+            </div>
+          </div>
+          <div class="lens-panel" role="tabpanel" id="lens-readiness" aria-labelledby="lens-tab-readiness" tabindex="0">
+            <span class="lens-ring" aria-hidden="true">05</span>
+            <div class="lens-panel-text">
+              <p class="lens-panel-label">Deployment readiness</p>
+              <!-- DRAFT: Sasha to confirm -->
+              <p class="lens-question">What has to be true before a prototype is trusted with live operations?</p>
+            </div>
+          </div>
+          <div class="lens-panel" role="tabpanel" id="lens-responsibility" aria-labelledby="lens-tab-responsibility" tabindex="0">
+            <span class="lens-ring" aria-hidden="true">06</span>
+            <div class="lens-panel-text">
+              <p class="lens-panel-label">Responsibility allocation</p>
+              <!-- DRAFT: Sasha to confirm -->
+              <p class="lens-question">When the agent gets it wrong, which team owns the outcome?</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pull quote -->
+    <!-- DRAFT QUOTE: Sasha to confirm wording -->
+    <figure class="quote-strip governance-quote reveal-fade" data-delay="150">
+      <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+      <blockquote>
+        <p>
+          AI and cybersecurity problems are business problems &mdash; and, sooner or later, legal
+          ones.
+        </p>
+      </blockquote>
+      <figcaption class="micro-label">Sasha</figcaption>
+    </figure>
+
+    <!-- 3 · Toolkit + coursework -->
+    <section class="governance-toolkit reveal-fade" data-delay="150" aria-labelledby="toolkit-title">
+      <div class="toolkit-head">
+        <h2 id="toolkit-title" class="micro-label">The toolkit</h2>
+        <p class="toolkit-dek">
+          Enough technology to ask the right questions; enough strategy and policy to act on the
+          answers.
+        </p>
+      </div>
+      <div class="toolkit-columns">
+        <div class="toolkit-group">
+          <h3>Data &amp; AI</h3>
+          <ul class="toolkit-tags">
+            <li>Excel</li>
+            <li>Snowflake</li>
+            <li>Microsoft Copilot</li>
+            <li>Copilot Studio</li>
+            <li>VS Code</li>
+            <li>Data analytics</li>
+            <li>Information visualization</li>
+          </ul>
+        </div>
+        <div class="toolkit-group">
+          <h3>Governance &amp; strategy</h3>
+          <ul class="toolkit-tags">
+            <li>AI governance</li>
+            <li>Information security</li>
+            <li>Cyber risk</li>
+            <li>Data governance</li>
+            <li>Policy research</li>
+            <li>Process mapping</li>
+          </ul>
+        </div>
+        <div class="toolkit-group toolkit-courses">
+          <h3>Coursework</h3>
+          <ul class="toolkit-course-list">
+            <li>Data Management</li>
+            <li>Information Visualization</li>
+            <li>Digital Globalization</li>
+            <li>Business Decision Making in Developed &amp; Emerging Markets</li>
+            <li>Executing Global Strategy</li>
+          </ul>
+          <p class="toolkit-note">Business Analytics concentration &middot; Northeastern University</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 · Coda — finance roots behind her, the path ahead -->
+    <section class="governance-coda reveal-fade" data-delay="150" aria-label="Finance roots and where this leads">
+      <div class="coda-roots">
+        <h2 class="micro-label">Finance roots</h2>
+        <p class="coda-dek">Before AI governance, there was payroll.</p>
+        <ul class="roots-list">
+          <li>
+            <span class="roots-when">2019 &ndash; present</span>
+            <strong>Guardian Angel Home Health Agency</strong>
+            <span class="roots-what">
+              Financial operations &mdash; payroll, insurance documentation and recurring reporting
+              in regulated healthcare. Now Business Operations Associate.
+            </span>
+          </li>
+          <li>
+            <span class="roots-when">Applied project</span>
+            <strong>Tesla&ndash;Chevron Financial Analysis</strong>
+            <span class="roots-what">An applied business project in financial analysis.</span>
+          </li>
+          <li>
+            <span class="roots-when">Sep &ndash; Dec 2024</span>
+            <strong>Girls Into VC</strong>
+            <span class="roots-what">Fellow in a venture capital fellowship.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="coda-next">
+        <h2 class="micro-label">Where this leads</h2>
+        <p class="coda-dek">After the MBA: consulting, then the law.</p>
+        <ol class="next-path">
+          <li>
+            <span class="next-when">Fall 2027</span>
+            <!-- EDIT: name the program once decided -->
+            <strong>MBA</strong>
+            <span class="next-what">AI &amp; technology focus</span>
+          </li>
+          <li>
+            <span class="next-when">then</span>
+            <strong>Consulting</strong>
+            <span class="next-what">AI governance, responsible AI &amp; technology risk</span>
+          </li>
+          <li>
+            <span class="next-when">then</span>
+            <strong>Law school</strong>
+            <span class="next-what">AI, privacy &amp; cybersecurity law</span>
+          </li>
+        </ol>
+        <a class="next-link" href="next-chapter.html">Read the plan in The Next Chapter <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </section>
+
+    <nav class="chapter-nav reveal-fade" data-delay="200" aria-label="Chapter navigation"></nav>
 
     <footer class="page-footer">
-      <span>Finance &amp; Tech</span>
+      <span>AI &amp; Governance</span>
       <span>p. 03</span>
     </footer>
   </div>
   <script src="../scripts/main.js" defer></script>
+  <script src="../scripts/pages/ai-governance.js" defer></script>
   <script src="../scripts/cursor-effects.js" defer></script>
 </body>
 </html>

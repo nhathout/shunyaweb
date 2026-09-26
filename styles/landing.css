@@ -6,6 +6,13 @@ body.landing {
 }
 
 .frame {
+  /* shared measures: the left rail (insta grid + cover lines) and the masthead type */
+  /* short laptop windows trim the rail a touch so the cover lines keep their air */
+  --rail-w: clamp(210px, min(21vw, 34vh), 290px);
+  /* the cover lines share the rail but stop short of where SASHA begins */
+  --cover-w: min(var(--rail-w), calc(20.5vw - 12px));
+  --mast-fs: clamp(14px, 1.05vw, 18px);
+
   position: relative;
   width: 100vw;
   height: 100vh;
@@ -35,7 +42,7 @@ body.landing {
   flex-direction: column;
   gap: 4px;
   font-family: var(--font-body);
-  font-size: clamp(14px, 1.05vw, 18px);
+  font-size: var(--mast-fs);
   font-weight: 400;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -56,8 +63,7 @@ body.landing {
   grid-row: 1;
   justify-self: end;
   align-self: start;
-  display: grid;
-  grid-template-columns: repeat(4, auto);
+  display: flex;
   gap: 8px;
   z-index: 3;
 }
@@ -71,6 +77,13 @@ body.landing {
   color: var(--black);
   background: transparent;
   transition: background-color 0.45s ease, color 0.45s ease, transform 0.45s ease;
+}
+
+/* a tile still pointing at "#" has no profile yet — keep it off the cover
+   until a real URL is pasted into its href */
+.social-tile[href="#"],
+.social-tile:not([href]) {
+  display: none;
 }
 
 .social-tile svg {
@@ -90,6 +103,10 @@ body.landing {
 
 /* ───────── title block ───────── */
 .title-block {
+  /* the vh term only bites on wide, short windows (e.g. a laptop browser) */
+  --title-fs: clamp(72px, min(13vw, 25vh), 220px);
+  --subtitle-fs: clamp(28px, 3.2vw, 56px);
+
   grid-column: 1 / -1;
   grid-row: 1;
   display: inline-flex;
@@ -106,7 +123,7 @@ body.landing {
 .title {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(72px, 13vw, 220px);
+  font-size: var(--title-fs);
   letter-spacing: 0.12em;
   line-height: 0.9;
   margin: 0;
@@ -147,7 +164,7 @@ body.landing {
 
 .subtitle {
   font-family: var(--font-script);
-  font-size: clamp(28px, 3.2vw, 56px);
+  font-size: var(--subtitle-fs);
   margin: -0.45em 0 0 0.25em;
   color: var(--black);
   line-height: 1;
@@ -162,6 +179,42 @@ body.landing {
   transform: translateY(0) rotate(-4deg);
 }
 
+/* full name — a quiet small-caps byline under the last letters of SASHA,
+   on the same line as the "portfolio" script */
+.title-byline {
+  position: absolute;
+  /* the title's trailing letter-spacing sits after the last "A" — tuck in by it */
+  right: calc(var(--title-fs) * 0.13);
+  bottom: calc(var(--subtitle-fs) * 0.22);
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9em;
+  font-family: var(--font-body);
+  font-size: clamp(11px, 0.92vw, 16px);
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--black-soft);
+}
+
+.title-byline-rule {
+  display: inline-block;
+  width: 2.6em;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.7;
+}
+
+/* narrower screens: the name alone, so it keeps clear of the centre arrow */
+@media (max-width: 1200px) {
+  .title-byline-rule {
+    display: none;
+  }
+}
+
 /* an arrow under the title pointing down at the portrait, magazine style */
 .title-block::after {
   content: "";
@@ -174,6 +227,112 @@ body.landing {
   transform: translateX(-50%);
 }
 
+/* ───────── cover lines — the teasers in the left rail ─────────
+   The box fills the gap between the masthead and the insta grid (both sized
+   from the same tokens), so the lines never run into either. */
+.coverlines {
+  position: absolute;
+  left: var(--frame-padding);
+  top: calc(var(--frame-padding) + 2 * var(--mast-fs) + 4px + clamp(12px, 3vh, 40px));
+  bottom: calc(var(--frame-padding) + 1.5 * var(--rail-w) + 5px + clamp(12px, 3vh, 40px));
+  width: var(--cover-w);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(10px, 2.2vh, 26px);
+  z-index: 3;
+}
+
+.coverline {
+  position: relative;
+}
+
+/* a short hairline between teasers, cover-line style */
+.coverline + .coverline::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: calc(-0.5 * clamp(10px, 2.2vh, 26px));
+  width: 22px;
+  height: 1px;
+  background: var(--black);
+  opacity: 0.55;
+}
+
+.coverline-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+  color: var(--black);
+}
+
+.coverline-head {
+  font-family: var(--font-display);
+  /* sized so the longest head plus its page number stays on one line */
+  font-size: clamp(14px, min(1.4vw, 2.55vh, calc(var(--cover-w) / 13.8)), 22px);
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+  text-wrap: balance;
+}
+
+/* the head's own words get an underline that draws in on hover */
+.coverline-title {
+  background-image: linear-gradient(var(--leaf), var(--leaf));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0 1px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  transition: color 0.4s ease, background-size 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* the arrow glyph isn't in Italiana — borrow the body face */
+.coverline-arrow {
+  font-family: var(--font-body);
+  font-size: 0.9em;
+}
+
+.coverline-dek {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: clamp(12.5px, min(1.02vw, 1.95vh), 17px);
+  line-height: 1.3;
+  text-wrap: balance;
+  color: var(--black-soft);
+}
+
+.coverline-page {
+  display: inline-block;
+  margin-left: 0.2em;
+  font-family: var(--font-body);
+  font-size: 0.62em;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  vertical-align: 0.2em;
+  white-space: nowrap;
+  color: var(--bamboo-deep);
+  /* a shade deeper than bamboo so the tiny numbers stay readable */
+  color: color-mix(in srgb, var(--bamboo-deep) 70%, var(--black));
+  transition: background-color 0.4s ease, box-shadow 0.4s ease, color 0.4s ease;
+}
+
+.coverline-link:hover .coverline-title,
+.coverline-link:focus-visible .coverline-title {
+  color: var(--leaf);
+  background-size: 100% 1px;
+}
+
+.coverline-link:hover .coverline-page,
+.coverline-link:focus-visible .coverline-page {
+  /* a pink tab behind the page number, drawn with a shadow so nothing shifts */
+  background: var(--baby-pink);
+  box-shadow: 0 0 0 0.3em var(--baby-pink);
+  color: var(--black);
+}
+
 /* ───────── insta feed (2 cols × 3 rows) ───────── */
 .insta {
   grid-column: 1;
@@ -183,7 +342,7 @@ body.landing {
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(3, auto);
   gap: 10px;
-  width: clamp(210px, 21vw, 290px);
+  width: var(--rail-w);
   position: relative;
   z-index: 3;
 }
@@ -256,8 +415,21 @@ body.landing {
   opacity: 0.18;
 }
 
+/* missing photo — the striped tile names which picture belongs there */
 .insta-tile.image-missing::before {
   opacity: 1;
+  content: "✦ " attr(data-hint) "\A" attr(data-file);
+  white-space: pre-line;
+  display: grid;
+  place-items: center;
+  padding: 8px;
+  text-align: center;
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 12px;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+  color: var(--bamboo-deep);
 }
 
 .insta-tile.image-missing img {
@@ -293,17 +465,23 @@ body.landing {
   align-items: flex-end;
 }
 
+/* missing portrait — says exactly which file to send */
 .portrait.image-missing::before {
-  content: "portrait image";
+  content: "✦ photo to add\A" attr(data-hint) "\A\A" attr(data-file);
+  white-space: pre-line;
   width: min(72%, 420px);
   height: min(78%, 620px);
   display: grid;
   place-items: end center;
-  padding: 0 18px 26px;
-  border: var(--hairline);
+  padding: 0 clamp(16px, 2vw, 34px) clamp(18px, 3vh, 30px);
+  border: 1px dashed var(--bamboo-deep);
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: clamp(13px, 1vw, 16px);
+  line-height: 1.4;
   color: var(--bamboo-deep);
   font-style: italic;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.06em;
   background:
     linear-gradient(180deg, transparent 28%, rgba(244, 194, 194, 0.46)),
     repeating-linear-gradient(135deg, rgba(26, 26, 26, 0.055) 0 1px, transparent 1px 16px),
@@ -326,18 +504,18 @@ body.landing {
 
 /* ───────── page links ───────── */
 .pagelinks {
-  --pagelink-fs: clamp(22px, 2vw, 36px);
+  /* seven chapters — the type also scales with height so the list clears
+     the résumé button on short laptop screens */
+  --pagelink-fs: clamp(20px, min(2vw, 3.35vh), 36px);
   grid-column: 3;
   grid-row: 2;
   align-self: center;
   justify-self: end;
   display: flex;
   flex-direction: column;
-  gap: clamp(10px, 1.45vh, 22px);
+  gap: clamp(4px, 1.05vh, 18px);
   text-align: right;
   z-index: 3;
-  /* lift the whole stack one font-height so the gap above the resume box grows */
-  transform: translateY(calc(-0.75 * var(--pagelink-fs)));
 }
 
 .pagelink {
@@ -396,28 +574,42 @@ body.landing {
   background-image: url("../assets/images/arrow-1.png");
 }
 
-.pagelink:hover {
+/* hovering (or tabbing onto) a cover line lights up its chapter here too */
+.pagelink:hover,
+.frame:has(.coverline-link[data-chapter="ai-governance"]:is(:hover, :focus-visible)) .pagelink[data-chapter="ai-governance"],
+.frame:has(.coverline-link[data-chapter="my-story"]:is(:hover, :focus-visible)) .pagelink[data-chapter="my-story"],
+.frame:has(.coverline-link[data-chapter="next-chapter"]:is(:hover, :focus-visible)) .pagelink[data-chapter="next-chapter"] {
   color: var(--leaf);
 }
 
-.pagelink:hover .pagelink-text {
+.pagelink:hover .pagelink-text,
+.frame:has(.coverline-link[data-chapter="ai-governance"]:is(:hover, :focus-visible)) .pagelink[data-chapter="ai-governance"] .pagelink-text,
+.frame:has(.coverline-link[data-chapter="my-story"]:is(:hover, :focus-visible)) .pagelink[data-chapter="my-story"] .pagelink-text,
+.frame:has(.coverline-link[data-chapter="next-chapter"]:is(:hover, :focus-visible)) .pagelink[data-chapter="next-chapter"] .pagelink-text {
   transform: scale(1.08);
   letter-spacing: 0.08em;
   font-weight: 500;
 }
 
-.pagelink:hover .pagelink-arrow {
+.pagelink:hover .pagelink-arrow,
+.frame:has(.coverline-link[data-chapter="ai-governance"]:is(:hover, :focus-visible)) .pagelink[data-chapter="ai-governance"] .pagelink-arrow,
+.frame:has(.coverline-link[data-chapter="my-story"]:is(:hover, :focus-visible)) .pagelink[data-chapter="my-story"] .pagelink-arrow,
+.frame:has(.coverline-link[data-chapter="next-chapter"]:is(:hover, :focus-visible)) .pagelink[data-chapter="next-chapter"] .pagelink-arrow {
   opacity: 1;
   transform: translateX(0);
   /* tint the dark-brown arrow toward leaf green to match the link color */
   filter: hue-rotate(15deg) saturate(0.5) brightness(0.85);
 }
 
-/* ───────── resume link — anchored bottom-right, same offset as masthead ───────── */
+/* ───────── resume link — anchored bottom-right, same offset as masthead ─────────
+   It sits in the grid's last row (not absolutely), so the chapter list in the
+   row above can never slide underneath it on a short screen. */
 .resume-link {
-  position: absolute;
-  right: var(--frame-padding);
-  bottom: var(--frame-padding);
+  grid-column: 3;
+  grid-row: 3;
+  justify-self: end;
+  align-self: end;
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 14px;
@@ -493,16 +685,19 @@ body.landing {
   z-index: 1;
 }
 
-.resume-link:hover {
+.resume-link:hover,
+.resume-link:focus-visible {
   color: var(--black);
   border-color: var(--baby-pink);
 }
 
-.resume-link:hover .resume-shimmer {
+.resume-link:hover .resume-shimmer,
+.resume-link:focus-visible .resume-shimmer {
   transform: translateX(0);
 }
 
-.resume-link:hover .resume-text::before {
+.resume-link:hover .resume-text::before,
+.resume-link:focus-visible .resume-text::before {
   opacity: 0;
 }
 
@@ -513,6 +708,45 @@ body.landing {
 @keyframes arrowBob {
   0%, 100% { transform: translateY(-3px); }
   50%      { transform: translateY(3px); }
+}
+
+/* ───────── reduced motion — no floating, sliding or bobbing ───────── */
+@media (prefers-reduced-motion: reduce) {
+  .portrait img,
+  .resume-link:hover .resume-arrow {
+    animation: none;
+  }
+  .pagelink,
+  .resume-link {
+    transition: color 0.4s ease, border-color 0.4s ease;
+  }
+  .pagelink-text,
+  .pagelink-arrow,
+  .coverline-title,
+  .resume-shimmer {
+    transition: none;
+  }
+}
+
+/* ───────── short laptop windows (browser chrome eats the height) ─────────
+   the chapter list tightens so seven links still clear the résumé button */
+@media (min-width: 901px) and (max-height: 760px) {
+  .pagelinks {
+    --pagelink-fs: clamp(18px, min(2vw, 3.1vh), 36px);
+    gap: clamp(2px, 0.8vh, 18px);
+  }
+}
+
+/* ───────── very short desktop windows — let the cover scroll rather than clip ───────── */
+@media (min-width: 901px) and (max-height: 600px) {
+  html,
+  body.landing {
+    height: auto;
+    overflow: auto;
+  }
+  .frame {
+    height: 600px;
+  }
 }
 
 /* ───────── responsive — sketch is desktop-first; collapse gracefully ───────── */
@@ -526,36 +760,86 @@ body.landing {
     height: auto;
     min-height: 100vh;
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto auto auto auto;
+    grid-template-rows: auto auto auto auto auto auto auto;
     gap: 28px;
   }
   .masthead { grid-column: 1; grid-row: 1; }
   .socials { grid-column: 1; grid-row: 1; justify-self: end; }
-  .title-block { grid-column: 1; grid-row: 2; align-self: center; }
-  .title { font-size: 22vw; }
-  .insta { grid-column: 1; grid-row: 4; justify-self: center; align-self: center; width: 70vw; }
-  .insta-label { display: none; }
-  .portrait { grid-column: 1; grid-row: 3; height: 50vh; }
+  .title-block {
+    --title-fs: 22vw;
+    --subtitle-fs: clamp(28px, 8vw, 48px);
+    grid-column: 1;
+    grid-row: 2;
+    align-self: center;
+  }
+  .title-block::after { bottom: -26px; }
+  /* the byline drops under the title, centred, and the arrow follows it */
+  .title-byline {
+    position: static;
+    align-self: center;
+    margin-top: 16px;
+    font-size: 11.5px;
+    letter-spacing: 0.24em;
+  }
+  .title-byline-rule { display: none; }
+
+  /* cover lines become a small "in this issue" box under the title */
+  .coverlines {
+    position: static;
+    grid-column: 1;
+    grid-row: 3;
+    justify-self: center;
+    width: min(100%, 400px);
+    margin-top: 18px;
+    padding: 16px 4px;
+    border-top: var(--hairline);
+    border-bottom: var(--hairline);
+    gap: 16px;
+    text-align: center;
+  }
+  .coverline + .coverline::before {
+    left: 50%;
+    top: -8px;
+    transform: translateX(-50%);
+  }
+  .coverline-link { align-items: center; }
+  .coverline-head { font-size: 21px; }
+  .coverline-dek { font-size: 15px; }
+
+  .portrait { grid-column: 1; grid-row: 4; height: 50vh; }
   .portrait img {
     max-height: 100%;
     margin-bottom: 0;
   }
+  .portrait.image-missing::before {
+    width: min(80%, 320px);
+    height: 100%;
+    font-size: 14px;
+  }
   .pagelinks {
+    --pagelink-fs: 22px;
     grid-column: 1;
     grid-row: 5;
     align-self: center;
     justify-self: center;
     align-items: center;
+    gap: 6px;
     text-align: center;
-    transform: none;
   }
+  /* no room for the sliding arrow on a phone — keep the titles centred */
+  .pagelink-arrow { display: none; }
   .resume-link {
-    position: relative;
-    right: auto;
-    bottom: auto;
     grid-column: 1;
     grid-row: 6;
     justify-self: center;
+  }
+  .insta {
+    grid-column: 1;
+    grid-row: 7;
+    justify-self: center;
+    align-self: center;
+    width: min(70vw, 340px);
     margin-bottom: 12px;
   }
+  .insta-label { display: none; }
 }

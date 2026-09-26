@@ -1,0 +1,592 @@
+/* strategy-brand page — page-specific styles (loaded after page.css) */
+
+/* a deeper bamboo for small italic text so it stays readable */
+.brand-page {
+  --bamboo-ink: #8a6a48;
+  --wall-row: clamp(220px, 19vw, 280px);
+}
+
+/* ───────── hero ───────── */
+.brand-page .brand-hero {
+  padding-bottom: clamp(28px, 3.4vw, 52px);
+}
+
+.brand-hero-route {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+  margin: 8px 0 0;
+  font-size: 13px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--black-soft);
+}
+
+.brand-hero-route em {
+  font-family: var(--font-script);
+  font-size: clamp(22px, 2vw, 30px);
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--bamboo-deep);
+}
+
+.brand-hero-arrow {
+  color: var(--bamboo-deep);
+  letter-spacing: 0;
+}
+
+.no-break {
+  white-space: nowrap;
+}
+
+/* ───────── studio: editor's note → wall → coda (one column) ───────── */
+.brand-page .content-studio {
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(30px, 3.6vw, 56px);
+  padding-top: 0;
+}
+
+/* ───────── 1 · editor's note (replaces page.css's side-panel look) ───────── */
+.brand-page .editorial-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: clamp(28px, 5vw, 88px);
+  align-items: start;
+  border-left: 0;
+  border-top: var(--hairline);
+  padding: clamp(28px, 3.6vw, 52px) 0 0;
+}
+
+.brief-lead {
+  display: grid;
+  gap: clamp(16px, 1.8vw, 24px);
+  align-content: start;
+}
+
+.brand-brief .micro-label {
+  margin: 0;
+  font-weight: 400;
+}
+
+.brand-brief .page-lede {
+  max-width: 25em;
+  font-size: clamp(22px, 2.1vw, 32px);
+  text-wrap: pretty;
+}
+
+.brief-kit {
+  display: grid;
+  gap: 10px;
+  padding-top: clamp(14px, 1.6vw, 20px);
+  border-top: 1px solid rgba(26, 26, 26, 0.2);
+}
+
+.kit-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.kit-list li {
+  padding: 5px 12px 6px;
+  border: 1px solid rgba(26, 26, 26, 0.4);
+  background: var(--cream-soft);
+  font-size: 15px;
+  font-style: italic;
+  letter-spacing: 0.06em;
+}
+
+.through-line {
+  display: grid;
+  gap: 12px;
+}
+
+.through-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: var(--hairline);
+}
+
+.through-step {
+  display: grid;
+  grid-template-columns: 2.4em minmax(0, 1fr);
+  gap: 14px;
+  padding: clamp(14px, 1.5vw, 20px) 0;
+  border-bottom: 1px solid rgba(26, 26, 26, 0.18);
+}
+
+.through-num {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 1.8vw, 28px);
+  line-height: 1.05;
+  color: var(--bamboo-deep);
+}
+
+.through-step h4 {
+  margin: 0 0 4px;
+  font-family: var(--font-display);
+  font-size: clamp(22px, 1.8vw, 28px);
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.through-step p {
+  margin: 0;
+  font-size: clamp(16px, 1.15vw, 18px);
+  line-height: 1.5;
+  color: var(--black-soft);
+  text-wrap: pretty;
+}
+
+/* ───────── 2 · the wall: heading + toolbar ───────── */
+.studio-board {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(14px, 1.6vw, 20px);
+  min-width: 0;
+}
+
+.studio-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 6px 20px;
+}
+
+.studio-head .micro-label {
+  margin: 0;
+  font-weight: 400;
+}
+
+.studio-hint {
+  margin: 0;
+  font-size: 16px;
+  font-style: italic;
+  letter-spacing: 0.04em;
+  color: var(--black-soft);
+}
+
+.studio-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 18px;
+  padding: 12px 0;
+  border-top: var(--hairline);
+  border-bottom: 1px solid rgba(26, 26, 26, 0.2);
+}
+
+.studio-toolbar[hidden] {
+  display: none;
+}
+
+.studio-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.studio-chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 6px 14px 7px;
+  border: var(--hairline);
+  background: var(--cream-soft);
+  font-size: 16px;
+  font-style: italic;
+  letter-spacing: 0.06em;
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease,
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.studio-chip:hover {
+  background: var(--baby-pink-soft);
+  transform: translateY(-2px);
+}
+
+.studio-chip[aria-pressed="true"] {
+  background: var(--black);
+  color: var(--cream);
+}
+
+.studio-chip-count {
+  font-size: 12px;
+  font-style: normal;
+  letter-spacing: 0.1em;
+  color: var(--bamboo-ink);
+}
+
+.studio-chip[aria-pressed="true"] .studio-chip-count {
+  color: var(--baby-pink);
+}
+
+.studio-status {
+  margin: 0;
+  font-size: 15px;
+  font-style: italic;
+  letter-spacing: 0.06em;
+  color: var(--black-soft);
+}
+
+.studio-flip-all {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  padding: 6px 2px;
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: color 0.35s ease;
+}
+
+.studio-flip-all::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 2px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.35;
+  transition: opacity 0.35s ease;
+}
+
+.studio-flip-all:hover {
+  color: var(--leaf);
+}
+
+.studio-flip-all:hover::after {
+  opacity: 1;
+}
+
+.studio-flip-icon {
+  display: inline-block;
+  font-size: 16px;
+  letter-spacing: 0;
+  color: var(--bamboo-deep);
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.studio-flip-all[data-state="back"] .studio-flip-icon {
+  transform: rotate(-180deg);
+}
+
+/* ───────── the wall: grid ─────────
+   Six tracks: the feature spans 4 × 2 rows, the tall card 2 × 2, the rest 2 × 1.
+   Rows are a floor, not a ceiling — strategy-brand.js sets --fit on each card so
+   a row grows when its back copy needs more room. */
+.brand-page .campaign-wall {
+  grid-auto-rows: minmax(var(--wall-row), auto);
+  gap: clamp(12px, 1.2vw, 16px);
+  min-height: 0;
+}
+
+.brand-page .campaign-wall .mood-card.flip-card {
+  min-height: max(var(--card-min, 0px), var(--fit, 0px));
+}
+
+/* ── card front: the photo fills the face; caption sits on top ── */
+.brand-page .mood-card.flip-card .flip-front {
+  padding: 0;
+}
+
+.mood-card .flip-front .img-slot {
+  position: absolute;
+  inset: 0;
+  aspect-ratio: auto;
+}
+
+.mood-card .flip-front .img-slot > img {
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1), filter 0.6s ease;
+}
+
+.mood-card:hover .flip-front .img-slot > img,
+.mood-card:focus-visible .flip-front .img-slot > img {
+  transform: scale(1.05);
+  filter: saturate(1.08);
+}
+
+/* missing photo: a matted template that leaves room for the caption */
+.mood-card .flip-front .img-slot.image-missing {
+  inset: 10px;
+  justify-content: safe center;
+  padding: 30px clamp(14px, 1.6vw, 22px) 62px;
+}
+
+.brand-page .mood-card .mood-caption {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  z-index: 2;
+  max-width: calc(100% - 32px);
+  font-size: 15px;
+  line-height: 1.25;
+}
+
+.mood-caption b {
+  margin-right: 0.4em;
+  font-family: var(--font-display);
+  font-size: 1.08em;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+}
+
+/* ── card back: the work, short ── */
+.brand-page .mood-card.flip-card .flip-back {
+  padding: clamp(16px, 1.7vw, 24px);
+  justify-content: center;
+}
+
+.mood-back-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+/* keep the date line clear of the ↻ indicator in the corner */
+.mood-back-body .micro-label {
+  padding-right: 26px;
+  color: var(--leaf);
+}
+
+.brand-page .mood-card.flip-card .flip-back p {
+  font-size: clamp(15px, 1.1vw, 17px);
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+
+.brand-page .mood-card.flip-card .flip-back .mood-tags {
+  margin-top: 4px;
+  font-size: 12px;
+  font-style: italic;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--bamboo-ink);
+}
+
+.mood-tags::before {
+  content: "";
+  display: block;
+  width: 36px;
+  height: 1px;
+  margin-bottom: 8px;
+  background: var(--bamboo-deep);
+}
+
+.mood-link {
+  font-style: italic;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid rgba(26, 26, 26, 0.35);
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.mood-link:hover {
+  color: var(--leaf);
+  border-color: var(--leaf);
+}
+
+/* the feature and tall cards get a larger, more editorial back */
+.brand-page .mood-card-feature.flip-card .flip-back {
+  padding: clamp(22px, 3.4vw, 52px);
+}
+
+.brand-page .mood-card-feature.flip-card .flip-back h3 {
+  font-size: clamp(30px, 3.2vw, 50px);
+}
+
+.brand-page .mood-card-feature.flip-card .flip-back p {
+  max-width: 30em;
+  font-size: clamp(17px, 1.45vw, 22px);
+  line-height: 1.5;
+}
+
+.brand-page .mood-card-tall.flip-card .flip-back h3 {
+  font-size: clamp(24px, 2.2vw, 34px);
+}
+
+.brand-page .mood-card-tall.flip-card .flip-back p {
+  font-size: clamp(16px, 1.2vw, 19px);
+  line-height: 1.5;
+}
+
+/* ── filter states: dim what doesn't match, lift what does ── */
+.brand-page .mood-card .flip-face {
+  transition:
+    border-color 0.4s ease,
+    box-shadow 0.5s ease,
+    opacity 0.5s ease,
+    filter 0.5s ease;
+}
+
+.mood-card.is-dimmed .flip-face {
+  opacity: 0.3;
+  filter: grayscale(0.9);
+}
+
+.mood-card.is-dimmed .flip-indicator {
+  opacity: 0.15;
+}
+
+.mood-card.is-dimmed:hover .flip-face,
+.mood-card.is-dimmed:focus-visible .flip-face {
+  opacity: 0.7;
+  filter: grayscale(0.4);
+}
+
+.mood-card.is-match .flip-face {
+  border-color: var(--leaf);
+  box-shadow: 8px 10px 0 rgba(244, 194, 194, 0.7);
+}
+
+/* "read every card": each card turns a beat after the one before */
+.campaign-wall.is-cascading .mood-card .flip-inner {
+  transition-delay: calc(var(--i, 0) * 70ms);
+}
+
+/* ───────── 3 · coda ───────── */
+.studio-coda {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px 28px;
+  margin: 0;
+  padding-top: clamp(20px, 2.4vw, 32px);
+  border-top: 1px solid rgba(26, 26, 26, 0.2);
+  font-size: clamp(20px, 1.8vw, 28px);
+  font-style: italic;
+  line-height: 1.35;
+}
+
+.studio-coda a {
+  font-size: 13px;
+  font-style: normal;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border-bottom: 1px solid rgba(26, 26, 26, 0.35);
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.studio-coda a:hover {
+  color: var(--leaf);
+  border-color: var(--leaf);
+}
+
+/* ───────── responsive ───────── */
+@media (max-width: 900px) {
+  .brand-page .editorial-panel {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* two columns: the feature spans both, the tall card spans two rows */
+@media (max-width: 800px) {
+  .brand-page .campaign-wall {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: minmax(240px, auto);
+  }
+
+  .brand-page .campaign-wall .mood-card.flip-card {
+    --card-min: 240px;
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  .brand-page .campaign-wall .mood-card-feature.flip-card {
+    --card-min: 320px;
+    grid-column: 1 / -1;
+  }
+
+  .brand-page .campaign-wall .mood-card-tall.flip-card {
+    grid-row: span 2;
+  }
+
+  .studio-flip-all {
+    margin-left: 0;
+  }
+}
+
+/* one column on phones */
+@media (max-width: 560px) {
+  .brand-page .campaign-wall {
+    grid-template-columns: minmax(0, 1fr);
+    grid-auto-rows: auto;
+  }
+
+  .brand-page .campaign-wall .mood-card.flip-card {
+    --card-min: 250px;
+  }
+
+  .brand-page .campaign-wall .mood-card-feature.flip-card {
+    --card-min: 300px;
+  }
+
+  .brand-page .campaign-wall .mood-card-tall.flip-card {
+    --card-min: 400px;
+    grid-row: span 1;
+  }
+
+  /* chips as a tidy 2 × 2 grid */
+  .studio-filters {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+  }
+
+  .studio-chip {
+    justify-content: center;
+    gap: 6px;
+    padding: 6px 6px 7px;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+
+  .through-step {
+    grid-template-columns: 2em minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .studio-coda a {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 360px) {
+  .studio-chip {
+    font-size: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mood-card .flip-front .img-slot > img,
+  .brand-page .mood-card .flip-face,
+  .studio-chip,
+  .studio-flip-icon {
+    transition: none;
+  }
+
+  .mood-card:hover .flip-front .img-slot > img,
+  .mood-card:focus-visible .flip-front .img-slot > img,
+  .studio-chip:hover {
+    transform: none;
+  }
+
+  .campaign-wall.is-cascading .mood-card .flip-inner {
+    transition-delay: 0s;
+  }
+}
