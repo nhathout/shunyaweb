@@ -6,7 +6,8 @@
 //   2. a "read every card" button that turns the whole wall over at once and
 //      stays in sync when cards are flipped one by one;
 //   3. fit-to-copy heights — each card grows to fit its back text, so nothing is
-//      clipped at any width (flip faces are absolutely positioned).
+//      clipped at any width (flip faces are absolutely positioned);
+//   4. keyboard-safe links on card backs, for when a TEMPLATE link is enabled.
 // Without JavaScript the toolbar stays hidden and the CSS heights apply.
 (() => {
   const studio = document.querySelector("[data-studio]");
@@ -97,8 +98,29 @@
     });
   }
 
+  // Links added to a card's back (see the TEMPLATE comments in the HTML) stay
+  // out of the tab order while that face is hidden, and Enter/Space on them
+  // follows the link instead of reaching main.js's card handler (which would
+  // turn the card over and cancel the link).
+  const syncLinks = () => {
+    cards.forEach((card) => {
+      const flipped = card.classList.contains("is-flipped");
+      card.querySelectorAll(".flip-back a[href]").forEach((link) => (link.tabIndex = flipped ? 0 : -1));
+    });
+  };
+  wall.addEventListener(
+    "keydown",
+    (e) => {
+      if ((e.key === "Enter" || e.key === " ") && e.target.closest(".flip-back a[href]")) e.stopPropagation();
+    },
+    true
+  );
+
   // main.js flips single cards and updates aria-pressed; follow along.
-  new MutationObserver(syncFlipAll).observe(wall, {
+  new MutationObserver(() => {
+    syncFlipAll();
+    syncLinks();
+  }).observe(wall, {
     subtree: true,
     attributes: true,
     attributeFilter: ["aria-pressed"],
@@ -147,5 +169,6 @@
   if (toolbar) toolbar.hidden = false;
   applyFilter("all");
   syncFlipAll();
+  syncLinks();
   studio.classList.add("is-ready");
 })();

@@ -1,8 +1,19 @@
 /* leadership-impact page — page-specific styles (loaded after page.css) */
 
-/* a deeper bamboo for small script / italic text so it stays readable */
+/* a deeper bamboo for small script / italic text so it stays readable
+   (5:1 on cream, the same ink as Law & Advocacy) */
 .leadership-page {
-  --bamboo-ink: #8a6a48;
+  --bamboo-ink: #7d5f40;
+}
+
+/* no one-word last lines in running text; headings break evenly */
+.leadership-page :is(.page-lede, .lead-habits-lede, .lead-habit-thesis, .lead-evidence p,
+  .lead-room-text, .lead-next-copy p, .lead-next-ledger dd, .impact-node .flip-back p) {
+  text-wrap: pretty;
+}
+
+.leadership-page :is(.lead-next-title, .impact-node .flip-back h3) {
+  text-wrap: balance;
 }
 
 /* ───────── hero: title + standfirst ───────── */
@@ -369,6 +380,7 @@
   font-size: 14px;
   font-style: italic;
   letter-spacing: 0.06em;
+  white-space: nowrap;
   color: var(--bamboo-ink);
 }
 
@@ -392,8 +404,10 @@
   opacity: 0.15;
 }
 
+/* a dimmed seat comes back up while hovered, focused or turned over (touch) */
 .impact-node.is-dim:hover .flip-face,
-.impact-node.is-dim:focus-visible .flip-face {
+.impact-node.is-dim:focus-visible .flip-face,
+.impact-node.is-dim.is-flipped .flip-face {
   opacity: 0.75;
   filter: grayscale(0.4);
 }
@@ -457,9 +471,6 @@
   flex-direction: column;
   min-width: 0;
   scroll-margin-top: 24px;
-  /* tilt without a 3D context: preserve-3d (from .tilt-card) makes Chrome miss
-     clicks on the buttons inside a tilted card */
-  transform-style: flat;
   border: var(--hairline);
   background: rgba(250, 243, 227, 0.72);
   transition:
@@ -545,7 +556,8 @@
   transform: translate(-50%, -50%) rotate(90deg);
 }
 
-.lead-habit.is-open .lead-habit-icon::after {
+.lead-habit.is-open .lead-habit-icon::after,
+.lead-habits:not(.is-ready) .lead-habit-icon::after {
   transform: translate(-50%, -50%) rotate(0deg);
 }
 
@@ -628,6 +640,7 @@
 
 .lead-evidence li {
   display: grid;
+  align-content: start;
   gap: 4px;
   padding: 12px 0;
   border-top: 1px solid rgba(26, 26, 26, 0.16);
@@ -723,6 +736,7 @@
   position: static;
   margin-top: 10px;
   line-height: 1.3;
+  text-wrap: balance;
 }
 
 .lead-room-tedx::before {
@@ -834,12 +848,18 @@
   }
 }
 
-/* mid widths: the open card lays its evidence out in three columns */
+/* mid widths: the open card lays its evidence out in three columns; the
+   subgrid keeps the three texts on one baseline when a label wraps */
 @media (min-width: 700px) and (max-width: 1099px) {
   .lead-evidence {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     column-gap: 22px;
+  }
+
+  .lead-evidence li {
+    grid-row: span 2;
+    grid-template-rows: subgrid;
   }
 }
 
@@ -995,5 +1015,18 @@
   .lead-habit-icon::before,
   .lead-habit-icon::after {
     transition: none;
+  }
+
+  /* the open card widens at once instead of sliding the row */
+  .lead-habit {
+    transition:
+      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.35s ease,
+      background-color 0.35s ease,
+      box-shadow 0.35s ease;
+  }
+
+  .impact-chip:hover {
+    transform: none;
   }
 }

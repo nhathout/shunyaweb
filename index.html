@@ -62,10 +62,12 @@
       },
       "knowsAbout": [
         "AI governance",
-        "Cybersecurity risk",
+        "Information security",
+        "Cyber risk",
+        "Data governance",
         "Data privacy",
         "Business strategy",
-        "Technology law"
+        "Business analytics"
       ],
       "knowsLanguage": ["English", "Russian", "Romanian"]
     }
@@ -158,29 +160,30 @@
     <!-- Bottom left: instagram feed (2 cols × 3 rows).
          Photos: square (1:1) JPGs, at least 600×600 px, saved as
          assets/images/insta-1.jpg … insta-6.jpg (tile order = left to right,
-         top to bottom). Until a photo exists the tile shows its hint.
+         top to bottom). Until a photo exists the tile shows its hint and path;
+         each hint suggests a subject — any recent posts can take their place.
          To link a tile to its post, add to the <a>:
            href="https://www.instagram.com/p/POST-ID/" target="_blank" rel="noopener"
            aria-label="Instagram post: short description"
          and give the <img> a short alt text. -->
     <aside class="insta reveal-slide-left" data-delay="500" aria-label="Photo feed">
       <span class="insta-label" aria-hidden="true">insta feed</span>
-      <a class="insta-tile" data-hint="insta photo 1" data-file="insta-1.jpg">
+      <a class="insta-tile" data-hint="Sasha on campus in Boston (square)" data-file="assets/images/insta-1.jpg">
         <img src="assets/images/insta-1.jpg" alt="" loading="lazy" />
       </a>
-      <a class="insta-tile" data-hint="insta photo 2" data-file="insta-2.jpg">
+      <a class="insta-tile" data-hint="TEDxNortheasternU event day (square)" data-file="assets/images/insta-2.jpg">
         <img src="assets/images/insta-2.jpg" alt="" loading="lazy" />
       </a>
-      <a class="insta-tile" data-hint="insta photo 3" data-file="insta-3.jpg">
+      <a class="insta-tile" data-hint="Southern California, outdoors (square)" data-file="assets/images/insta-3.jpg">
         <img src="assets/images/insta-3.jpg" alt="" loading="lazy" />
       </a>
-      <a class="insta-tile" data-hint="insta photo 4" data-file="insta-4.jpg">
+      <a class="insta-tile" data-hint="A NextWork Build &amp; Brew session (square)" data-file="assets/images/insta-4.jpg">
         <img src="assets/images/insta-4.jpg" alt="" loading="lazy" />
       </a>
-      <a class="insta-tile" data-hint="insta photo 5" data-file="insta-5.jpg">
+      <a class="insta-tile" data-hint="With friends in Boston (square)" data-file="assets/images/insta-5.jpg">
         <img src="assets/images/insta-5.jpg" alt="" loading="lazy" />
       </a>
-      <a class="insta-tile" data-hint="insta photo 6" data-file="insta-6.jpg">
+      <a class="insta-tile" data-hint="A close-up detail: desk, notes or a book (square)" data-file="assets/images/insta-6.jpg">
         <img src="assets/images/insta-6.jpg" alt="" loading="lazy" />
       </a>
     </aside>
@@ -190,7 +193,7 @@
     <figure
       class="portrait reveal-rise"
       data-delay="700"
-      data-hint="full-height portrait, cut-out PNG with transparent background"
+      data-hint="A full-height portrait of Sasha (vertical), as a cut-out PNG with a transparent background"
       data-file="assets/images/portrait.png"
     >
       <img src="assets/images/portrait.png" alt="Portrait of Alexandra &ldquo;Sasha&rdquo; Petrovicheva" />

@@ -232,7 +232,7 @@ html.contents-locked {
 
 .contents-num {
   font-style: italic;
-  color: var(--bamboo-deep);
+  color: var(--bamboo-ink);
   letter-spacing: 0.1em;
 }
 
@@ -245,7 +245,7 @@ html.contents-locked {
 .contents-script {
   font-family: var(--font-script);
   font-size: clamp(18px, 2vw, 26px);
-  color: var(--bamboo-deep);
+  color: var(--bamboo-script);
   white-space: nowrap;
 }
 
@@ -330,7 +330,7 @@ html.contents-locked {
   font-size: clamp(28px, 4vw, 56px);
   margin-top: -0.4em;
   margin-left: 1.2em;
-  color: var(--bamboo-deep);
+  color: var(--bamboo-script);
 }
 
 .page-rule {
@@ -403,7 +403,7 @@ html.contents-locked {
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.32em;
-  color: var(--bamboo-deep);
+  color: var(--bamboo-ink);
   font-style: normal;
 }
 
@@ -414,7 +414,7 @@ html.contents-locked {
   font-style: normal;
 }
 
-.chapter-nav a::after {
+.chapter-nav a:not(.chapter-nav-home)::after {
   content: "";
   position: absolute;
   left: 0;
@@ -452,7 +452,7 @@ html.contents-locked {
   color: var(--page-accent, var(--baby-pink));
 }
 
-.chapter-nav a:hover::after {
+.chapter-nav a:not(.chapter-nav-home):hover::after {
   transform: scaleX(1);
 }
 

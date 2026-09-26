@@ -30,6 +30,7 @@
       </div>
     </header>
 
+    <main id="main">
     <!-- Hero: title + spotlight board (flips to a one-line summary of the co-op) -->
     <section class="page-hero finance-hero reveal-drop" data-delay="200">
       <div class="finance-hero-text">
@@ -38,7 +39,7 @@
         <p class="page-title-script">responsible by design</p>
         <span class="page-rule"></span>
       </div>
-      <article class="chart-card finance-hero-spotlight spotlight-card flip-card tilt-card" tabindex="0">
+      <div class="chart-card finance-hero-spotlight spotlight-card flip-card tilt-card" tabindex="0">
         <div class="flip-inner">
           <div class="flip-face flip-front">
             <div class="chart-heading">
@@ -65,7 +66,7 @@
           </div>
         </div>
         <span class="flip-indicator" aria-hidden="true"></span>
-      </article>
+      </div>
     </section>
 
     <!-- 1 · The co-op dashboard — three boards, each flips to the story behind it -->
@@ -86,7 +87,7 @@
           <div
             class="img-slot"
             style="--ratio: 4 / 5"
-            data-hint="Sasha at Wellington Management in Boston — the lobby, the building entrance or a team moment (vertical). No screens, documents, badges or anything confidential in frame."
+            data-hint="Sasha at Wellington Management in Boston &mdash; the lobby, the building entrance or a team moment (vertical). No screens, documents, badges or anything confidential in frame."
             data-file="assets/images/ai-governance/wellington-office.jpg"
           >
             <img
@@ -100,13 +101,15 @@
       </div>
 
       <div class="dashboard-grid reveal-fade" data-delay="420">
-        <!-- Board 1 · The rotation — four equal slices (it was a rotation, not a split of hours) -->
-        <article class="chart-card chart-card-large rotation-card flip-card tilt-card" tabindex="0" data-rotation>
+        <!-- Board 1 · The rotation — four equal slices (it was a rotation, not a split of hours).
+             It holds the legend's buttons, so it is not one big button like the other boards:
+             scripts/pages/ai-governance.js turns the corner ↻ into its flip toggle. -->
+        <div class="chart-card chart-card-large rotation-card flip-card tilt-card" data-rotation>
           <div class="flip-inner">
             <div class="flip-face flip-front">
               <div class="chart-heading">
                 <span class="micro-label">The rotation</span>
-                <span class="chart-tag">four teams, equal parts</span>
+                <span class="chart-tag">four teams, one co-op</span>
               </div>
               <div class="donut-wrap rotation-wrap">
                 <div class="rotation-donut">
@@ -157,16 +160,16 @@
               <h3>Four teams, one translator</h3>
               <p>
                 Sasha rotated across Legal and Risk, Information Security and Cyber Defense, Risk
-                Intelligence, and AI Governance. In each, her job was the same: translating technical
-                and operational issues for cross-functional teams.
+                Intelligence, and AI Governance, translating technical and operational issues for
+                cross-functional teams.
               </p>
             </div>
           </div>
-          <span class="flip-indicator" aria-hidden="true"></span>
-        </article>
+          <button type="button" class="flip-indicator flip-toggle" aria-pressed="false" aria-label="Turn over the rotation board" data-flip-toggle hidden></button>
+        </div>
 
         <!-- Board 2 · The prototype — the stepped path the agent took -->
-        <article class="chart-card prototype-card flip-card tilt-card" tabindex="0">
+        <div class="chart-card prototype-card flip-card tilt-card" tabindex="0">
           <div class="flip-inner">
             <div class="flip-face flip-front">
               <div class="chart-heading">
@@ -188,10 +191,10 @@
                   <span class="step-num">03</span>
                   <span class="step-name">VS Code</span>
                 </li>
-                <li class="prototype-step is-live" style="--step: 3">
+                <li class="prototype-step is-final" style="--step: 3">
                   <span class="step-num">04</span>
                   <span class="step-name">Snowflake</span>
-                  <span class="step-note"><i class="live-dot" aria-hidden="true"></i>connected data</span>
+                  <span class="step-note"><i class="data-dot" aria-hidden="true"></i>connected data</span>
                 </li>
               </ol>
             </div>
@@ -206,10 +209,10 @@
             </div>
           </div>
           <span class="flip-indicator" aria-hidden="true"></span>
-        </article>
+        </div>
 
         <!-- Board 3 · The controls — what had to be true before anyone trusts the agent -->
-        <article class="chart-card controls-card flip-card tilt-card" tabindex="0">
+        <div class="chart-card controls-card flip-card tilt-card" tabindex="0">
           <div class="flip-inner">
             <div class="flip-face flip-front">
               <div class="chart-heading">
@@ -241,7 +244,7 @@
             </div>
           </div>
           <span class="flip-indicator" aria-hidden="true"></span>
-        </article>
+        </div>
       </div>
     </section>
 
@@ -253,8 +256,8 @@
         <p class="research-tag">Independent, faculty-supervised research</p>
         <p class="research-summary">
           A case study of agentic-AI governance in high-stakes financial workflows, grounded in an
-          anonymized trade-operations project at Wellington. It follows six lenses across
-          operational, risk, legal and information-security teams.
+          anonymized trade-operations project at Wellington. It examines the case through six
+          lenses, across operational, risk, legal and information-security teams.
         </p>
       </div>
 
@@ -322,7 +325,7 @@
             <div class="lens-panel-text">
               <p class="lens-panel-label">Deployment readiness</p>
               <!-- DRAFT: Sasha to confirm -->
-              <p class="lens-question">What has to be true before a prototype is trusted with live operations?</p>
+              <p class="lens-question">What has to be true before a team relies on the agent day to day?</p>
             </div>
           </div>
           <div class="lens-panel" role="tabpanel" id="lens-responsibility" aria-labelledby="lens-tab-responsibility" tabindex="0">
@@ -392,7 +395,7 @@
             <li>Business Decision Making in Developed &amp; Emerging Markets</li>
             <li>Executing Global Strategy</li>
           </ul>
-          <p class="toolkit-note">Business Analytics concentration &middot; Northeastern University</p>
+          <p class="toolkit-note">Northeastern University &middot; concentrations in Global Business Strategy &amp; Business Analytics</p>
         </div>
       </div>
     </section>
@@ -404,17 +407,17 @@
         <p class="coda-dek">Before AI governance, there was payroll.</p>
         <ul class="roots-list">
           <li>
-            <span class="roots-when">2019 &ndash; present</span>
+            <span class="roots-when">Aug 2019 &ndash; present</span>
             <strong>Guardian Angel Home Health Agency</strong>
             <span class="roots-what">
-              Financial operations &mdash; payroll, insurance documentation and recurring reporting
-              in regulated healthcare. Now Business Operations Associate.
+              Seven years in regulated healthcare: payroll, insurance documentation, financial
+              analysis and recurring reporting as Financial Operations Assistant; Business Operations
+              Associate since August 2026.
             </span>
           </li>
           <li>
             <span class="roots-when">Applied project</span>
             <strong>Tesla&ndash;Chevron Financial Analysis</strong>
-            <span class="roots-what">An applied business project in financial analysis.</span>
           </li>
           <li>
             <span class="roots-when">Sep &ndash; Dec 2024</span>
@@ -448,6 +451,7 @@
         <a class="next-link" href="next-chapter.html">Read the plan in The Next Chapter <span aria-hidden="true">&rarr;</span></a>
       </div>
     </section>
+    </main>
 
     <nav class="chapter-nav reveal-fade" data-delay="200" aria-label="Chapter navigation"></nav>
 

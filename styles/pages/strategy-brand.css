@@ -1,8 +1,9 @@
 /* strategy-brand page — page-specific styles (loaded after page.css) */
 
-/* a deeper bamboo for small italic text so it stays readable */
+/* a deeper bamboo for small italic text so it stays readable (≥ 4.5:1 on
+   cream, cream-soft, cream-deep and the pink card backs; same ink as Chapter Two) */
 .brand-page {
-  --bamboo-ink: #8a6a48;
+  --bamboo-ink: #7d5f40;
   --wall-row: clamp(220px, 19vw, 280px);
 }
 
@@ -28,7 +29,7 @@
   font-size: clamp(22px, 2vw, 30px);
   letter-spacing: 0;
   text-transform: none;
-  color: var(--bamboo-deep);
+  color: var(--bamboo-ink);
 }
 
 .brand-hero-arrow {
@@ -330,6 +331,7 @@
   bottom: 16px;
   z-index: 2;
   max-width: calc(100% - 32px);
+  text-wrap: balance;
   font-size: 15px;
   line-height: 1.25;
 }

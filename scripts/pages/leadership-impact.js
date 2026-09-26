@@ -109,7 +109,7 @@
   const coreLabel = core.querySelector("small");
   const coreDefault = coreLabel ? coreLabel.textContent : "";
   const total = nodes.length;
-  const words = ["no", "one", "two", "three", "four", "five", "six"];
+  const words = ["No", "One", "Two", "Three", "Four", "Five", "Six"];
   const notes = {
     translate: "making technical detail clear",
     organize: "building the workflow",
@@ -134,7 +134,7 @@
       const text =
         thread === "all"
           ? "All six seats, 2019 to now"
-          : `${words[shown] || shown} of ${words[total] || total} seats · ${notes[thread] || thread}`;
+          : `${words[shown] || shown} of ${(words[total] || String(total)).toLowerCase()} seats · ${notes[thread] || thread}`;
       // only touch the live region when the words change, so load stays silent
       if (status.textContent !== text) status.textContent = text;
     }

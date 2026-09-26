@@ -30,6 +30,8 @@
       </div>
     </header>
 
+    <main id="main">
+
     <!-- Hero: title + two polaroids (Los Angeles, then → Boston, now) -->
     <section class="page-hero story-hero reveal-drop" data-delay="200">
       <div class="story-hero-text">
@@ -37,12 +39,11 @@
         <h1 class="page-title">My Story</h1>
         <p class="page-title-script">a beginning</p>
         <span class="page-rule"></span>
+        <!-- each arrow travels with the stop after it, so a wrap never strands an arrow -->
         <p class="story-hero-route">
           <span>Los Angeles</span>
-          <span class="story-hero-arrow" aria-hidden="true">&rarr;</span><span class="visually-hidden">, then</span>
-          <span>Boston</span>
-          <span class="story-hero-arrow" aria-hidden="true">&rarr;</span><span class="visually-hidden">, then</span>
-          <em>what comes next</em>
+          <span class="story-hero-step"><span class="story-hero-arrow" aria-hidden="true">&rarr;</span><span class="visually-hidden">, then</span><span>Boston</span></span>
+          <span class="story-hero-step"><span class="story-hero-arrow" aria-hidden="true">&rarr;</span><span class="visually-hidden">, then</span><em>what comes next</em></span>
         </p>
       </div>
       <div class="hero-polaroids">
@@ -50,10 +51,10 @@
           <div
             class="img-slot"
             style="--ratio: 5 / 4"
-            data-hint="A throwback of Sasha growing up in Los Angeles (horizontal)"
+            data-hint="A throwback photo of Sasha in the Los Angeles area (horizontal)"
             data-file="assets/images/my-story/hero-los-angeles.jpg"
           >
-            <img src="../assets/images/my-story/hero-los-angeles.jpg" alt="A throwback photo of Sasha in Los Angeles" />
+            <img src="../assets/images/my-story/hero-los-angeles.jpg" alt="A throwback photo of Sasha in the Los Angeles area" />
           </div>
           <figcaption>Los Angeles, then</figcaption>
         </figure>
@@ -61,7 +62,7 @@
           <div
             class="img-slot"
             style="--ratio: 5 / 4"
-            data-hint="A candid favorite of Sasha in Boston (horizontal)"
+            data-hint="A recent candid photo of Sasha in Boston: campus or a city street (horizontal)"
             data-file="assets/images/my-story/hero-boston.jpg"
           >
             <img src="../assets/images/my-story/hero-boston.jpg" alt="A candid photo of Sasha in Boston" />
@@ -75,9 +76,10 @@
     <section class="story-profile reveal-fade" data-delay="300" aria-labelledby="profile-title">
       <div class="profile-aside">
         <h2 id="profile-title" class="micro-label">The profile</h2>
+        <!-- the quote marks borrow the body face: Italiana's opening quote looks straight -->
         <p class="profile-byline">
-          Alexandra &ldquo;Sasha&rdquo; Petrovicheva
-          <span>Boston, Massachusetts</span>
+          Alexandra <span class="profile-q">&ldquo;</span>Sasha<span class="profile-q">&rdquo;</span> Petrovicheva
+          <span class="profile-place">Boston, Massachusetts</span>
         </p>
         <ul class="profile-links">
           <li>
@@ -143,7 +145,7 @@
           <dt>Languages</dt>
           <dd>
             <span class="glance-value">Russian &amp; Romanian</span>
-            <span class="glance-detail">native &middot; professional working proficiency</span>
+            <span class="glance-detail">Russian: native &middot; Romanian: professional working proficiency</span>
           </dd>
         </div>
         <div class="glance-item">
@@ -172,13 +174,13 @@
                 Sasha&rsquo;s story starts in the Los Angeles area. In 2019 she joined Guardian Angel
                 Home Health Agency in Simi Valley on the finance side &mdash; payroll, insurance
                 documentation, recurring reporting &mdash; and seven years later she is still there,
-                now as Business Operations Associate. It is where she first saw how privacy,
-                compliance and insurance decisions land on real employees and patients.
+                now as Business Operations Associate. It is where she saw how privacy, compliance
+                and insurance decisions land on real employees and patients.
               </p>
               <p>
-                The same years held three years of volunteering with Heal the Bay and the SCV Food
-                Bank, and a 2022 legal internship at MCIS Lawyers in Thousand Oaks &mdash; legal
-                research, case documents and close attention to procedural detail.
+                Alongside the job came three years of volunteering with Heal the Bay and the SCV
+                Food Bank, and in 2022 a legal internship at MCIS Lawyers in Thousand Oaks &mdash;
+                legal research, case documents and close attention to procedural detail.
               </p>
               <p class="story-note-more">
                 Continue in <a href="community-service.html">Community &amp; Service</a>
@@ -221,16 +223,17 @@
             </summary>
             <div class="story-note-body">
               <p>
-                Her focus is the intersection of artificial intelligence, cybersecurity, data privacy,
-                business and law. She is not aiming to be a software engineer; she wants to understand
-                the technology well enough to help companies use it responsibly, manage risk and meet
-                regulation.
+                Sasha is not aiming to be a software engineer. She wants to understand AI and
+                cybersecurity well enough to help companies use technology responsibly, manage risk
+                and follow regulation.
               </p>
               <p>
-                That thread runs through her faculty-supervised research on governing agentic AI in
-                financial operations, and through her work with NextWork, helping students from
-                nontechnical disciplines build with AI. Next comes an MBA with an AI and technology
-                focus in Fall 2027 &mdash; then consulting, then law school.
+                Each part of her studies has a job: International Business for strategy and how
+                companies operate, International Affairs for policy, regulation and international
+                risk, Business Analytics for how companies use data to decide. The same thread runs
+                through her faculty-supervised research on governing agentic AI in financial
+                operations, and through NextWork, where she helps students from nontechnical
+                disciplines build with AI.
               </p>
               <p class="story-note-more">
                 Continue in <a href="next-chapter.html">The Next Chapter</a>
@@ -246,7 +249,7 @@
           <div
             class="img-slot"
             style="--ratio: 4 / 5"
-            data-hint="A favorite portrait of Sasha, ideally at home in Southern California (vertical)"
+            data-hint="A portrait of Sasha outdoors in Southern California (vertical)"
             data-file="assets/images/my-story/portrait.jpg"
           >
             <img src="../assets/images/my-story/portrait.jpg" alt="Portrait of Sasha" loading="lazy" />
@@ -257,10 +260,10 @@
           <div
             class="img-slot img-slot-compact"
             style="--ratio: 1 / 1"
-            data-hint="A favorite detail: a keepsake, a book, a corner of her desk (square)"
+            data-hint="A close-up detail: a keepsake, a favorite book or a corner of her desk (square)"
             data-file="assets/images/my-story/detail.jpg"
           >
-            <img src="../assets/images/my-story/detail.jpg" alt="A small detail Sasha loves" loading="lazy" />
+            <img src="../assets/images/my-story/detail.jpg" alt="A close-up detail photo" loading="lazy" />
           </div>
           <figcaption>a favorite detail</figcaption>
         </figure>
@@ -323,10 +326,10 @@
         </button>
         <!-- EDIT: move data-now (and the "now" flag) to the current year -->
         <button type="button" class="journey-year" role="tab" id="journey-tab-2026" aria-controls="journey-2026" aria-selected="true" data-year="2026" data-now>
-          <span class="journey-flag">now</span>
           <span class="journey-rail" aria-hidden="true"><i class="journey-dot"></i></span>
           <span class="journey-num">2026</span>
           <span class="journey-theme">AI governance</span>
+          <span class="journey-flag">now</span>
         </button>
         <button type="button" class="journey-year journey-year-ahead" role="tab" id="journey-tab-2027" aria-controls="journey-2027" aria-selected="false" data-year="2027">
           <span class="journey-rail" aria-hidden="true"><i class="journey-dot"></i></span>
@@ -339,11 +342,14 @@
       <p class="journey-thread">
         <span class="journey-thread-line" aria-hidden="true"></span>
         <span class="journey-thread-label">
-          The constant: Guardian Angel Home Health Agency &middot; Aug 2019 &ndash; present
+          The constant: Guardian Angel Home Health Agency&nbsp;&middot;
+          <span class="journey-thread-dates">Aug 2019 &ndash; present</span>
         </span>
       </p>
 
-      <div class="journey-controls">
+      <!-- data-arrow-keys: with a step button focused, ←/→ step through the years
+           (my-story.js) instead of turning the page to the next chapter -->
+      <div class="journey-controls" data-arrow-keys>
         <button type="button" class="journey-step journey-step-prev" data-journey-prev>
           <span aria-hidden="true">&larr;</span>
           <span class="visually-hidden">Previous year:</span>
@@ -362,27 +368,25 @@
         <article class="journey-panel" role="tabpanel" id="journey-2019" aria-labelledby="journey-tab-2019" tabindex="0">
           <header class="journey-panel-head">
             <span class="journey-panel-year" aria-hidden="true">2019</span>
-            <h3 class="journey-panel-title">where it starts</h3>
+            <h3 class="journey-panel-title"><span class="visually-hidden">2019: </span>where it starts</h3>
             <p class="journey-panel-more">Continue in <a href="community-service.html">Community &amp; Service</a></p>
           </header>
           <ol class="journey-entries">
             <li class="journey-entry">
-              <span class="journey-meta"><span>Aug 2019 &ndash; present</span><span class="journey-kind">work</span></span>
+              <span class="journey-meta"><span>Aug 2019 &ndash; Aug 2026</span><span class="journey-kind">work</span></span>
               <strong class="journey-org">Guardian Angel Home Health Agency</strong>
-              <span class="journey-role">Financial Operations Assistant &middot; Simi Valley, CA</span>
+              <span class="journey-role">Financial Operations Assistant &middot; Simi Valley, CA (remote)</span>
               <p>Financial analysis, payroll preparation, insurance documentation and recurring reporting in a regulated healthcare setting.</p>
             </li>
             <li class="journey-entry">
               <span class="journey-meta"><span>Aug 2019 &ndash; Sep 2022</span><span class="journey-kind">service</span></span>
               <strong class="journey-org">Heal the Bay</strong>
               <span class="journey-role">Volunteer</span>
-              <p>Three years as a volunteer.</p>
             </li>
             <li class="journey-entry">
               <span class="journey-meta"><span>Oct 2019 &ndash; Aug 2022</span><span class="journey-kind">service</span></span>
               <strong class="journey-org">SCV Food Bank</strong>
-              <span class="journey-role">Volunteer</span>
-              <p>Nearly three years as a volunteer in the Santa Clarita Valley.</p>
+              <span class="journey-role">Volunteer &middot; Santa Clarita Valley</span>
             </li>
           </ol>
         </article>
@@ -391,7 +395,7 @@
         <article class="journey-panel" role="tabpanel" id="journey-2021" aria-labelledby="journey-tab-2021" tabindex="0">
           <header class="journey-panel-head">
             <span class="journey-panel-year" aria-hidden="true">2021</span>
-            <h3 class="journey-panel-title">close to home</h3>
+            <h3 class="journey-panel-title"><span class="visually-hidden">2021: </span>community, up close</h3>
             <p class="journey-panel-more">Continue in <a href="community-service.html">Community &amp; Service</a></p>
           </header>
           <ol class="journey-entries">
@@ -408,13 +412,14 @@
         <article class="journey-panel" role="tabpanel" id="journey-2022" aria-labelledby="journey-tab-2022" tabindex="0">
           <header class="journey-panel-head">
             <span class="journey-panel-year" aria-hidden="true">2022</span>
-            <h3 class="journey-panel-title">a first look at law</h3>
+            <h3 class="journey-panel-title"><span class="visually-hidden">2022: </span>a summer in law</h3>
             <p class="journey-panel-more">Continue in <a href="law-advocacy.html">Law &amp; Advocacy</a></p>
           </header>
           <ol class="journey-entries">
             <li class="journey-entry">
               <span class="journey-meta"><span>Jun &ndash; Aug 2022</span><span class="journey-kind">law</span></span>
-              <strong class="journey-org">MCIS Lawyers &mdash; Personal Injury Attorneys</strong>
+              <!-- .glyph-body: Italiana draws dashes and "+" too faintly to see; these use the body face -->
+              <strong class="journey-org">MCIS Lawyers <span class="glyph-body">&mdash;</span> Personal Injury Attorneys</strong>
               <span class="journey-role">Legal Intern &middot; Thousand Oaks, CA</span>
               <p>Legal research, case documents and complex legal issues, with close attention to factual accuracy and procedural detail.</p>
             </li>
@@ -425,7 +430,7 @@
         <article class="journey-panel" role="tabpanel" id="journey-2023" aria-labelledby="journey-tab-2023" tabindex="0">
           <header class="journey-panel-head">
             <span class="journey-panel-year" aria-hidden="true">2023</span>
-            <h3 class="journey-panel-title">service &amp; first honors</h3>
+            <h3 class="journey-panel-title"><span class="visually-hidden">2023: </span>service &amp; first honors</h3>
             <p class="journey-panel-more">Continue in <a href="community-service.html">Community &amp; Service</a></p>
           </header>
           <ol class="journey-entries">
@@ -451,7 +456,7 @@
         <article class="journey-panel" role="tabpanel" id="journey-2024" aria-labelledby="journey-tab-2024" tabindex="0">
           <header class="journey-panel-head">
             <span class="journey-panel-year" aria-hidden="true">2024</span>
-            <h3 class="journey-panel-title">ventures &amp; voices</h3>
+            <h3 class="journey-panel-title"><span class="visually-hidden">2024: </span>ventures &amp; voices</h3>
             <p class="journey-panel-more">Continue in <a href="leadership-impact.html">Leadership &amp; Impact</a></p>
           </header>
           <ol class="journey-entries">
@@ -461,14 +466,14 @@
               <span class="journey-role">Marketing &amp; business strategy internship</span>
             </li>
             <li class="journey-entry">
-              <span class="journey-meta"><span>Aug 2024</span><span class="journey-kind">campus</span></span>
+              <span class="journey-meta"><span>Aug 2024 &ndash; May 2025</span><span class="journey-kind">campus</span></span>
               <strong class="journey-org">TEDxNortheasternU</strong>
               <span class="journey-role">Media Relations Associate</span>
             </li>
             <li class="journey-entry">
               <span class="journey-meta"><span>Aug 2024 &ndash; Jan 2025</span><span class="journey-kind">venture</span></span>
               <strong class="journey-org">IDEA Venture Accelerator</strong>
-              <span class="journey-role">Led content &amp; venture strategy</span>
+              <span class="journey-role">Content &amp; venture strategy lead</span>
             </li>
             <li class="journey-entry">
               <span class="journey-meta"><span>Sep &ndash; Dec 2024</span><span class="journey-kind">venture</span></span>
@@ -487,7 +492,7 @@
             </li>
             <li class="journey-entry">
               <span class="journey-meta"><span>Oct 2024 &ndash; May 2025</span><span class="journey-kind">campus</span></span>
-              <strong class="journey-org">Andrew McDonough B+ Foundation</strong>
+              <strong class="journey-org">Andrew McDonough B<span class="glyph-body">+</span> Foundation</strong>
               <span class="journey-role">Social media &amp; digital strategy</span>
             </li>
             <li class="journey-entry">
@@ -502,7 +507,7 @@
         <article class="journey-panel" role="tabpanel" id="journey-2025" aria-labelledby="journey-tab-2025" tabindex="0">
           <header class="journey-panel-head">
             <span class="journey-panel-year" aria-hidden="true">2025</span>
-            <h3 class="journey-panel-title">strategy in practice</h3>
+            <h3 class="journey-panel-title"><span class="visually-hidden">2025: </span>strategy in practice</h3>
             <p class="journey-panel-more">Continue in <a href="strategy-brand.html">Strategy &amp; Brand</a></p>
           </header>
           <ol class="journey-entries">
@@ -513,10 +518,10 @@
               <p>Audience behavior, content patterns and brand positioning, turned into data-informed strategy and campaign concepts.</p>
             </li>
             <li class="journey-entry">
-              <span class="journey-meta"><span>May 2025</span><span class="journey-kind">campus</span></span>
+              <span class="journey-meta"><span>May 2025 &ndash; Sep 2026</span><span class="journey-kind">campus</span></span>
               <strong class="journey-org">TEDxNortheasternU</strong>
-              <span class="journey-role">Promoted to Media Relations Lead</span>
-              <p>A cross-channel workflow: content planning, assets, outreach and distribution.</p>
+              <span class="journey-role">Media Relations Lead</span>
+              <p>Led a cross-channel media-relations workflow: content planning, assets, outreach and distribution.</p>
             </li>
             <li class="journey-entry">
               <span class="journey-meta"><span>May &ndash; Jun 2025</span><span class="journey-kind">work</span></span>
@@ -530,7 +535,7 @@
               <p>Market, competitor and customer research, turned into go-to-market recommendations.</p>
             </li>
             <li class="journey-entry">
-              <span class="journey-meta"><span>Oct 2025</span><span class="journey-kind">campus</span></span>
+              <span class="journey-meta"><span>Oct 2025 &ndash; Jun 2026</span><span class="journey-kind">campus</span></span>
               <strong class="journey-org">Student Government Association</strong>
               <span class="journey-role">Assistant Director of Communications</span>
             </li>
@@ -546,7 +551,7 @@
         <article class="journey-panel" role="tabpanel" id="journey-2026" aria-labelledby="journey-tab-2026" tabindex="0">
           <header class="journey-panel-head">
             <span class="journey-panel-year" aria-hidden="true">2026</span>
-            <h3 class="journey-panel-title">inside AI governance</h3>
+            <h3 class="journey-panel-title"><span class="visually-hidden">2026: </span>inside AI governance</h3>
             <p class="journey-panel-more">Continue in <a href="ai-governance.html">AI &amp; Governance</a></p>
           </header>
           <ol class="journey-entries">
@@ -563,13 +568,13 @@
               <p>Human oversight, auditability, data access, output validation and responsibility allocation in high-stakes financial workflows.</p>
             </li>
             <li class="journey-entry">
-              <span class="journey-meta"><span>Aug 2026</span><span class="journey-kind">work</span></span>
+              <span class="journey-meta"><span>Aug 2026 &ndash; present</span><span class="journey-kind">work</span></span>
               <strong class="journey-org">Guardian Angel Home Health Agency</strong>
-              <span class="journey-role">Promoted to Business Operations Associate</span>
+              <span class="journey-role">Business Operations Associate</span>
               <p>Payroll, insurance, credentialing and care-operations workflows across the agency.</p>
             </li>
             <li class="journey-entry">
-              <span class="journey-meta"><span>Aug 2026 &ndash; present</span><span class="journey-kind">AI</span></span>
+              <span class="journey-meta"><span>Aug 2026 &ndash; present</span><span class="journey-kind">campus</span></span>
               <strong class="journey-org">NextWork</strong>
               <span class="journey-role">Build Master &amp; Campus Ambassador, Build &amp; Brew</span>
               <p>Peer-learning sessions that help students from nontechnical disciplines turn AI ideas into working projects.</p>
@@ -581,7 +586,7 @@
         <article class="journey-panel journey-panel-ahead" role="tabpanel" id="journey-2027" aria-labelledby="journey-tab-2027" tabindex="0">
           <header class="journey-panel-head">
             <span class="journey-panel-year" aria-hidden="true">2027</span>
-            <h3 class="journey-panel-title">what comes next</h3>
+            <h3 class="journey-panel-title"><span class="visually-hidden">2027: </span>what comes next</h3>
             <p class="journey-panel-more">Continue in <a href="next-chapter.html">The Next Chapter</a></p>
           </header>
           <ol class="journey-entries">
@@ -618,6 +623,8 @@
       </blockquote>
       <figcaption class="micro-label">Sasha</figcaption>
     </figure>
+
+    </main>
 
     <nav class="chapter-nav reveal-fade" data-delay="200" aria-label="Chapter navigation"></nav>
 

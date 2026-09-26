@@ -1,3 +1,20 @@
+/* Italiana draws "+", "-", "–" and "—" as hairlines that vanish on screen.
+   This face borrows just those glyphs from Cormorant Garamond (the same file the
+   Google Fonts stylesheet already loads, so it comes from cache), with local
+   serif fallbacks; every other character still renders in Italiana. */
+@font-face {
+  font-family: "Italiana Punctuation";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    url("https://fonts.gstatic.com/s/cormorantgaramond/v21/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYqXtK.woff2") format("woff2"),
+    local("Cormorant Garamond"),
+    local("Georgia"),
+    local("Times New Roman");
+  unicode-range: U+002B, U+002D, U+2010-2015, U+2212;
+}
+
 :root {
   --cream: #f6ecd6;
   --cream-soft: #faf3e3;
@@ -10,8 +27,11 @@
   --bamboo-deep: #a98660;
   --leaf: #2d4a32;
   --leaf-soft: #3a5a40;
+  --bamboo-ink: #7d5f40;    /* small bamboo text on cream: ≥ 4.5:1 */
+  --bamboo-script: #9c795a; /* large script lines on cream: ≥ 3:1 */
 
-  --font-display: "Italiana", "Playfair Display", serif;
+  /* "Italiana Punctuation" (below) supplies only + - – — ; everything else is Italiana */
+  --font-display: "Italiana Punctuation", "Italiana", "Playfair Display", serif;
   --font-body: "Cormorant Garamond", Georgia, serif;
   --font-script: "Parisienne", "Snell Roundhand", cursive;
 
@@ -122,6 +142,21 @@ body::before {
   opacity: 1;
 }
 
+/* Without JavaScript nothing would ever add .is-in, so show everything as-is. */
+@media (scripting: none) {
+  .reveal-drop,
+  .reveal-rise,
+  .reveal-slide-left,
+  .reveal-slide-right,
+  .reveal-fade,
+  .title span[aria-hidden],
+  .pagelink,
+  .resume-link {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal-drop,
   .reveal-rise,
@@ -185,7 +220,7 @@ body::before {
   font-style: italic;
   font-size: clamp(13px, 1vw, 16px);
   line-height: 1.35;
-  color: var(--bamboo-deep);
+  color: var(--bamboo-ink);
 }
 
 .img-slot.image-missing::after {
@@ -195,7 +230,7 @@ body::before {
   font-family: var(--font-body);
   font-size: 11px;
   letter-spacing: 0.08em;
-  color: rgba(26, 26, 26, 0.5);
+  color: rgba(26, 26, 26, 0.66);
 }
 
 /* compact slots (small tiles) — hint only, no file path */

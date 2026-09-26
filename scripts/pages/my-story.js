@@ -1,8 +1,9 @@
 // ───────── My Story — journey timeline (2019 → 2027) ─────────
 // WAI-ARIA tabs: each year on the track is a role="tab" button and owns one
 // role="tabpanel". Click a year, use ←/→ (Home/End) while a year is focused,
-// or the prev/next buttons to step through. The year marked data-now opens
-// first. Without JavaScript every panel simply stays visible.
+// or the prev/next buttons (which also answer to ←/→) to step through. The
+// year marked data-now opens first. Without JavaScript every panel simply
+// stays visible.
 (() => {
   const journey = document.querySelector("[data-journey]");
   if (!journey) return;
@@ -75,6 +76,21 @@
   };
   if (prevButton) prevButton.addEventListener("click", () => step(-1, prevButton));
   if (nextButton) nextButton.addEventListener("click", () => step(1, nextButton));
+
+  // With a step button focused, ←/→ step through the years too. The controls
+  // carry data-arrow-keys, so main.js leaves these keys alone instead of
+  // turning the page to the next chapter.
+  const controls = journey.querySelector(".journey-controls");
+  if (controls) {
+    controls.addEventListener("keydown", (e) => {
+      if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+      const delta = e.key === "ArrowLeft" ? -1 : e.key === "ArrowRight" ? 1 : 0;
+      const button = e.target.closest(".journey-step");
+      if (!delta || !button) return;
+      e.preventDefault();
+      step(delta, button);
+    });
+  }
 
   // Deep links such as my-story.html#journey-2024 open that year.
   const fromHash = () => panels.findIndex((panel) => `#${panel.id}` === window.location.hash);

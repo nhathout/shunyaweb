@@ -1,8 +1,16 @@
 /* my-story page — page-specific styles (loaded after page.css) */
 
-/* a deeper bamboo for small script / italic text so it stays readable */
+/* a deeper bamboo for small script / italic text so it stays readable
+   (#806244 on cream is 4.8 : 1, past the WCAG AA 4.5 : 1 for body-size text) */
 .story-page {
-  --bamboo-ink: #8a6a48;
+  --bamboo-ink: #806244;
+}
+
+/* Italiana draws dashes, hyphens and "+" as hairlines that vanish on screen,
+   so those glyphs borrow the body face inside display-font text */
+.glyph-body,
+.profile-q {
+  font-family: var(--font-body);
 }
 
 /* ───────── hero: title + two polaroids ───────── */
@@ -27,7 +35,15 @@
   font-size: clamp(22px, 2vw, 30px);
   letter-spacing: 0;
   text-transform: none;
-  color: var(--bamboo-deep);
+  color: var(--bamboo-ink);
+}
+
+/* an arrow and the stop after it wrap as one unit */
+.story-hero-step {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 12px;
+  white-space: nowrap;
 }
 
 .story-hero-arrow {
@@ -75,7 +91,7 @@
   line-height: 1.2;
 }
 
-.profile-byline span {
+.profile-byline .profile-place {
   display: block;
   margin-top: 6px;
   font-family: var(--font-body);
@@ -105,6 +121,7 @@
 .story-note-more a,
 .journey-panel-more a {
   border-bottom: 1px solid rgba(26, 26, 26, 0.35);
+  white-space: nowrap; /* a chapter name never breaks across lines */
   transition: color 0.3s ease, border-color 0.3s ease;
 }
 
@@ -330,6 +347,21 @@
 .story-page .photo-card:hover,
 .story-page .photo-card:focus-within {
   z-index: 4;
+}
+
+/* side by side, the collage stays in view while the open notes are read
+   (otherwise opening all three leaves a tall empty column beside them).
+   Sticky needs the frame to clip without becoming a scroll container, so
+   the frame's overflow: hidden becomes overflow: clip on this page; a
+   browser without overflow: clip keeps hidden and the collage just scrolls. */
+@media (min-width: 861px) {
+  .story-page .page-frame {
+    overflow: clip;
+  }
+  .story-page .photo-stack {
+    position: sticky;
+    top: clamp(24px, 6vh, 64px);
+  }
 }
 
 /* ───────── 4 · journey timeline ───────── */
@@ -582,6 +614,10 @@
   color: var(--black-soft);
 }
 
+.journey-thread-dates {
+  white-space: nowrap;
+}
+
 /* prev / count / next */
 .journey-controls {
   display: flex;
@@ -627,7 +663,7 @@
   font-family: var(--font-display);
   font-size: 18px;
   letter-spacing: 0.24em;
-  color: var(--bamboo-deep);
+  color: var(--bamboo-ink);
 }
 
 /* before JS runs (or without it) the controls have nothing to drive */
@@ -794,7 +830,15 @@
 
 /* ───────── 6 · pull quote ───────── */
 .story-page .story-quote {
-  margin: 0 0 clamp(24px, 3vw, 44px);
+  margin: 0;
+}
+
+/* the quote closes the chapter: its bottom rule doubles as the top rule of
+   the prev / next strip, instead of two parallel lines with a gap between */
+.story-page .story-quote + .chapter-nav,
+.story-page main:has(> .story-quote:last-child) + .chapter-nav {
+  margin-top: 0;
+  border-top: 0;
 }
 
 .story-quote blockquote {
@@ -918,7 +962,8 @@
   }
   .journey-track {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 8px;
+    /* the taller row gap leaves room for the "now" pill between the rows */
+    gap: 14px 8px;
   }
   .journey-track::before,
   .journey-track::after,
@@ -1023,11 +1068,21 @@
     font-size: 13px;
   }
 
+  /* panel head: the year with its title beside it, the chapter link below both */
+  .journey-panel-year {
+    grid-row: auto;
+  }
+  .journey-panel-more {
+    grid-column: 1 / -1;
+    margin-top: 4px;
+  }
+
   .story-quote figcaption {
     grid-column: auto;
   }
+  /* Parisienne sets the mark high above its line box; pull the quote up under it */
   .story-quote .quote-mark {
-    margin-bottom: -14px;
+    margin-bottom: -46px;
   }
 }
 

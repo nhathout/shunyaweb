@@ -11,7 +11,24 @@
 
   const keys = Array.from(card.querySelectorAll("[data-team-key]"));
   const slices = Array.from(card.querySelectorAll("[data-team-slice]"));
+  const toggle = card.querySelector("[data-flip-toggle]");
   let pinned = null;
+
+  // main.js makes every .flip-card one big role="button". This board holds the
+  // legend's buttons, and buttons must not nest, so undo that here and let the
+  // corner ↻ be a real toggle button. A click anywhere else on the board still
+  // turns it over (main.js ignores clicks on buttons).
+  if (toggle) {
+    card.removeAttribute("role");
+    card.removeAttribute("aria-pressed");
+    card.removeAttribute("tabindex");
+    toggle.hidden = false;
+    toggle.addEventListener("click", () => card.classList.toggle("is-flipped"));
+    // stop main.js's card-level Enter/Space handler from turning it twice
+    toggle.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") e.stopPropagation();
+    });
+  }
 
   const show = (team) => {
     if (team) card.dataset.active = team;
@@ -21,6 +38,8 @@
 
   keys.forEach((key) => {
     const team = key.dataset.teamKey;
+    let byTouch = false;
+    key.addEventListener("pointerdown", (e) => (byTouch = e.pointerType === "touch"));
     key.addEventListener("pointerenter", () => show(team));
     key.addEventListener("pointerleave", rest);
     key.addEventListener("focus", () => show(team));
@@ -28,7 +47,10 @@
     key.addEventListener("click", () => {
       pinned = pinned === team ? null : team;
       keys.forEach((k) => k.setAttribute("aria-pressed", String(k.dataset.teamKey === pinned)));
-      show(pinned || team);
+      // a mouse or keyboard user is still on the key, so keep it lit; after a
+      // tap that unpins, clear the highlight (touch has no hover to end it)
+      show(pinned || (byTouch ? null : team));
+      byTouch = false;
     });
     // stop the card (main.js) from flipping when a legend key is activated
     key.addEventListener("keydown", (e) => {
@@ -42,13 +64,19 @@
     slice.addEventListener("pointerleave", rest);
   });
 
-  // keep the hidden face out of the tab order
+  // keep the hidden face out of the tab order and the toggle's state in sync
+  // (main.js flips the board on click and re-adds aria-pressed to it; the
+  // state belongs on the toggle)
   const syncFace = () => {
     const flipped = card.classList.contains("is-flipped");
     keys.forEach((key) => (key.tabIndex = flipped ? -1 : 0));
+    if (toggle) {
+      toggle.setAttribute("aria-pressed", String(flipped));
+      if (card.hasAttribute("aria-pressed")) card.removeAttribute("aria-pressed");
+    }
     if (flipped) rest();
   };
-  new MutationObserver(syncFace).observe(card, { attributes: true, attributeFilter: ["class"] });
+  new MutationObserver(syncFace).observe(card, { attributes: true, attributeFilter: ["class", "aria-pressed"] });
 })();
 
 // 2 · The research lenses — WAI-ARIA tabs. Click a lens, or use ←/→

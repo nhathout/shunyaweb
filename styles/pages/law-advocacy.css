@@ -5,6 +5,26 @@
   --bamboo-ink: #7d5f40; /* 5:1 on cream */
 }
 
+/* keep pairs like "Japan–South Korea" on one line */
+.law-page .nowrap {
+  white-space: nowrap;
+}
+
+/* no one-word last lines in running text (direct text blocks only: text-wrap
+   also sets the wrap mode, which would undo .nowrap on a nested span) */
+.law-page :is(.page-lede, .docket-list li > span, .law-panel p, .law-route li > span, .writing-card .flip-back p) {
+  text-wrap: pretty;
+}
+
+/* docket numerals in the deeper ink too: bamboo-deep is under 3:1 on cream */
+.law-page .docket-list li::before {
+  color: var(--bamboo-ink);
+}
+
+.law-page .docket-list li:hover::before {
+  color: var(--leaf);
+}
+
 /* ───────── 1 · the brief card: lede + docket ───────── */
 .law-brief .page-lede {
   font-size: clamp(20px, 1.75vw, 27px);
@@ -116,6 +136,7 @@
 
 .law-caption > div {
   display: grid;
+  align-content: start;
   gap: 2px;
   padding: 10px 14px 12px;
   border-right: var(--hairline);
@@ -368,7 +389,7 @@
   font-family: var(--font-display);
   font-size: 15px;
   line-height: 1;
-  color: var(--bamboo-deep);
+  color: var(--bamboo-ink);
 }
 
 .law-route li:last-child {
@@ -436,11 +457,19 @@
   }
 
   .law-fields li,
-  .law-proof li {
+  .law-proof li,
+  .law-page .docket-list li,
+  .law-page .law-stamp,
+  .law-page .law-stamp::before {
     transition: none;
   }
 
   .law-fields li:hover {
     transform: none;
+  }
+
+  /* the stamp keeps its resting tilt */
+  .law-page .law-brief:hover .law-stamp {
+    transform: rotate(-4deg);
   }
 }
