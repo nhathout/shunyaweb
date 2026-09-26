@@ -352,7 +352,26 @@
   color: var(--black-soft);
 }
 
-/* back face */
+/* back face — organization + dates, so a turned card still says where it is */
+.node-back-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 12px;
+  padding-right: 22px;
+}
+
+.node-back-meta .micro-label {
+  letter-spacing: 0.2em;
+}
+
+.node-dates {
+  font-size: 14px;
+  font-style: italic;
+  letter-spacing: 0.06em;
+  color: var(--bamboo-ink);
+}
+
 .leadership-page .impact-node .flip-back h3 {
   font-size: clamp(20px, 1.75vw, 26px);
   line-height: 1.08;
@@ -438,6 +457,9 @@
   flex-direction: column;
   min-width: 0;
   scroll-margin-top: 24px;
+  /* tilt without a 3D context: preserve-3d (from .tilt-card) makes Chrome miss
+     clicks on the buttons inside a tilted card */
+  transform-style: flat;
   border: var(--hairline);
   background: rgba(250, 243, 227, 0.72);
   transition:
@@ -692,6 +714,15 @@
   position: relative;
   inset: auto;
   width: 100%;
+  padding-bottom: 12px;
+}
+
+/* caption sits under the photo instead of over the frame's bottom edge,
+   so a two-line caption on a phone never covers the picture */
+.lead-room .photo-card figcaption {
+  position: static;
+  margin-top: 10px;
+  line-height: 1.3;
 }
 
 .lead-room-tedx::before {
@@ -929,9 +960,14 @@
     min-height: 0;
   }
 
+  .impact-chips {
+    gap: 6px;
+  }
+
   .impact-chip {
-    padding: 5px 12px 6px;
+    padding: 5px 10px 6px;
     font-size: 15px;
+    letter-spacing: 0.04em;
   }
 
   .lead-room-photos {

@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Law &amp; Advocacy — Sasha</title>
+  <title>Law &amp; Advocacy — Sasha Petrovicheva</title>
+  <meta
+    name="description"
+    content="Sasha Petrovicheva&rsquo;s legal work and long-term plan: a legal internship at MCIS Lawyers, policy and legal research, regulated healthcare operations, and a path to law school in AI, cybersecurity, privacy and emerging-technology law."
+  />
   <link rel="icon" type="image/png" href="../assets/images/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -33,99 +37,257 @@
       <span class="page-rule"></span>
     </section>
 
-    <section class="law-casebook reveal-fade" data-delay="420" aria-label="Law experience casebook">
-      <aside class="law-brief tilt-card">
-        <span class="law-stamp">draft brief</span>
+    <section class="law-casebook reveal-fade" data-delay="420" aria-label="Legal experience and research">
+      <!-- 1 · The brief: why law, plus the three docket entries -->
+      <aside class="law-brief tilt-card" aria-label="In brief">
+        <span class="law-stamp">in brief</span>
         <p class="page-lede">
-          A focused page for legal interests, law firm experience, client-facing
-          work, advocacy instincts, and the reasons law school belongs in her
-          next chapter.
+          Law is Sasha&rsquo;s long game: a career in AI, cybersecurity, privacy and
+          emerging-technology law, reached after the MBA and the consulting years that will
+          show her how companies really use technology and manage its risks.
         </p>
         <ol class="docket-list">
           <li>
-            <strong>Law firm experience</strong>
-            <span>Replace with firm name, role, dates, practice area, and responsibilities.</span>
+            <strong>Legal Intern, MCIS Lawyers</strong>
+            <span>
+              <em class="docket-meta">Personal injury &middot; summer 2022</em>
+              Legal research, case documents and complex legal issues, handled with close
+              attention to facts and procedure.
+            </span>
           </li>
           <li>
-            <strong>Client operations</strong>
-            <span>Add intake, case support, CRM, healthcare claims, or documentation work.</span>
+            <strong>Policy &amp; legal research</strong>
+            <span>
+              <em class="docket-meta">State law &middot; global policy</em>
+              Texas Senate Bill 1029; a mica mining memo on child labor and accountable sourcing;
+              Japan&ndash;South Korea relations; Russia&ndash;China energy relations.
+            </span>
           </li>
           <li>
-            <strong>Advocacy throughline</strong>
-            <span>Connect her community work, public communication, and policy interests.</span>
+            <strong>Regulated operations</strong>
+            <span>
+              <em class="docket-meta">Healthcare since 2019 &middot; finance</em>
+              Insurance, staff credentialing and compliance in a regulated home-health operation at
+              Guardian Angel; a Legal and Risk rotation at Wellington Management.
+            </span>
           </li>
         </ol>
       </aside>
 
-      <div class="case-file tilt-card">
-        <input type="radio" name="law-tabs" id="law-tab-firm" checked />
-        <input type="radio" name="law-tabs" id="law-tab-school" />
-        <input type="radio" name="law-tabs" id="law-tab-proof" />
+      <!-- 2 · Case file: three CSS-only tabs driven by native radio inputs.
+           Tab / Shift+Tab reaches the group; ←/→ (or ↑/↓) switch sections.
+           The inputs must stay direct siblings of .law-tabs and .law-panels —
+           page.css and law-advocacy.css select the active tab with "~". -->
+      <div class="case-file tilt-card" data-arrow-keys>
+        <input type="radio" name="law-tabs" id="law-tab-firm" aria-controls="law-panel-firm" checked />
+        <input type="radio" name="law-tabs" id="law-tab-school" aria-controls="law-panel-school" />
+        <input type="radio" name="law-tabs" id="law-tab-proof" aria-controls="law-panel-proof" />
 
-        <div class="law-tabs" role="tablist" aria-label="Law page sections">
-          <label for="law-tab-firm" role="tab">Experience</label>
-          <label for="law-tab-school" role="tab">Law School</label>
-          <label for="law-tab-proof" role="tab">Proof</label>
+        <div class="law-tabs">
+          <label for="law-tab-firm">Experience</label>
+          <label for="law-tab-school">Law School</label>
+          <label for="law-tab-proof">Proof</label>
         </div>
 
         <div class="law-panels">
-          <article class="law-panel law-panel-firm">
-            <span class="micro-label">Exhibit A</span>
-            <h2>Legal work, clearly framed</h2>
+          <!-- Exhibit A · the legal internship, plus where legal questions show up in her work since -->
+          <article class="law-panel law-panel-firm" id="law-panel-firm" aria-labelledby="law-panel-firm-title">
+            <span class="micro-label">Exhibit A &middot; Experience</span>
+            <h2 id="law-panel-firm-title">A summer in practice</h2>
+            <dl class="law-caption">
+              <div>
+                <dt>Role</dt>
+                <dd>Legal Intern</dd>
+              </div>
+              <div>
+                <dt>Firm</dt>
+                <dd>MCIS Lawyers &mdash; Personal Injury Attorneys</dd>
+              </div>
+              <div>
+                <dt>Place</dt>
+                <dd>Thousand Oaks, CA</dd>
+              </div>
+              <div>
+                <dt>Term</dt>
+                <dd>Jun &ndash; Aug 2022</dd>
+              </div>
+            </dl>
             <p>
-              Placeholder for her law firm role: what she handles, what she has
-              learned, and how the work sharpened her judgment.
+              Sasha did legal research, prepared case documents and analyzed complex legal
+              issues &mdash; work that depends on factual accuracy and procedural detail.
+            </p>
+            <p class="law-panel-note">
+              Since then, legal questions have stayed close to her work: insurance documentation
+              and staff credentialing in regulated home healthcare at Guardian Angel, and a Legal
+              and Risk rotation during her Wellington Management co-op.
             </p>
           </article>
-          <article class="law-panel law-panel-school">
-            <span class="micro-label">Exhibit B</span>
-            <h2>Why law, why now</h2>
-            <p>
-              Placeholder for her law school story, preferred fields, questions
-              she wants to study, and what kind of advocate she wants to become.
-            </p>
+
+          <!-- Exhibit B · why law, why later (her reasoning) + the fields she names -->
+          <article class="law-panel law-panel-school" id="law-panel-school" aria-labelledby="law-panel-school-title">
+            <span class="micro-label">Exhibit B &middot; Law school</span>
+            <h2 id="law-panel-school-title">Why law, why later</h2>
+            <div class="law-reasons">
+              <div>
+                <h3 class="micro-label">Why law</h3>
+                <p>
+                  Sasha wants to help companies use AI responsibly and manage cyber and privacy
+                  risk. Sooner or later those questions become legal ones &mdash; so law is where
+                  her path is headed.
+                </p>
+              </div>
+              <div>
+                <h3 class="micro-label">Why later</h3>
+                <p>
+                  Going straight from the MBA to law school would weaken the MBA. Two to three years
+                  in consulting first give her real examples of how companies use AI and handle
+                  technology risk &mdash; a stronger law application, and a stronger legal career.
+                </p>
+              </div>
+            </div>
+            <h3 class="law-fields-title micro-label" id="law-fields-title">The law she wants to practice</h3>
+            <ul class="law-fields" aria-labelledby="law-fields-title">
+              <li>AI regulation</li>
+              <li>Data privacy</li>
+              <li>Algorithmic discrimination</li>
+              <li>Intellectual property</li>
+              <li>Responsible AI</li>
+              <li>Technology contracts</li>
+              <li>Cybersecurity &amp; data-protection law</li>
+            </ul>
           </article>
-          <article class="law-panel law-panel-proof">
-            <span class="micro-label">Exhibit C</span>
-            <h2>Evidence worth saving</h2>
-            <p>
-              Add letters, writing samples, case summaries, supervisor quotes,
-              volunteer work, and any law-adjacent projects she wants featured.
-            </p>
+
+          <!-- Exhibit C · research & writing (titles as on her résumé; one factual line each) -->
+          <article class="law-panel law-panel-proof" id="law-panel-proof" aria-labelledby="law-panel-proof-title">
+            <span class="micro-label">Exhibit C &middot; Research &amp; writing</span>
+            <h2 id="law-panel-proof-title">On the record</h2>
+            <ol class="law-proof">
+              <li>
+                <strong>Governing Agentic AI in Financial Operations</strong>
+                <span class="law-proof-type">In progress</span>
+                <p>
+                  Independent, faculty-supervised research (2026 &ndash; present) on human oversight,
+                  auditability and responsibility allocation when AI agents enter financial workflows.
+                  <a class="law-proof-link" href="ai-governance.html">More in Chapter Two <span aria-hidden="true">&rarr;</span></a>
+                </p>
+              </li>
+              <li>
+                <strong>Navigating Gender-Affirming Healthcare in Texas</strong>
+                <span class="law-proof-type">Legal research</span>
+                <p>Research on Texas Senate Bill 1029 and access to gender-affirming healthcare in the state.</p>
+              </li>
+              <li>
+                <strong>Mica Mining Policy Memo</strong>
+                <span class="law-proof-type">Policy memo</span>
+                <p>Child labor in mica mining, and what accountable sourcing asks of a supply chain.</p>
+              </li>
+              <li>
+                <strong>Japan&ndash;South Korea Relations</strong>
+                <span class="law-proof-type">International affairs</span>
+                <p>International-affairs research on relations between Japan and South Korea.</p>
+              </li>
+              <li>
+                <strong>Russia&ndash;China Energy Relations</strong>
+                <span class="law-proof-type">Energy &amp; policy</span>
+                <p>Research on the energy relationship between Russia and China.</p>
+              </li>
+            </ol>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="legal-writing reveal-fade" data-delay="650" aria-label="Legal writing placeholders">
+    <!-- 3 · Two flip cards: the writing sample and the long game.
+         Cards size to their content (see law-advocacy.css), so longer back
+         copy grows the card instead of being clipped. -->
+    <section class="legal-writing reveal-fade" data-delay="650" aria-label="Writing sample and the long game">
       <article class="writing-card flip-card tilt-card" tabindex="0">
         <div class="flip-inner">
           <div class="flip-face flip-front">
             <span class="micro-label">Writing sample</span>
-            <p>Space for an excerpt from a memo, essay, policy reflection, or application theme.</p>
+            <h3 class="writing-title">Mica Mining Policy Memo</h3>
+            <p class="writing-topic">Child labor &amp; accountable sourcing</p>
+            <span class="writing-cue" aria-hidden="true">turn over &mdash; what it covers</span>
           </div>
           <div class="flip-face flip-back">
             <span class="micro-label">Writing sample</span>
-            <h3>What it argues</h3>
-            <p>Placeholder for the thesis &mdash; topic, angle, and where the piece was written.</p>
+            <h3>What it covers</h3>
+            <p>
+              A policy memo on child labor in mica mining and on accountable sourcing &mdash; the
+              question of who answers for working conditions at the very start of a supply chain.
+            </p>
+            <!-- EDIT: Sasha — paste a 2–3 sentence excerpt here, copied exactly from the memo,
+                 e.g.
+                 <blockquote class="writing-excerpt"><p>&ldquo;EXCERPT&rdquo;</p></blockquote>
+                 Keep the whole back under ~60 words; the card grows to fit. -->
           </div>
         </div>
         <span class="flip-indicator" aria-hidden="true"></span>
       </article>
+
+      <article class="writing-card flip-card tilt-card" tabindex="0">
+        <div class="flip-inner">
+          <div class="flip-face flip-front">
+            <span class="micro-label">The long game</span>
+            <!-- DRAFT QUOTE: Sasha to confirm wording -->
+            <blockquote class="writing-quote">
+              <p>
+                &ldquo;Real work first. The problems I see in consulting will make me a sharper law
+                student &mdash; and a better lawyer.&rdquo;
+              </p>
+            </blockquote>
+            <span class="micro-label writing-by">Sasha</span>
+          </div>
+          <div class="flip-face flip-back">
+            <span class="micro-label">The long game</span>
+            <h3>Four steps, in order</h3>
+            <ol class="law-route">
+              <li>
+                <strong>MBA</strong>
+                <!-- EDIT: name the program once decided -->
+                <span>AI &amp; technology focus, from Fall 2027</span>
+              </li>
+              <li>
+                <strong>Consulting</strong>
+                <span>2&ndash;3 years in AI, governance &amp; risk</span>
+              </li>
+              <li>
+                <strong>Law school</strong>
+                <span>with real examples in hand</span>
+              </li>
+              <li>
+                <strong>Practice</strong>
+                <span>AI, cybersecurity, privacy &amp; emerging-tech law</span>
+              </li>
+            </ol>
+          </div>
+        </div>
+        <span class="flip-indicator" aria-hidden="true"></span>
+      </article>
+
+      <!-- TEMPLATE: recommendation card — enable once Sasha has a quote she has permission to use
+           (e.g. from her MCIS Lawyers supervisor or a faculty research advisor).
+           To enable: delete the comment markers around the <article> below, paste the exact
+           quote and attribution, and keep the back to ~40 words. The row switches to three
+           columns on its own when a third card is present (see law-advocacy.css).
       <article class="writing-card flip-card tilt-card" tabindex="0">
         <div class="flip-inner">
           <div class="flip-face flip-front">
             <span class="micro-label">Recommendation</span>
-            <p>Space for a supervisor quote or short note from someone who has seen her work.</p>
+            <blockquote class="writing-quote">
+              <p>&ldquo;EXACT QUOTE, one or two sentences.&rdquo;</p>
+            </blockquote>
+            <span class="micro-label writing-by">NAME &middot; ROLE</span>
           </div>
           <div class="flip-face flip-back">
             <span class="micro-label">Recommendation</span>
-            <h3>Who wrote it</h3>
-            <p>Placeholder for the recommender &mdash; name, title, and the work they saw her do.</p>
+            <h3>NAME</h3>
+            <p>TITLE, ORGANIZATION &mdash; and the work they saw her do, in one sentence.</p>
           </div>
         </div>
         <span class="flip-indicator" aria-hidden="true"></span>
       </article>
+      -->
     </section>
 
     <nav class="chapter-nav reveal-fade" data-delay="200" aria-label="Chapter navigation"></nav>
