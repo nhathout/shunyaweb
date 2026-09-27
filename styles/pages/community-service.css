@@ -121,3 +121,10 @@
   /* keep the placeholder hint readable: the chip sits under the print on phones */
   .cs-photo .photo-chip { position: static; max-width: none; margin-top: 16px; box-shadow: none; }
 }
+
+/* tablets: the three campus badges stay one row (two columns would leave the third alone) */
+@media (min-width: 701px) and (max-width: 1000px) {
+  .page-community-service .cs-campus-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .page-community-service .cs-campus-row > * { border-top: 0; padding-left: 20px; border-left: 1px solid var(--rule-soft); }
+  .page-community-service .cs-campus-row > :first-child { padding-left: 0; border-left: 0; }
+}

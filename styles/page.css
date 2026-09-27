@@ -796,6 +796,11 @@ main > .stat-band:last-child { margin-bottom: 0; }
   .stat:nth-child(even) { padding-left: 16px; border-left: 1px solid var(--rule-soft); }
   .stat:nth-child(n + 3) { border-top: 1px solid var(--rule-soft); }
 }
+/* tablets: a three-stat row stays one row instead of leaving the third stat alone */
+@media (min-width: 521px) and (max-width: 800px) {
+  .stat-row[style*="--cols: 3"] { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .stat-row[style*="--cols: 3"] > .stat:nth-child(3) { padding-left: 16px; border-left-width: 1px; border-left-style: solid; border-top-width: 0; }
+}
 
 /* the leaf band */
 .stat-band {
@@ -916,6 +921,8 @@ a.card:hover .icon-card-title, a.icon-card:hover .icon-card-title, a.role-card:h
 @media (min-width: 701px) and (max-width: 1000px) {
   .ruled-grid.grid-3 > *:nth-child(odd),
   .ruled-grid.grid-4 > *:nth-child(odd) { padding-left: 0; border-left: 0; }
+  /* an odd item left alone on the last row spans the full width */
+  .ruled-grid.grid-3 > :last-child:nth-child(odd) { grid-column: 1 / -1; }
 }
 @media (min-width: 1001px) {
   .ruled-grid.grid-2 > *:nth-child(2n + 1),
@@ -1242,6 +1249,13 @@ a.card:hover .icon-card-title, a.icon-card:hover .icon-card-title, a.role-card:h
   .timeline[style*="--items: 6"],
   .timeline[style*="--items:5"],
   .timeline[style*="--items:6"] { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 36px; }
+}
+/* tablets: four entries are too narrow side by side, so two rows of two */
+@media (min-width: 701px) and (max-width: 900px) {
+  .timeline[style*="--items: 4"],
+  .timeline[style*="--items:4"] { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 36px; }
+  .timeline[style*="--items: 4"] > .timeline-item:nth-child(2n)::before,
+  .timeline[style*="--items:4"] > .timeline-item:nth-child(2n)::before { right: 0; }
 }
 
 .timeline-vertical { grid-template-columns: 1fr; gap: 0; }

@@ -219,6 +219,10 @@
 .cover-orgs-head::after { background: var(--rule-soft); }
 .cover-orgs .org-row { border-bottom: 0; }
 .cover-orgs .org-row > * { padding-block: 24px 4px; }
+/* 1001–1320px: five badges are too narrow for mark + name side by side, so the mark sits above */
+@media (min-width: 1001px) and (max-width: 1320px) {
+  .cover-orgs .org { flex-direction: column; align-items: flex-start; gap: 12px; }
+}
 
 /* ───────────────────────── Contact ───────────────────────── */
 .cover-contact-wrap { padding-block: var(--space-6); }
